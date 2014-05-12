@@ -1,0 +1,7 @@
+default-ip               : 127.0.0.1
+default-port             : 8000
+
+name                     : LCS Service
+version                  : 0.01
+secret                   : dcd7a13a-b983-4e9f-b593-7839a7115ad2
+author                   : Por Definir ( Not kimera )

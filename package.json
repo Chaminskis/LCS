@@ -1,0 +1,23 @@
+{
+  "name": "lcs-service",
+  "version": "0.0.0",
+  "description": "LCS-Web",
+  "main": "debug.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "total.js": "^1.4.0",
+    "mysql": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.blageek.net:root/lcs-web.git"
+  },
+  "author": "Author",
+  "license": "MIT"
+}

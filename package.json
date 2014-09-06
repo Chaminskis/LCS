@@ -41,7 +41,9 @@
     "gulp-util": "~3.0.1",
     "rework": "~1.0.1",
     "rework-importer": "~0.3.1",
-    "through2": "~0.6.1"
+    "through2": "~0.6.1",
+    "gulp-concat": "~2.3.5",
+    "gulp-rename": "~1.2.0"
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

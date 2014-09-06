@@ -7,6 +7,9 @@ var pagespeed = require('psi');
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
 
+var rename = require('gulp-rename');
+var concat = require('gulp-concat');
+
 var minifyCSS = require('gulp-minify-css');
 var concatCss = require('gulp-concat-css');
 
@@ -29,6 +32,14 @@ gulp.task('jshint', function () {
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+});
+
+gulp.task('scripts', function() {
+    return gulp.src('public/js/*.js')
+        .pipe(concat('script.js'))
+        .pipe(gulp.dest('public/dist/js'))
+        .pipe(rename('script.min.js'))
+        .pipe(gulp.dest('public/dist/js'));
 });
 
 // Optimize Images
@@ -94,7 +105,7 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['scripts','images', 'fonts', 'copy'], cb);
 });
 
 // Load custom tasks from the `tasks` directory

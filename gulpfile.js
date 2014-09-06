@@ -9,6 +9,7 @@ var sass = require('gulp-sass');
 
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
 var minifyCSS = require('gulp-minify-css');
 var concatCss = require('gulp-concat-css');
@@ -38,9 +39,32 @@ gulp.task('scripts', function() {
     return gulp.src('public/js/*.js')
         .pipe(concat('script.js'))
         .pipe(gulp.dest('public/dist/js'))
+        .pipe(uglify())
         .pipe(rename('script.min.js'))
         .pipe(gulp.dest('public/dist/js'));
 });
+
+gulp.task('admin_script', function() {
+    return gulp.src(['public/js/admin/*.js',
+                     'public/js/admin/controller/*.js',
+                     'public/js/admin/service/*.js'])
+        .pipe(concat('admin_script.js'))
+        .pipe(gulp.dest('public/dist/js'))
+        .pipe(uglify())
+        .pipe(rename('admin_script.min.js'))
+        .pipe(gulp.dest('public/dist/js'));
+});
+
+gulp.task('admin_script_jshint', function () {
+  return gulp.src(['public/js/admin/*.js',
+                   'public/js/admin/controller/*.js',
+                   'public/js/admin/service/*.js'])
+
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+});
+
 
 // Optimize Images
 gulp.task('images', function () {
@@ -105,7 +129,7 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['scripts','images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['admin_script_jshint','admin_script','scripts','images', 'fonts', 'copy'], cb);
 });
 
 // Load custom tasks from the `tasks` directory

@@ -5,24 +5,87 @@
     <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
+      div{
+        display: inline-block;
+        vertical-align: top;
+      }
       #map_canvas { height: 100% }
+
+      #controls{
+        text-align: center;
+      }
+
     </style>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=SET_TO_TRUE_OR_FALSE">
+      src="http://maps.googleapis.com/maps/api/js?sensor=true">
     </script>
     <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
+
+    $(document).ready(function(){
+
+    var map = null;
+      var mapOptions = {
           center: new google.maps.LatLng(-34.397, 150.644),
           zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
-      }
+      };
+      
+      map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+        
+        function geoLocate(){
+          if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+
+              var infowindow = new google.maps.InfoWindow({
+                map: map,
+                position: pos,
+                content: 'Home :)'
+            }); 
+
+            var marker = new google.maps.Marker({
+              position: pos,
+              map: map,
+              title:"Hello World!"
+          });
+
+              map.setCenter(pos);
+          }, function() {
+              
+          });
+        } else {
+          //macatecla
+        }
+        }
+
+        $('#locate').click(function(){
+
+          geoLocate();
+
+
+        });
+
+    });
+
+      
     </script>
   </head>
-  <body onload="initialize()">
-    <div id="map_canvas" style="width:100%; height:100%"></div>
+  <body>
+    <div id="controls" style="width:20%; height:100%"> 
+
+      <p>Provincias</p>
+      <select>
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+        <option>Option 4</option>
+        <option>Option 5</option>
+        <option>Option 6</option>
+      </select>
+
+      <button id="locate">Locate</button>
+     </div>
+    <div id="map_canvas" style="width:80%; height:100%"></div>
   </body>
 </html>

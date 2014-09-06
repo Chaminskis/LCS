@@ -60,5 +60,8 @@ function error500() {
 
 function view_homepage() {
     var self = this;
-    self.view('home/map_view');
+
+    self.layout("")
+
+    self.view('home/map');
 }

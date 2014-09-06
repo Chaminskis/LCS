@@ -63,5 +63,5 @@ function view_homepage() {
 
     self.layout("")
 
-    self.view('home/map');
+    self.view('home/index');
 }

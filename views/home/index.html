@@ -23,6 +23,11 @@
 
     <!-- Page styles -->
     <link rel="stylesheet" href="/dist/css/style.css">
+    <style type="text/css">
+        #map_container{
+            height: 100%;
+        }
+    </style>
   </head>
   <body>
     <header class="app-bar promote-layer">
@@ -45,7 +50,7 @@
     </nav>
 
     <section id='map_container'>
-        <h3>interface</h3>
+        <div id="map_canvas" style="height:100%"></div>
     </section>
 
     <main>
@@ -54,6 +59,24 @@
     <!-- build:js scripts/main.min.js -->
     <script src="/dist/js/script.js"></script>
     <!-- endbuild -->
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            var map = null;
+
+            var mapOptions = {
+                center: new google.maps.LatLng(-34.397, 150.644),
+                zoom: 8,
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+        }
+    </script>
 
   </body>
 </html>

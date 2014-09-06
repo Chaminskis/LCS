@@ -6,4 +6,4 @@
 
 ** Run **
 
-    node debug.js //there's a config file called debug.
+    node debug.js '' there's a config file called debug.

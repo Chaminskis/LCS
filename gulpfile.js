@@ -81,7 +81,7 @@ gulp.task('styles', function () {
     
     .pipe(sass())
     .pipe(minifyCSS({keepBreaks:true}))
-
+    .pipe(concat('style.css'))
     .pipe(gulp.dest('public/dist/css'));
 });
 

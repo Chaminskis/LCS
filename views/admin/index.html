@@ -24,10 +24,10 @@
     <!-- Page styles -->
     <link rel="stylesheet" href="/dist/css/style.css">
   </head>
-  <body>
+  <body ng-app='lcs-admin'>
     <header class="app-bar promote-layer">
       <div class="app-bar-container">
-        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+        <button class="menu"><img src="/images/hamburger.svg" alt="Menu"></button>
         <h1 class="logo"><strong>Localizador de centros de salud</strong></h1>
         <section class="app-bar-actions">
         <!-- Put App Bar Buttons Here -->
@@ -44,7 +44,7 @@
       </ul>
     </nav>
 
-    <section id='map_container'>
+    <section id='map_container' ng-view>
         <h3>interface</h3>
     </section>
 
@@ -54,6 +54,11 @@
     <!-- build:js scripts/main.min.js -->
     <script src="/dist/js/script.js"></script>
     <!-- endbuild -->
+
+    <script type="text/javascript" src="/js/vendors/angular.min.js"></script>
+    <script type="text/javascript" src='/js/vendors/angular-route.min.js'></script>
+
+    <script type="text/javascript" src="/dist/js/admin_script.min.js"></script>
 
   </body>
 </html>

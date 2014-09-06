@@ -1,12 +1,39 @@
-//service
+/*
+ * Service Api
+ *
+ *
+ **/
+
+/** Imports **/
 var controllerBaseUrl = '/app/service/';
 var utils = require('../definitions/utils_service.js');
+var hospitalService = require('../definitions/services/hospital_service.js');
+var medicalSecureService = require('../definitions/services/medical_secure_service.js');
 
+/** Routes **/
 exports.install = function(framework){
+	framework.route(controllerBaseUrl,dummy,['get']);
 	framework.route(controllerBaseUrl + 'hospitals/',getHospitals,['post','json']);
 	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['get'])
 }
 
+/*
+ *
+ *
+ **/
+function dummy(){
+
+	hospitalService.hi(function(model){
+		console.log('result');
+	})
+
+	this.json({nice:4});
+}
+
+/*
+ *
+ *
+ **/
 function getHospitals(){
 	var self = this;
 	var data = self.global.db;
@@ -29,6 +56,10 @@ function getHospitals(){
 	self.json(result);
 }
 
+/*
+ *
+ *
+ **/
 function getHospital(identifier){
 	var self = this;
 

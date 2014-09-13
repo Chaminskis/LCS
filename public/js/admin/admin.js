@@ -5,7 +5,9 @@
 
 'use strict';
 
-angular.module('lcs-admin',['ngRoute','lcs-admin.controller'])
+
+
+angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 .config(['$routeProvider',function($routeProvider){
 

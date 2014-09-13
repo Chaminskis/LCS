@@ -5,8 +5,8 @@
 
 'use strict';
 
-angular.module('lcs-admin.controller',[])
+angular.module('app.controllers')
 
 .controller('home',['$scope',function($scope){
-	$scope.message = 'nice';
+	$scope.message = 'nice from controller';
 }]);

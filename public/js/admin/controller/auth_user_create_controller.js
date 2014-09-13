@@ -5,7 +5,7 @@
 
  'use strict';
 
- angular.module('lcs-admin.controller',[])
+ angular.module('app.controllers')
 
  .controller('auth_user_create', ['$scope', function($scope){
  	

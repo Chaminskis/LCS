@@ -5,8 +5,8 @@
 
 'use strict';
 
-angular.module('lcs-admin.controller',[])
+angular.module('app.controllers')
 
 .controller('hospital', ['$scope', function($scope){
-	$scope.message = 'hopsital index';	
+	$scope.message = 'hopsital index controller';	
 }]);

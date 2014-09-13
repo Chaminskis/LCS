@@ -5,7 +5,7 @@
 
  'use strict';
 
- angular.module('lcs-admin.controller',[])
+ angular.module('app.controllers')
 
  .controller('doctor',['$scope',function($scope){
  	$scope.message = 'nice from doctor index';

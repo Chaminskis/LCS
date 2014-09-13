@@ -5,10 +5,10 @@
 
  'use strict';
 
- angular.module('lcs-admin.controller',[])
+ angular.module('app.controllers')
 
  .controller('doctor_create', ['$scope', function($scope){
  	
  	$scope.message = 'nice from doctor create';
- 	
+
  }]);

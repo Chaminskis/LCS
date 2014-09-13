@@ -3,10 +3,10 @@ module.exports = {
     
   	migration.createTable('hospitals',{
   		id:{ type: DataTypes.INTEGER, autoIncrement: true, unique:true },
-		title:{ type: DataTypes.STRING },
-        updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-        created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-        deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+		  title:{ type: DataTypes.STRING },
+      updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+      created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+      deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   	},{
   		engine:'INNODB',
         timestamps: true,

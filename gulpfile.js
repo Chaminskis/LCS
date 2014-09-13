@@ -7,12 +7,16 @@ var pagespeed = require('psi');
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
 
+var inject = require("gulp-inject");
+
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
 var minifyCSS = require('gulp-minify-css');
 var concatCss = require('gulp-concat-css');
+
+var debug = require('gulp-debug');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -25,6 +29,26 @@ var AUTOPREFIXER_BROWSERS = [
   'android >= 4.4',
   'bb >= 10'
 ];
+
+gulp.task('dev-admin-index',function(){
+    var target = gulp.src('views/admin/index.html');
+
+    var sources = gulp.src([
+        'public/js/admin/service/*.js',
+        'public/js/admin/controller/*.js',
+        'public/js/admin/*.js',
+    ],{
+        read:false
+    });
+
+    return target
+        .pipe(inject(sources,{
+            ignorePath: 'public/',
+            addRootSlash: true,
+        }))
+        .pipe(gulp.dest('views/admin'));
+});
+
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -44,15 +68,35 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('public/dist/js'));
 });
 
+gulp.task('prod-admin-index',function(){
+    var target = gulp.src('views/admin/index.html');
+
+    var sources = gulp.src([
+        'public/dist/js/admin_script.min.js',
+    ],{
+        read:false
+    });
+
+    return target
+        .pipe(inject(sources,{
+            ignorePath: 'public/',
+            addRootSlash: true,
+        }))
+        .pipe(gulp.dest('views/admin'));
+});
+
+
 gulp.task('admin_script', function() {
-    return gulp.src(['public/js/admin/*.js',
-                     'public/js/admin/controller/*.js',
-                     'public/js/admin/service/*.js'])
-        .pipe(concat('admin_script.js'))
-        .pipe(gulp.dest('public/dist/js'))
-        .pipe(uglify())
-        .pipe(rename('admin_script.min.js'))
-        .pipe(gulp.dest('public/dist/js'));
+    return gulp.src([
+        'public/js/admin/service/*.js',
+        'public/js/admin/controller/*.js',
+        'public/js/admin/*.js',
+    ])
+    .pipe(concat('admin_script.js'))
+    .pipe(gulp.dest('public/dist/js'))
+    .pipe(uglify())
+    .pipe(rename('admin_script.min.js'))
+    .pipe(gulp.dest('public/dist/js'));
 });
 
 gulp.task('admin_script_jshint', function () {
@@ -131,6 +175,13 @@ gulp.task('serve:dist', ['default'], function () {
 gulp.task('default', ['clean'], function (cb) {
   runSequence('styles', ['admin_script_jshint','admin_script','scripts','images', 'fonts', 'copy'], cb);
 });
+
+// Build admin index file
+gulp.task('dev',['admin_script_jshint','dev-admin-index']);
+
+
+// Build admin index file
+gulp.task('prod',['admin_script_jshint','admin_script','prod-admin-index']);
 
 // Load custom tasks from the `tasks` directory
 try { require('require-dir')('tasks'); } catch (err) {}

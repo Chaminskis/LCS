@@ -1,5 +1,31 @@
 <div>
-	create hospital
+	create hospital 
 
 	<p>{{ message }}</p>
+
+	<form>
+
+		<label for='name'>Nombre</label>
+		<input type='text' id='name' placeholder='Nombre' required>
+
+		<label for='details'>Detalles</label>
+		<input type='text' id='details' placeholder='Detalles' required>
+
+		<label for='address'>Direccion</label>
+		<input type='text' id='address' placeholder='Direccion' required>
+
+		<fieldset>
+			<legend>Locacion</legend>
+
+			<label for='latitude'>Latitude</label>
+			<input type='text' id='latitude' placeholder='45.67' required>
+
+			<label for='longitude'>Longitude</label>
+			<input type='text' id='longitude' placeholder='23.45' required>
+
+		</fieldset>
+
+		<button>Guardar</button>
+
+	</form>
 </div>

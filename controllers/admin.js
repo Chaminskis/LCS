@@ -13,3 +13,11 @@ function index(){
 
 	self.view('index')
 }
+
+function test(){
+	var self = this;
+
+	self.layout("")
+
+	self.view('index')
+}

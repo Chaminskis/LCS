@@ -67,3 +67,5 @@ module.exports = {
 	MedicalSecure:MedicalSecure,
 	Doctor:Doctor,
 };
+
+

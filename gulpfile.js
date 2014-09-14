@@ -34,9 +34,10 @@ gulp.task('dev-admin-index',function(){
     var target = gulp.src('views/admin/index.html');
 
     var sources = gulp.src([
+        'public/js/admin/modules.js',
         'public/js/admin/service/*.js',
         'public/js/admin/controller/*.js',
-        'public/js/admin/*.js',
+        'public/js/admin/admin.js',
     ],{
         read:false
     });

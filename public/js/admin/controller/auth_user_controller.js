@@ -5,7 +5,7 @@
 
  'use strict';
 
- angular.module('app.controllers',[])
+ angular.module('app.controllers')
 
  .controller('auth_user', ['$scope', function($scope){
  	

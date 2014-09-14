@@ -32,6 +32,10 @@ module.exports = (function(context){
 	};
 
 	var save = function(dataModel,callback){
+
+		console.log('Data to save');
+		console.log(dataModel);
+
 		models.Hospital.create({
 			name:dataModel.name,
 			details:dataModel.details,

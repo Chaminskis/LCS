@@ -38,16 +38,28 @@ angular.module('app.services')
 
 	var get = function(id){
 		return $http({
-				url:'/app/manage/hospital/view/'+id,
-			}).then(function(data){
-				return data.result;
-			},function(error){
-				dev.reject(error);
-			});
+			url:'/app/manage/hospital/view/'+id,
+		}).then(function(result){
+			console.log(result);
+			return result.data;
+		},function(error){
+			dev.reject(error);
+		});
 	};
 
-	var deleteMethod = function(){
+	var deleteMethod = function(id){
 
+		window.alert(id);
+
+		return $http({
+			url:'/app/manage/hospital/delete/'+id,
+			method:'DELETE',
+		}).then(function(result){
+			console.log(result);
+			return result.data;
+		},function(error){
+			dev.reject(error);
+		});
 	};
 
 	return {

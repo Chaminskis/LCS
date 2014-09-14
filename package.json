@@ -45,7 +45,8 @@
     "gulp-concat": "~2.3.5",
     "gulp-rename": "~1.2.0",
     "gulp-sass": "~0.7.3",
-    "sequelize": "~1.7.10"
+    "sequelize": "~1.7",
+    "nodemon": "~1.2.1"
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

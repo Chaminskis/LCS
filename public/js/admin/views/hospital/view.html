@@ -1,0 +1,22 @@
+<div>
+	View Hospital manito.
+
+	<div ng-init='load()'>
+		<p>
+			<b>Nombre:</b> <span>{{ data.name }}</span>
+		</p>
+		
+		<p>
+			<b>Detalles:</b> <span>{{ data.details }}</span>
+		</p>
+
+		<p>
+			<b>Direccion:</b> <span>{{ data.address }}</span>
+		</p>
+
+		<div>
+			<button ng-click='delete(data.id)'>Eliminar</button>
+		</div>
+	</div>
+
+</div>

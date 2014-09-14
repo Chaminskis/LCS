@@ -5,9 +5,9 @@
 
 module.exports = {
 	dev:{
-		host:"localhost",
+		host:"127.0.0.1",
 		database:"lcs",
-		user:"lcs",
+		user:"lcs-user",
 		password:"qwerty"
 	},
 	pro:{

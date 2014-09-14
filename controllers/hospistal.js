@@ -10,7 +10,8 @@ var HospitalService = require('../definitions/services/hospital_service.js');
 exports.install = function(framework){
 	framework.route(controllerBaseUrl + '',index,['GET']);
 	framework.route(controllerBaseUrl + '',save,['JSON','POST']);
-	
+
+	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET']);
 	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE']);
 }
 
@@ -39,6 +40,14 @@ function remove(id){
 	var self = this;
 
 	HospitalService.delete(id,function(result){
+		self.json(result);
+	});
+}
+
+function view(id){
+	var self = this;
+
+	HospitalService.get(id,function(result){
 		self.json(result);
 	});
 }

@@ -13,7 +13,6 @@ module.exports = (function(context){
 	var models = require('../models.js');
 
 	var create = function(callback){
-
 		models.Hospital.create({title:'nice'}).success(function(hospital){
 			console.log('Model saved');
 
@@ -46,6 +45,12 @@ module.exports = (function(context){
 		});
 	};
 
+	var getOne = function(id,callback){
+		models.Hospital.find(id).success(function(item){
+			callback({result:item});
+		});
+	};
+
 	var deleteMethod = function(hospitalId,callback){
 		models.Hospital.destroy({
 			id:hospitalId,
@@ -72,6 +77,9 @@ module.exports = (function(context){
 		},
 		delete:function(id,callbackResponse){
 			deleteMethod(id,callbackResponse);
+		},
+		get:function(id,callbackResponse){
+			getOne(id,callbackResponse);
 		}
 	}
 })(this);

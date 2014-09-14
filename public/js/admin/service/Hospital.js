@@ -24,11 +24,26 @@ angular.module('app.services')
 	};
 
 	var list = function(){
+		return $http({
+			url:'/app/manage/hospital/',
+		}).then(function(result){
+			
+			console.log(result);
 
+			return result.data;
+		},function(error){
+			def.reject(error);
+		});
 	};
 
-	var get = function(){
-
+	var get = function(id){
+		return $http({
+				url:'/app/manage/hospital/view/'+id,
+			}).then(function(data){
+				return data.result;
+			},function(error){
+				dev.reject(error);
+			});
 	};
 
 	var deleteMethod = function(){

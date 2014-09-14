@@ -1,5 +1,24 @@
 <div>
 	hospital home
 
+	<table ng-init='load()'>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Nombre</td>
+				<td>Detalles</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat='item in data'>
+				<td>{{ item.id }}</td>
+				<td>
+					<a href="#/hospital/view/{{item.id}}">{{ item.name }}</a>
+				</td>
+				<td>{{ item.details }}</td>
+			</tr>
+		</tbody>
+	</table>
+
 	<a href="#/hospital/add/">Agregar Nuevo</a>
 </div>

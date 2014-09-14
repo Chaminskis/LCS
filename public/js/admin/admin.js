@@ -26,6 +26,11 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 			templateUrl:'/js/admin/views/hospital/create.html'	
 		})
 
+		.when('/hospital/view/:id',{
+			controller:'HospitalViewCtrl',
+			templateUrl:'/js/admin/views/hospital/view.html'	
+		})		
+
 		/** Medical secure routes **/
 		.when('/medical_secure/',{
 			controller:'medical_secure',

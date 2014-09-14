@@ -43,7 +43,9 @@
     "rework-importer": "~0.3.1",
     "through2": "~0.6.1",
     "gulp-concat": "~2.3.5",
-    "gulp-rename": "~1.2.0"
+    "gulp-rename": "~1.2.0",
+    "gulp-sass": "~0.7.3",
+    "sequelize": "~1.7.10"
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

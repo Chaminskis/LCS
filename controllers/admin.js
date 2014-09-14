@@ -9,8 +9,10 @@ exports.install = function(framework){
 function index(){
 	var self = this;
 
-	self.layout("")
+	console.log("nitido en el nintendo");
 
+	self.layout("")
+	
 	self.view('index')
 }
 

@@ -4,12 +4,12 @@ module.exports = {
   	migration.createTable('hospitals',{
   		
         id:{ type: DataTypes.INTEGER, autoIncrement: true, unique:true },
-		title:{ type: DataTypes.STRING },
+		name:{ type: DataTypes.STRING },
         details:{ type: DataTypes.STRING },
         address:{ type: DataTypes.STRING },
 
-        latitude:{ type: DataTypes.DECIMAL },
-        longuitude:{ type: DataTypes.DECIMAL },
+        latitude:{ type: DataTypes.DECIMAL(6,4) },
+        longitude:{ type: DataTypes.DECIMAL(6,4) },
 
         updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
         created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },

@@ -21,16 +21,20 @@ controller('DoctorViewCtrl', ['$scope','$routeParams','Doctor', function($scope,
 
 	$scope.delete = function(id){
 
-		var answer = confirm('Seguro de eliminar?');
+		var answer = window.confirm('Seguro de eliminar?');
 
-		if(answer === false)return;
+		if(answer === false){
+			return;
+		}
 
 		Doctor.delete(id).then(function(result){
 			window.alert('Borrado Exitoso');
 
+			console.log(result);
+
 			window.location = '#/doctors/';
 		},function(error){
-			window.alert('Error Borrando Doctor');
+			window.alert('Error Borrando Doctor ' + error);
 		});
 	};
 }]);

@@ -31,7 +31,7 @@ angular.module('app.services',[])
 			return data.data;
 		},function(error){	
 			def.reject(error);
-		})
+		});
 	};
 
 	var save = function(model){

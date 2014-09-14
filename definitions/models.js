@@ -23,13 +23,13 @@ var User = sequelize.define('user',{
 
 var Hospital = sequelize.define('hospital',{
 	id:{ type: Sequelize.INTEGER, autoIncrement: true },
-	title:{ type: Sequelize.STRING },
+	name:{ type: Sequelize.STRING },
 	
 	details: Sequelize.STRING,
 	address: Sequelize.STRING,
 
-	latitude: Sequelize.DECIMAL,
-	longitude: Sequelize.DECIMAL,
+	latitude: Sequelize.DECIMAL(6,4),
+	longitude: Sequelize.DECIMAL(6,4),
 },extraOptions);
 
 

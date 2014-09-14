@@ -16,16 +16,28 @@ module.exports = (function(context){
 		models.Doctor.create({
 			name:dataModel.name,
 			last:dataModel.last,
-			destails:dataModel.destails
+			details:dataModel.details
 		}).success(function(doctor){
-			callback({});
+			callback({result:doctor});
 		});
-
 	};
 
 	var listDoctors = function(callback){
 		models.Doctor.findAll().success(function(result){
-			console.log('Find all');
+			callback(result);
+		});
+	};
+
+	var getOne = function(id,callback){
+		models.Doctor.find(id).success(function(doctor){
+			callback(doctor);
+		});
+	};
+
+	var deleteDoctor = function(doctorId,callback){
+		models.Doctor.destroy({
+			id:doctorId
+		}).success(function(result){
 			callback(result);
 		});
 	};
@@ -36,6 +48,12 @@ module.exports = (function(context){
 		},
 		find:function(callbackResponse){
 			listDoctors(callbackResponse);
+		},
+		get:function(id,callbackResponse){
+			getOne(id,callbackResponse);
+		},
+		delete:function(id,callbackResponse){
+			deleteDoctor(id,callbackResponse);
 		},
 	};
 

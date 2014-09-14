@@ -3,24 +3,18 @@
  *
  **/
 
- 'use strict';
+'use strict';
 
- angular.module('app.controllers')
+angular.module('app.controllers')
 
- .controller('doctor',['$scope','Doctor',function($scope,Doctor){
- 	$scope.message = 'nice from doctor index';
+.controller('DoctorIndexCtrl',['$scope','Doctor',function($scope,Doctor){
 
  	$scope.load = function(){
- 		
  		Doctor.list().then(function(data){	
- 			
  			$scope.doctors = data.result;
-
  		},function(error){
- 			
- 			alert('Error');
- 			
+ 			window.alert('Error' + error);
  		});
- 	}
-
- }]);
+ 	};
+ 	
+}]);

@@ -1,15 +1,13 @@
 /*
- *
+ * Doctor controller for create new Daaaaa
  *
  **/
 
 'use strict';
 
-console.log(angular.module('app.services'));
-
 angular.module('app.controllers')
 
-.controller('doctor_create', ['$scope','Doctor', function($scope,Doctor){
+.controller('DoctorCreateCtrl', ['$scope','Doctor', function($scope,Doctor){
 
 	$scope.model = {};
 
@@ -19,11 +17,13 @@ angular.module('app.controllers')
  		
  		Doctor.save(model)
  		.then(function(data){
- 			alert('Success');
+ 			window.alert('Success');
+
+ 			console.log(data);
 
  			$scope.model = {};
  		},function(error){
- 			alert('Error');
+ 			window.alert('Error '+ error);
  		});
  	};
 }]);

@@ -1,22 +1,23 @@
 <div>
-	Doctor index
-	
-	<br>
-
 	<table ng-init='load()'>
 		<thead>
-
+			<tr>
+				<td>ID</td>
+				<td>Nombre</td>
+				<td>Apellido</td>
+				<td>Detalles</td>
+				<td></td>
+			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat='item in doctors'>
-				<td>{{ item.name }}</td>
+				<td>{{ item.id }}</td>
+				<td> <a href="#/doctors/view/{{ item.id }}"> {{ item.name }} </a> </td>
 				<td>{{ item.last }}</td>
 				<td>{{ item.details }}</td>
 			</tr>
 		</tbody>
 	</table>
-
-	<br>
 
 	<a href="#/doctors/add/">Crear</a>
 </div>

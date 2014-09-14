@@ -7,7 +7,7 @@
 
 angular.module('app.services',[])
 
-.service('Doctor', ['$http', function($http,$q){
+.service('Doctor', ['$http','$q', function($http,$q){
  	
 	var def = $q;
 
@@ -24,6 +24,16 @@ angular.module('app.services',[])
 		});		
 	};
 
+	var get = function(id){
+		return $http({
+			url:'/app/manage/doctor/view/' + id
+		}).then(function(data){
+			return data.data;
+		},function(error){	
+			def.reject(error);
+		})
+	};
+
 	var save = function(model){
 
 		var dataToSend = {
@@ -35,7 +45,7 @@ angular.module('app.services',[])
 		return $http({
 			url:'/app/manage/doctor/',
 			data:dataToSend,
-			type:'POST',
+			method:'POST',
 		}).then(function(data){
 			console.log('Save data');
 			console.log(data);
@@ -45,9 +55,22 @@ angular.module('app.services',[])
 		});
 	};
 
+	var deleteMethod = function(id){
+		return $http({
+			url:'/app/manage/doctor/delete/'+id,
+			method:'DELETE'
+		}).then(function(result){
+			return result.data;
+		},function(error){
+			def.reject(error);
+		});
+	};
+
 	return {
 		save:save,
 		list:list,
+		get:get,
+		delete:deleteMethod,
 	};
 
 }]);

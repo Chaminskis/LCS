@@ -1,0 +1,24 @@
+<style type="text/css">
+	#view_container{
+		width: 800px;
+		margin: 0 auto;
+	}
+</style>
+<div ng-init='load()'>
+	<div id='view_container'>
+		
+		<b>Nombre:</b> 
+		<span>{{ doctor.name }}</span>
+		<br>
+
+		<b>Apellido:</b> 
+		<span>{{ doctor.last }}</span>	
+		<br>
+
+		<b>Detalles:</b> 
+		<p>{{ doctor.details }}</p>
+		<br>
+
+		<button ng-click='delete(doctor.id)'>Eliminar</button>
+	</div>
+</div>

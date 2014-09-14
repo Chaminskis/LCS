@@ -7,7 +7,6 @@ module.exports = {
 		name: DataTypes.STRING,
 		last: DataTypes.STRING,
 		details: DataTypes.STRING,
-
         updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
         created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
         deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
@@ -16,7 +15,7 @@ module.exports = {
         timestamps: true,
         paranoid: true,
         underscored: true,
-  	})
+  	});
 
     done()
   },

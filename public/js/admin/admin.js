@@ -40,13 +40,18 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 		/** Doctor routes **/
 		.when('/doctors/',{
-			controller:'doctor',
+			controller:'DoctorIndexCtrl',
 			templateUrl:'/js/admin/views/doctor/index.html'	
 		})
 
 		.when('/doctors/add/',{
-			controller:'doctor_create',
+			controller:'DoctorCreateCtrl',
 			templateUrl:'/js/admin/views/doctor/create.html'	
+		})		
+
+		.when('/doctors/view/:id',{
+			controller:'DoctorViewCtrl',
+			templateUrl:'/js/admin/views/doctor/view.html'	
 		})		
 
 

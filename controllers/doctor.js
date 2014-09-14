@@ -10,6 +10,8 @@ var DoctorService = require('../definitions/services/doctor_service.js');
 exports.install = function(framework){
 	framework.route(controllerBaseUrl + "",index,['GET']);
 	framework.route(controllerBaseUrl + "",save,['JSON','POST']);
+	framework.route(controllerBaseUrl + "view/{id}/",view,['GET']);
+	framework.route(controllerBaseUrl + "delete/{id}/",deleteDoctor,['DELETE']);
 }
 
 function index(){
@@ -21,6 +23,24 @@ function index(){
 			'controller':'doctor :)',
 			'result':result
 		});
+	});
+}
+
+function view(id){
+	var self = this;
+
+	DoctorService.get(id,function(doctor){
+		self.json({
+			result:doctor,
+		});
+	});
+}
+
+function deleteDoctor(id){
+	var self = this;
+
+	DoctorService.delete(id,function(result){
+		self.json({'result':result});
 	});
 }
 

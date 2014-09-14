@@ -12,6 +12,11 @@ angular.module('app.services')
 	var def = $q;
 
 	var save = function(model){
+		
+		alert('Save Joder');
+		console.log('Data to save');
+		console.log(model);
+
 		return $http({
 			url:'/app/manage/hospital/',
 			method:'POST',

@@ -35,7 +35,7 @@ var Hospital = sequelize.define('hospital',{
 
 var MedicalSecure = sequelize.define('medical_secure',{
 	id:{ type: Sequelize.INTEGER, autoIncrement: true },
-	title: Sequelize.STRING,
+	name: Sequelize.STRING,
 	details: Sequelize.STRING,
 },extraOptions);
 

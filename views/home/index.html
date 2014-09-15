@@ -23,6 +23,7 @@
 
     <!-- Page styles -->
     <link rel="stylesheet" href="/dist/css/style.css">
+    <link rel="stylesheet" href="/dist/css/site.css">
     <style type="text/css">
         #map_container{
             height: 100%;
@@ -30,31 +31,33 @@
     </style>
   </head>
   <body>
-    <header class="app-bar promote-layer">
-      <div class="app-bar-container">
-        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
-        <h1 class="logo"><strong>Localizador de centros de salud</strong></h1>
-        <section class="app-bar-actions">
-        <!-- Put App Bar Buttons Here -->
-        <!-- e.g <button><i class="icon icon-star"></i></button> -->
+    <div class="sidebar"></div>
+    <section class="home clear">
+        <header class="app-bar promote-layer">
+          <div class="app-bar-container">
+            <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+            <h1 class="logo"><strong>Localizador de centros de salud</strong></h1>
+            <section class="app-bar-actions">
+            <!-- Put App Bar Buttons Here -->
+            <!-- e.g <button><i class="icon icon-star"></i></button> -->
+            </section>
+          </div>
+        </header>
+
+        <nav class="navdrawer-container promote-layer">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#item">Crap</a></li>
+            <li><a href="#item2">Option</a></li>
+          </ul>
+        </nav>
+
+        <section id='map_container'>
+            <div id="map_canvas" style="height:100%"></div>
         </section>
-      </div>
-    </header>
 
-    <nav class="navdrawer-container promote-layer">
-      <h4>Navigation</h4>
-      <ul>
-        <li><a href="#item">Option</a></li>
-        <li><a href="#item2">Option</a></li>
-      </ul>
-    </nav>
-
-    <section id='map_container'>
-        <div id="map_canvas" style="height:100%"></div>
+        <article></article>
     </section>
-
-    <main>
-    </main>
 
     <!-- build:js scripts/main.min.js -->
     <script src="/dist/js/script.js"></script>

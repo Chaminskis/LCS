@@ -1,3 +1,4 @@
+
 /*
  * Service Api
  *
@@ -16,6 +17,7 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + 'hospitals/',getHospitals,['post','json']);
 	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['get'])
 }
+
 
 /*
  *
@@ -48,11 +50,8 @@ function getHospitals(){
 			self.json(utils.genericResponse(true,'Location required on location type search',{}));
 			return;
 		}
-
 	}
-
 	var result = utils.genericResponse(false,"",data);
-
 	self.json(result);
 }
 

@@ -44,7 +44,11 @@
     "through2": "~0.6.1",
     "gulp-concat": "~2.3.5",
     "gulp-rename": "~1.2.0",
+<<<<<<< HEAD
     "gulp-sass": "~0.7.3"
+=======
+    "nodemon": "~1.2.1"
+>>>>>>> dfad35684e6679cd7385e6296cba6acfc348138d
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

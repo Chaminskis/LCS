@@ -1,5 +1,29 @@
 <div>
-	create hospital
+	<h4>create hospital</h4>
 
-	<p>{{ message }}</p>
+	<form>
+
+		<label for='name'>Nombre</label>
+		<input type='text' ng-model='model.name' id='name' placeholder='Nombre' required>
+
+		<label for='details'>Detalles</label>
+		<input type='text' ng-model='model.details' id='details' placeholder='Detalles' required>
+
+		<label for='address'>Direccion</label>
+		<input type='text' id='address' ng-model='model.address' placeholder='Direccion' required>
+
+		<fieldset>
+			<legend>Locacion</legend>
+
+			<label for='latitude'>Latitude</label>
+			<input type='text' id='latitude' ng-model='model.location.latitude' placeholder='45.67' required>
+
+			<label for='longitude'>Longitude</label>
+			<input type='text' id='longitude' ng-model='model.location.longitude' placeholder='23.45' required>
+
+		</fieldset>
+
+		<button ng-click='save()'>Guardar</button>
+
+	</form>
 </div>

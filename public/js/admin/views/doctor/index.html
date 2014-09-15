@@ -1,24 +1,22 @@
 <div>
-	hospital home
-
 	<table ng-init='load()'>
 		<thead>
 			<tr>
 				<td>ID</td>
 				<td>Nombre</td>
+				<td>Apellido</td>
 				<td>Detalles</td>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat='item in data'>
+			<tr ng-repeat='item in doctors'>
 				<td>{{ item.id }}</td>
-				<td>
-					<a href="#/hospital/view/{{item.id}}">{{ item.name }}</a>
-				</td>
+				<td> <a href="#/doctors/view/{{ item.id }}"> {{ item.name }} </a> </td>
+				<td>{{ item.last }}</td>
 				<td>{{ item.details }}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<a href="#/hospital/add/">Agregar Nuevo</a>
+	<a href="#/doctors/add/">Crear</a>
 </div>

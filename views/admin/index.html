@@ -40,8 +40,10 @@
     <nav class="navdrawer-container promote-layer">
       <h4>Navigation</h4>
       <ul>
-        <li><a href="#item">klk</a></li>
-        <li><a href="#item2">Option</a></li>
+        <li><a href="#/doctors/">Doctores</a></li>
+        <li><a href="#/hospital/">Hospitales</a></li>
+        <li><a href="#/medical_secure/">Seguros Medicos</a></li>
+        <li><a href="#/auth/users/">Users</a></li>
       </ul>
     </nav>
 
@@ -54,13 +56,62 @@
     </main>
 
     <!-- build:js scripts/main.min.js -->
+    <!-- google web started kit -->
     <script src="/dist/js/script.js"></script>
     <!-- endbuild -->
 
     <script type="text/javascript" src="/js/vendors/angular.min.js"></script>
     <script type="text/javascript" src='/js/vendors/angular-route.min.js'></script>
 
-    <script type="text/javascript" src="/dist/js/admin_script.min.js"></script>
+    <!-- inject:js -->
+
+
+    <script src="/js/admin/modules.js"></script>
+
+
+    <script src="/js/admin/service/Doctor.js"></script>
+
+
+    <script src="/js/admin/service/Hospital.js"></script>
+
+
+    <script src="/js/admin/controller/auth_user_controller.js"></script>
+
+
+    <script src="/js/admin/controller/auth_user_create_controller.js"></script>
+
+
+    <script src="/js/admin/controller/doctor_controller.js"></script>
+
+
+    <script src="/js/admin/controller/doctor_create_controller.js"></script>
+
+
+    <script src="/js/admin/controller/doctor_view_controller.js"></script>
+
+
+    <script src="/js/admin/controller/home_controller.js"></script>
+
+
+    <script src="/js/admin/controller/hospital_controller.js"></script>
+
+
+    <script src="/js/admin/controller/hospital_create_controller.js"></script>
+
+
+    <script src="/js/admin/controller/hospital_view_controller.js"></script>
+
+
+    <script src="/js/admin/controller/medical_secure_controller.js"></script>
+
+
+    <script src="/js/admin/controller/medical_secure_create_controller.js"></script>
+
+
+    <script src="/js/admin/admin.js"></script>
+
+
+    <!-- endinject -->
 
   </body>
 </html>

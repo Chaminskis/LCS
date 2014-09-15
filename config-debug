@@ -5,3 +5,21 @@ name                     : LCS Service
 version                  : 0.01
 secret                   : dcd7a13a-b983-4e9f-b593-7839a7115ad2
 author                   : Por Definir ( Not kimera )
+
+ 
+// default time (in minutes) for clearing cache of resources
+default-interval-clear-resources   : 1
+ 
+// default time (in minutes) for clearing internal cache
+default-interval-clear-cache       : 1
+ 
+// default time (in minutes) for re-compile of precomiled views
+default-interval-precompile-views  : 4
+ 
+allow-gzip                         : false
+ 
+// enable/disable static compilation
+allow-compile-js                   : false
+allow-compile-css                  : false
+ 
+allow-compress-html                : false

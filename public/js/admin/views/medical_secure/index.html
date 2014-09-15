@@ -1,3 +1,25 @@
 <div>
 	index medical secure
+	<br />
+	
+	<table ng-init='load()'>
+		<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Detalles</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat='item in model'>
+				<td>
+					<a href="#/medical_secure/view/{{item.id}}">{{ item.name }}</a>
+				</td>
+				<td>{{ item.details }}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<br />
+	
+	<a href="#/medical_secure/add/">Agregar Seguro Medico</a>
 </div>

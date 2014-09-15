@@ -12,7 +12,7 @@ angular.module('app.controllers')
 	$scope.model = {};
 
  	$scope.save = function(){
- 		
+ 		alert("Save manito");
  		var model = $scope.model;
  		
  		Doctor.save(model)

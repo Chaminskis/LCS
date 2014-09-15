@@ -1,4 +1,16 @@
 <div>
 	create medical secure
 	<p>{{ message }}</p>
+	
+	
+	<div>
+		
+		<label for="name">Nombre</label><br />
+		<input type="text" name="name" ng-model='model.name'/><br />
+		
+		<label for="details">Detalles</label><br />
+		<input type="text" name="details" id='details' ng-model='model.details'/><br />
+		
+		<button ng-click='save()'>Guardar</button>
+	</div>
 </div>

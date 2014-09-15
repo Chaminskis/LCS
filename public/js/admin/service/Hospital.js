@@ -24,7 +24,7 @@ angular.module('app.services')
 		}).then(function(result){
 			return result.data;
 		},function(error){
-			return dev.reject(error);
+			return def.reject(error);
 		});
 	};
 
@@ -48,13 +48,11 @@ angular.module('app.services')
 			console.log(result);
 			return result.data;
 		},function(error){
-			dev.reject(error);
+			def.reject(error);
 		});
 	};
 
 	var deleteMethod = function(id){
-
-		window.alert(id);
 
 		return $http({
 			url:'/app/manage/hospital/delete/'+id,
@@ -63,7 +61,7 @@ angular.module('app.services')
 			console.log(result);
 			return result.data;
 		},function(error){
-			dev.reject(error);
+			def.reject(error);
 		});
 	};
 

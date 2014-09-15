@@ -18,6 +18,8 @@ var concatCss = require('gulp-concat-css');
 
 var debug = require('gulp-debug');
 
+var shell = require('gulp-shell');
+
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
   'ie_mob >= 10',
@@ -29,6 +31,8 @@ var AUTOPREFIXER_BROWSERS = [
   'android >= 4.4',
   'bb >= 10'
 ];
+
+gulp.task('reload',shell.task(['pm2 reload LCS']));
 
 gulp.task('dev-admin-index',function(){
     var target = gulp.src('views/admin/index.html');

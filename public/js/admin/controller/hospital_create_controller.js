@@ -18,7 +18,7 @@ angular.module('app.controllers')
 		.then(function(result){
 			window.alert('Hospital Creado');
 
-			window.location = '#/hospital/'
+			window.location = '#/hospital/';
 		},function(error){
 			window.alert('Error '+ error);
 		});

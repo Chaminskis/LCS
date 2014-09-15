@@ -11,7 +11,7 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + '',index,['GET']);
 	framework.route(controllerBaseUrl + '',save,['JSON','POST']);	
 
-	framework.route(controllerBaseUrl + 'view/{{ id }}',index,['GET']);
+	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET']);
 	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE']);
 }
 

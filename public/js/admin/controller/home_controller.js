@@ -11,12 +11,12 @@ angular.module('app.controllers', [])
 	$scope.message = 'nice from controller';
 
 $scope.load = function(){
-	// hospital.list().then(function(data){
-	// 	alert("I'm loaded!");
-	// 	$scope.data = data.result;
-	// },function(error){
-	// 	window.alert('Error ' + error);
-	// });
+	hospital.list().then(function(data){
+		alert("I'm loaded!");
+		$scope.data = data.result;
+	},function(error){
+		window.alert('Error ' + error);
+	});
 };
 
 }]);

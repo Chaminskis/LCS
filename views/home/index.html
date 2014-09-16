@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang=""          >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,7 @@
         }
     </style>
   </head>
-  <body>
+  <body ng-controller="home">
     <div class="sidebar"></div>
     <section class="home clear">
         <header class="app-bar promote-layer">
@@ -59,9 +59,11 @@
     </section>
 
     <!-- build:js scripts/main.min.js -->
+    <script type="text/javascript" src="js/vendors/angular.min.js"></script>
     <script src="/dist/js/script.js"></script>
+    <script src="js/admin/service/hospital.js"></script>
+    <script src="js/admin/controller/home_controller.js"></script>
     <!-- endbuild -->
-
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript">
 
@@ -76,9 +78,9 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+            map = new google.maps.Map(document.getElementById("map_canvas"),sOptions);
         }
     </script>
 
   </body>
-</html>
+</html> 

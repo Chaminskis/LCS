@@ -7,23 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LCS - Localizador de centros</title>
 
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
-
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
-
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
-
     <!-- Page styles -->
-    <link rel="stylesheet" href="/dist/css/style.css">
-    <link rel="stylesheet" href="/dist/css/site.css">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css" />
   </head>
   <body ng-app='lcs-admin'>
     <header class="app-bar promote-layer">
@@ -38,6 +23,35 @@
     </header>
 
     <nav class="navdrawer-container promote-layer">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">LCS</a>
+        </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#/doctors/">Doctores</a></li>
+              <li><a href="#/hospital/">Hospitales</a></li>
+              <li><a href="#/medical_secure/">Seguros Medicos</a></li>
+              <li><a href="#/auth/users/">Users</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
+    
       <h4>Navigation</h4>
       <ul>
         <li><a href="#/doctors/">Doctores</a></li>

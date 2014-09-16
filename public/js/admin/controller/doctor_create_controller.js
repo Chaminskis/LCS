@@ -22,6 +22,9 @@ angular.module('app.controllers')
  			console.log(data);
 
  			$scope.model = {};
+ 			
+ 			window.location = "#/doctors/";
+ 			
  		},function(error){
  			window.alert('Error '+ error);
  		});

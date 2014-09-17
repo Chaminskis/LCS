@@ -11,18 +11,18 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 	$routeProvider
 		.when('/home',{
-			controller:'home',
+			controller:'HomeCtrl',
 			templateUrl:'/js/admin/views/home.html'
 		})
 
 		/** Hospitals routes **/
 		.when('/hospital/',{
-			controller:'hospital',
+			controller:'HospitalCtrl',
 			templateUrl:'/js/admin/views/hospital/index.html'	
 		})
 
 		.when('/hospital/add/',{
-			controller:'hospital_create',
+			controller:'HospitalCreateCtrl',
 			templateUrl:'/js/admin/views/hospital/create.html'	
 		})
 
@@ -33,12 +33,12 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 		/** Medical secure routes **/
 		.when('/medical_secure/',{
-			controller:'medical_secure',
+			controller:'MedicalSecureCtrl',
 			templateUrl:'/js/admin/views/medical_secure/index.html'	
 		})
 		
 		.when('/medical_secure/view/:id',{
-			controller:'MedicalSecureView',
+			controller:'MedicalSecureViewCtrl',
 			templateUrl:'/js/admin/views/medical_secure/view.html'	
 		})
 

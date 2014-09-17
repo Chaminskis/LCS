@@ -5,19 +5,8 @@
 
 'use strict';
 
-angular.module('app.controllers', ['app.services'])
+angular.module('app.controllers')
 
-.controller('home', ['$scope', 'Hospital',  function($scope, home, hospital){
+.controller('HomeCtrl',['$scope',function($scope){
 	$scope.message = 'nice from controller';
-alert("you, loading??");
-$scope.load = function(){
-	Hospital.list().then(function(data){
-		alert("I'm loaded!");
-		$scope.data = data.result;
-		console.log($scope.data);
-	},function(error){
-		window.alert('Error ' + error);
-	});
-};
-
 }]);

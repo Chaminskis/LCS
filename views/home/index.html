@@ -30,7 +30,7 @@
         }
     </style>
   </head>
-  <body>
+  <body ng-controller="HomeCtrl">
     <div class="sidebar"></div>
     <section class="home clear">
         <header class="app-bar promote-layer">
@@ -54,17 +54,21 @@
         <section id='map_container'>
             <div id="map_canvas" style="height:100%"></div>
         </section>
-
         <article></article>
+        <main></main>
     </section>
 
     <!-- build:js scripts/main.min.js -->
-    <script src="/dist/js/script.js"></script>
+    <script type="text/javascript" src="/js/vendors/angular.min.js"></script>
+    <script type="text/javascript" src="/js/vendors/angular-route.min.js"></script>
+    <script type="text/javascript" src="/js/admin/service/hospital.js"></script>
+    <script type="text/javascript" src="/js/home/controller/home_controller.js"></script>
+    <script type="text/javascript" src="/js/home/modules.js"></script>
+    <script type="text/javascript" src="/js/home/home.js"></script>
+    <script type="text/javascript" src="/dist/js/script.js"></script>
     <!-- endbuild -->
-
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript">
-
         window.onload = function(){
 
             var map = null;
@@ -81,4 +85,5 @@
     </script>
 
   </body>
-</html>
+</html> 
+ml> 

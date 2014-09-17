@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('app.services',[])
+angular.module('app.services')
 
 .service('Doctor', ['$http','$q', function($http,$q){
  	

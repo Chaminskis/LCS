@@ -22,6 +22,9 @@ dist
 kit
 tmp
 
+# Debug file
+debug.js
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 

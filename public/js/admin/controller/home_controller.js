@@ -5,7 +5,7 @@
 
 'use strict';
 
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['app.services'])
 
 .controller('home', ['$scope', 'Hospital',  function($scope, home, hospital){
 	$scope.message = 'nice from controller';

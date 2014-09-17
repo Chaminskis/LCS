@@ -13,16 +13,13 @@
   <body ng-app='lcs-admin'>
     <header class="app-bar promote-layer">
       <div class="app-bar-container">
-        <button class="menu"><img src="/images/hamburger.svg" alt="Menu"></button>
         <h1 class="logo"><strong>Localizador de centros de salud</strong></h1>
         <section class="app-bar-actions">
-        <!-- Put App Bar Buttons Here -->
-        <!-- e.g <button><i class="icon icon-star"></i></button> -->
         </section>
       </div>
     </header>
 
-    <nav class="navdrawer-container promote-layer">
+    <nav class="navdrawer-container promote-layer" ng-controller='HomeCtrl'>
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
         
@@ -34,39 +31,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">LCS</a>
         </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#/doctors/">Doctores</a></li>
-              <li><a href="#/hospital/">Hospitales</a></li>
-              <li><a href="#/medical_secure/">Seguros Medicos</a></li>
-              <li><a href="#/auth/users/">Users</a></li>
+              <li ng-class="{ active: active('home')}"><a href="#/" ng-click="setActive('home')">Home</a></li>
+              <li ng-class="{ active: active('doctors')}"><a href="#/doctors/" ng-click="setActive('doctors')">Doctores</a></li>
+              <li ng-class="{ active: active('hospital')}"><a href="#/hospital/" ng-click="setActive('hospital')">Hospitales</a></li>
+              <li ng-class="{ active: active('medical_secure')}"><a href="#/medical_secure/" ng-click="setActive('medical_secure')">Seguros Medicos</a></li>
+              <li ng-class="{ active: active('users')}"><a href="#/auth/users/" ng-click="setActive('users')">Users</a></li>
             </ul>
           </div>
         </div>
       </nav>
-        
-    
-      <h4>Navigation</h4>
-      <ul>
-        <li><a href="#/doctors/">Doctores</a></li>
-        <li><a href="#/hospital/">Hospitales</a></li>
-        <li><a href="#/medical_secure/">Seguros Medicos</a></li>
-        <li><a href="#/auth/users/">Users</a></li>
-      </ul>
     </nav>
 
     <section id='map_container' ng-view>
         <h3>interface</h3>
     </section>
-
-    <main>
-    </main>
 
     <!-- build:js scripts/main.min.js -->
     <!-- google web started kit -->

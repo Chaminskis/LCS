@@ -7,9 +7,9 @@ module.exports = {
 		name: DataTypes.STRING,
 		last: DataTypes.STRING,
 		details: DataTypes.STRING,
-        updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-        created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-        deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   	},{
   		engine:'INNODB',
         timestamps: true,

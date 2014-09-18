@@ -44,13 +44,17 @@ module.exports = (function(){
 			callback({
 				'result':hospital
 			});
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	var getOne = function(id,callback){
 		models.Hospital.find(id).success(function(item){
 			callback({result:item});
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	var deleteMethod = function(hospitalId,callback){
@@ -58,7 +62,9 @@ module.exports = (function(){
 			id:hospitalId,
 		}).success(function(result){
 			callback({'result':result});
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	return {

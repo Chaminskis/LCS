@@ -19,19 +19,25 @@ module.exports = (function(context){
 			details:dataModel.details
 		}).success(function(doctor){
 			callback({result:doctor});
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	var listDoctors = function(callback){
 		models.Doctor.findAll().success(function(result){
 			callback(result);
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	var getOne = function(id,callback){
 		models.Doctor.find(id).success(function(doctor){
 			callback(doctor);
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	var deleteDoctor = function(doctorId,callback){
@@ -39,7 +45,9 @@ module.exports = (function(context){
 			id:doctorId
 		}).success(function(result){
 			callback(result);
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	return{

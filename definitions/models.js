@@ -14,7 +14,7 @@ var extraOptions = {
 	engine:'INNODB',
 }
 
-var User = sequelize.define('user',{
+var User = sequelize.define('auth_users',{
 	id:{ type: Sequelize.INTEGER, autoIncrement: true, unique:true, },
 	user:{ type: Sequelize.STRING, unique:true, },
 	password: Sequelize.STRING,

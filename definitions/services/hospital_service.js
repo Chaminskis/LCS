@@ -4,9 +4,7 @@
  *
  **/
 
-this.dataBase = require('../database.js');
-
-module.exports = (function(context){
+module.exports = (function(){
 
 	/** Private context **/
 
@@ -86,4 +84,4 @@ module.exports = (function(context){
 			getOne(id,callbackResponse);
 		}
 	}
-})(this);
+})();

@@ -1,4 +1,4 @@
-<div>
+<div ng-init='load()'>
 	
 	<table class='table table-hover'>
 		<thead>
@@ -11,8 +11,8 @@
 		<tbody>
 			<tr ng-repeat='item in data'>
 				<th>{{ item.id }}</th>
-				<th>{{ item.user }}</th>
-				<th>{{ item.created }}</th>
+				<th><a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a></th>
+				<th>{{ item.created_at }}</th>
 			</tr>	
 		</tbody>
 	</table>

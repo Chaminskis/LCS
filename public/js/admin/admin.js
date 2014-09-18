@@ -67,14 +67,19 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 		/** Auth routes **/
 		.when('/auth/users/',{
-			controller:'auth_user',
+			controller:'AuthUser',
 			templateUrl:'/js/admin/views/auth/user/index.html'	
 		})
 
 		.when('/auth/users/add/',{
 			controller:'auth_user_create',
 			templateUrl:'/js/admin/views/auth/user/create.html'	
-		})		
+		})
+		
+		.when('/auth/users/view/:id',{
+			controller:'AuthUserView',
+			templateUrl:'/js/admin/views/auth/user/view.html'	
+		})
 
 	    .otherwise({
 	    	redirectTo: '/home',

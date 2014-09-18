@@ -7,8 +7,22 @@
 
  angular.module('app.controllers')
 
- .controller('auth_user_create', ['$scope', function($scope){
+ .controller('auth_user_create', ['$scope','User', function($scope,User){
  	
- 	$scope.message = 'nice from auth user create';
+ 	  $scope.message = 'nice from auth user create';
+ 	
+    $scope.save = function(){
+        
+      var model = $scope.model;
+      
+      User.save(model)
+      .then(function(result){
+          alert('Usuario Creado');
+          
+          window.location = '#/auth/users/';
+      },function(error){
+          alert('Error');
+      });
+    };
  	
  }]);

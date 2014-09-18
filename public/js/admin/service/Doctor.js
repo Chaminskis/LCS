@@ -15,11 +15,8 @@ angular.module('app.services')
 		return $http({
 			url:'/app/manage/doctor/',
 		}).then(function(data){
-			console.log('Result nice doctors');
-			console.log(data);
 			return data.data;
 		},function(data){
-			console.log('Result Error');
 			def.reject(data);
 		});		
 	};

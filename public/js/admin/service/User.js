@@ -30,9 +30,9 @@ angular.module('app.services')
         }).then(function(result){
             return result.data.result;
         },function(error){
-            def.reject(error)
+            def.reject(error);
         });
-    }
+    };
     
     var remove = function(id){
         return $http({
@@ -55,7 +55,7 @@ angular.module('app.services')
         },function(error){
             def.reject(error);
         });
-    }
+    };
     
     return {
         list:list,

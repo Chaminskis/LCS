@@ -12,7 +12,6 @@ module.exports = (function(context){
 	var models = require('../models.js');
 
 	var createDoctor = function(dataModel,callback){
-
 		models.Doctor.create({
 			name:dataModel.name,
 			last:dataModel.last,
@@ -21,7 +20,7 @@ module.exports = (function(context){
 			callback({result:doctor});
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var listDoctors = function(callback){
@@ -29,7 +28,7 @@ module.exports = (function(context){
 			callback(result);
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var getOne = function(id,callback){
@@ -37,7 +36,7 @@ module.exports = (function(context){
 			callback(doctor);
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var deleteDoctor = function(doctorId,callback){
@@ -47,7 +46,7 @@ module.exports = (function(context){
 			callback(result);
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	return{

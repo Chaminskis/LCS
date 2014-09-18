@@ -13,20 +13,20 @@ module.exports = (function(){
 	var create = function(callback){
 		models.Hospital.create({title:'nice'}).success(function(hospital){
 			console.log('Model saved');
-
-			hospital.destroy().success(function(hospital) {
-				console.log('Lo borro igual');    
-				callback(hospital);
-			});
-		});
+			callback(hospital);
+		}).error(function(error){
+            callback(error);
+        });
 
 		console.log('Creaste method');
-	}
+	};
 
 	var list = function(callback){
 		models.Hospital.findAll().success(function(result){
 			callback(result);
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	};
 
 	var save = function(dataModel,callback){
@@ -46,7 +46,7 @@ module.exports = (function(){
 			});
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var getOne = function(id,callback){
@@ -54,7 +54,7 @@ module.exports = (function(){
 			callback({result:item});
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var deleteMethod = function(hospitalId,callback){

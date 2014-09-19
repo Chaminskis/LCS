@@ -1,20 +1,18 @@
 <div>
-	create medical secure
-	<p>{{ message }}</p>
-	
 	<div>
 		<form>
 		    <div class="form-group clearfix">
 		    	<div class='col-md-3 col-lg-4'>
 					<label for="name">Nombre</label><br />
-					<input type="text" name="name" class="form-control" ng-model='model.name'/><br />
+					<input type="text" name="name" placeholder='Nombre' class="form-control" ng-model='model.name'/><br />
 				</div>
 			</div>
 			
 			<div class="form-group clearfix">
 		    	<div class='col-md-3 col-lg-4'>
 					<label for="details">Detalles</label><br />
-					<input type="text" name="details" class="form-control" id='details' ng-model='model.details'/><br />
+					<textarea type="text" name="details" placeholder='Detalles' class="form-control" id='details' ng-model='model.details' >
+					</textarea>
 				</div>
 			</div>
 			

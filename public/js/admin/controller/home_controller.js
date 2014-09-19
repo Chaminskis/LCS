@@ -6,35 +6,17 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('home', ['$scope', 'Hospital',  function($scope, home, hospital){
-	// $scope.message = 'nice from controller';
-
-	// $scope.$on('$viewContentLoaded', function(){
-	    //Here your view content is fully loaded !!
-	// });
-
-	// $scope.sectionActive = 'home';
+.controller('HomeCtrl', ['$scope',function($scope){
+    
+    $scope.sectionActive = 'home';
 	
-	// $scope.setActive = function(section){
-	//     $scope.sectionActive = section;
-	// };
+	$scope.setActive = function(section){
+	    $scope.sectionActive = section;
+	};
 	
-	// $scope.active = function(section){
+	$scope.active = function(section){
 	    
-	//     return section == $scope.sectionActive;
-	// };
-
-
-	var setup = function(){
-		// alert("loaded");
-		Hospital.list().then(function(data){
-				// alert("I'm loaded!");
-				$scope.data = data.result;
-				console.log($scope.data);
-			},function(error){
-				window.alert('Error ' + error);
-		});  		
-	}
-
-	setup();
+	    return section == $scope.sectionActive;
+	};
+    
 }]);

@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalCtrl', ['$scope','Hospital', function($scope,Hospital){
+.controller('HospitalCtrl', ['$scope','HospitalService', function($scope,Hospital){
 	$scope.message = 'hopsital index controller';	
 
 	$scope.load = function(){

@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalCreateCtrl',['$scope','Hospital', function($scope,Hospital){
+.controller('HospitalCreateCtrl',['$scope','HospitalService', function($scope,Hospital){
 
 	$scope.model = {};
 

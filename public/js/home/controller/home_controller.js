@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('HomeCtrl',['$scope','Hospital',function($scope,Hospital){
+.controller('HomeCtrl',['$scope','HospitalService',function($scope,Hospital){
 	$scope.message = 'nice from controller';
 	
 	alert("you, loading??");

@@ -7,7 +7,7 @@
 
  angular.module('app.controllers')
 
- .controller('AuthUserView', ['$scope','$routeParams','User',function($scope,$routeParams,User){
+ .controller('AuthUserView', ['$scope','$routeParams','UserService',function($scope,$routeParams,User){
  	
  	var id = $routeParams.id;
  	

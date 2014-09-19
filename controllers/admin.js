@@ -11,7 +11,7 @@ exports.install = function(framework){
 function index(){
 	var self = this;
 
-	console.log("nitido en el nintendo");
+	console.log("nitido en el nintendo :) ");
 
 	self.layout("");
 	

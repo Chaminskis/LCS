@@ -26,7 +26,16 @@ exports.install = function(framework){
 }
 
 function login(){
-    this.json({'nice':':)'});
+    
+    var self = this;
+    
+    var model = self.post;
+    
+    model.password = localFramework.hash("sha512",model.password);
+    
+    userService.login(model.user,model.password,function(result){
+        self.json(utils.genericResponse(false,"",result));
+    });
 }
 
 function remove(id){

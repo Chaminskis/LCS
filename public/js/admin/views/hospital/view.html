@@ -1,18 +1,18 @@
 <div>
-	View Hospital manito.
-
 	<div ng-init='load()'>
-		<p>
-			<b>Nombre:</b> <span>{{ data.name }}</span>
-		</p>
-		
-		<p>
-			<b>Detalles:</b> <span>{{ data.details }}</span>
-		</p>
-
-		<p>
-			<b>Direccion:</b> <span>{{ data.address }}</span>
-		</p>
+		<div>
+			<p>
+				<b>Nombre:</b> <span>{{ data.name }}</span>
+			</p>
+			
+			<p>
+				<b>Detalles:</b> <span>{{ data.details }}</span>
+			</p>
+	
+			<p>
+				<b>Direccion:</b> <span>{{ data.address }}</span>
+			</p>
+		</div>
 		
 		<div style='padding:2%'>
 			Medial asurance list
@@ -35,7 +35,7 @@
 		</div>
 
 		<div>
-			<button ng-click='delete(data.id)'>Eliminar</button>
+			<button ng-click='delete(data.id)' class='btn btn-danger'>Eliminar</button>
 		</div>
 	</div>
 

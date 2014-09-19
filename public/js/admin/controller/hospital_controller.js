@@ -17,4 +17,8 @@ angular.module('app.controllers')
 			window.alert('Error ' + error);
 		});
 	};
+	
+	$scope.showModal = function(){
+		alert('Modal');	
+	};
 }]);

@@ -3,6 +3,7 @@
  *
  **/
 
+var utils = require('../definitions/utils_service.js');
 var controllerBaseUrl = '/app/manage/doctor/';
 
 var DoctorService = require('../definitions/services/doctor_service.js');
@@ -19,20 +20,15 @@ function index(){
 	var self = this;
 
 	DoctorService.find(function(result){
-		self.json({
-			'controller':'doctor :)',
-			'result':result
-		});
+		self.json(utils.genericResponse(false,"",result));
 	});
 }
 
 function view(id){
 	var self = this;
 
-	DoctorService.get(id,function(doctor){
-		self.json({
-			result:doctor,
-		});
+	DoctorService.get(id,function(result){
+		self.json(utils.genericResponse(false,"",result));
 	});
 }
 
@@ -40,7 +36,7 @@ function deleteDoctor(id){
 	var self = this;
 
 	DoctorService.delete(id,function(result){
-		self.json({'result':result});
+		self.json(utils.genericResponse(false,"",result));
 	});
 }
 
@@ -50,10 +46,6 @@ function save(){
 	var self = this;
 
 	DoctorService.create(data,function(result){
-		self.json({
-			'controller':'doctor :)',
-			'action':'save',
-			'result':result
-		});
+		self.json(utils.genericResponse(false,"",result));
 	});
 }

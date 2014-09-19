@@ -54,6 +54,27 @@ gulp.task('dev-admin-index',function(){
         .pipe(gulp.dest('views/admin'));
 });
 
+/** dev auth login **/
+gulp.task('dev-login-index',function(){
+    var target = gulp.src('views/admin/login.html');
+    
+    var sources = gulp.src([
+        'public/js/auth/modules.js',
+        'public/js/auth/services/*.js',
+        'public/js/auth/controllers/*.js',
+        'public/js/auth/auth.js',
+    ],{
+        read:false
+    });
+
+    return target
+        .pipe(inject(sources,{
+            ignorePath: 'public/',
+            addRootSlash: true,
+        }))
+        .pipe(gulp.dest('views/admin'));
+});
+
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -182,8 +203,7 @@ gulp.task('default', ['clean'], function (cb) {
 });
 
 // Build admin index file
-gulp.task('dev',['admin_script_jshint','dev-admin-index']);
-
+gulp.task('dev',['admin_script_jshint','dev-admin-index','dev-login-index']);
 
 // Build admin index file
 gulp.task('prod',['admin_script_jshint','admin_script','prod-admin-index']);

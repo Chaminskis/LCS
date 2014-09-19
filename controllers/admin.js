@@ -3,6 +3,8 @@ var controllerBaseUrl = '/app/manage/';
 
 exports.install = function(framework){
 	framework.route(controllerBaseUrl + "",index);
+	framework.route(controllerBaseUrl + "login",login);
+	
 	framework.route(controllerBaseUrl + "test",test);
 }
 
@@ -11,9 +13,18 @@ function index(){
 
 	console.log("nitido en el nintendo");
 
-	self.layout("")
+	self.layout("");
 	
 	self.view('index')
+}
+
+function login(){
+	
+	var self = this;
+	
+	self.layout("");
+	
+	self.view("login");
 }
 
 function test(){

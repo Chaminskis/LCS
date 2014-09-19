@@ -11,18 +11,18 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 	$routeProvider
 		.when('/home',{
-			controller:'home',
+			controller:'HomeCtrl',
 			templateUrl:'/js/admin/views/home.html'
 		})
 
 		/** Hospitals routes **/
 		.when('/hospital/',{
-			controller:'hospital',
+			controller:'HospitalCtrl',
 			templateUrl:'/js/admin/views/hospital/index.html'	
 		})
 
 		.when('/hospital/add/',{
-			controller:'hospital_create',
+			controller:'HospitalCreateCtrl',
 			templateUrl:'/js/admin/views/hospital/create.html'	
 		})
 
@@ -33,12 +33,12 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 		/** Medical secure routes **/
 		.when('/medical_secure/',{
-			controller:'medical_secure',
+			controller:'MedicalSecureCtrl',
 			templateUrl:'/js/admin/views/medical_secure/index.html'	
 		})
 		
 		.when('/medical_secure/view/:id',{
-			controller:'MedicalSecureView',
+			controller:'MedicalSecureViewCtrl',
 			templateUrl:'/js/admin/views/medical_secure/view.html'	
 		})
 
@@ -67,14 +67,19 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 		/** Auth routes **/
 		.when('/auth/users/',{
-			controller:'auth_user',
+			controller:'AuthUser',
 			templateUrl:'/js/admin/views/auth/user/index.html'	
 		})
 
 		.when('/auth/users/add/',{
 			controller:'auth_user_create',
 			templateUrl:'/js/admin/views/auth/user/create.html'	
-		})		
+		})
+		
+		.when('/auth/users/view/:id',{
+			controller:'AuthUserView',
+			templateUrl:'/js/admin/views/auth/user/view.html'	
+		})
 
 	    .otherwise({
 	    	redirectTo: '/home',

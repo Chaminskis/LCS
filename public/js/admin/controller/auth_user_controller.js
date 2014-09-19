@@ -7,9 +7,20 @@
 
  angular.module('app.controllers')
 
- .controller('auth_user', ['$scope', function($scope){
+ .controller('AuthUser', ['$scope','User',function($scope,User){
  	
- 	$scope.message = 'nice from auth user';
+    $scope.message = 'nice from auth user';
+    
+    $scope.data = null;
+    
+    $scope.load = function(){
+        User.list()
+        .then(function(data){
+           $scope.data = data;
+        },function(error){
+            alert(error);
+        });
+    }
 
  }]);
 

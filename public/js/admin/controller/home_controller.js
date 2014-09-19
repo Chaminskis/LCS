@@ -5,8 +5,9 @@
 
 'use strict';
 
-angular.module('app.controllers', ['app.services'])
+angular.module('app.controllers')
 
+<<<<<<< HEAD
 .controller('home', ['$scope', 'Hospital',  function($scope, home, hospital){
 	// $scope.message = 'nice from controller';
 
@@ -26,4 +27,20 @@ angular.module('app.controllers', ['app.services'])
 	}
 
 	setup();
+=======
+.controller('HomeCtrl',['$scope',function($scope){
+	$scope.message = 'nice from controller';
+	
+	$scope.sectionActive = 'home';
+	
+	$scope.setActive = function(section){
+	    $scope.sectionActive = section;
+	};
+	
+	$scope.active = function(section){
+	    
+	    return section == $scope.sectionActive;
+	};
+	
+>>>>>>> 15313f6297378da4edae15550c9707ae8a4b034a
 }]);

@@ -17,19 +17,25 @@ module.exports = (function(){
 		})
 		.success(function(medicalSecure){
 			callback({'result':medicalSecure});
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	}
 
 	var find = function(callback){
 		models.MedicalSecure.findAll().success(function(result){
 			callback(result);
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	}
 
 	var getOne = function(id,callback){
 		models.MedicalSecure.find(id).success(function(item){
 			callback(item);
-		});
+		}).error(function(error){
+            callback(error);
+        });;
 	}
 
 	var remove = function(medicalSecureId,callback){
@@ -37,7 +43,9 @@ module.exports = (function(){
 			id:medicalSecureId
 		}).success(function(item){
 			callback(item);
-		});
+		}).error(function(error){
+            callback(error);
+        });
 	}
 
  	return {
@@ -45,11 +53,9 @@ module.exports = (function(){
  		callMama : function(){
 
  		},
-
  		save:function(dataModel,callbackResponse){
  			save(dataModel,callbackResponse);
  		},
-
  		find:function(callbackResponse){
  			find(callbackResponse);
  		},

@@ -1,3 +1,23 @@
-<div>
-	users index
+<div ng-init='load()'>
+	
+	<table class='table table-hover'>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>USER</th>
+				<th>Created</th>
+			</tr>	
+		</thead>
+		<tbody>
+			<tr ng-repeat='item in data'>
+				<th>{{ item.id }}</th>
+				<th><a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a></th>
+				<th>{{ item.created_at }}</th>
+			</tr>	
+		</tbody>
+	</table>
+	
+	<br />
+	
+	<a href="#/auth/users/add/">Agregar Nuevo</a>
 </div>

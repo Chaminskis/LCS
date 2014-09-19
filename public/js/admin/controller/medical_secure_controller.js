@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('medical_secure', ['$scope','MedicalSecure', function($scope,MedicalSecure){
+.controller('MedicalSecureCtrl', ['$scope','MedicalSecure', function($scope,MedicalSecure){
 	
 	$scope.load = function(){
 	    MedicalSecure.find().then(function(items){

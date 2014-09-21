@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalCtrl', ['$scope','Hospital', function($scope,Hospital){
+.controller('HospitalCtrl', ['$scope','HospitalService', function($scope,Hospital){
 	$scope.message = 'hopsital index controller';	
 
 	$scope.load = function(){
@@ -16,5 +16,9 @@ angular.module('app.controllers')
 		},function(error){
 			window.alert('Error ' + error);
 		});
+	};
+	
+	$scope.showModal = function(){
+		alert('Modal');	
 	};
 }]);

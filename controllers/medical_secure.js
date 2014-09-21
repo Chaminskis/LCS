@@ -3,9 +3,10 @@
  *
  **/
 
-var controllerBaseUrl = '/app/manage/medical_secure/';
-
+var utils = require('../definitions/utils_service.js');
 var MedicalSecure = require('../definitions/services/medical_secure_service.js');
+
+var controllerBaseUrl = '/app/manage/medical_secure/';
 
 exports.install = function(framework){
 	framework.route(controllerBaseUrl + '',index,['GET']);
@@ -19,10 +20,7 @@ function index(){
 	var self = this;
 
 	MedicalSecure.find(function(result){
-		self.json({
-			'controller':'medical secure :)',
-			'result':result
-		});
+		self.json(utils.genericResponse(false,"",result));
 	});
 }
 
@@ -31,10 +29,7 @@ function view(id){
 	var self = this;
 
 	MedicalSecure.get(id,function(item){
-		self.json({
-			'result':item,
-			'controller':'Medical secure View :) '
-		});
+		self.json(utils.genericResponse(false,"",item));
 	});
 }
 
@@ -44,10 +39,7 @@ function save(){
 	var model = self.post;
 
 	MedicalSecure.save(model,function(result){
-		self.json({
-			'result':result,
-			'controller':'save medical secure :)',
-		})
+		self.json(utils.genericResponse(false,"",result));
 	});
 }
 
@@ -55,10 +47,7 @@ function remove(id){
 	var self = this;
 
 	MedicalSecure.remove(id,function(result){
-		self.json({
-			'result':result,
-			'controller':'Delte medical secure',
-		});
+		self.json(utils.genericResponse(false,"",result));
 	});
 }
 

@@ -40,19 +40,19 @@ function getHospitals(){
 	var self = this;
 	var data = self.global.db;
 
-	if(self.post.quantity != undefined && typeof(self.post.quantity) === typeof(0)){
+	if(self.post.quantity !== undefined && typeof(self.post.quantity) === typeof(0)){
 		data = data.slice(0,self.post.quantity);
 	}
 
-	if(self.post.searchType != undefined && typeof(self.post.quantity) === typeof("") && self.post.searchType.toLowerCase() == "location"){
+	if(self.post.searchType !== undefined && typeof(self.post.quantity) === typeof("") && self.post.searchType.toLowerCase() == "location"){
 
-		if( self.post.location == undefined ){
+		if( self.post.location === undefined ){
 			self.json(utils.genericResponse(true,'Location required on location type search',{}));
 			return;
 		}
 	}
-	var result = utils.genericResponse(false,"",data);
-	self.json(result);
+	
+	self.json(utils.genericResponse(false,"",data));
 }
 
 /*
@@ -73,7 +73,5 @@ function getHospital(identifier){
 		return;
 	}
 
-	var result = utils.genericResponse(false,"",item[0]);
-
-	self.json( result );
+	self.json( utils.genericResponse(false,"",item[0]));
 }

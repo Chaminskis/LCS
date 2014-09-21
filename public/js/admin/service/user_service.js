@@ -7,7 +7,7 @@
 
 angular.module('app.services')
 
-.service('User', ['$http','$q', function($http,$q){
+.service('UserService', ['$http','$q', function($http,$q){
     
     var def = $q;
     

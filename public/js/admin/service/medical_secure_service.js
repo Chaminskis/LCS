@@ -6,7 +6,7 @@
  
  angular.module('app.services')
  
- .service('MedicalSecure',['$http','$q',function($http,$q){
+ .service('MedicalSecureService',['$http','$q',function($http,$q){
      
      var def = $q;
      

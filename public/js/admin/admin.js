@@ -72,7 +72,7 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 		})
 
 		.when('/auth/users/add/',{
-			controller:'auth_user_create',
+			controller:'AuthUserCreate',
 			templateUrl:'/js/admin/views/auth/user/create.html'	
 		})
 		

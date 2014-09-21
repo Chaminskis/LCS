@@ -7,7 +7,7 @@
 
  angular.module('app.controllers')
 
- .controller('AuthUser', ['$scope','User',function($scope,User){
+ .controller('AuthUser', ['$scope','UserService',function($scope,User){
  	
     $scope.message = 'nice from auth user';
     

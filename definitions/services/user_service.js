@@ -48,6 +48,19 @@ module.exports = (function(){
         });;
     };
     
+    var login = function(user,password,callback){
+        models.User.find({ 
+            where:{ 
+                'user':user,
+                'password':password   
+            }
+        }).success(function(result){
+            callback(result);
+        }).error(function(error){
+           callback(error); 
+        });
+    };
+    
     /** Public context **/
     return {
         list:function(callbackResponse){
@@ -61,6 +74,9 @@ module.exports = (function(){
         },
         get:function(id,callbackResponse){
             get(id,callbackResponse);
+        },
+        login:function(user,password,callbackResponse){
+            login(user,password,callbackResponse);
         }
     };
 })(); 

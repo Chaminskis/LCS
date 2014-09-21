@@ -10,14 +10,14 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat='item in data'>
-				<th>{{ item.id }}</th>
-				<th><a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a></th>
-				<th>{{ item.created_at }}</th>
+				<td>{{ item.id }}</td>
+				<td><a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a></td>
+				<td>{{ item.created_at }}</td>
 			</tr>	
 		</tbody>
 	</table>
 	
 	<br />
 	
-	<a href="#/auth/users/add/">Agregar Nuevo</a>
+	<a href="#/auth/users/add/" class='btn btn-primary'>Agregar Nuevo</a>
 </div>

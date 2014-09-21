@@ -3,6 +3,7 @@
  *
  **/
 
+var utils = require('../definitions/utils_service.js');
 var controllerBaseUrl = '/app/manage/hospital/';
 
 var HospitalService = require('../definitions/services/hospital_service.js');
@@ -19,10 +20,7 @@ function index(){
 	var self = this;
 
 	HospitalService.find(function(result){
-		self.json({
-			'controller':'Hospital :)',
-			'result':result
-		});
+		self.json(utils.genericResponse(false,'',result));
 	});
 }
 
@@ -32,7 +30,7 @@ function save(){
 	var data = self.post;
 
 	HospitalService.save(data,function(result){
-		self.json(result);
+		self.json(utils.genericResponse(false,'',result));
 	});
 }
 
@@ -40,7 +38,7 @@ function remove(id){
 	var self = this;
 
 	HospitalService.delete(id,function(result){
-		self.json(result);
+		self.json(utils.genericResponse(false,'',result));
 	});
 }
 
@@ -48,6 +46,6 @@ function view(id){
 	var self = this;
 
 	HospitalService.get(id,function(result){
-		self.json(result);
+		self.json(utils.genericResponse(false,'',result));
 	});
 }

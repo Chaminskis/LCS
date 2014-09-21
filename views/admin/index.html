@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LCS - Localizador de centros</title>
 
-    <!-- Page styles -->
+    <!-- inject:js -->
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css" />
+    <!-- endinject -->
   </head>
   <body ng-app='lcs-admin'>
     <header class="app-bar promote-layer">
@@ -47,7 +48,7 @@
       </nav>
     </nav>
 
-    <section id='map_container' ng-view>
+    <section id='map_container' style='padding:10px;' ng-view>
         <h3>interface</h3>
     </section>
 
@@ -65,16 +66,16 @@
     <script src="/js/admin/modules.js"></script>
 
 
-    <script src="/js/admin/service/Doctor.js"></script>
+    <script src="/js/admin/service/doctor_service.js"></script>
 
 
-    <script src="/js/admin/service/Hospital.js"></script>
+    <script src="/js/admin/service/hospital_service.js"></script>
 
 
-    <script src="/js/admin/service/MedicalSecure.js"></script>
+    <script src="/js/admin/service/medical_secure_service.js"></script>
 
 
-    <script src="/js/admin/service/User.js"></script>
+    <script src="/js/admin/service/user_service.js"></script>
 
 
     <script src="/js/admin/controller/auth_user_controller.js"></script>

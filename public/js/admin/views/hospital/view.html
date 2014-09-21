@@ -1,21 +1,41 @@
 <div>
-	View Hospital manito.
-
 	<div ng-init='load()'>
-		<p>
-			<b>Nombre:</b> <span>{{ data.name }}</span>
-		</p>
+		<div>
+			<p>
+				<b>Nombre:</b> <span>{{ data.name }}</span>
+			</p>
+			
+			<p>
+				<b>Detalles:</b> <span>{{ data.details }}</span>
+			</p>
+	
+			<p>
+				<b>Direccion:</b> <span>{{ data.address }}</span>
+			</p>
+		</div>
 		
-		<p>
-			<b>Detalles:</b> <span>{{ data.details }}</span>
-		</p>
-
-		<p>
-			<b>Direccion:</b> <span>{{ data.address }}</span>
-		</p>
+		<div style='padding:2%'>
+			Medial asurance list
+			
+			<table class='table'>
+				<tr>
+					<th>Medical Asurance</th>
+					<th>Medical Asurance</th>
+					<th>Medical Asurance</th>
+				</tr>
+				<tr>
+					<td>Medical Asurance</td>
+					<td>Medical Asurance</td>
+					<td>Medical Asurance</td>
+				</tr>
+			</table>
+			<div>
+				<button ng-click='showModal()' class='btn btn-primary'>Agregar</button>
+			</div>
+		</div>
 
 		<div>
-			<button ng-click='delete(data.id)'>Eliminar</button>
+			<button ng-click='delete(data.id)' class='btn btn-danger'>Eliminar</button>
 		</div>
 	</div>
 

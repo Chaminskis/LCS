@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('DoctorIndexCtrl',['$scope','Doctor',function($scope,Doctor){
+.controller('DoctorIndexCtrl',['$scope','DoctorService',function($scope,Doctor){
 
  	$scope.load = function(){
  		Doctor.list().then(function(data){	

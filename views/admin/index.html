@@ -8,7 +8,9 @@
     <title>LCS - Localizador de centros</title>
 
     <!-- inject:js -->
+    
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css" />
+    
     <!-- endinject -->
   </head>
   <body ng-app='lcs-admin'>
@@ -20,7 +22,7 @@
       </div>
     </header>
 
-    <nav class="navdrawer-container promote-layer" ng-controller='HomeCtrl'>
+    <nav class="navdrawer-container promote-layer" ng-controller='HomeCtrl' ng-init='load()'>
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
         
@@ -41,7 +43,7 @@
               <li ng-class="{ active: active('doctors')}"><a href="#/doctors/" ng-click="setActive('doctors')">Doctores</a></li>
               <li ng-class="{ active: active('hospital')}"><a href="#/hospital/" ng-click="setActive('hospital')">Hospitales</a></li>
               <li ng-class="{ active: active('medical_secure')}"><a href="#/medical_secure/" ng-click="setActive('medical_secure')">Seguros Medicos</a></li>
-              <li ng-class="{ active: active('users')}"><a href="#/auth/users/" ng-click="setActive('users')">Users</a></li>
+              <li ng-class="{ active: active('auth')}"><a href="#/auth/users/" ng-click="setActive('auth')">Users</a></li>
             </ul>
           </div>
         </div>

@@ -15,8 +15,13 @@ angular.module('app.controllers')
 	};
 	
 	$scope.active = function(section){
-	    
 	    return section == $scope.sectionActive;
+	};
+	
+	$scope.load = function(){
+		var controller = window.location.hash.split('/')[1]
+		
+		$scope.setActive(controller);
 	};
     
 }]);

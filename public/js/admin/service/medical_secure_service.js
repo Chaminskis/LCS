@@ -59,7 +59,18 @@
          return $http({
              url:baseUrlApi + "exclude/hospital/"+hospitalID
          }).then(function(response){
-             return response.data.result;
+             
+             var result = [];
+             
+             for(var i=0;i<response.data.result.length;i++){
+                 var item = response.data.result[i];
+                 
+                 delete item['hospitals'];
+                 
+                 result.push(item);
+             }
+             
+             return result;
          },function(error){
              return error;
          });

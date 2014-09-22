@@ -20,7 +20,7 @@ module.exports = (function(){
 		}).error(function(error){
             callback(error);
         });;
-	}
+	};
 
 	var find = function(callback){
 		models.MedicalSecure.findAll().success(function(result){
@@ -28,7 +28,7 @@ module.exports = (function(){
 		}).error(function(error){
             callback(error);
         });;
-	}
+	};
 
 	var getOne = function(id,callback){
 		models.MedicalSecure.find(id).success(function(item){
@@ -36,7 +36,7 @@ module.exports = (function(){
 		}).error(function(error){
             callback(error);
         });;
-	}
+	};
 
 	var remove = function(medicalSecureId,callback){
 		models.MedicalSecure.destroy({
@@ -46,7 +46,25 @@ module.exports = (function(){
 		}).error(function(error){
             callback(error);
         });
-	}
+	};
+	
+	var excludeHospitalRelation = function(hospitalID,callback){
+		models.MedicalSecure.findAll({
+			attributes:["id","details","name"],
+			where:{ 
+				'hospitals.id':[hospitalID] 
+			},
+			include:[{ 
+				model:models.Hospital,
+				as:'Hospitals',
+				attributes:['id']	
+			}]
+		}).success(function(result){
+			callback(result);
+		}).error(function(error){
+            callback(error);
+        });	
+	};
 
  	return {
 
@@ -64,6 +82,9 @@ module.exports = (function(){
  		},
  		remove:function(id,callbackResponse){
  			remove(id,callbackResponse);
+ 		},
+ 		secureHasNotHospital:function(hospitalID,callbackResponse){
+ 			excludeHospitalRelation(hospitalID,callbackResponse);
  		}
  	}
 })();

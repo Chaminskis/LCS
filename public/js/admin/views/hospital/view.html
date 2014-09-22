@@ -22,17 +22,21 @@
 		</div>
 		
 		<div style='padding:2%'>
-			Medial asurance list
-			
+			<h4>Seguros medicos</h4>
 			<table class='table'>
-				<tr>
-					<th>Nombre</th>
-					<th>Detalles</th>
-				</tr>
-				<tr>
-					<td>Medical Asurance</td>
-					<td>Medical Asurance</td>
-				</tr>
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Detalles</th>
+					</tr>	
+				</thead>
+				<tbody>
+					<tr ng-repeat='item in data.secures'>
+						<td> <a href="#/medical_secure/view/{{ item.id }}">{{ item.name }}</a> </td>
+						<td> {{ item.details }} </td>
+					</tr>	
+				</tbody>
+				
 			</table>
 			
 			<div>
@@ -55,7 +59,7 @@
 	      </div>
 	      <div class="modal-body">
 	        <div ng-repeat='item in medicalEnsurance' class='item_medical'>
-	        	{{ item.name }} <a class='btn btn-primary btn-sm' ng-click='addMedicalEnsurance(item)'>Agregar</a>
+	        	{{ item.name }} <a class='btn btn-primary btn-sm' ng-click='addMedicalInsurance(item)'>Agregar</a>
 	        </div>
 	      </div>
 	      <div class="modal-footer">

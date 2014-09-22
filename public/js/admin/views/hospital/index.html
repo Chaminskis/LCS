@@ -10,10 +10,13 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat='item in data'>
-				<td>{{ item.id }}</td>
+				<td>
+					<a href="#/hospital/view/{{item.id}}">{{ item.id }}</a>
+				</td>
 				<td>
 					<a href="#/hospital/view/{{item.id}}">{{ item.name }}</a>
 				</td>
+				
 				<td>{{ item.details }}</td>
 			</tr>
 		</tbody>

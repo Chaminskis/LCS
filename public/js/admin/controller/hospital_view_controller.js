@@ -7,17 +7,19 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService', function($scope,$routeParams,Hospital){
+.controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService','MedicalSecureService', function($scope,$routeParams,Hospital,MedicalAsurance){
     
     var id = $routeParams.id;
 
     $scope.message = 'nice from hospital view';
+    
+    $scope.medicalEnsurance = [];
 
     $scope.load = function(){
         Hospital.get(id)
-        .then(function(data){
-            console.log(data);
-            $scope.data = data.result;
+        .then(function(result){
+            console.log("Result view hospital",result);
+            $scope.data = result;
         },function(error){
             window.alert('Error ' + error);
         });
@@ -39,25 +41,25 @@ angular.module('app.controllers')
         },function(error){
             alert('Error ' + error);
         });
-    }
-    
-    $scope.addMedicalEnsurance = function(id){
-    	  alert(id.id);
     };
     
-    $scope.medicalEnsurance = [];
-    
+    $scope.addMedicalInsurance = function(secureID){
+    	  Hospital.addMedicalInsurance(id,secureID)
+    	  .then(function(result){
+    	      alert("Agregado con exito");
+    	  },function(error){
+    	      window.alert(error);
+    	  });
+    };
+
     $scope.loadMedicalEnsurance = function(){
     	
-    				$scope.medicalEnsurance = [];    
+    	MedicalAsurance.notrelatedMedicalAsurance(id)
+    	.then(function(result){
+    	    $scope.medicalEnsurance.push.apply($scope.medicalEnsurance,result);
+    	},function(error){
+    	    window.alert('Error ' + error);
+    	});
     	
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:1});    
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:2});    
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:3});    
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:4});    
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:5});    
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:6});    
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:7});    
-        $scope.medicalEnsurance.push({name:"Nombre",details:"Detalles",id:8});    
-    }
+    };
 }]);

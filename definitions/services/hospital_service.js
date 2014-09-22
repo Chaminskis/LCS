@@ -57,7 +57,7 @@ module.exports = (function(){
 				attributes:[ 'id','name','details']
 			}]
 		}).success(function(item){
-			callback(item);
+			callback(item[0]);
 		}).error(function(error){
             callback(error);
         });
@@ -99,7 +99,7 @@ module.exports = (function(){
 		// });
 	};
 	
-	var addmedicalAsurance = function(hospital,secure,callback){
+	var addmedicalInsurance = function(hospital,secure,callback){
 		
 		models.Hospital.find(hospital).success(function(item){
 			
@@ -147,8 +147,8 @@ module.exports = (function(){
 		findAll:function(callbackResponse){
 			listAll(callbackResponse);
 		},
-		addMedicalAsurance:function(hospital,medicalAsurance,callbackResponse){
-			addmedicalAsurance(hospital,medicalAsurance,callbackResponse);
+		addMedicalInsurance:function(hospital,medicalAsurance,callbackResponse){
+			addmedicalInsurance(hospital,medicalAsurance,callbackResponse);
 		}
 	}
 })();

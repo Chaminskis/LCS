@@ -8,12 +8,15 @@ module.exports = {
   			references: "hospitals",
   			referenceKey: "id",
   		},
-  		secure_id:{ 
+  		medical_secure_id:{ 
   			type: DataTypes.INTEGER,
   			unique:true,
   			references: "medical_secures",
   			referenceKey: "id",
   		},
+  		updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+      created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+      deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   	})
 
     done()

@@ -1,3 +1,10 @@
+<style type="text/css">
+	.item_medical{
+		margin:10px;
+		width:40%;
+		display:inline-block;
+	}
+</style>
 <div>
 	<div ng-init='load()'>
 		<div>
@@ -19,24 +26,44 @@
 			
 			<table class='table'>
 				<tr>
-					<th>Medical Asurance</th>
-					<th>Medical Asurance</th>
-					<th>Medical Asurance</th>
+					<th>Nombre</th>
+					<th>Detalles</th>
 				</tr>
 				<tr>
 					<td>Medical Asurance</td>
 					<td>Medical Asurance</td>
-					<td>Medical Asurance</td>
 				</tr>
 			</table>
+			
 			<div>
-				<button ng-click='showModal()' class='btn btn-primary'>Agregar</button>
+				<button ng-click='loadMedicalEnsurance()' class='btn  btn-primary' data-toggle="modal" data-target="#medical_ensurance" class='btn btn-primary'>Agregar</button>
 			</div>
 		</div>
 
 		<div>
-			<button ng-click='delete(data.id)' class='btn btn-danger'>Eliminar</button>
+			<button ng-click='delete(data.id)' class='btn  btn-danger'>Eliminar</button>
 		</div>
+	</div>
+	
+	<!-- Add medical ensurance -->
+	<div class="modal fade" id="medical_ensurance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Seguros medicos</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div ng-repeat='item in medicalEnsurance' class='item_medical'>
+	        	{{ item.name }} <a class='btn btn-primary btn-sm' ng-click='addMedicalEnsurance(item)'>Agregar</a>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	        <button type="button" class="btn btn-primary">Guardar</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 
 </div>

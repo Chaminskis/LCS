@@ -48,7 +48,7 @@
     "nodemon": "~1.2.1",
     "gulp-shell": "~0.2.9",
     "gulp-sass": "~0.7.3",
-    "nodemon": "~1.2.1"
+    "gulp-inject": "~1.0.2"
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

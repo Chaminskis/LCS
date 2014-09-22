@@ -9,15 +9,16 @@ angular.module('app.services')
 
 .service('HospitalService', ['$http','$q', function($http,$q){
 	
+	var baseUrlApi = '/app/manage/hospital/';
 	var def = $q;
 
 	var save = function(model){
 		return $http({
-			url:'/app/manage/hospital/',
+			url:baseUrlApi,
 			method:'POST',
 			data:model,
-		}).then(function(result){
-			return result.data;
+		}).then(function(response){
+			return response.data;
 		},function(error){
 			return def.reject(error);
 		});
@@ -36,8 +37,8 @@ angular.module('app.services')
 	var get = function(id){
 		return $http({
 			url:'/app/manage/hospital/view/'+id,
-		}).then(function(result){
-			return result.data;
+		}).then(function(response){
+			return response.data.result;
 		},function(error){
 			def.reject(error);
 		});
@@ -53,11 +54,27 @@ angular.module('app.services')
 			def.reject(error);
 		});
 	};
+	
+	var addMedicalInsurance = function(hospital,medicalInsurance){
+		return $http({
+			url:baseUrlApi + "asurance/",
+			method:"POST",
+			data:{
+				hospital:hospital,
+				insurance:medicalInsurance
+			}
+		}).then(function(response){
+			return response.data.result;
+		},function(error){
+			def.reject(error);
+		});	
+	};
 
 	return {
 		save:save,
 		list:list,
 		get:get,
 		delete:remove,
+		addMedicalInsurance:addMedicalInsurance
 	};
 }]);

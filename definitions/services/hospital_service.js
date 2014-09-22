@@ -31,9 +31,6 @@ module.exports = (function(){
 
 	var save = function(dataModel,callback){
 
-		console.log('Data to save');
-		console.log(dataModel);
-
 		models.Hospital.create({
 			name:dataModel.name,
 			details:dataModel.details,
@@ -50,8 +47,17 @@ module.exports = (function(){
 	};
 
 	var getOne = function(id,callback){
-		models.Hospital.find(id).success(function(item){
-			callback({result:item});
+		models.Hospital.findAll({
+			where:{ 
+				id:id
+			},
+			include:[{
+				model:models.MedicalSecure,
+				as:'Secures',
+				attributes:[ 'id','name','details']
+			}]
+		}).success(function(item){
+			callback(item[0]);
 		}).error(function(error){
             callback(error);
         });
@@ -65,6 +71,55 @@ module.exports = (function(){
 		}).error(function(error){
             callback(error);
         });;
+	};
+	
+	var listAll = function(callback){
+		
+		models.Hospital
+		.findAll({
+			attributes:['id','name','details','address','latitude','longitude'],
+			include:[{
+				model:models.MedicalSecure,
+				as:'Secures',
+				attributes:[ 'id','name','details']
+			}]	
+		})
+		.success(function(result){
+			callback(result);
+		}).error(function(error){
+            callback(error);
+        });;	
+
+		// models.Hospital.create().success(function(item){
+		// 	models.MedicalSecure.create().success(function(secure){
+		// 		item.addSecure(secure).success(function(){
+				
+		// 		});		
+		// 	});
+		// });
+	};
+	
+	var addmedicalInsurance = function(hospital,secure,callback){
+		
+		models.Hospital.find(hospital).success(function(item){
+			
+			models.MedicalSecure.find(secure).success(function(itemSecure){
+			
+				item.addSecure(itemSecure).success(function(result){
+					callback(result);
+				}).error(function(error){
+					callback(error);
+				}).error(function(error){
+					callback(error);
+				});
+				
+			}).error(function(error){
+				callback(error);
+			});
+			
+		}).error(function(error){
+			callback(error);
+		});
 	};
 
 	return {
@@ -88,6 +143,12 @@ module.exports = (function(){
 		},
 		get:function(id,callbackResponse){
 			getOne(id,callbackResponse);
+		},
+		findAll:function(callbackResponse){
+			listAll(callbackResponse);
+		},
+		addMedicalInsurance:function(hospital,medicalAsurance,callbackResponse){
+			addmedicalInsurance(hospital,medicalAsurance,callbackResponse);
 		}
 	}
 })();

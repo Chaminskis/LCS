@@ -10,6 +10,7 @@ var controllerBaseUrl = '/app/manage/medical_secure/';
 
 exports.install = function(framework){
 	framework.route(controllerBaseUrl + '',index,['GET']);
+	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET']);
 	framework.route(controllerBaseUrl + '',save,['JSON','POST']);	
 
 	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET']);
@@ -20,6 +21,14 @@ function index(){
 	var self = this;
 
 	MedicalSecure.find(function(result){
+		self.json(utils.genericResponse(false,"",result));
+	});
+}
+
+function excludeHospital(hospitalID){
+	var self = this;
+	
+	MedicalSecure.secureHasNotHospital(hospitalID,function(result){
 		self.json(utils.genericResponse(false,"",result));
 	});
 }

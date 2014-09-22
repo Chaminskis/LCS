@@ -23,9 +23,7 @@ angular.module('app.controllers', ['app.services'])
         //end initialize map
 
         $scope.markers = [];        
-        // map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
 
-        // calculate current position
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
             var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -35,7 +33,7 @@ angular.module('app.controllers', ['app.services'])
                 position: pos,
                 content: 'You are here.'
             });
-
+            $scope.currentPosition = pos;
             $scope.map.setCenter(pos);
             }, function() {
               console.log("Error!")
@@ -44,12 +42,29 @@ angular.module('app.controllers', ['app.services'])
                 // Browser doesn't support Geolocation
             console.log("Browser doesn't support Geolocation");
         }
-        // end calculate current position
         
+    }
+    var getRoute = function(marker){
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay.setMap($scope.map);
+        var start = $scope.currentPosition;
+        var end = marker.position;
+        var request = {
+              origin:start,
+              destination:end,
+              travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setDirections(response);
+            }
+        });
     }
 
     var createMarker = function (info){
         
+        var infoWindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
             map: $scope.map,
             position: new google.maps.LatLng(info.latitude, info.longitude),
@@ -58,7 +73,8 @@ angular.module('app.controllers', ['app.services'])
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         
         google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+            infoWindow.setContent('<p>' + marker.title + '</p>' + marker.content);
+            getRoute(marker);
             infoWindow.open($scope.map, marker);
         });
         
@@ -68,7 +84,6 @@ angular.module('app.controllers', ['app.services'])
     
     var findHospitals = function(){
         var hospitals = service.getHospitals()
-        var infoWindow = new google.maps.InfoWindow();
         
         
         for (var i = 0; i < hospitals.length; i++){
@@ -81,7 +96,8 @@ angular.module('app.controllers', ['app.services'])
         }        
     }
 
-    // var 
+
+
     
     var setup = function(){
         initializeMap();

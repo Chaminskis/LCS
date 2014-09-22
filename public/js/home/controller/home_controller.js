@@ -7,45 +7,25 @@
 
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'MockHospitalService',  function($scope, service){
-    // $scope.message = 'nice from controller';
-
-    // $scope.sectionActive = 'home';
-    
-    // $scope.setActive = function(section){
-    //     $scope.sectionActive = section;
-    // };
-    
-    // $scope.active = function(section){
-        
-    //     return section == $scope.sectionActive;
-    // };
 
 
-    var setup = function(){
-        // alert("loaded");
-        // console.log(service);
-        var hospitals = service.getHospitals()
-        // .then(function(data){
-                // alert("I'm loaded!");
-                $scope.data = hospitals;
-                console.log($scope.data);
-            // }
-        // });         
-    
+    var initializeMap = function(){
         var mapOptions = {
-        zoom: 16,
+        zoom: 13,
         center: new google.maps.LatLng(40.0000, -98.0000),
         mapTypeId: google.maps.MapTypeId.ROADMAP
         }
 
         $scope.map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    };
 
-        $scope.markers = [];
-        
-        
+    var calculateCurrentPosition = function(){
+        //end initialize map
+
+        $scope.markers = [];        
         // map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
-        
 
+        // calculate current position
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
             var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -64,16 +44,15 @@ angular.module('app.controllers', ['app.services'])
                 // Browser doesn't support Geolocation
             console.log("Browser doesn't support Geolocation");
         }
-
-
-
-        var infoWindow = new google.maps.InfoWindow();
+        // end calculate current position
         
-        var createMarker = function (info){
-            
+    }
+
+    var createMarker = function (info){
+        
         var marker = new google.maps.Marker({
             map: $scope.map,
-            position: new google.maps.LatLng(info.lat, info.long),
+            position: new google.maps.LatLng(info.latitude, info.longitude),
             title: info.name
         });
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
@@ -84,19 +63,33 @@ angular.module('app.controllers', ['app.services'])
         });
         
         $scope.markers.push(marker);
-            
-        }  
+        
+    }  
+    
+    var findHospitals = function(){
+        var hospitals = service.getHospitals()
+        var infoWindow = new google.maps.InfoWindow();
+        
         
         for (var i = 0; i < hospitals.length; i++){
             createMarker(hospitals[i]);
         }
 
-        console.log($scope.markers);
         $scope.openInfoWindow = function(e, selectedMarker){
             e.preventDefault();
             google.maps.event.trigger(selectedMarker, 'click');
-        }
+        }        
     }
+
+    // var 
+    
+    var setup = function(){
+        initializeMap();
+        calculateCurrentPosition();
+        findHospitals();
+    }
+
+
 
     setup();
 

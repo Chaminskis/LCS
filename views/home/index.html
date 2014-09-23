@@ -23,7 +23,7 @@
 
     <!-- Page styles -->
     <link rel="stylesheet" href="/dist/css/style.css">
-    <!-- <link rel="stylesheet" href="/dist/css/site.css"> -->
+    <link rel="stylesheet" href="/dist/css/site.css">
     <style type="text/css">
         #map_container{
             height: 100%;
@@ -54,13 +54,14 @@
 
         <section id='map_container' ng-view>
             <div id="map_canvas" style="height:100%"></div>
-            <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+<!--             <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
              <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
             </div>
-        </section>
+ -->        </section>
         <article></article>
         <main></main>
     </section>
+    <aside class="popup" ></aside>
     <!-- build:js scripts/main.min.js -->
 
     <script type="text/javascript" src="/js/vendors/angular.js"></script>
@@ -79,57 +80,6 @@
     <script type="text/javascript">
 
 
-        // window.onload = function(){
-
-        //     var map = null;
-
-        //     var mapOptions = {
-        //         center: new google.maps.LatLng(-34.397, 150.644),
-        //         zoom: 16,
-        //         scrollwheel: false,
-        //         mapTypeId: google.maps.MapTypeId.ROADMAP
-        //     };
-
-        //     map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
-        
-
-        //     if(navigator.geolocation) {
-        //         navigator.geolocation.getCurrentPosition(function(position) {
-        //         var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
-        //         var infowindow = new google.maps.InfoWindow({
-        //             map: map,
-        //             position: pos,
-        //             content: 'You are here.'
-        //         });
-
-        //         map.setCenter(pos);
-        //         }, function() {
-        //           handleNoGeolocation(true);
-        //         });
-        //     } else {
-        //             // Browser doesn't support Geolocation
-        //         handleNoGeolocation(false);
-        //     }
-        // };
-        
-
-        // function handleNoGeolocation(errorFlag) {
-        //     if (errorFlag) {
-        //         var content = 'Error: The Geolocation service failed.';
-        //     } else {
-        //         var content = 'Error: Your browser doesn\'t support geolocation.';
-        //     }
-
-        //     var options = {
-        //         map: map,
-        //         position: new google.maps.LatLng(60, 105),
-        //         content: content
-        //     };
-
-        //     var infowindow = new google.maps.InfoWindow(options);
-        //     map.setCenter(options.position);
-        // }
     </script>
 
   </body>

@@ -56,6 +56,10 @@ module.exports = (function(){
 				as:'Secures',
 				attributes:[ 'id','name','details']
 			}]
+		}).success(function(result){
+			callback(result[0]);
+		}).error(function(error){
+			callback(error);
 		});
 	};
 
@@ -85,26 +89,17 @@ module.exports = (function(){
 		}).error(function(error){
             callback(error);
         });;	
-
-		// models.Hospital.create().success(function(item){
-		// 	models.MedicalSecure.create().success(function(secure){
-		// 		item.addSecure(secure).success(function(){
-				
-		// 		});		
-		// 	});
-		// });
 	};
 	
 	var addmedicalInsurance = function(hospital,secure,callback){
 		
-		models.Hospital.find(hospital).success(function(item){
+		models.Hospital.find(hospital).success(function(itemHospital){
 			
 			models.MedicalSecure.find(secure).success(function(itemSecure){
 			
-				item.addSecure(itemSecure).success(function(result){
+				itemHospital.addSecure(itemSecure)
+				.success(function(result){
 					callback(result);
-				}).error(function(error){
-					callback(error);
 				}).error(function(error){
 					callback(error);
 				});

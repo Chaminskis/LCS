@@ -49,21 +49,15 @@ module.exports = (function(){
 	};
 	
 	var excludeHospitalRelation = function(hospitalID,callback){
-		models.MedicalSecure.findAll({
-			attributes:["id","details","name"],
-			where:{ 
-				'hospitals.id':[hospitalID] 
-			},
-			include:[{ 
-				model:models.Hospital,
-				as:'Hospitals',
-				attributes:['id']	
-			}]
-		}).success(function(result){
+		
+		var sql = 'select * from medical_secures where id not in ( select medical_secure_id from hospital_secures where hospital_id = '+ hospitalID +');';
+		
+		models.Sequelize.query(sql,models.MedicalSecure)
+		.success(function(result){
 			callback(result);
 		}).error(function(error){
-            callback(error);
-        });	
+			callback(error);
+		});
 	};
 
  	return {

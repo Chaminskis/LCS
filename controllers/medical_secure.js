@@ -29,6 +29,7 @@ function excludeHospital(hospitalID){
 	var self = this;
 	
 	MedicalSecure.secureHasNotHospital(hospitalID,function(result){
+	
 		self.json(utils.genericResponse(false,"",result));
 	});
 }

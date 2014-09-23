@@ -94,7 +94,6 @@ module.exports = (function(){
 	var addmedicalInsurance = function(hospital,secure,callback){
 		
 		models.Hospital.find(hospital).success(function(itemHospital){
-			
 			models.MedicalSecure.find(secure).success(function(itemSecure){
 			
 				itemHospital.addSecure(itemSecure)
@@ -107,8 +106,17 @@ module.exports = (function(){
 			}).error(function(error){
 				callback(error);
 			});
-			
 		}).error(function(error){
+			callback(error);
+		});
+	};
+	
+	var removeMedicalInsurance = function(hospitalID,medicalAsuranceID,callback){
+		var sql = 'delete from hospital_secures where hospital_id='+ hospitalID +' and medical_secure_id= ' + medicalAsuranceID + ';';
+		
+		models.Sequelize.query(sql).success(function(result){
+			callback(result);
+		},function(error){
 			callback(error);
 		});
 	};
@@ -140,6 +148,9 @@ module.exports = (function(){
 		},
 		addMedicalInsurance:function(hospital,medicalAsurance,callbackResponse){
 			addmedicalInsurance(hospital,medicalAsurance,callbackResponse);
+		},
+		removeMedicalInsurance:function(hospitalId,medicalAsuranceID,callbackResponse){
+			removeMedicalInsurance(hospitalId,medicalAsuranceID,callbackResponse);
 		}
 	}
 })();

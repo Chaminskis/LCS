@@ -51,8 +51,6 @@ describe("Testing Modules", function() {
         console.log(deps);  
       });
       
-      
-      
       it("should have app.services as a dependency", function() {
         expect(hasModule('app.services')).to.equal(true);
       });

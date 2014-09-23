@@ -6,10 +6,21 @@
 	}
 </style>
 <div>
+	
+	<div class="alert alert-success" role="alert" ng-if='error.show'>
+		
+		<button type="button" class="close" ng-click="error.hideMessage()">
+			<span aria-hidden="true">&times;</span>
+			<span class="sr-only">Close</span>
+		</button>
+		
+		<strong>Warning!</strong> <span>{{ error.message }}</span>
+	</div>
+	
 	<div ng-init='load()'>
 		<div>
 			<p>
-				<b>Nombre:</b> <span>{{ data.name }}</span>
+				<b>Nombre:</b> <span>{{ data.name }} </span>
 			</p>
 			
 			<p>
@@ -28,12 +39,16 @@
 					<tr>
 						<th>Nombre</th>
 						<th>Detalles</th>
+						<th></th>
 					</tr>	
 				</thead>
 				<tbody>
 					<tr ng-repeat='item in data.secures'>
 						<td> <a href="#/medical_secure/view/{{ item.id }}">{{ item.name }}</a> </td>
 						<td> {{ item.details }} </td>
+						<td> 
+							<button class='btn btn-danger' ng-click='removeRelation(item.id)'>Desvincular</button> 
+						</td>
 					</tr>	
 				</tbody>
 				
@@ -63,8 +78,8 @@
 	        </div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-	        <button type="button" class="btn btn-primary">Guardar</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click='reload()'>Cerrar</button>
+	        <!--<button type="button" class="btn btn-primary">Guardar</button>-->
 	      </div>
 	    </div>
 	  </div>

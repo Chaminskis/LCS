@@ -69,12 +69,28 @@ angular.module('app.services')
 			def.reject(error);
 		});	
 	};
+	
+	var removeMedicalAsurance = function(id,secureID){
+		return $http({
+			url:baseUrlApi + "asurance/",
+			method:"PUT",
+			data:{
+				hospital:id,
+				insurance:secureID
+			}
+		}).then(function(response){
+			return response.data.result;
+		},function(error){
+			def.reject(error);
+		});
+	};
 
 	return {
 		save:save,
 		list:list,
 		get:get,
 		delete:remove,
-		addMedicalInsurance:addMedicalInsurance
+		addMedicalInsurance:addMedicalInsurance,
+		removeMedicalAsurance:removeMedicalAsurance,
 	};
 }]);

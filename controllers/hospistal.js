@@ -14,7 +14,7 @@ exports.install = function(framework){
 
 	framework.route(controllerBaseUrl + 'all/',full,['GET']);
 	framework.route(controllerBaseUrl + 'asurance/',addMedicalEnsurance,['JSON','POST']);
-	
+	framework.route(controllerBaseUrl + 'asurance/',removeMedicalEnsurance,['JSON','PUT']);
 	
 	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET']);
 	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE']);
@@ -72,6 +72,18 @@ function addMedicalEnsurance(){
 	console.log(hospital,insurance);
 	
 	HospitalService.addMedicalInsurance(hospital,insurance,function(result){
+		self.json(utils.genericResponse(false,'',result));
+	});
+}
+
+
+function removeMedicalEnsurance(){
+	var self = this;
+	
+	var hospital = self.post.hospital;
+	var insurance = self.post.insurance;
+	
+	HospitalService.removeMedicalInsurance(hospital,insurance,function(result){
 		self.json(utils.genericResponse(false,'',result));
 	});
 }

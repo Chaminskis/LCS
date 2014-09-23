@@ -45,8 +45,7 @@ angular.module('app.controllers', ['app.services'])
             console.log("Browser doesn't support Geolocation");
         }
         
-    }
-    var explode = false;
+    };
     var getRoute = function(marker){
         $scope.directionsDisplay.setDirections({routes: []});
         var start = $scope.currentPosition;
@@ -61,8 +60,7 @@ angular.module('app.controllers', ['app.services'])
               $scope.directionsDisplay.setDirections(response);
             }
         });
-        explode = true;
-    }
+    };
 
     var createMarker = function (info){
         
@@ -82,7 +80,7 @@ angular.module('app.controllers', ['app.services'])
         
         $scope.markers.push(marker);
         
-    }  
+    }; 
     
     var findHospitals = function(){
         var hospitals = service.getHospitals()
@@ -95,16 +93,23 @@ angular.module('app.controllers', ['app.services'])
             e.preventDefault();
             google.maps.event.trigger(selectedMarker, 'click');
         }        
-    }
+    };
 
+    var setPopup = function(){
+        $scope.popup.show = false;
+    };
 
-
+    var showPopup = function(marker){
+        $scope.popup.show = true;
+        $scope.popup.title = marker.title;
+        $scope.popup.content = marker.content;
+    };
     
     var setup = function(){
         initializeMap();
         calculateCurrentPosition();
         findHospitals();
-    }
+    };
 
 
 

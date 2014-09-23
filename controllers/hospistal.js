@@ -57,8 +57,10 @@ function remove(id){
 function view(id){
 	var self = this;
 
-	HospitalService.get(id,function(result){
-		self.json(utils.genericResponse(false,'',result));
+	HospitalService.get(id).then(function(item){
+		self.json(utils.genericResponse(false,'',item));
+	},function(error){
+		self.json(utils.genericResponse(true,'',{}));
 	});
 }
 

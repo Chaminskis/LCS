@@ -20,6 +20,8 @@ var debug = require('gulp-debug');
 
 var shell = require('gulp-shell');
 
+var karma = require('karma').server;
+
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
   'ie_mob >= 10',
@@ -31,6 +33,15 @@ var AUTOPREFIXER_BROWSERS = [
   'android >= 4.4',
   'bb >= 10'
 ];
+
+gulp.task('test-admin',function(done){
+  
+    karma.start({
+        configFile: __dirname + '/test/admin-karma.conf.js',
+        singleRun:true,
+    },done);
+  
+});
 
 gulp.task('reload',shell.task(['pm2 reload LCS']));
 

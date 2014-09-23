@@ -47,7 +47,7 @@ module.exports = (function(){
 	};
 
 	var getOne = function(id,callback){
-		models.Hospital.findAll({
+		return models.Hospital.findAll({
 			where:{ 
 				id:id
 			},
@@ -56,11 +56,7 @@ module.exports = (function(){
 				as:'Secures',
 				attributes:[ 'id','name','details']
 			}]
-		}).success(function(item){
-			callback(item[0]);
-		}).error(function(error){
-            callback(error);
-        });
+		});
 	};
 
 	var deleteMethod = function(hospitalId,callback){

@@ -48,7 +48,19 @@
     "nodemon": "~1.2.1",
     "gulp-shell": "~0.2.9",
     "gulp-sass": "~0.7.3",
-    "gulp-inject": "~1.0.2"
+    "gulp-inject": "~1.0.2",
+    "karma": "~0.12.23",
+    "karma-chrome-launcher": "~0.1.4",
+    "karma-safari-launcher": "~0.1.1",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-jasmine": "~0.1.5",
+    "phantomjs": "~1.9.9",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "karma-ng-scenario": "~0.1.0",
+    "ng-midway-tester": "~2.0.5",
+    "mocha": "~1.21.4",
+    "karma-mocha": "~0.1.9",
+    "chai": "~1.9.1"
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

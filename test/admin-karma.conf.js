@@ -82,7 +82,7 @@ module.exports = function(config) {
       'PhantomJS_custom': {
         base: 'PhantomJS',
         options: {
-          windowName: 'my-window',
+          windowName: 'LCS-Admin',
           settings: {
             webSecurityEnabled: false
           }

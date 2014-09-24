@@ -60,7 +60,9 @@
     "ng-midway-tester": "~2.0.5",
     "mocha": "~1.21.4",
     "karma-mocha": "~0.1.9",
-    "chai": "~1.9.1"
+    "chai": "~1.9.1",
+    "supertest": "~0.13.0",
+    "gulp-mocha": "~1.1.0"
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

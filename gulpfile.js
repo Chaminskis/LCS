@@ -19,6 +19,7 @@ var concatCss = require('gulp-concat-css');
 var debug = require('gulp-debug');
 
 var shell = require('gulp-shell');
+var mocha = require('gulp-mocha');
 
 var karma = require('karma').server;
 
@@ -34,6 +35,9 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+
+/** Test Tasks **/
+
 gulp.task('test-admin',function(done){
   
     karma.start({
@@ -42,6 +46,15 @@ gulp.task('test-admin',function(done){
     },done);
   
 });
+
+gulp.task('test-service',function(done){
+  
+    return gulp.src(['test/service/serviceSpec.js'],{read:false})
+          .pipe(mocha({reporter:'nyan'}));
+});
+
+
+/** end test tasks **/
 
 gulp.task('reload',shell.task(['pm2 reload LCS']));
 

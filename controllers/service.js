@@ -18,7 +18,6 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['get'])
 }
 
-
 /*
  *
  *

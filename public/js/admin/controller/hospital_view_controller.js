@@ -13,7 +13,7 @@ angular.module('app.controllers')
 
     /** Error object **/
     $scope.error = {
-        show:true, /** hide or show bootstrap alert on view **/
+        show:false, /** hide or show bootstrap alert on view **/
         message: "", 
         hideMessage:function(){
             this.show = false;

@@ -8,7 +8,6 @@
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'MockHospitalService',  function($scope, service){
 
-
     var initializeMap = function(){
         var mapOptions = {
         zoom: 13,
@@ -19,11 +18,12 @@ angular.module('app.controllers', ['app.services'])
         $scope.markers = [];        
         $scope.directionsService = new google.maps.DirectionsService();
         $scope.directionsDisplay = new google.maps.DirectionsRenderer();
+        $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
+        setPopup();
     };
 
     var calculateCurrentPosition = function(){
-        //end initialize map
 
 
         if(navigator.geolocation) {
@@ -46,6 +46,27 @@ angular.module('app.controllers', ['app.services'])
         }
         
     };
+
+    var getDistance = function(marker){
+        
+        var request = {
+            origins: [ $scope.currentPosition ],
+            destinations: [ marker.position],
+            travelMode: google.maps.TravelMode.DRIVING,
+            avoidHighways: false,
+            avoidTolls: false
+        };
+
+        $scope.distanceService.getDistanceMatrix(request, function(response,status){
+            if(status == google.maps.DistanceMatrixStatus.ok){
+                
+                $scope.popup.distance = response[0].distance.text;
+                $scope.popup.duration = response[0].duration.text;
+            }
+        });
+    }
+
+
     var getRoute = function(marker){
         $scope.directionsDisplay.setDirections({routes: []});
         var start = $scope.currentPosition;
@@ -55,11 +76,25 @@ angular.module('app.controllers', ['app.services'])
               destination:end,
               travelMode: google.maps.TravelMode.DRIVING
         };
+        
         $scope.directionsService.route(request, function(response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
               $scope.directionsDisplay.setDirections(response);
             }
         });
+    };
+
+    var setPopup = function(){
+        $scope.popup = new Object();
+        $scope.popup.show = false;
+    };
+
+    var showPopup = function(marker){
+        $scope.popup.show = true;
+        $scope.popup.title = marker.title;
+        $scope.popup.content = marker.description;
+        console.log($scope.popup);
+        $scope.$apply();        
     };
 
     var createMarker = function (info){
@@ -70,11 +105,14 @@ angular.module('app.controllers', ['app.services'])
             position: new google.maps.LatLng(info.latitude, info.longitude),
             title: info.name
         });
+
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
-        
+        marker.description = info.details;
         google.maps.event.addListener(marker, 'click', function(){
             infoWindow.setContent('<p>' + marker.title + '</p>' + marker.content);
             getRoute(marker);
+            getDistance(marker);
+            showPopup(marker);
             // infoWindow.open($scope.map, marker);
         });
         
@@ -95,15 +133,7 @@ angular.module('app.controllers', ['app.services'])
         }        
     };
 
-    var setPopup = function(){
-        $scope.popup.show = false;
-    };
 
-    var showPopup = function(marker){
-        $scope.popup.show = true;
-        $scope.popup.title = marker.title;
-        $scope.popup.content = marker.content;
-    };
     
     var setup = function(){
         initializeMap();
@@ -111,7 +141,15 @@ angular.module('app.controllers', ['app.services'])
         findHospitals();
     };
 
+    $scope.viewPopUp = function(){
+        if($scope.popup.show)
+            return "popup-show";
+    }
 
+    $scope.closePopUp = function(){
+        $scope.popup.show = false;
+        // $scope.$apply();        
+    }
 
     setup();
 

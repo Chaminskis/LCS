@@ -6,9 +6,8 @@
 'use strict';
 
 angular.module('app.controllers', ['app.services'])
-.controller('HomeCtrl', ['$scope', 'MockHospitalService',  function($scope, service){
+.controller('HomeCtrl', ['$scope', 'MockHospitalService', '$q',  function($scope, service, $q){
 
-    $scope.semaphore = 2;
     var initializeMap = function(){
         var mapOptions = {
         zoom: 13,
@@ -39,7 +38,7 @@ angular.module('app.controllers', ['app.services'])
             $scope.currentPosition = pos;
             $scope.map.setCenter(pos);
             }, function() {
-              console.log("Error!")
+              console.log("Error!");
             });
         } else {
                 // Browser doesn't support Geolocation
@@ -50,6 +49,7 @@ angular.module('app.controllers', ['app.services'])
 
     var getDistance = function(marker){
         
+        var def = $q.defer();
         var request = {
             origins: [ $scope.currentPosition ],
             destinations: [ marker.position],
@@ -62,21 +62,22 @@ angular.module('app.controllers', ['app.services'])
             if(status == google.maps.DistanceMatrixStatus.OK){
                 var result = response.rows[0].elements;
 
-                // console.log(result.length);
-
-                console.log("distance response: " + result);
                 $scope.popup.distance = result[0].distance.text;
                 $scope.popup.duration = result[0].duration.text;
-                console.log(result[0].distance.text + " " + result[0].duration.text);
-                $scope.semaphore--;
+                // console.log(result[0].distance.text + " " + result[0].duration.text);
+                def.resolve(response);
             }else{
                 console.log("Error calculating distance: " + status);
             }
         });
+
+        return def.promise;
     }
 
 
-    var getRoute = function(marker){
+    var drawRoute = function(marker){
+        
+        var def = $q.defer();
         $scope.directionsDisplay.setDirections({routes: []});
         var start = $scope.currentPosition;
         var end = marker.position;
@@ -89,9 +90,11 @@ angular.module('app.controllers', ['app.services'])
         $scope.directionsService.route(request, function(response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
                 $scope.directionsDisplay.setDirections(response);
-                $scope.semaphore--;
+                def.resolve(response);
             }
         });
+
+        return def.promise;
     };
 
     var setPopup = function(){
@@ -104,7 +107,7 @@ angular.module('app.controllers', ['app.services'])
         $scope.popup.title = marker.title;
         $scope.popup.content = marker.description;
         console.log($scope.popup);
-        $scope.$apply();        
+        $scope.$apply();
     };
 
     var createMarker = function (info){
@@ -120,13 +123,19 @@ angular.module('app.controllers', ['app.services'])
         marker.description = info.details;
         google.maps.event.addListener(marker, 'click', function(){
             infoWindow.setContent('<p>' + marker.title + '</p>' + marker.content);
-            getRoute(marker);
-            getDistance(marker);
-            showPopup(marker);
+            $q.all([drawRoute(marker), getDistance(marker)], function(a, b){
+                console.log("aaaaah");
+                console.log(a);
+                console.log(b);
+                showPopup(marker);
+                $scope.markers.push(marker);
+            }, function(error){
+                console.log("You failed, bitch");
+            }); 
+            
             // infoWindow.open($scope.map, marker);
         });
         
-        $scope.markers.push(marker);
         
     }; 
     

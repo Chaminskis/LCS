@@ -85,6 +85,18 @@ module.exports = (function(){
 			}]	
 		})
 		.success(function(result){
+			
+			var cleanResult = result.forEach(function(item){
+				
+				item.secures = item.secures.forEach(function(secure){
+					delete secure.dataValues.hospitalSecure;
+					
+					return secure;
+				});
+				
+				return item;
+			});
+			
 			callback(result);
 		}).error(function(error){
             callback(error);

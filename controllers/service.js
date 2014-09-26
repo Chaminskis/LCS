@@ -8,14 +8,16 @@
 /** Imports **/
 var controllerBaseUrl = '/app/service/';
 var utils = require('../definitions/utils_service.js');
-var hospitalService = require('../definitions/services/hospital_service.js');
+var HospitalService = require('../definitions/services/hospital_service.js');
 var medicalSecureService = require('../definitions/services/medical_secure_service.js');
 
 /** Routes **/
 exports.install = function(framework){
-	framework.route(controllerBaseUrl,dummy,['get']);
-	framework.route(controllerBaseUrl + 'hospitals/',getHospitals,['post','json']);
-	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['get'])
+	framework.route(controllerBaseUrl,dummy,['GET']);
+	
+	framework.route(controllerBaseUrl + 'hospitals/',index,['GET']);
+	framework.route(controllerBaseUrl + 'hospitals/',getHospitals,['POST','JSON']);
+	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['GET'])
 }
 
 /*
@@ -24,7 +26,7 @@ exports.install = function(framework){
  **/
 function dummy(){
 
-	hospitalService.hi(function(model){
+	HospitalService.hi(function(model){
 		console.log('result');
 	})
 
@@ -52,6 +54,18 @@ function getHospitals(){
 	}
 	
 	self.json(utils.genericResponse(false,"",data));
+}
+
+/*
+ *
+ *
+ **/
+function index(){
+	var self = this;
+
+	HospitalService.findAll(function(result){
+		self.json(utils.genericResponse(false,'',result));
+	});
 }
 
 /*

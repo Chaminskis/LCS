@@ -164,7 +164,10 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.closePopUp = function(){
         $scope.popup.show = false;
-        // $scope.$apply();        
+    }
+
+    $scope.findHospital = function(){
+        
     }
 
     setup();

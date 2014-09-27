@@ -45,3 +45,23 @@
 	right: 0;
 	top: 0;
 }
+
+.search-text{
+	color: #666;
+	margin-top: 15px;
+}
+
+.btn{
+	color: #666;
+	border: none;
+}
+
+.btn:hover{
+	background: white;
+}
+
+.quick-search-btn{
+	margin-top: 13px;
+	margin-left: 5px;
+
+}

@@ -38,7 +38,7 @@
             <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
             <h1 class="logo"><strong>Localizador de centros de salud</strong></h1>
             <section class="app-bar-actions">
-            <!-- Put App Bar Buttons Here -->
+            <!-- Put App app-bar Buttons Here -->
             <!-- e.g <button><i class="icon icon-star"></i></button> -->
             </section>
           </div>
@@ -47,8 +47,9 @@
         <nav class="navdrawer-container promote-layer">
           <h4>Navigation</h4>
           <ul>
-            <li><a href="#item">Crap</a></li>
-            <li><a href="#item2">Option</a></li>
+            <li><a href="#item2">Opciones</a></li>
+            <li><input type="text" ng-model="txtSearch" class="search-text" placeholder="search for a hospital" ng-click="findHospital()" /> <button class="btn">Buscar</button></li>
+            <li><button ng-model="quick-search" class="btn quick-search-btn" ng-click="">Buscar hospital más cercano</button></li>
           </ul>
         </nav>
 
@@ -59,7 +60,6 @@
             </div>
  -->        </section>
         <article></article>
-        <main></main>
     </section>
     <aside class="popup" ng-class="viewPopUp()" >
         <a class="close-link" ng-click="closePopUp()"><span class="close-icon"></span></a>
@@ -67,6 +67,8 @@
         <p>{{popup.content}}</p>
         <p>{{popup.distance + ' en ' + popup.duration}}</p>
     </aside>
+    <aside class="search-bar"></aside>
+    <main></main>
     <!-- build:js scripts/main.min.js -->
 
     <script type="text/javascript" src="/js/vendors/angular.js"></script>

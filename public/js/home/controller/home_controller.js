@@ -93,7 +93,7 @@ angular.module('app.controllers', ['app.services'])
                 def.resolve(response);
             }
         });
-
+ 
         return def.promise;
     };
 
@@ -122,18 +122,15 @@ angular.module('app.controllers', ['app.services'])
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
         google.maps.event.addListener(marker, 'click', function(){
-            infoWindow.setContent('<p>' + marker.title + '</p>' + marker.content);
-            $q.all([drawRoute(marker), getDistance(marker)], function(a, b){
-                console.log("aaaaah");
-                console.log(a);
-                console.log(b);
+            // infoWindow.setContent('<p>' + marker.title + '</p>' + marker.content);
+            // infoWindow.open($scope.map, marker);
+            $q.all([drawRoute(marker), getDistance(marker)]).then(function(a, b){
                 showPopup(marker);
                 $scope.markers.push(marker);
             }, function(error){
                 console.log("You failed, bitch");
             }); 
             
-            // infoWindow.open($scope.map, marker);
         });
         
         

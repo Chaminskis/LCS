@@ -21,10 +21,10 @@ angular.module('app.controllers', ['app.services'])
         $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
         setPopup();
+        setSearchResultsBar();
     };
 
     var calculateCurrentPosition = function(){
-
 
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -64,7 +64,6 @@ angular.module('app.controllers', ['app.services'])
 
                 $scope.popup.distance = result[0].distance.text;
                 $scope.popup.duration = result[0].duration.text;
-                // console.log(result[0].distance.text + " " + result[0].duration.text);
                 def.resolve(response);
             }else{
                 console.log("Error calculating distance: " + status);
@@ -93,6 +92,9 @@ angular.module('app.controllers', ['app.services'])
                 def.resolve(response);
             }
         });
+        
+        var bounds = new google.maps.LatLngBounds($scope.currentPosition, marker.position);
+        $scope.map.fitBounds(bounds);
  
         return def.promise;
     };
@@ -103,14 +105,15 @@ angular.module('app.controllers', ['app.services'])
     };
 
     var showPopup = function(marker){
-        $scope.popup.show = true;
-        $scope.popup.title = marker.title;
-        $scope.popup.content = marker.description;
-        console.log($scope.popup);
-        $scope.$apply();
+        
+        if(!$scope.searchModeOn){
+            $scope.popup.show = true;
+            $scope.popup.title = marker.title;
+            $scope.popup.content = marker.description;
+        }
     };
 
-    var createMarker = function (info){
+    var createMarker = function(info, addMarkerlistener){
         
         var infoWindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
@@ -119,36 +122,41 @@ angular.module('app.controllers', ['app.services'])
             title: info.name
         });
 
+        $scope.markers.push(marker);
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
-        google.maps.event.addListener(marker, 'click', function(){
-            // infoWindow.setContent('<p>' + marker.title + '</p>' + marker.content);
-            // infoWindow.open($scope.map, marker);
+        addMarkerlistener(marker);
+    }; 
+
+    var showPopupRouteAndDistanceOnClick = function(marker){
+        google.maps.event.addListener(marker, 'click', function(){        
             $q.all([drawRoute(marker), getDistance(marker)]).then(function(a, b){
                 showPopup(marker);
-                $scope.markers.push(marker);
             }, function(error){
                 console.log("You failed, bitch");
             }); 
-            
         });
-        
-        
-    }; 
-    
-    var findHospitals = function(){
-        var hospitals = service.getHospitals()
-                
-        for (var i = 0; i < hospitals.length; i++){
-            createMarker(hospitals[i]);
-        }
+    }
 
-        $scope.openInfoWindow = function(e, selectedMarker){
-            e.preventDefault();
-            google.maps.event.trigger(selectedMarker, 'click');
-        }        
+    var showRouteAndDistance = function(marker){
+             drawRoute(marker); 
+             getDistance(marker);
+    }
+    
+
+    var findHospitals = function(){
+        $scope.markers = [];
+        var hospitals = service.getHospitals()
+            
+        for (var i = 0; i < hospitals.length; i++){
+            createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+        }
     };
 
+    $scope.showMarkerRoute = function(e, selectedMarker){
+        e.preventDefault();
+        showRouteAndDistance(selectedMarker);
+    }        
 
     
     var setup = function(){
@@ -166,10 +174,57 @@ angular.module('app.controllers', ['app.services'])
         $scope.popup.show = false;
     }
 
-    $scope.findHospital = function(){
-        
+    var enableSearchMode = function(){
+        $scope.searhModeOn = true;
+        $scope.bar.show = true;
+        $scope.map.partialWidth = true;
+        $scope.popup.show = false;
+    }
+    
+    $scope.search = function(){
+        removeAllMarkers();
+        var hospitals = service.findHospitalsByName($scope.txtHospital);
+        $scope.markers = [];
+        for(var i = 0; i < hospitals.length; i++){
+            createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+        }
+
+        enableSearchMode();       
     }
 
+    $scope.quickSearch = function(){
+        console.log("quick search!");
+    }
+    
+    var setSearchResultsBar = function(){
+        $scope.bar = new Object();
+        $scope.bar.show = false;   
+        $scope.searchModeOn = false;
+    }
+
+
+    $scope.setMapWidth = function(){
+        if($scope.map.partialWidth)
+            return "map-partial-width";
+    }
+
+    $scope.showResultsBar = function(){
+        if($scope.bar.show)
+            return "show-search-results-panel";
+    }
+
+    $scope.disableSearchMode = function(){
+        $scope.bar.show = false;
+        $scope.map.partialWidth = false;
+        $scope.searchModeOn = false;
+    }
+
+    
+    var removeAllMarkers = function(){
+        for(var i = 0; i < $scope.markers.length; i++){
+            $scope.markers[i].setMap(null);
+        }
+    }
     setup();
 
     return {

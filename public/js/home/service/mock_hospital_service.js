@@ -42,7 +42,12 @@ angular.module('app.services')
 		return hospitals;
 	}
 
+	var findHospitalsByName = function(name){
+		return hospitals.slice(0, 2);
+	}
+
 	return {
-		getHospitals: getHospitals
+		getHospitals: getHospitals,
+		findHospitalsByName: findHospitalsByName
 	}
 }]);	

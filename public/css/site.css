@@ -20,15 +20,14 @@
 .popup{
 	position: fixed;
 	bottom: 0;
-	left: -300px;
+	right: -300px;
 	width: 300px;
 	height: 250px;
 	background-color: white;
-
 }
 
 .popup-show{
-	left: 0;
+	right: 0;
 }
 
 .close-icon{
@@ -57,11 +56,28 @@
 }
 
 .btn:hover{
-	background: white;
+	background-color: white;
 }
 
 .quick-search-btn{
 	margin-top: 13px;
 	margin-left: 5px;
+}
 
+.search-results-panel{
+	width: 30%;
+	height: 100%;
+	float: left;
+	background-color: #4285f4;
+	display: none;
+}
+
+.show-search-results-panel{
+	display: block;
+}
+
+
+.map-partial-width{
+	width: 70%;
+	float: right;
 }

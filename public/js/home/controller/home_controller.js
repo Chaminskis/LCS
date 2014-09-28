@@ -163,6 +163,9 @@ angular.module('app.controllers', ['app.services'])
         initializeMap();
         calculateCurrentPosition();
         findHospitals();
+        setTravelModes();
+        setCenterTypes();
+        setInsurances();
     };
 
     $scope.viewPopUp = function(){
@@ -190,6 +193,18 @@ angular.module('app.controllers', ['app.services'])
         }
 
         enableSearchMode();       
+    }
+
+    $scope.advancedSearch = function(){
+        removeAllMarkers();
+        var hospitals = service.findHospitalsByName($scope.txtHospital);
+        $scope.markers = [];
+        for(var i = 0; i < hospitals.length; i++){
+            createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+        }
+
+        enableSearchMode();       
+        $("#myModal").modal('hide');        
     }
 
     $scope.quickSearch = function(){
@@ -225,9 +240,30 @@ angular.module('app.controllers', ['app.services'])
             $scope.markers[i].setMap(null);
         }
     }
+    var setTravelModes = function(){
+        $scope.travelModes = [
+            "A pie",
+            "En vehículo"
+        ];
+    }
+
+    var setCenterTypes = function(){
+        $scope.centerTypes = [
+            "Hospital",
+            "Clínica",
+            "Unidad de Atención Primaria"
+        ];
+    }
+
+    var setInsurances = function(){
+        $scope.insurances = [
+            "Humano",
+            "Universal",
+            "Palic",
+            "Senasa"
+        ];
+    }
     setup();
 
-    return {
-        setup: setup
-    }
+
 }]);

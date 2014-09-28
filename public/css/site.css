@@ -50,16 +50,16 @@
 	margin-top: 15px;
 }
 
-.btn{
+.nav-btn{
 	color: #666;
 	border: none;
 }
 
-.btn:hover{
+.nav-btn:hover{
 	background-color: white;
 }
 
-.quick-search-btn{
+.nav-element{
 	margin-top: 13px;
 	margin-left: 5px;
 }
@@ -80,4 +80,8 @@
 .map-partial-width{
 	width: 70%;
 	float: right;
+}
+
+#map_container{
+    height: 100%;
 }

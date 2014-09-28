@@ -21,14 +21,11 @@
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
+
     <!-- Page styles -->
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/dist/css/style.css">
     <link rel="stylesheet" href="/css/site.css">
-    <style type="text/css">
-        #map_container{
-            height: 100%;
-        }
-    </style>
   </head>
   <body ng-controller="HomeCtrl">
     <div class="sidebar"></div>
@@ -48,8 +45,9 @@
           <h4>Navigation</h4>
           <ul>
             <li><a href="#item2">Opciones</a></li>
-            <li><input type="text" ng-model="txtSearch" class="search-text" placeholder="search for a hospital" /> <button class="btn" ng-click="search()">Buscar</button></li>
-            <li><button class="btn quick-search-btn" ng-click="quickSearch()">Buscar hospital más cercano</button></li>
+            <li><input type="text" ng-model="txtSearch" class="search-text nav-element" placeholder="Escribe un centro" /> <button class="nav-btn nav-element" ng-click="search()">Buscar</button></li>
+            <li><button class="nav-btn quick-search-btn nav-element" ng-click="quickSearch()">Buscar hospital más cercano</button></li>
+            <li><button class="nav-btn nav-element" data-toggle="modal" data-target="#myModal" >Búsqueda Avanzada</button></li>
           </ul>
         </nav>
 
@@ -68,10 +66,55 @@
         <p>{{popup.content}}</p>
         <p>{{popup.distance + ' en ' + popup.duration}}</p>
     </aside>
-    <aside class="search-bar"></aside>
-    <main></main>
-    <!-- build:js scripts/main.min.js -->
+    <section class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Búsqueda Avanzada</h4>
+          </div>
+          <div class="modal-body">
+            <article class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Transporte</label>
+                    <div class="col-sm-9">
+                      <select>
+                        <option ng-repeat="travelMode in travelModes">{{travelMode}}</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Tipo de Centro</label>
+                    <div class="col-sm-9">
+                      <select>
+                        <option ng-repeat="centerType in centerTypes">{{centerType}}</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Seguro Médico</label>
+                    <div class="col-sm-9">
+                      <select>
+                        <option ng-repeat="insurance in insurances">{{insurance}}</option>
+                      </select>
+                    </div>
+                </div>
 
+            </article>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="advancedSearch()">Buscar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        
+    <main></main>
+
+    <!-- build:js scripts/main.min.js -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/js/vendors/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/vendors/angular.js"></script>
     <script type="text/javascript" src="/js/vendors/angular-route.min.js"></script>
     

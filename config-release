@@ -4,4 +4,4 @@ default-port             : 8000
 name                     : LCS Service
 version                  : 0.01
 secret                   : your-secret-key
-author                   : Por Definir ( Not kimera )
+author                   : Por Definir ( Not kimera 8000)

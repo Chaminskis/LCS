@@ -8,6 +8,22 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + "test",test);
 }
 
+function wrapHandler(){
+	
+	var args = [];
+    
+    for(var key in arguments){
+        args.push(arguments[key])
+    }
+	
+	var self = args[0];
+	var handler = args[1];
+	
+	console.log(self.layout)
+	
+	handler.call(self,args.slice(2));
+}
+
 function index(){
 	var self = this;
 

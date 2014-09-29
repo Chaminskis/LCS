@@ -159,7 +159,7 @@ angular.module('app.controllers', ['app.services'])
     }        
 
     
-    var setup = function(){
+    $scope.setup = function(){
         initializeMap();
         calculateCurrentPosition();
         findHospitals();
@@ -178,6 +178,7 @@ angular.module('app.controllers', ['app.services'])
     }
 
     var enableSearchMode = function(){
+        console.log("enabling search mode");
         $scope.searhModeOn = true;
         $scope.bar.show = true;
         $scope.map.partialWidth = true;
@@ -229,11 +230,18 @@ angular.module('app.controllers', ['app.services'])
     }
 
     $scope.disableSearchMode = function(){
+        console.log("disabling search mode");
         $scope.bar.show = false;
         $scope.map.partialWidth = false;
         $scope.searchModeOn = false;
     }
 
+    $scope.changeSearchMode = function(){
+        if($scope.bar.show)
+            $scope.disableSearchMode();
+        else
+            enableSearchMode();
+    }
     
     var removeAllMarkers = function(){
         for(var i = 0; i < $scope.markers.length; i++){
@@ -263,7 +271,5 @@ angular.module('app.controllers', ['app.services'])
             "Senasa"
         ];
     }
-    setup();
-
 
 }]);

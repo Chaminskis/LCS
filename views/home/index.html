@@ -24,15 +24,16 @@
 
     <!-- Page styles -->
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap-overrides.css">
     <link rel="stylesheet" href="/dist/css/style.css">
     <link rel="stylesheet" href="/css/site.css">
   </head>
-  <body ng-controller="HomeCtrl">
+  <body ng-controller="HomeCtrl" ng-init="setup()">
     <div class="sidebar"></div>
     <section class="home clear" style="height:100%">
         <header class="app-bar promote-layer">
           <div class="app-bar-container">
-            <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+            <button ng-click="changeSearchMode()" class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
             <h1 class="logo"><strong>Localizador de centros de salud</strong></h1>
             <section class="app-bar-actions">
             <!-- Put App app-bar Buttons Here -->
@@ -45,22 +46,24 @@
           <h4>Navigation</h4>
           <ul>
             <li><a href="#item2">Opciones</a></li>
-            <li><input type="text" ng-model="txtSearch" class="search-text nav-element" placeholder="Escribe un centro" /> <button class="nav-btn nav-element" ng-click="search()">Buscar</button></li>
-            <li><button class="nav-btn quick-search-btn nav-element" ng-click="quickSearch()">Buscar hospital más cercano</button></li>
-            <li><button class="nav-btn nav-element" data-toggle="modal" data-target="#myModal" >Búsqueda Avanzada</button></li>
+            <li><input type="text" ng-model="txtSearch" class="search-text transition nav-element" placeholder="Escribe un centro" /></li>
+            <li><button class="nav-btn btn transition nav-element" ng-click="search()">Buscar</button></li>
+            <li><button class="nav-btn btn quick-search-btn transition nav-element" ng-click="quickSearch()">Buscar hospital más cercano</button></li>
+            <li><button class="nav-btn btn transition nav-element" data-toggle="modal" data-target="#myModal" >Búsqueda Avanzada</button></li>
           </ul>
         </nav>
 
         <section id='map_container' ng-click="disableSearchMode()" ng-class="setMapWidth()">
             <div id="map_canvas" style="height:100%"></div>
         </section>
-        <article class="search-results-panel" ng-class="showResultsBar()">
+        <article class="search-results-panel transition" ng-class="showResultsBar()">
              <div ng-repeat="marker in markers | orderBy : 'title'">
                  <a href="#" ng-click="showMarkerRoute($event, marker)">{{marker.title}}</a>
+                 <figure class="place-icon"></figure>
              </div>
         </article>
     </section>
-    <aside class="popup" ng-class="viewPopUp()" >
+    <aside class="popup transition" ng-class="viewPopUp()" >
         <a class="close-link" ng-click="closePopUp()"><span class="close-icon"></span></a>
         <h2>{{popup.title}}</h2>
         <p>{{popup.content}}</p>

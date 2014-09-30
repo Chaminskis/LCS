@@ -26,7 +26,7 @@ angular.module('app.services')
 
 	var list = function(){
 		return $http({
-			url:'/app/manage/hospital/',
+			url:baseUrlApi,
 		}).then(function(result){
 			return result.data;
 		},function(error){
@@ -36,7 +36,7 @@ angular.module('app.services')
 
 	var get = function(id){
 		return $http({
-			url:'/app/manage/hospital/view/'+id,
+			url:baseUrlApi + '/view/'+id,
 		}).then(function(response){
 			return response.data.result;
 		},function(error){
@@ -46,7 +46,7 @@ angular.module('app.services')
 
 	var remove = function(id){
 		return $http({
-			url:'/app/manage/hospital/delete/'+id,
+			url:baseUrlApi + '/delete/'+id,
 			method:'DELETE',
 		}).then(function(result){
 			return result.data;
@@ -57,7 +57,7 @@ angular.module('app.services')
 	
 	var addMedicalInsurance = function(hospital,medicalInsurance){
 		return $http({
-			url:baseUrlApi + "asurance/",
+			url:baseUrlApi + "insurance/",
 			method:"POST",
 			data:{
 				hospital:hospital,
@@ -72,7 +72,7 @@ angular.module('app.services')
 	
 	var removeMedicalAsurance = function(id,secureID){
 		return $http({
-			url:baseUrlApi + "asurance/",
+			url:baseUrlApi + "insurance/",
 			method:"PUT",
 			data:{
 				hospital:id,

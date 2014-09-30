@@ -16,8 +16,8 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + 'all/',full,['GET']);
 	
 	/** Insurance **/
-	framework.route(controllerBaseUrl + 'asurance/',addMedicalInsurance,['JSON','POST']);
-	framework.route(controllerBaseUrl + 'asurance/',removeMedicalInsurance,['JSON','PUT']);
+	framework.route(controllerBaseUrl + 'insurance/',addMedicalInsurance,['JSON','POST']);
+	framework.route(controllerBaseUrl + 'insurance/',removeMedicalInsurance,['JSON','PUT']);
 	
 	/** Doctor **/
 	framework.route(controllerBaseUrl + 'doctor/',addDoctor,['JSON','POST']);

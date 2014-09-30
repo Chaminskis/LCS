@@ -22,7 +22,9 @@ module.exports = (function(){
 	};
 
 	var list = function(callback){
-		models.Hospital.findAll().success(function(result){
+		models.Hospital.findAll({
+			include:[{model:models.HospitalType,'as':'HospitalType'}],
+		}).success(function(result){
 			callback(result);
 		}).error(function(error){
             callback(error);

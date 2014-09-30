@@ -74,7 +74,7 @@ Hospital.hasMany(Doctor,{as:'Doctors',through:'hospital_doctors'});
 Doctor.hasMany(Hospital,{as:'Hospitals',through:'hospital_doctors'});
 
 
-Hospital.belongsTo(HospitalType);
+Hospital.belongsTo(HospitalType, { as : 'HospitalType', foreignKey : 'hospital_type' });
 
 HospitalType.hasMany(Hospital, { onDelete: 'SET NULL', onUpdate: 'CASCADE' });
 

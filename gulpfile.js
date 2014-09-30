@@ -63,6 +63,7 @@ gulp.task('dev-admin-index',function(){
 
     var sources = gulp.src([
         'public/js/admin/modules.js',
+        'public/js/admin/provider/*.js',
         'public/js/admin/service/*.js',
         'public/js/admin/controller/*.js',
         'public/js/admin/admin.js',

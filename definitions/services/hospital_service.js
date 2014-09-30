@@ -26,7 +26,7 @@ module.exports = (function(){
 			callback(result);
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var save = function(dataModel,callback){
@@ -132,6 +132,20 @@ module.exports = (function(){
 			callback(error);
 		});
 	};
+	
+	var listNames = function(callback){
+		models.Hospital.findAll({
+			attributes: ['id','name']
+		}).success(function(result){
+			
+			callback(result);
+			
+		}).error(function(error){
+			
+            callback(error);
+            
+        });
+	};
 
 	return {
 
@@ -145,6 +159,9 @@ module.exports = (function(){
 		},
 		find:function(callbackResponse){
 			list(callbackResponse);
+		},
+		findAllNames:function(callbackResponse){
+			listNames(callbackResponse);
 		},
 		save:function(data,callbackResponse){
 			save(data,callbackResponse);

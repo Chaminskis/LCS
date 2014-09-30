@@ -2,8 +2,8 @@
 var controllerBaseUrl = '/app/manage/';
 
 exports.install = function(framework){
-	framework.route(controllerBaseUrl + "",index);
-	framework.route(controllerBaseUrl + "login",login);
+	framework.route(controllerBaseUrl + "",index,{ middleware: ['ViewAuthEnd'] });
+	framework.route(controllerBaseUrl + "login",login,{ middleware: ['ViewAuthEnd'] });
 	
 	framework.route(controllerBaseUrl + "test",test);
 }

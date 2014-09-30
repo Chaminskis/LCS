@@ -21,13 +21,26 @@ var User = sequelize.define('auth_users',{
 	mail:{ type:Sequelize.STRING, unique:true, },
 },extraOptions);
 
+var HospitalType = sequelize.define('hospital_type',{
+	
+	//unique
+	id:{ type: Sequelize.INTEGER, autoIncrement: true },
+	
+	//unique name
+	name:{ type: Sequelize.STRING },
+	
+	// name to show
+	details:{ type: Sequelize.STRING },
+	
+},extraOptions);
+
 var Hospital = sequelize.define('hospital',{
 	id:{ type: Sequelize.INTEGER, autoIncrement: true },
 	name:{ type: Sequelize.STRING },
 	
 	details: Sequelize.STRING,
 	address: Sequelize.STRING,
-
+	
 	latitude: Sequelize.DECIMAL(6,4),
 	longitude: Sequelize.DECIMAL(6,4),
 },extraOptions);
@@ -59,6 +72,9 @@ Hospital.hasMany(Doctor,{as:'Doctors',through:'hospital_doctors'});
 Doctor.hasMany(Hospital,{as:'Hospitals',through:'hospital_doctors'});
 
 
+Hospital.belongsTo(HospitalType);
+
+HospitalType.hasMany(Hospital, { onDelete: 'SET NULL', onUpdate: 'CASCADE' });
 
 /** Export module **/
 module.exports = {

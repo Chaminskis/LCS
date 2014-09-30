@@ -3,14 +3,12 @@ module.exports = {
     
     migration.addColumn(
       'hospitals',
-      'hospital_type',
-      {
+      'hospital_type',{
         type: DataTypes.INTEGER,
         allowNull: false,
         references: "hospital_types",
   			referenceKey: "id",
-      }
-    )
+    });
 
     done()
   },

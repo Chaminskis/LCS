@@ -8,7 +8,6 @@ module.exports = {
     			unique:true, 
     			autoIncrement: true,
     		},
-    		
 		  	name:{ 
     			type: DataTypes.STRING,
     			unique:true, 

@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService','MedicalSecureService', function($scope,$routeParams,Hospital,MedicalAsurance){
+.controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService','MedicalSecureService','DoctorService', function($scope,$routeParams,Hospital,MedicalInsurance,Doctor){
     
     var id = $routeParams.id;
 
@@ -26,9 +26,14 @@ angular.module('app.controllers')
     /** medical asurance list use it on modal **/
     $scope.medicalEnsurance = [];
     
+    /** doctors **/
+    $scope.doctors = [{
+        id:5,
+        name:'Doctor fulano',
+    }];
+    
     /*
      * init method
-     *
      **/
     $scope.load = function(){
         Hospital.get(id)
@@ -42,7 +47,6 @@ angular.module('app.controllers')
 
     /*
      * remove current hopsital
-     *
      **/
     $scope.delete = function(id){
 
@@ -62,7 +66,9 @@ angular.module('app.controllers')
         });
     };
     
-    /** remove asurance from current list asurance list to add **/
+    /*
+     * Remove asurance from current list asurance list to add 
+     **/
     $scope.removeAsurance = function(secureID){
         $scope.medicalEnsurance = $scope.medicalEnsurance.filter(function(item){
             return secureID != item.id;
@@ -87,11 +93,10 @@ angular.module('app.controllers')
 
     /*
      *
-     *
      **/
-    $scope.loadMedicalEnsurance = function(){
+    $scope.loadMedicalInsurance = function(){
     	
-    	MedicalAsurance.notRelatedMedicalAsurance(id)
+    	MedicalInsurance.notRelatedMedicalInsurance(id)
     	.then(function(result){
     	    $scope.medicalEnsurance.push.apply($scope.medicalEnsurance,result);
     	},function(error){
@@ -129,11 +134,39 @@ angular.module('app.controllers')
     $scope.removeRelation = function(medicalAsuranceID){
         Hospital.removeMedicalAsurance(id,medicalAsuranceID)
         .then(function(result){
-        
-            //
             postRemoveRelation(medicalAsuranceID);
         },function(error){
             alert(error);
         });
     };
+    
+    
+    /*
+     *
+     **/
+     $scope.addDoctor = function(){
+         alert('Add');
+     };
+     
+     /*
+      *
+      **/
+     $scope.removeRelationDoctor = function(){
+       alert('remove doctor relation');  
+     };
+     
+     /*
+      *
+      **/
+     $scope.loadDoctors = function(){
+        
+        Doctor.notRelatedDoctor(id).then(function(result){
+            
+            $scope.doctors.push.apply($scope.doctors,result);
+            
+        },function(error){
+            alert("Error opteniendo los doctores");
+        });
+     };
+     
 }]);

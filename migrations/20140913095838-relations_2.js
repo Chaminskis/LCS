@@ -4,13 +4,11 @@ module.exports = {
   	migration.createTable('hospital_doctors',{
   		hospital_id:{ 
   			type: DataTypes.INTEGER, 
-  			unique:true, 
   			references: "hospitals",
   			referenceKey: "id",
   		},
   		doctor_id:{ 
   			type: DataTypes.INTEGER,
-  			unique:true,
   			references: "doctors",
   			referenceKey: "id",
   		},

@@ -55,7 +55,7 @@
          });
      };
      
-     var notRelatedMedicalAsurance = function(hospitalID){
+     var notRelatedMedicalInsurance = function(hospitalID){
          return $http({
              url:baseUrlApi + "exclude/hospital/"+hospitalID
          }).then(function(response){
@@ -81,6 +81,6 @@
          find:list,
          get:get,
          delete:remove,
-         notRelatedMedicalAsurance:notRelatedMedicalAsurance,
+         notRelatedMedicalInsurance:notRelatedMedicalInsurance,
      }
  }]);

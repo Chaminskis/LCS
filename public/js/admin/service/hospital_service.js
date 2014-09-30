@@ -36,7 +36,7 @@ angular.module('app.services')
 
 	var get = function(id){
 		return $http({
-			url:baseUrlApi + '/view/'+id,
+			url:baseUrlApi + 'view/'+id,
 		}).then(function(response){
 			return response.data.result;
 		},function(error){
@@ -46,7 +46,7 @@ angular.module('app.services')
 
 	var remove = function(id){
 		return $http({
-			url:baseUrlApi + '/delete/'+id,
+			url:baseUrlApi + 'delete/'+id,
 			method:'DELETE',
 		}).then(function(result){
 			return result.data;

@@ -63,12 +63,26 @@ angular.module('app.services')
 			def.reject(error);
 		});
 	};
+	
+	/*
+	 * Retrieve all doctor that are not relate with spesific hsopital
+	 **/
+	var retrieveNotRelatedDoctor = function(hopsital){
+		return $http({
+			url:baseUrlApi + 'exclude/hospital/'+hopsital
+		}).then(function(response){
+			return response.data.result;
+		},function(error){
+			def.reject(error);
+		});
+	};
 
 	return {
 		save:save,
 		list:list,
 		get:get,
 		delete:deleteMethod,
+		notRelatedDoctor:retrieveNotRelatedDoctor,
 	};
 
 }]);

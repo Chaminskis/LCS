@@ -10,7 +10,20 @@ module.exports = (function(context){
 	/** Private context **/
 
 	var models = require('../models.js');
-
+	
+	var dateTimeFields = ['updated_at','created_at','deleted_at'];
+	
+	var removeFields = function(entity){
+		
+		console.log(entity);
+		
+		dateTimeFields.forEach(function(field){
+			delete entity[field];
+		});
+		
+		return entity;
+	}
+	
 	var createDoctor = function(dataModel,callback){
 		models.Doctor.create({
 			name:dataModel.name,
@@ -48,6 +61,25 @@ module.exports = (function(context){
             callback(error);
         });
 	};
+	
+	var excludeHospitalRelation = function(hospitalId,callback){
+		var sql = 'select * from doctors where id not in ( select doctor_id from hospital_doctors where hospital_id = '+ hospitalId +');';
+		
+		models.Sequelize.query(sql,models.MedicalSecure)
+		.success(function(result){
+			
+			console.log(result);
+			
+			var cleanResult = result.map(function(item){
+				return removeFields(item.dataValues);	
+			})
+			
+			callback(cleanResult);
+		}).error(function(error){
+			callback(error);
+		});
+
+	};
 
 	return{
 		create:function(dataModel,callbackResponse){
@@ -62,6 +94,9 @@ module.exports = (function(context){
 		delete:function(id,callbackResponse){
 			deleteDoctor(id,callbackResponse);
 		},
+		doctorsHasNotHospital:function(hospitalId,callbackResponse){
+			excludeHospitalRelation(hospitalId,callbackResponse);
+		}
 	};
 
 })(database);

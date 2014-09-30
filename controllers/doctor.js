@@ -11,6 +11,8 @@ var DoctorService = require('../definitions/services/doctor_service.js');
 exports.install = function(framework){
 	framework.route(controllerBaseUrl + "",index,['GET']);
 	framework.route(controllerBaseUrl + "",save,['JSON','POST']);
+	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET']);
+	
 	framework.route(controllerBaseUrl + "view/{id}/",view,['GET']);
 	framework.route(controllerBaseUrl + "delete/{id}/",deleteDoctor,['DELETE']);
 }
@@ -20,6 +22,14 @@ function index(){
 	var self = this;
 
 	DoctorService.find(function(result){
+		self.json(utils.genericResponse(false,"",result));
+	});
+}
+
+function excludeHospital(hospitalId){
+	var self = this;
+	
+	DoctorService.doctorsHasNotHospital(hospitalId,function(result){
 		self.json(utils.genericResponse(false,"",result));
 	});
 }

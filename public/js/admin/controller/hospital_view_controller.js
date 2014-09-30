@@ -67,11 +67,20 @@ angular.module('app.controllers')
     };
     
     /*
-     * Remove asurance from current list asurance list to add 
+     * Remove Insurance from current list insurance list to add 
      **/
     $scope.removeAsurance = function(secureID){
         $scope.medicalEnsurance = $scope.medicalEnsurance.filter(function(item){
             return secureID != item.id;
+        });
+    };
+    
+    /*
+     * Remove doctor from current list doctor list to add 
+     **/
+    $scope.removeDoctor = function(doctorID){
+        $scope.doctors = $scope.doctors.filter(function(item){
+            return doctorID != item.id;
         });
     };
     
@@ -144,8 +153,16 @@ angular.module('app.controllers')
     /*
      *
      **/
-     $scope.addDoctor = function(){
-         alert('Add');
+     $scope.addDoctor = function(doctorID){
+         Hospital.addDoctor(id,doctorID)
+         .then(function(result){
+             
+             alert('Doctor agregado');
+             
+             $scope.removeDoctor(doctorID);
+         },function(error){
+             alert(error);
+         });
      };
      
      /*
@@ -159,11 +176,8 @@ angular.module('app.controllers')
       *
       **/
      $scope.loadDoctors = function(){
-        
         Doctor.notRelatedDoctor(id).then(function(result){
-            
             $scope.doctors.push.apply($scope.doctors,result);
-            
         },function(error){
             alert("Error opteniendo los doctores");
         });

@@ -55,6 +55,10 @@ module.exports = (function(){
 				model:models.MedicalSecure,
 				as:'Secures',
 				attributes:[ 'id','name','details']
+			},{
+				model:models.Doctor,
+				as:'Doctors',
+				attributes:[ 'id','name','last','details']
 			}]
 		}).success(function(result){
 			callback(result[0]);

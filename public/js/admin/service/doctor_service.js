@@ -9,7 +9,7 @@ angular.module('app.services')
 
 .service('DoctorService', ['$http','$q', function($http,$q){
  	
- 	var baseUrlApi = "/app/manage/doctor";
+ 	var baseUrlApi = "/app/manage/doctor/";
 	var def = $q;
 
 	var list = function(){

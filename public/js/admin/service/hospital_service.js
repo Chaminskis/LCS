@@ -55,6 +55,36 @@ angular.module('app.services')
 		});
 	};
 	
+	var addDoctor = function(hospital,doctor){
+		return $http({
+			url:baseUrlApi + "doctor/",
+			method:"POST",
+			data:{
+				hospital:hospital,
+				doctor:doctor
+			}
+		}).then(function(response){
+			return response.data.result;
+		},function(error){
+			def.reject(error);
+		});	
+	};
+	
+	var removeDoctor = function(hospital,doctor){
+		return $http({
+			url:baseUrlApi + "doctor/",
+			method:"PUT",
+			data:{
+				hospital:hospital,
+				doctor:doctor
+			}
+		}).then(function(response){
+			return response.data.result;
+		},function(error){
+			def.reject(error);
+		});	
+	};
+	
 	var addMedicalInsurance = function(hospital,medicalInsurance){
 		return $http({
 			url:baseUrlApi + "insurance/",
@@ -92,5 +122,7 @@ angular.module('app.services')
 		delete:remove,
 		addMedicalInsurance:addMedicalInsurance,
 		removeMedicalAsurance:removeMedicalAsurance,
+		addDoctor:addDoctor,
+		removeDoctor:removeDoctor,
 	};
 }]);

@@ -73,9 +73,11 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat='item in data.doctors'>
-						<td> <a href="#/medical_secure/view/{{ item.id }}">{{ item.name }}</a> </td>
-						<td> <a href="#/medical_secure/view/{{ item.id }}">{{ item.last }}</a> </td>
+						<td> <a href="#/doctors/view/{{ item.id }}">{{ item.name }}</a> </td>
+						<td> <a href="#/doctors/view/{{ item.id }}">{{ item.last }}</a> </td>
+						
 						<td> {{ item.details }} </td>
+						
 						<td> 
 							<button class='btn btn-danger' ng-click='removeRelationDoctor(item.id)'>Desvincular</button> 
 						</td>

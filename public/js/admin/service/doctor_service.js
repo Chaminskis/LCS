@@ -9,11 +9,12 @@ angular.module('app.services')
 
 .service('DoctorService', ['$http','$q', function($http,$q){
  	
+ 	var baseUrlApi = "/app/manage/doctor";
 	var def = $q;
 
 	var list = function(){
 		return $http({
-			url:'/app/manage/doctor/',
+			url:baseUrlApi,
 		}).then(function(data){
 			return data.data;
 		},function(data){
@@ -23,7 +24,7 @@ angular.module('app.services')
 
 	var get = function(id){
 		return $http({
-			url:'/app/manage/doctor/view/' + id
+			url:baseUrlApi + 'view/' + id
 		}).then(function(data){
 			return data.data;
 		},function(error){	
@@ -40,7 +41,7 @@ angular.module('app.services')
 		};
 
 		return $http({
-			url:'/app/manage/doctor/',
+			url:baseUrlApi,
 			data:dataToSend,
 			method:'POST',
 		}).then(function(data){
@@ -54,7 +55,7 @@ angular.module('app.services')
 
 	var deleteMethod = function(id){
 		return $http({
-			url:'/app/manage/doctor/delete/'+id,
+			url:baseUrlApi + 'delete/'+id,
 			method:'DELETE'
 		}).then(function(result){
 			return result.data;

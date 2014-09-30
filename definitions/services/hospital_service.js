@@ -103,6 +103,40 @@ module.exports = (function(){
         });;	
 	};
 	
+	var addDoctor = function(hospital,doctor,callback){
+		models.Hospital.find(hospital).success(function(itemHospital){
+			models.Doctor.find(doctor).success(function(itemDoctor){
+				
+				itemHospital.addDoctor(itemDoctor)
+				.success(function(result){
+					callback(result);	
+				}).error(function(error){
+					callback(error);
+				});
+				
+			}).error(function(error){
+				callback(error);
+			});
+		})
+		.error(function(error){
+			callback(error);
+		});
+	};
+	
+		
+	var removeDoctor = function(hospital,doctor,callback){
+		
+		var sql = 'delete from hospital_doctors where hospital_id='+ hospital +' and doctor_id= ' + doctor + ';';
+		
+		models.Sequelize.query(sql).success(function(result){
+			callback(result);
+		},function(error){
+			callback(error);
+		});
+		
+	};
+
+	
 	var addmedicalInsurance = function(hospital,secure,callback){
 		
 		models.Hospital.find(hospital).success(function(itemHospital){
@@ -180,6 +214,12 @@ module.exports = (function(){
 		},
 		removeMedicalInsurance:function(hospitalId,medicalAsuranceID,callbackResponse){
 			removeMedicalInsurance(hospitalId,medicalAsuranceID,callbackResponse);
-		}
+		},
+		addDoctor:function(hospitalId,doctorId,callbackResponse){
+			addDoctor(hospitalId,doctorId,callbackResponse);
+		},
+		removeDoctor:function(hospitalId,doctorId,callbackResponse){
+			removeDoctor(hospitalId,doctorId,callbackResponse);	
+		},
 	}
 })();

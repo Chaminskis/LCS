@@ -4,7 +4,7 @@ module.exports = {
   	migration.createTable('hospitals',{
   		
         id:{ type: DataTypes.INTEGER, autoIncrement: true, unique:true },
-		name:{ type: DataTypes.STRING },
+		    name:{ type: DataTypes.STRING },
         details:{ type: DataTypes.STRING },
         address:{ type: DataTypes.STRING },
 

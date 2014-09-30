@@ -7,9 +7,11 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalCreateCtrl',['$scope','HospitalService','HospitalTypeService', function($scope,Hospital,HospitalTypeService){
+.controller('HospitalCreateCtrl',['$scope','HospitalService','hospitalTypes', function($scope,Hospital,hospitalTypes){
 
 	$scope.model = {};
+
+	alert(hospitalTypes);
 
 	$scope.save = function(){
 		var data = $scope.model;

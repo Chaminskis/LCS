@@ -5,9 +5,9 @@
 
 'use strict';
 
-angular.module('lcs-admin',['ngRoute','app.controllers'])
+angular.module('lcs-admin',['ngRoute','app.controllers','app.services'])
 
-.config(['$routeProvider',function($routeProvider){
+.config(['$routeProvider','HospitalTypeService',function($routeProvider,HospitalTypeService){
 
 	$routeProvider
 		.when('/home',{
@@ -24,6 +24,22 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 		.when('/hospital/add/',{
 			controller:'HospitalCreateCtrl',
 			templateUrl:'/js/admin/views/hospital/create.html',
+			resolve:{
+				hospitalTypes:function($q){
+					
+					var def = $q.defer();
+					
+					return HospitalTypeService.list().then(function(result){
+						def.resolve(result);
+					},function(error){
+						alert(error);
+						
+						$q.reject(error);
+					});
+					
+					return def.promise;
+				}
+			}
 		})
 
 		.when('/hospital/view/:id',{

@@ -5,9 +5,9 @@
 
 'use strict';
 
-angular.module('lcs-admin',['ngRoute','app.controllers','app.services'])
+angular.module('lcs-admin',['ngRoute','app.controllers'])
 
-.config(['$routeProvider','HospitalTypeService',function($routeProvider,HospitalTypeService){
+.config(['$routeProvider',function($routeProvider){
 
 	$routeProvider
 		.when('/home',{
@@ -24,22 +24,6 @@ angular.module('lcs-admin',['ngRoute','app.controllers','app.services'])
 		.when('/hospital/add/',{
 			controller:'HospitalCreateCtrl',
 			templateUrl:'/js/admin/views/hospital/create.html',
-			resolve:{
-				hospitalTypes:function($q){
-					
-					var def = $q.defer();
-					
-					return HospitalTypeService.list().then(function(result){
-						def.resolve(result);
-					},function(error){
-						alert(error);
-						
-						$q.reject(error);
-					});
-					
-					return def.promise;
-				}
-			}
 		})
 
 		.when('/hospital/view/:id',{
@@ -63,7 +47,6 @@ angular.module('lcs-admin',['ngRoute','app.controllers','app.services'])
 			templateUrl:'/js/admin/views/medical_secure/create.html'	
 		})		
 
-
 		/** Doctor routes **/
 		.when('/doctors/',{
 			controller:'DoctorIndexCtrl',
@@ -79,7 +62,6 @@ angular.module('lcs-admin',['ngRoute','app.controllers','app.services'])
 			controller:'DoctorViewCtrl',
 			templateUrl:'/js/admin/views/doctor/view.html'	
 		})		
-
 
 		/** Auth routes **/
 		.when('/auth/users/',{

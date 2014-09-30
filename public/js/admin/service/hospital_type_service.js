@@ -9,16 +9,21 @@ angular.module('app.services')
 
 .service('HospitalTypeService', ['$http','$q', function($http,$q){
 	var baseUrlApi = "/app/manage/hospital_type/";
-	var def = $q;
 	
 	var list = function(){
-		return $http({
+		
+		var def = $q.defer();
+		
+		$http({
 			url:baseUrlApi,
 		}).then(function(response){
-			return response.data.result;
+			console.log('resolve',response.data.result);
+			def.resolve(response.data.result);
 		},function(error){
 			def.reject(error);
 		});
+		
+		return def.promise;
 	};
 
 	return{

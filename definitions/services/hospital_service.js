@@ -31,10 +31,13 @@ module.exports = (function(){
 
 	var save = function(dataModel,callback){
 
+		console.log("joder con este valor ",dataModel.hospital_type)
+
 		models.Hospital.create({
 			name:dataModel.name,
 			details:dataModel.details,
 			address:dataModel.address,
+			hospital_type: parseInt(dataModel.hospital_type),
 			latitude:dataModel.location.latitude,
 			longitude:dataModel.location.longitude,
 		}).success(function(hospital){

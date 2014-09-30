@@ -41,6 +41,8 @@ var Hospital = sequelize.define('hospital',{
 	details: Sequelize.STRING,
 	address: Sequelize.STRING,
 	
+	hospital_type:{ type: Sequelize.INTEGER },
+	
 	latitude: Sequelize.DECIMAL(6,4),
 	longitude: Sequelize.DECIMAL(6,4),
 },extraOptions);

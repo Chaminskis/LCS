@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LCS - Localizador de centros</title>
 
-    <!-- inject:js -->
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css" />
     
   </head>
@@ -20,7 +19,7 @@
       </div>
     </header>
 
-    <nav class="navdrawer-container promote-layer" ng-controller='HomeCtrl' ng-init='load()'>
+    <nav class="navdrawer-container promote-layer" ng-controller='AdminHomeCtrl' ng-init='load()'>
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
         
@@ -48,16 +47,10 @@
       </nav>
     </nav>
 
-    <section id='map_container' style='padding:10px;' ng-view>
+    <section style='padding:10px;' ng-view>
         <h3>interface</h3>
     </section>
 
-
-    <!-- build:js scripts/main.min.js -->
-    <!-- google web started kit -->
-    <script src="/dist/js/script.js"></script>
-    <!-- endbuild -->
-    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/vendors/bootstrap/bootstrap.min.js"></script>
 
@@ -66,36 +59,27 @@
 
     <!-- inject:js -->
 
-
     <script src="/js/admin/modules.js"></script>
-
 
     <script src="/js/admin/service/doctor_service.js"></script>
 
-
     <script src="/js/admin/service/hospital_service.js"></script>
 
+    <script src="/js/admin/service/hospital_type_service.js"></script>
 
     <script src="/js/admin/service/medical_secure_service.js"></script>
 
-
     <script src="/js/admin/service/user_service.js"></script>
-
 
     <script src="/js/admin/controller/auth_user_controller.js"></script>
 
-
     <script src="/js/admin/controller/auth_user_create_controller.js"></script>
-
 
     <script src="/js/admin/controller/auth_user_view_controller.js"></script>
 
-
     <script src="/js/admin/controller/doctor_controller.js"></script>
 
-
     <script src="/js/admin/controller/doctor_create_controller.js"></script>
-
 
     <script src="/js/admin/controller/doctor_view_controller.js"></script>
 

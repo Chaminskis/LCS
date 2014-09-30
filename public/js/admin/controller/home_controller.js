@@ -6,7 +6,7 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('HomeCtrl', ['$scope',function($scope){
+.controller('AdminHomeCtrl', ['$scope',function($scope){
     
     $scope.sectionActive = 'home';
 	

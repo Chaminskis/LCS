@@ -11,7 +11,7 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 	$routeProvider
 		.when('/home',{
-			controller:'HomeCtrl',
+			controller:'AdminHomeCtrl',
 			templateUrl:'/js/admin/views/home.html'
 		})
 
@@ -23,7 +23,7 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 
 		.when('/hospital/add/',{
 			controller:'HospitalCreateCtrl',
-			templateUrl:'/js/admin/views/hospital/create.html'	
+			templateUrl:'/js/admin/views/hospital/create.html',
 		})
 
 		.when('/hospital/view/:id',{

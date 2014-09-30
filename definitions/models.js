@@ -85,6 +85,7 @@ module.exports = {
 	MedicalSecure:MedicalSecure,
 	Doctor:Doctor,
 	Sequelize:sequelize,
+	HospitalType:HospitalType,
 };
 
 

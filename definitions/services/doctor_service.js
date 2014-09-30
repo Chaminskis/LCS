@@ -15,14 +15,12 @@ module.exports = (function(context){
 	
 	var removeFields = function(entity){
 		
-		console.log(entity);
-		
 		dateTimeFields.forEach(function(field){
 			delete entity[field];
 		});
 		
 		return entity;
-	}
+	};
 	
 	var createDoctor = function(dataModel,callback){
 		models.Doctor.create({

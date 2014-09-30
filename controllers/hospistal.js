@@ -14,8 +14,14 @@ exports.install = function(framework){
 
 	framework.route(controllerBaseUrl + 'names/',getNames,['GET']);
 	framework.route(controllerBaseUrl + 'all/',full,['GET']);
-	framework.route(controllerBaseUrl + 'asurance/',addMedicalEnsurance,['JSON','POST']);
-	framework.route(controllerBaseUrl + 'asurance/',removeMedicalEnsurance,['JSON','PUT']);
+	
+	/** Insurance **/
+	framework.route(controllerBaseUrl + 'asurance/',addMedicalInsurance,['JSON','POST']);
+	framework.route(controllerBaseUrl + 'asurance/',removeMedicalInsurance,['JSON','PUT']);
+	
+	/** Doctor **/
+	framework.route(controllerBaseUrl + 'doctor/',addDoctor,['JSON','POST']);
+	framework.route(controllerBaseUrl + 'doctor/',removeDoctor,['JSON','PUT']);
 	
 	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET']);
 	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE']);
@@ -72,7 +78,7 @@ function view(id){
 	
 }
 
-function addMedicalEnsurance(){
+function addMedicalInsurance(){
 	var self = this;
 	
 	var hospital = self.post.hospital;
@@ -86,13 +92,37 @@ function addMedicalEnsurance(){
 }
 
 
-function removeMedicalEnsurance(){
+function removeMedicalInsurance(){
 	var self = this;
 	
 	var hospital = self.post.hospital;
 	var insurance = self.post.insurance;
 	
 	HospitalService.removeMedicalInsurance(hospital,insurance,function(result){
+		self.json(utils.genericResponse(false,'',result));
+	});
+}
+
+
+
+function addDoctor(){
+	var self = this;
+	
+	var hospital = self.post.hospital;
+	var doctor = self.post.doctor;
+	
+	HospitalService.addDoctor(hospital,doctor,function(result){
+		self.json(utils.genericResponse(false,'',result));
+	});
+}
+
+function removeDoctor(){
+	var self = this;
+	
+	var hospital = self.post.hospital;
+	var doctor = self.post.doctor;
+	
+	HospitalService.removeDoctor(hospital,doctor,function(result){
 		self.json(utils.genericResponse(false,'',result));
 	});
 }

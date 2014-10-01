@@ -20,7 +20,10 @@ module.exports = (function(){
 
 	var list = function(callback){
 		models.Hospital.findAll({
-			include:[{model:models.HospitalType,'as':'HospitalType'}],
+			include:[{
+				'as':'HospitalType',
+				model:models.HospitalType,
+			}],
 		}).success(function(result){
 			callback(result);
 		}).error(function(error){
@@ -59,6 +62,9 @@ module.exports = (function(){
 				model:models.Doctor,
 				as:'Doctors',
 				attributes:[ 'id','name','last','details']
+			},{
+				'as':'HospitalType',
+				model:models.HospitalType,	
 			}]
 		}).success(function(result){
 			callback(result[0]);
@@ -175,13 +181,9 @@ module.exports = (function(){
 		models.Hospital.findAll({
 			attributes: ['id','name']
 		}).success(function(result){
-			
 			callback(result);
-			
 		}).error(function(error){
-			
             callback(error);
-            
         });
 	};
 

@@ -4,6 +4,11 @@
 		width:40%;
 		display:inline-block;
 	}
+	
+	span{
+		text-transform:capitalize;
+	}
+	
 </style>
 <div>
 	
@@ -29,6 +34,10 @@
 	
 			<p>
 				<b>Direccion:</b> <span>{{ data.address }}</span>
+			</p>
+			
+			<p>
+				<b>Tipo:</b> <span>{{ data.hospitalType.details }}</span>
 			</p>
 		</div>
 

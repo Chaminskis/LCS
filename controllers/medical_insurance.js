@@ -6,11 +6,11 @@
 var utils = require('../definitions/utils_service.js');
 var MedicalSecure = require('../definitions/services/medical_insurance_service.js');
 
-var controllerBaseUrl = '/app/manage/medical_insuranceService/';
+var controllerBaseUrl = '/app/manage/medical_insurance/';
 
 exports.install = function(framework){
 	
-	framework.route(controllerBaseUrl + '/{{quantity}}/',index,['GET']);
+	framework.route(controllerBaseUrl + '{{quantity}}/',index,['GET']);
 	framework.route(controllerBaseUrl + '',index,['GET']);
 	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET']);
 	framework.route(controllerBaseUrl + '',save,['JSON','POST']);	

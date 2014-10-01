@@ -36,7 +36,12 @@ module.exports = (function(context){
 
 	var listDoctors = function(callback){
 		models.Doctor.findAll().success(function(result){
-			callback(result);
+			
+			var cleanResult = result.map(function(item){
+				return removeFields(item);
+			});
+			
+			callback(cleanResult);
 		}).error(function(error){
             callback(error);
         });
@@ -44,7 +49,10 @@ module.exports = (function(context){
 
 	var getOne = function(id,callback){
 		models.Doctor.find(id).success(function(doctor){
-			callback(doctor);
+			
+			var cleanResult = removeFields(doctor);
+			
+			callback(cleanResult);
 		}).error(function(error){
             callback(error);
         });

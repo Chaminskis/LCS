@@ -9,6 +9,17 @@ module.exports = (function(){
 	/** Private context **/
 
 	var models = require('../models.js');
+	
+	var dateTimeFields = ['updated_at','created_at','deleted_at'];
+	
+	var removeFields = function(entity){
+		
+		dateTimeFields.forEach(function(field){
+			delete entity[field];
+		});
+		
+		return entity;
+	};
 
 	var create = function(callback){
 		models.Hospital.create({title:'nice'}).success(function(hospital){
@@ -25,7 +36,12 @@ module.exports = (function(){
 				model:models.HospitalType,
 			}],
 		}).success(function(result){
-			callback(result);
+			
+			var cleanResult = result.map(function(item){
+				return removeFields(item);
+			});
+			
+			callback(cleanResult);
 		}).error(function(error){
             callback(error);
         });
@@ -67,7 +83,10 @@ module.exports = (function(){
 				model:models.HospitalType,	
 			}]
 		}).success(function(result){
-			callback(result[0]);
+			
+			var item = removeFields(result[0]);
+			
+			callback(item);
 		}).error(function(error){
 			callback(error);
 		});
@@ -98,11 +117,15 @@ module.exports = (function(){
 			
 			var cleanResult = result.forEach(function(item){
 				
-				item.secures = item.secures.forEach(function(secure){
-					delete secure.dataValues.hospitalSecure;
+				item.secures = item.secures.forEach(function(insurance){
+					delete insurance.dataValues.hospitalSecure;
 					
-					return secure;
+					removeFields(insurance);
+					
+					return insurance;
 				});
+				
+				item = removeFields(item); 
 				
 				return item;
 			});

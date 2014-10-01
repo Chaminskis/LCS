@@ -6,7 +6,7 @@
 var utils = require('../definitions/utils_service.js');
 var MedicalSecure = require('../definitions/services/medical_secure_service.js');
 
-var controllerBaseUrl = '/app/manage/medical_secure/';
+var controllerBaseUrl = '/app/manage/medical_insuranceService/';
 
 exports.install = function(framework){
 	

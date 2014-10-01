@@ -9,7 +9,7 @@
 var controllerBaseUrl = '/app/service/';
 var utils = require('../definitions/utils_service.js');
 var HospitalService = require('../definitions/services/hospital_service.js');
-var medicalSecureService = require('../definitions/services/medical_secure_service.js');
+var medicalInsuranceService = require('../definitions/services/medical_secure_service.js');
 
 /** Routes **/
 exports.install = function(framework){
@@ -19,7 +19,7 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + 'hospitals/',getHospitals,['POST','JSON']);
 	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['GET']);
 	
-	framework.route(controllerBaseUrl + 'secure/',getSecures,['POST','JSON']);
+	framework.route(controllerBaseUrl + 'medical_insurance/',getSecures,['POST','JSON']);
 };
 
 /*
@@ -45,7 +45,7 @@ function getSecures(){
 	
 	var quantity = data.quantity || 20;
 	
-	medicalSecureService.find(quantity,function(result){
+	medicalInsuranceService.find(quantity,function(result){
 		self.json(utils.genericResponse(false,"",result));	
 	});
 }

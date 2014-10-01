@@ -32,19 +32,19 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 		})		
 
 		/** Medical secure routes **/
-		.when('/medical_secure/',{
-			controller:'MedicalSecureCtrl',
-			templateUrl:'/js/admin/views/medical_secure/index.html'	
+		.when('/medical_insurance/',{
+			controller:'MedicalInsuranceCtrl',
+			templateUrl:'/js/admin/views/medical_insurance/index.html'	
 		})
 		
-		.when('/medical_secure/view/:id',{
-			controller:'MedicalSecureViewCtrl',
-			templateUrl:'/js/admin/views/medical_secure/view.html'	
+		.when('/medical_insurance/view/:id',{
+			controller:'MedicalInsuranceViewCtrl',
+			templateUrl:'/js/admin/views/medical_insurance/view.html'	
 		})
 
-		.when('/medical_secure/add/',{
-			controller:'MedicalSecureCreateCtrl',
-			templateUrl:'/js/admin/views/medical_secure/create.html'	
+		.when('/medical_insurance/add/',{
+			controller:'MedicalInsuranceCreateCtrl',
+			templateUrl:'/js/admin/views/medical_insurance/create.html'	
 		})		
 
 		/** Doctor routes **/

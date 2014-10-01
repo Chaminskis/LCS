@@ -66,8 +66,6 @@ module.exports = (function(context){
 		models.Sequelize.query(sql,models.MedicalSecure)
 		.success(function(result){
 			
-			console.log(result);
-			
 			var cleanResult = result.map(function(item){
 				return removeFields(item.dataValues);	
 			})

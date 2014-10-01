@@ -12,13 +12,10 @@ module.exports = (function(){
 
 	var create = function(callback){
 		models.Hospital.create({title:'nice'}).success(function(hospital){
-			console.log('Model saved');
 			callback(hospital);
 		}).error(function(error){
             callback(error);
         });
-
-		console.log('Creaste method');
 	};
 
 	var list = function(callback){
@@ -32,8 +29,6 @@ module.exports = (function(){
 	};
 
 	var save = function(dataModel,callback){
-
-		console.log("joder con este valor ",dataModel.hospital_type)
 
 		models.Hospital.create({
 			name:dataModel.name,
@@ -197,7 +192,6 @@ module.exports = (function(){
  		 *
  		 **/
 		hi:function(callback){
-			console.log('nice billt');
 			create(callback);
 		},
 		find:function(callbackResponse){

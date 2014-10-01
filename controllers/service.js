@@ -17,8 +17,10 @@ exports.install = function(framework){
 	
 	framework.route(controllerBaseUrl + 'hospitals/',index,['GET']);
 	framework.route(controllerBaseUrl + 'hospitals/',getHospitals,['POST','JSON']);
-	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['GET'])
-}
+	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['GET']);
+	
+	framework.route(controllerBaseUrl + 'secure/',getSecures,['POST','JSON']);
+};
 
 /*
  *
@@ -28,9 +30,24 @@ function dummy(){
 
 	HospitalService.hi(function(model){
 		console.log('result');
-	})
+	});
 
 	this.json({nice:4});
+}
+
+/*
+ *
+ **/
+function getSecures(){
+	var self = this;
+	
+	var data = self.post;
+	
+	var quantity = data.quantity || 20;
+	
+	medicalSecureService.find(quantity,function(result){
+		self.json(utils.genericResponse(false,"",result));	
+	});
 }
 
 /*

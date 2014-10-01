@@ -23,7 +23,6 @@ module.exports = (function(){
             password: model.password,
             mail:model.mail
         }).success(function(item){
-            console.log(arguments);
             callback(item);
         }).error(function(error){
             callback(error);

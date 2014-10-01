@@ -19,15 +19,29 @@ module.exports = (function(){
 			callback({'result':medicalSecure});
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
-	var find = function(callback){
-		models.MedicalSecure.findAll().success(function(result){
+	var find = function(){
+		
+		var callback = null;
+		var quantity = 20;
+		var args = arguments;
+		
+		if(args['0'] !== undefined && typeof(args['0']) === typeof(2)){
+			quantity = args['0'];
+			callback = args['1'];
+		}else{
+			callback = args[0];
+		}
+		
+		models.MedicalSecure.findAndCountAll({
+			limit:quantity,
+		}).success(function(result){
 			callback(result);
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var getOne = function(id,callback){
@@ -68,8 +82,8 @@ module.exports = (function(){
  		save:function(dataModel,callbackResponse){
  			save(dataModel,callbackResponse);
  		},
- 		find:function(callbackResponse){
- 			find(callbackResponse);
+ 		find:function(quantity,callbackResponse){
+ 			find(quantity,callbackResponse);
  		},
  		get:function(id,callbackResponse){
  			getOne(id,callbackResponse);

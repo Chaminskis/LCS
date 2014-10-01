@@ -9,6 +9,8 @@ var MedicalSecure = require('../definitions/services/medical_secure_service.js')
 var controllerBaseUrl = '/app/manage/medical_secure/';
 
 exports.install = function(framework){
+	
+	framework.route(controllerBaseUrl + '/{{quantity}}/',index,['GET']);
 	framework.route(controllerBaseUrl + '',index,['GET']);
 	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET']);
 	framework.route(controllerBaseUrl + '',save,['JSON','POST']);	

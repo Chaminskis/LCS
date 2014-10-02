@@ -38,7 +38,7 @@ module.exports = (function(){
 		}).success(function(result){
 			
 			var cleanResult = result.map(function(item){
-				return removeFields(item);
+				return removeFields(item.dataValues);
 			});
 			
 			callback(cleanResult);
@@ -84,7 +84,7 @@ module.exports = (function(){
 			}]
 		}).success(function(result){
 			
-			var item = removeFields(result[0]);
+			var item = removeFields(result[0].dataValues);
 			
 			callback(item);
 		}).error(function(error){

@@ -1,23 +1,29 @@
 <div ng-init='load()'>
-	
+
 	<table class='table table-hover'>
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>USER</th>
+				<th>Email</th>
 				<th>Created</th>
-			</tr>	
+			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat='item in data'>
 				<td>{{ item.id }}</td>
-				<td><a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a></td>
+				<td>
+					<a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a>
+				</td>
+				<td>
+					<a href="#/auth/users/view/{{ item.mail }}">{{ item.mail }}</a>
+				</td>
 				<td>{{ item.created_at }}</td>
-			</tr>	
+			</tr>
 		</tbody>
 	</table>
-	
+
 	<br />
-	
+
 	<a href="#/auth/users/add/" class='btn btn-primary'>Crear Nuevo</a>
 </div>

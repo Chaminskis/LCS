@@ -9,8 +9,24 @@ module.exports = (function(){
     /** Private context **/
     var models = require('../models.js');
     
+    var dateTimeFields = ['updated_at','deleted_at','password'];
+	
+	var removeFields = function(entity){
+		
+		dateTimeFields.forEach(function(field){
+			delete entity[field];
+		});
+		
+		return entity;
+	};
+    
     var find = function(callback){
         models.User.findAll().success(function(result){
+            
+            var cleanResult = result.map(function(item){
+                return removeFields(item.dataValues);
+            });
+            
             callback(result);
         }).error(function(error){
             callback(error);

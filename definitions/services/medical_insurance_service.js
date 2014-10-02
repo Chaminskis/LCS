@@ -8,7 +8,18 @@ module.exports = (function(){
 
  	/** Private Context **/
 	var models = require('../models.js');
-
+	
+	var dateTimeFields = ['updated_at','created_at','deleted_at'];
+	
+	var removeFields = function(entity){
+		
+		dateTimeFields.forEach(function(field){
+			delete entity[field];
+		});
+		
+		return entity;
+	};
+	
 	var save = function(model,callback){
 		models.MedicalSecure
 		.create({
@@ -37,7 +48,17 @@ module.exports = (function(){
 		
 		models.MedicalSecure.findAndCountAll({
 			limit:quantity,
-		}).success(function(result){
+		}).success(function(items){
+			
+			var cleanResult = items.rows.map(function(item){
+				return removeFields(item.dataValues);
+			});
+			
+			var result = {
+				count:items.count,
+				rows:cleanResult,
+			};
+			
 			callback(result);
 		}).error(function(error){
             callback(error);
@@ -46,10 +67,13 @@ module.exports = (function(){
 
 	var getOne = function(id,callback){
 		models.MedicalSecure.find(id).success(function(item){
-			callback(item);
+			
+			var cleanResult = removeFields(item.dataValues);
+			
+			callback(cleanResult);
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 
 	var remove = function(medicalSecureId,callback){

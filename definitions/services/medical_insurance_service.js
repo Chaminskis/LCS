@@ -118,5 +118,5 @@ module.exports = (function(){
  		secureHasNotHospital:function(hospitalID,callbackResponse){
  			excludeHospitalRelation(hospitalID,callbackResponse);
  		}
- 	}
+ 	};
 })();

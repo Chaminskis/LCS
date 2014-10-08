@@ -1,0 +1,10 @@
+body{
+	background:#eee;
+}
+
+.content{
+	background:white;
+	padding:4px;
+	border-radius:4px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}

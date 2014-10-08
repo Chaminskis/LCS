@@ -30,7 +30,7 @@ module.exports = (function(){
             callback(result);
         }).error(function(error){
             callback(error);
-        });;
+        });
     };
     
     var save = function(model,callback){
@@ -52,7 +52,7 @@ module.exports = (function(){
             callback(item);
         }).error(function(error){
             callback(error);
-        });;
+        });
     };
     
     var get = function(userId,callback){
@@ -60,7 +60,7 @@ module.exports = (function(){
             callback(item);
         }).error(function(error){
             callback(error);
-        });;
+        });
     };
     
     var login = function(user,password,callback){

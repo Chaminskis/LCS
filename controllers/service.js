@@ -57,7 +57,9 @@ function getMedicalInsurance(){
 function getHospitals(){
 	var self = this;
 	var data = self.global.db;
-
+	
+	var quantity = 10;
+	
 	if(self.post.quantity !== undefined && typeof(self.post.quantity) === typeof(0)){
 		data = data.slice(0,self.post.quantity);
 	}
@@ -70,7 +72,9 @@ function getHospitals(){
 		}
 	}
 	
-	self.json(utils.genericResponse(false,"",data));
+	HospitalService.findAll(quantity,function(result){
+		self.json(utils.genericResponse(false,"",result));	
+	});
 }
 
 /*

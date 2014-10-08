@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService','MedicalSecureService','DoctorService', function($scope,$routeParams,Hospital,MedicalInsurance,Doctor){
+.controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService','MedicalInsuranceService','DoctorService', function($scope,$routeParams,Hospital,MedicalInsurance,Doctor){
     
     var id = $routeParams.id;
 

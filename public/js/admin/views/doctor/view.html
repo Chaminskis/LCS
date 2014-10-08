@@ -1,9 +1,3 @@
-<style type="text/css">
-	#view_container{
-		width: 800px;
-		margin: 0 auto;
-	}
-</style>
 <div ng-init='load()'>
 	<div id='view_container'>
 		
@@ -19,6 +13,6 @@
 		<p>{{ doctor.details }}</p>
 		<br>
 
-		<button ng-click='delete(doctor.id)'>Eliminar</button>
+		<button class='btn btn-danger'  ng-click='delete(doctor.id)'>Eliminar</button>
 	</div>
 </div>

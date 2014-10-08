@@ -41,5 +41,5 @@ module.exports = (function(){
 		find:function(callbackResponse){
 			list(callbackResponse);
 		}
-	}
+	};
 })();

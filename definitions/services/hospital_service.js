@@ -29,6 +29,9 @@ module.exports = (function(){
         });
 	};
 
+	/*
+	 * List all hospital just for show on table.
+	 **/
 	var list = function(callback){
 		models.Hospital.findAll({
 			include:[{
@@ -47,6 +50,9 @@ module.exports = (function(){
         });
 	};
 
+	/*
+	 * Save method
+	 **/
 	var save = function(dataModel,callback){
 
 		models.Hospital.create({
@@ -65,6 +71,10 @@ module.exports = (function(){
         });
 	};
 
+	/*
+	 * View hospital 
+	 *
+	 **/
 	var getOne = function(id,callback){
 		return models.Hospital.findAll({
 			where:{ 
@@ -99,13 +109,25 @@ module.exports = (function(){
 			callback({'result':result});
 		}).error(function(error){
             callback(error);
-        });;
+        });
 	};
 	
-	var listAll = function(callback){
+	var listAll = function(){
+		
+		var callback = null;
+		var quantity = 10;
+		var args = arguments;
+		
+		if(args['0'] !== undefined && typeof(args['0']) === typeof(2)){
+			quantity = args['0'];
+			callback = args['1'];
+		}else{
+			callback = args[0];
+		}
 		
 		models.Hospital
 		.findAll({
+			limit:quantity,
 			attributes:['id','name','details','address','latitude','longitude'],
 			include:[{
 				model:models.MedicalSecure,
@@ -133,7 +155,7 @@ module.exports = (function(){
 			callback(result);
 		}).error(function(error){
             callback(error);
-        });;	
+        });	
 	};
 	
 	var addDoctor = function(hospital,doctor,callback){
@@ -234,8 +256,8 @@ module.exports = (function(){
 		get:function(id,callbackResponse){
 			getOne(id,callbackResponse);
 		},
-		findAll:function(callbackResponse){
-			listAll(callbackResponse);
+		findAll:function(quantity,callbackResponse){
+			listAll(quantity,callbackResponse);
 		},
 		addMedicalInsurance:function(hospital,medicalAsurance,callbackResponse){
 			addmedicalInsurance(hospital,medicalAsurance,callbackResponse);

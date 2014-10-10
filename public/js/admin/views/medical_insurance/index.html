@@ -14,7 +14,7 @@
 				<td>
 					<a href="#/medical_insurance/view/{{item.id}}">{{ item.name }}</a>
 				</td>
-				<td>{{ item.details }}</td>
+				<td>{{ item.details.substr(0,120) }} ...</td>
 			</tr>
 		</tbody>
 	</table>

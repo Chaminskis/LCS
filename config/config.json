@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "lcs-user",
+    "username": "lcs_user",
     "password": "qwerty",
     "database": "lcs",
     "host": "127.0.0.1",

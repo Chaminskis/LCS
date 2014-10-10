@@ -17,13 +17,9 @@ angular.module('app.controllers')
 		.then(function(result){
 			$scope.hospitalsTypes = result;
 		},function(error){
-			alert('Error' + error)
+			alert('Error' + error);
 		});
 	};
-
-	$scope.$watch('hospitalsTypes',function(){
-		console.log('changes',arguments);	
-	});
 
 	$scope.save = function(){
 		var data = $scope.model;

@@ -62,7 +62,8 @@
     "run-sequence": "^0.3.6",
     "sequelize": "~1.7",
     "supertest": "~0.13.0",
-    "through2": "~0.6.1"
+    "through2": "~0.6.1",
+    "gulp-debug": "~1.0.1"
   },
   "scripts": {
     "test": "echo \"Hola Mundo manito :D \" && exit 1"

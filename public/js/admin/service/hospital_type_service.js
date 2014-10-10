@@ -17,7 +17,6 @@ angular.module('app.services')
 		$http({
 			url:baseUrlApi,
 		}).then(function(response){
-			console.log('resolve',response.data.result);
 			def.resolve(response.data.result);
 		},function(error){
 			def.reject(error);

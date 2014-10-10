@@ -7,7 +7,7 @@ module.exports = {
 	dev:{
 		host:"127.0.0.1",
 		database:"lcs",
-		user:"lcs-user",
+		user:"lcs_user",
 		password:"qwerty"
 	},
 	pro:{

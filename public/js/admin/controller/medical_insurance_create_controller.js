@@ -7,7 +7,7 @@
 
 angular.module('app.controllers')
 
-.controller('MedicalSecureCreateCtrl', ['$scope','MedicalSecureService', function($scope,MedicalSecure){
+.controller('MedicalInsuranceCreateCtrl', ['$scope','MedicalInsuranceService', function($scope,MedicalSecure){
 	
 	$scope.model = {};
 	
@@ -15,7 +15,7 @@ angular.module('app.controllers')
 	    MedicalSecure.save($scope.model).then(function(result){
 	        window.alert("Seguro medico creado");
 	        
-	        window.location = "#/medical_secure/";
+	        window.location = "#/medical_insurance/";
 	    },function(error){
 	        alert("Error " + error);
 	    });

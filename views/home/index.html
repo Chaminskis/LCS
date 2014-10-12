@@ -46,7 +46,7 @@
           <h4>Navigation</h4>
           <ul>
             <li><a href="#item2">Opciones</a></li>
-            <li><input type="text" ng-model="txtSearch" class="search-text transition nav-element" placeholder="Escribe un centro" /></li>
+            <li><input type="text" ng-model="searchString" class="search-text transition nav-element" placeholder="Escribe un centro" /></li>
             <li><button class="nav-btn btn transition nav-element" ng-click="search()">Buscar</button></li>
             <li><button class="nav-btn btn quick-search-btn transition nav-element" ng-click="quickSearch()">Buscar hospital más cercano</button></li>
             <li><button class="nav-btn btn transition nav-element" data-toggle="modal" data-target="#myModal" >Búsqueda Avanzada</button></li>
@@ -57,7 +57,7 @@
             <div id="map_canvas" style="height:100%"></div>
         </section>
         <article class="search-results-panel transition" ng-class="showResultsBar()">
-             <div ng-repeat="marker in markers | orderBy : 'title'">
+             <div class="hospital-" ng-repeat="marker in markers | orderBy : 'title'">
                  <a href="#" ng-click="showMarkerRoute($event, marker)">{{marker.title}}</a>
                  <figure class="place-icon"></figure>
              </div>

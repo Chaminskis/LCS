@@ -13,13 +13,14 @@ angular.module('app.controllers', ['app.services'])
         zoom: 13,
         center: new google.maps.LatLng(40.0000, -98.0000),
         mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
+        };
         $scope.map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
         $scope.markers = [];        
         $scope.directionsService = new google.maps.DirectionsService();
         $scope.directionsDisplay = new google.maps.DirectionsRenderer();
         $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
+        $scope.searchString; 
         setPopup();
         setSearchResultsBar();
     };
@@ -146,7 +147,9 @@ angular.module('app.controllers', ['app.services'])
 
     var findHospitals = function(){
         $scope.markers = [];
-        var hospitals = service.getHospitals()
+        console.log("searching hospitals");
+        console.log($scope.searchString);
+        var hospitals = service.getHospitals();
             
         for (var i = 0; i < hospitals.length; i++){
             createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
@@ -178,7 +181,6 @@ angular.module('app.controllers', ['app.services'])
     }
 
     var enableSearchMode = function(){
-        console.log("enabling search mode");
         $scope.searhModeOn = true;
         $scope.bar.show = true;
         $scope.map.partialWidth = true;
@@ -187,7 +189,7 @@ angular.module('app.controllers', ['app.services'])
     
     $scope.search = function(){
         removeAllMarkers();
-        var hospitals = service.findHospitalsByName($scope.txtHospital);
+        var hospitals = service.findHospitalsByName($scope.searchString);
         $scope.markers = [];
         for(var i = 0; i < hospitals.length; i++){
             createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);

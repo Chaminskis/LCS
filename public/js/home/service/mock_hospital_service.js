@@ -46,6 +46,15 @@ angular.module('app.services')
 		return hospitals.slice(0, 2);
 	}
 
+	var findClosestHospital = function(userLocation){
+		return hospitals.slice(0, 1);
+	}
+
+	var findHospitalByCriteria = function(criteria){
+		return hospitals.slice(0, 1);	
+	}
+
+
 	return {
 		getHospitals: getHospitals,
 		findHospitalsByName: findHospitalsByName

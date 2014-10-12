@@ -17,8 +17,8 @@
 					<a href="#/hospital/view/{{item.id}}">{{ item.name }}</a>
 				</td>
 				
-				<td>{{ item.details }}</td>
-				<td>{{ item.hospitalType.name }}</td>
+				<td>{{ item.details.substr(0,120) }} ...</td>
+				<td>{{ item.hospitalType.details }}</td>
 			</tr>
 		</tbody>
 	</table>

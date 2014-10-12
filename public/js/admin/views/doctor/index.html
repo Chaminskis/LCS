@@ -13,7 +13,7 @@
 				<td>{{ item.id }}</td>
 				<td> <a href="#/doctors/view/{{ item.id }}"> {{ item.name }} </a> </td>
 				<td>{{ item.last }}</td>
-				<td>{{ item.details }}</td>
+				<td>{{ item.details.substr(0,120) }} ...</td>
 			</tr>
 		</tbody>
 	</table>

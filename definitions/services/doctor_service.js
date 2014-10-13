@@ -16,7 +16,7 @@ module.exports = (function(context){
 	var removeFields = function(entity){
 		
 		dateTimeFields.forEach(function(field){
-			delete entity[field];
+			delete entity.dataValues[field];
 		});
 		
 		return entity;
@@ -38,6 +38,9 @@ module.exports = (function(context){
 		models.Doctor.findAll().success(function(result){
 			
 			var cleanResult = result.map(function(item){
+				
+				console.log("Cleaning");
+				
 				return removeFields(item);
 			});
 			
@@ -75,7 +78,7 @@ module.exports = (function(context){
 		.success(function(result){
 			
 			var cleanResult = result.map(function(item){
-				return removeFields(item.dataValues);	
+				return removeFields(item);	
 			})
 			
 			callback(cleanResult);

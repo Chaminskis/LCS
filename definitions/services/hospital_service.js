@@ -13,9 +13,25 @@ module.exports = (function(){
 	var dateTimeFields = ['updated_at','created_at','deleted_at'];
 	
 	var removeFields = function(entity){
-		
 		dateTimeFields.forEach(function(field){
+			delete entity.hospitalType.dataValues[field];
+			
 			delete entity[field];
+			
+			if(entity.secures != undefined){
+				/** Remove hospital secure relation value **/
+				entity.secures.forEach(function(itemSecure){
+					delete itemSecure.dataValues['hospitalSecure'];
+				});
+			}
+			
+			
+			if(entity.doctors != undefined){
+				/** Remove doctor relation object **/
+				entity.doctors.forEach(function(itemDoctor){
+					delete itemDoctor.dataValues['hospitalDoctor'];
+				});
+			}
 		});
 		
 		return entity;

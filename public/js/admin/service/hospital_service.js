@@ -114,6 +114,17 @@ angular.module('app.services')
 			def.reject(error);
 		});
 	};
+	
+	var search = function(searchObject){
+		return $http({
+			method:'POST',
+			data:searchObject
+		}).then(function(response) {
+		    return response.data;
+		},function(error) {
+		    def.reject(error);
+		});	
+	};
 
 	return {
 		save:save,
@@ -124,5 +135,6 @@ angular.module('app.services')
 		removeMedicalAsurance:removeMedicalAsurance,
 		addDoctor:addDoctor,
 		removeDoctor:removeDoctor,
+		search:search,
 	};
 }]);

@@ -136,7 +136,7 @@ http://lcs.blageek.net/app/manage/hospital/search
     //POST
     //Request
     {
-      "searchType":"LOCATION",
+      "searchType":"LOCATION | CRITERIA",
       "criteria":"laboris",
       "location":{
         "lat":12,

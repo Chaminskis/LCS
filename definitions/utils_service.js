@@ -15,6 +15,6 @@ module.exports = {
 			error:error,
 			message:message,
 			result:result
-		}
-	}
-}
+		};
+	},
+};

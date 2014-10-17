@@ -14,6 +14,7 @@ exports.install = function(framework){
 
 	framework.route(controllerBaseUrl + 'names/',getNames,['GET']);
 	framework.route(controllerBaseUrl + 'all/',full,['GET']);
+	framework.route(controllerBaseUrl + 'search/',search,['POST','JSON']);
 	
 	/** Insurance **/
 	framework.route(controllerBaseUrl + 'insurance/',addMedicalInsurance,['JSON','POST']);
@@ -33,6 +34,24 @@ function index(){
 	HospitalService.find(function(result){
 		self.json(utils.genericResponse(false,'',result));
 	});
+}
+
+function search(){
+	
+	var self = this;
+	
+	var searchObject = self.post;
+	
+	HospitalService.search(searchObject,function(result){
+		
+		if(result === typeof('')){
+			self.json(utils.genericResponse(true,result,null));	
+			return;
+		}
+		
+		self.json(utils.genericResponse(false,'',result));	
+	});
+	
 }
 
 function getNames(){

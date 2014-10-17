@@ -129,6 +129,48 @@ http://lcs.blageek.net/app/manage/hospital/
         ]
     }
     
+Search Hospital 
+
+http://lcs.blageek.net/app/manage/hospital/search
+
+    //POST
+    //Request
+    {
+      "searchType":"LOCATION",
+      "criteria":"laboris",
+      "location":{
+        "lat":12,
+        "lon":34,
+        "distance":39
+      }
+    }
+    
+    //RESPONSE 
+    {
+        "error": false,
+        "message": "",
+        "result": {
+            "count": 1,
+            "rows": [
+                {
+                    "id": 2,
+                    "name": "CLINICA",
+                    "details": "Clinica",
+                    "address": "Calle ovanco casi esquina albert thomas",
+                    "latitude": 12.12,
+                    "longitude": 34.56,
+                    "hospital_type": 2,
+                    "distance": 38.7316152888085,
+                    "hospitalType":{
+                        id: 2,
+                        name: "CLINICA",
+                        details: "Clinica"
+                    }
+                }
+            ]
+        }
+    }
+    
 
 ** Medical Insurance **
 
@@ -159,7 +201,6 @@ http://lcs.blageek.net/app/manage/medical_insurance
             ]
         }
     }
-    
     
 ** Doctors **
 

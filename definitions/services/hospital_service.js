@@ -309,8 +309,11 @@ module.exports = (function(){
 				query.sql = "SELECT *,count(*) as count, SQRT( "+
 							    "POW(69.1 * (latitude - " + searchObject.location.lat + "), 2) + "+
     							"POW(69.1 * ("+ searchObject.location.lon +"  - longitude) * COS(latitude / 57.3), 2)) AS distance "+
+    							" ,HospitalType.name as HospitalType_name " + 
+    							" ,HospitalType.details as HospitalType_details " + 
+    							" ,HospitalType.id as HospitalType_id " + 
 								"FROM hospitals " +
-								"LEFT OUTER JOIN `hospital_types` AS `HospitalType` ON `HospitalType`.`id` = `hospitals`.`hospital_type` "+
+								"LEFT JOIN `hospital_types` AS `HospitalType` ON `HospitalType`.`id` = `hospitals`.`hospital_type` "+
 								"HAVING distance < "+ query.distance +" ORDER BY distance;";
 								
 				queryCall = models.Sequelize.query(query.sql,models.MedicalSecure);
@@ -328,7 +331,7 @@ module.exports = (function(){
 			var count = 0;
 			
 			if(result !== undefined && result.rows !== undefined){
-				count = result.count
+				count = result.count;
 				cleanResult = result.rows.map(function(item){
 					return removeFields(item.dataValues);
 				});
@@ -336,8 +339,25 @@ module.exports = (function(){
 				
 				cleanResult = result.map(function(item){
 					count = item.dataValues.count;	
-					delete item.dataValues.count
-					return removeFields(item.dataValues);
+
+					delete item.dataValues.count;
+					
+					item = removeFields(item.dataValues);
+					
+					//don't know how but removeFields return a single object not a entity (I'm strong)
+					
+					item.hospitalType = {
+						id: item.HospitalType_id,
+						name: item.HospitalType_name,
+						details: item.HospitalType_details,
+					};
+					
+					delete item.HospitalType_id;
+					delete item.HospitalType_details;
+					delete item.HospitaType_id;
+					delete item.HospitalType_name;
+					
+					return item;
 				});
 			}
 			

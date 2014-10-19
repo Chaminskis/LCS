@@ -1,15 +1,14 @@
-<!doctype html>
-<html lang=""   ng-app="app.controllers">
+<!DOCTYPE html>
+<html lang="en" class="full-height" ng-app="app.controllers">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LCS - Localizador de centros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    
+ <meta name="author" content="Kimera">
 
-    <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -22,114 +21,243 @@
     <meta name="msapplication-TileColor" content="#3372DF">
 
 
-    <!-- Page styles -->
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap-overrides.css">
-    <link rel="stylesheet" href="/dist/css/style.css">
-    <link rel="stylesheet" href="/css/site.css">
-  </head>
-  <body ng-controller="HomeCtrl" ng-init="setup()">
-    <div class="sidebar"></div>
-    <section class="home clear" style="height:100%">
-        <header class="app-bar promote-layer">
-          <div class="app-bar-container">
-            <button ng-click="changeSearchMode()" class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
-            <h1 class="logo"><strong>Localizador de centros de salud</strong></h1>
-            <section class="app-bar-actions">
-            <!-- Put App app-bar Buttons Here -->
-            <!-- e.g <button><i class="icon icon-star"></i></button> -->
-            </section>
-          </div>
-        </header>
+    <title>LCS</title>
 
-        <nav class="navdrawer-container promote-layer">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="#item2">Opciones</a></li>
-            <li><input type="text" ng-model="searchString" class="search-text transition nav-element" placeholder="Escribe un centro" /></li>
-            <li><button class="nav-btn btn transition nav-element" ng-click="search()">Buscar</button></li>
-            <li><button class="nav-btn btn quick-search-btn transition nav-element" ng-click="quickSearch()">Buscar hospital más cercano</button></li>
-            <li><button class="nav-btn btn transition nav-element" data-toggle="modal" data-target="#myModal" >Búsqueda Avanzada</button></li>
-          </ul>
-        </nav>
-
-        <section id='map_container' ng-click="disableSearchMode()" ng-class="setMapWidth()">
-            <div id="map_canvas" style="height:100%"></div>
-        </section>
-        <article class="search-results-panel transition" ng-class="showResultsBar()">
-             <div class="hospital-" ng-repeat="marker in markers | orderBy : 'title'">
-                 <a href="#" ng-click="showMarkerRoute($event, marker)">{{marker.title}}</a>
-                 <figure class="place-icon"></figure>
-             </div>
-        </article>
-    </section>
-    <aside class="popup transition" ng-class="viewPopUp()" >
-        <a class="close-link" ng-click="closePopUp()"><span class="close-icon"></span></a>
-        <h2>{{popup.title}}</h2>
-        <p>{{popup.content}}</p>
-        <p>{{popup.distance + ' en ' + popup.duration}}</p>
-    </aside>
-    <section class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Búsqueda Avanzada</h4>
-          </div>
-          <div class="modal-body">
-            <article class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Transporte</label>
-                    <div class="col-sm-9">
-                      <select>
-                        <option ng-repeat="travelMode in travelModes">{{travelMode}}</option>
-                      </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Tipo de Centro</label>
-                    <div class="col-sm-9">
-                      <select>
-                        <option ng-repeat="centerType in centerTypes">{{centerType}}</option>
-                      </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Seguro Médico</label>
-                    <div class="col-sm-9">
-                      <select>
-                        <option ng-repeat="insurance in insurances">{{insurance}}</option>
-                      </select>
-                    </div>
-                </div>
-
-            </article>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" ng-click="advancedSearch()">Buscar</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="/css/font-awesome.css" rel="stylesheet" />
         
-    <main></main>
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet">
+    <link href="/css/icheck/square.css">
+    <link href="/css/icheck/icheck.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/map-icons.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-    <!-- build:js scripts/main.min.js -->
+  <body class="full-height" ng-controller="HomeCtrl">
+
+  <section id="container" class="full-height" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Mostrar/Ocultar resultados de búsqueda"></div>
+              </div>
+            <!--logo start-->
+            <a href="#" class="logo"><b>LCS</b></a>
+            <!--logo end-->
+            <div class="col-lg-3"></div>
+            <div class="top-menu pull-left mt search-nearest-hospital">
+              <ul class="nav top-menu">
+
+
+                    <!-- seguros start -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                          SEGUROS
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        <input type="checkbox" class="icheck" />PALIC
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        UNIVERSAL
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        HUMANO
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        SENASA
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="external">
+                                <a href="#">OTRO</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- seguros end -->                    
+                    <!-- institution type start -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                          INSTITUCIÓN
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        HOSPITAL
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        CLÍNICA
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="task-info">
+                                        UNIDAD DE ATENCIÓN PRIMARIA
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- institution type end -->
+
+                    <li><a class="" style="display:none" href="#"></a></li>
+              </ul>
+            </div>
+            
+            <!-- search bar start -->
+            <button class="pull-right btn btn-search btn-primary mt" ng-click="search()">Buscar</button>            
+            <div class="col-lg-2 transition-ease-io pull-right">
+                <input type="text" class="form-control search-bar" />
+            </div>
+            <!-- search bar end -->
+
+        </header>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse transition-linear" ng-class="showResultsBar()">
+              <!-- sidebar menu start-->
+
+
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+                    
+             <!-- hospital sample -->
+             <div class="col-lg-12 mb" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">
+              <div class="content-panel pn">
+                <div id="blog-bg">
+                  <div class="badge-rounded icon-lcs-hospital"></div>
+                  <div class="blog-title">{{marker.title}}</div>
+                </div>
+                <div class="blog-text">
+                    
+                      <p><strong>Teléfono:</strong> <img src="/images/trollface.jpg" /></p>
+                      <p><strong>Mail</strong>: <img src="/images/trollface.jpg" /> </p>
+                    
+                </div>
+              </div>
+            </div>
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content" class="full-height">
+          <section class="wrapper full-height">
+            
+      
+                <article id='map_container' class="full-height"  ng-class="setMapWidth()" ng-init="setup()">
+                    <div id="map_canvas" style="height:100%"></div>
+                </article>
+                
+          </section><!--/wrapper -->
+      
+      </section><!-- /MAIN CONTENT -->
+
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+              2014 - Localizador de Centros de Salud
+              <a href="blank.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+      
+    <!-- JQuery + Plugins -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/js/vendors/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="/js/vendors/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="/js/vendors/bootstrap/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="/js/vendors/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/js/vendors/jquery.scrollTo.min.js"></script>
+    <script src="/js/vendors/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/js/vendors/icheck.js"></script>
+    <script src="/js/common-scripts.js"></script>
+
+
+    <!--common script for all pages-->
+
+    <!--script for this page-->
+    
+    <!-- map scripts -->
+    <script src="/js/vendors/shift-worker-map-style.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script src="/js/vendors/map-icons.js"></script>
+  
+    <!-- angular scripts -->
     <script type="text/javascript" src="/js/vendors/angular.js"></script>
     <script type="text/javascript" src="/js/vendors/angular-route.min.js"></script>
     
     <script type="text/javascript" src="/js/home/modules.js"></script>
     
-    <script type="text/javascript" src="/js/home/service/mock_hospital_service.js"></script>
-    
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="/js/home/service/home_hospital_service.js"></script>
+    <script type="text/javascript" src="/js/admin/service/hospital_service.js"></script>
     <script type="text/javascript" src="/js/home/controller/home_controller.js"></script>
     <script type="text/javascript" src="/js/home/home.js"></script>
+    <script>
+        //custom select box
 
-    <!-- <script type="text/javascript" src="/dist/js/script.js"></script> -->
-    <!-- endbuild -->
+        $(function(){
+            
+            $('.search-bar').on('blur', function(){
+              $(this).parent().removeClass('col-lg-6').addClass('col-lg-2');
+            }).on('focus', function(){
+              $(this).parent().removeClass('col-lg-2').addClass('col-lg-6');
+            });
+        
+
+        });
+
+    </script>
+    
   </body>
-</html> 
+</html>

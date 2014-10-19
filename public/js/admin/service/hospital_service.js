@@ -117,6 +117,7 @@ angular.module('app.services')
 	
 	var search = function(searchObject){
 		return $http({
+			url: baseUrlApi + "search/", // ;)
 			method:'POST',
 			data:searchObject
 		}).then(function(response) {

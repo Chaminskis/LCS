@@ -6,13 +6,14 @@
 'use strict';
 
 angular.module('app.controllers', ['app.services'])
-.controller('HomeCtrl', ['$scope', 'MockHospitalService', '$q',  function($scope, service, $q){
+.controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
     var initializeMap = function(){
         var mapOptions = {
-        zoom: 13,
+        zoom: 15,
         center: new google.maps.LatLng(40.0000, -98.0000),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: window.shift_worker_style
         };
         $scope.map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
         $scope.markers = [];        
@@ -21,7 +22,7 @@ angular.module('app.controllers', ['app.services'])
         $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
         $scope.searchString; 
-        setPopup();
+        // setPopup();
         setSearchResultsBar();
     };
 
@@ -29,17 +30,35 @@ angular.module('app.controllers', ['app.services'])
 
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
-            // var infowindow = new google.maps.InfoWindow({
-            //     map: $scope.map,
-            //     position: pos,
-            //     content: 'You are here.'
-            // });
-            $scope.currentPosition = pos;
-            $scope.map.setCenter(pos);
+                $scope.currentPosition = pos;
+
+                var markerInfo = {
+                    map: $scope.map,
+                    position: $scope.currentPosition,
+                    title: 'Estás Aquí',
+                    className: 'map-icon-male',
+                    pin: SQUARE_PIN
+                };
+
+                 var marker = createCustomMarker(markerInfo);
+
+                $scope.map.setCenter(pos);
+                var location = {
+                    "lat": position.coords.latitude,
+                    "lon": position.coords.longitude
+                };
+                service.findHospitalsByLocation(location).then(function(response){
+                    console.log(response);
+                    if(!response.error){
+                        var hospitals = response.result;
+                        setHospitals(hospitals);
+                    }
+                });
+
             }, function() {
-              console.log("Error!");
+                console.log("Error!");
             });
         } else {
                 // Browser doesn't support Geolocation
@@ -117,11 +136,15 @@ angular.module('app.controllers', ['app.services'])
     var createMarker = function(info, addMarkerlistener){
         
         var infoWindow = new google.maps.InfoWindow();
-        var marker = new google.maps.Marker({
+
+        var markerInfo = {
             map: $scope.map,
             position: new google.maps.LatLng(info.latitude, info.longitude),
-            title: info.name
-        });
+            title: info.title,
+            className: 'map-icon-health',
+            pin: SQUARE_PIN
+        };
+        var marker = createCustomMarker(markerInfo);
 
         $scope.markers.push(marker);
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
@@ -149,23 +172,45 @@ angular.module('app.controllers', ['app.services'])
         $scope.markers = [];
         console.log("searching hospitals");
         console.log($scope.searchString);
-        var hospitals = service.getHospitals();
+        var hospitals = service.findHospitalsByLocation();
             
         for (var i = 0; i < hospitals.length; i++){
             createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
         }
     };
 
+    var findHospitalsByLocation = function(location){
+        $scope.markers = [];
+        console.log("searching hospitals by location");
+        
+        service.findHospitalsByLocation(location).then(function(hospitals){
+            for (var i = 0; i < hospitals.length; i++){
+                createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+            }            
+        });
+    }
+
+    var setHospitals = function(hospitals){
+        $scope.markers = [];
+        $scope.markers = [];
+        service.findHospitalsByLocation(location).then(function(hospitals){
+            for (var i = 0; i < hospitals.length; i++){
+                createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+            }            
+        });
+
+    }
+
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
+        enableSearchMode();
     }        
 
     
     $scope.setup = function(){
         initializeMap();
         calculateCurrentPosition();
-        findHospitals();
         setTravelModes();
         setCenterTypes();
         setInsurances();
@@ -216,8 +261,8 @@ angular.module('app.controllers', ['app.services'])
     
     var setSearchResultsBar = function(){
         $scope.bar = new Object();
-        $scope.bar.show = false;   
-        $scope.searchModeOn = false;
+        $scope.bar.show = true;   
+        $scope.searchModeOn = true;
     }
 
 
@@ -227,8 +272,8 @@ angular.module('app.controllers', ['app.services'])
     }
 
     $scope.showResultsBar = function(){
-        if($scope.bar.show)
-            return "show-search-results-panel";
+        if(!$scope.bar.show)
+            return "side-bar-hidden";
     }
 
     $scope.disableSearchMode = function(){
@@ -274,4 +319,24 @@ angular.module('app.controllers', ['app.services'])
         ];
     }
 
-}]);
+    var createCustomMarker = function(customMarkerInfo){
+        var marker = new Marker({
+            map: customMarkerInfo.map,
+            title: customMarkerInfo.title,
+            position: customMarkerInfo.position,
+            zIndex: 9,
+            icon: {
+                path: customMarkerInfo.pin,
+                fillColor: '#d42c14',
+                fillOpacity: 1,
+                strokeColor: '',
+                strokeWeight: 0,
+                scale: 1/2
+            },
+            label: "<i class='"+customMarkerInfo.className+"'></i>"
+        });
+
+        return marker;
+    };
+
+}])

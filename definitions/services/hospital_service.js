@@ -263,6 +263,14 @@ module.exports = (function(){
 			page:1
 		};
 		
+		if(searchObject.limit !== undefined && typeof(searchObject.limit) === typeof(1)){
+			query.limit = searchObject.limit;
+		}
+		
+		if(searchObject.page !== undefined && typeof(searchObject.page) === typeof(1)){
+			query.page = searchObject.page;
+		}
+		
 		if(searchObject.searchType !== undefined){
 			var type = searchObject.searchType;
 			
@@ -286,6 +294,8 @@ module.exports = (function(){
 				query.where = query.where.substr(0,query.where.length - 3);
 				
 				queryCall= models.Hospital.findAndCountAll({
+					limit:query.limit,
+					offset:( query.limit * (query.page - 1)),
 					where:[query.where],
 					include:[{
 						'as':'HospitalType',
@@ -325,6 +335,8 @@ module.exports = (function(){
 			}else if(type === 'HOSPITALTYPE'){
 				console.log('Hospital Type');
 				queryCall= models.Hospital.findAndCountAll({
+					limit:query.limit,
+					offset:( query.limit * (query.page - 1)),
 					where:["hospitals.hospital_type = " + searchObject.criteria],
 					include:[{
 						'as':'HospitalType',
@@ -338,6 +350,8 @@ module.exports = (function(){
 			}else if(type === 'INSURANCE'){
 				console.log('Insurance');
 				queryCall= models.Hospital.findAndCountAll({
+					limit:query.limit,
+					offset:( query.limit * (query.page - 1)),
 					include:[{
 						'as':'HospitalType',
 						model:models.HospitalType,

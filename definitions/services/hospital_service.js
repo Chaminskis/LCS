@@ -248,7 +248,7 @@ module.exports = (function(){
 	var searchHospital = function(searchObject,callback){
 		
 		// {
-		// 	   searchType:'CRITERIA|LOCATION',
+		// 	   searchType:'CRITERIA|LOCATION|INSURANCE',
 		//     criteria:'algo algo algo',
 		//     location:{
 		//         lat:34.34,
@@ -265,6 +265,7 @@ module.exports = (function(){
 		
 		if(searchObject.searchType !== undefined){
 			var type = searchObject.searchType;
+			
 			if(type === "CRITERIA"){
 				
 				if(searchObject.criteria === undefined){
@@ -289,6 +290,10 @@ module.exports = (function(){
 					include:[{
 						'as':'HospitalType',
 						model:models.HospitalType,
+					},{
+						model:models.MedicalSecure,
+						as:'Secures',
+						attributes:[ 'id','name','details'],
 					}],
 				});
 			}else if(type === "LOCATION"){
@@ -317,6 +322,32 @@ module.exports = (function(){
 								"HAVING distance < "+ query.distance +" ORDER BY distance;";
 								
 				queryCall = models.Sequelize.query(query.sql,models.MedicalSecure);
+			}else if(type === 'HOSPITALTYPE'){
+				console.log('Hospital Type');
+				queryCall= models.Hospital.findAndCountAll({
+					where:["hospitals.hospital_type = " + searchObject.criteria],
+					include:[{
+						'as':'HospitalType',
+						model:models.HospitalType,
+					},{
+						model:models.MedicalSecure,
+						as:'Secures',
+						attributes:[ 'id','name','details'],
+					}],
+				});
+			}else if(type === 'INSURANCE'){
+				console.log('Insurance');
+				queryCall= models.Hospital.findAndCountAll({
+					include:[{
+						'as':'HospitalType',
+						model:models.HospitalType,
+					},{
+						model:models.MedicalSecure,
+						as:'Secures',
+						attributes:[ 'id','name','details'],
+						where:{ id:searchObject.criteria }
+					}],
+				});
 			}else{
 				callback("Invalid value for searchType");
 				return;

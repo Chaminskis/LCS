@@ -25,6 +25,7 @@ module.exports = (function(){
 		.create({
 			name:model.name,
 			details:model.details,
+			local_phone:model.local_phone
 		})
 		.success(function(medicalSecure){
 			callback({'result':medicalSecure});
@@ -88,7 +89,7 @@ module.exports = (function(){
 	
 	var excludeHospitalRelation = function(hospitalID,callback){
 		
-		var sql = 'select * from medical_secures where id not in ( select medical_secure_id from hospital_secures where hospital_id = '+ hospitalID +');';
+		var sql = 'select * from medical_insurances where id not in ( select medical_secure_id from hospital_insurance where hospital_id = '+ hospitalID +');';
 		
 		models.Sequelize.query(sql,models.MedicalSecure)
 		.success(function(result){

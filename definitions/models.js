@@ -52,6 +52,7 @@ var MedicalSecure = sequelize.define('medical_insurance',{
 	id:{ type: Sequelize.INTEGER, autoIncrement: true },
 	name: Sequelize.STRING,
 	details: Sequelize.STRING,
+	local_phone: Sequelize.STRING,
 },extraOptions);
 
 var Doctor = sequelize.define('doctor',{

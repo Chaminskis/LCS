@@ -1,7 +1,7 @@
 module.exports = {
   up: function(migration, DataTypes, done) {
     
-  	migration.createTable('medical_insurance',{
+  	migration.createTable('medical_insurances',{
   		  id:{ type: DataTypes.INTEGER, autoIncrement: true, unique:true },
 		    name: DataTypes.STRING,
         details: DataTypes.STRING,
@@ -21,7 +21,7 @@ module.exports = {
   },
   down: function(migration, DataTypes, done) {
     
-    migration.dropTable('medical_secure');
+    migration.dropTable('medical_insurances');
 
     done();
   }

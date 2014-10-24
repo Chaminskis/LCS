@@ -49,6 +49,8 @@ function save(){
 	var self = this;
 
 	var model = self.post;
+	
+	console.log(model);
 
 	MedicalSecure.save(model,function(result){
 		self.json(utils.genericResponse(false,"",result));

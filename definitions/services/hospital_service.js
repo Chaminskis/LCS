@@ -77,6 +77,7 @@ module.exports = (function(){
 			name:dataModel.name,
 			details:dataModel.details,
 			address:dataModel.address,
+			local_phone:dataModel.local_phone,
 			hospital_type: parseInt(dataModel.hospital_type,10),
 			latitude:dataModel.location.latitude,
 			longitude:dataModel.location.longitude,
@@ -226,7 +227,7 @@ module.exports = (function(){
 	};
 	
 	var removeMedicalInsurance = function(hospitalID,medicalAsuranceID,callback){
-		var sql = 'delete from hospital_secures where hospital_id='+ hospitalID +' and medical_secure_id= ' + medicalAsuranceID + ';';
+		var sql = 'delete from hospital_insurance where hospital_id='+ hospitalID +' and medical_secure_id= ' + medicalAsuranceID + ';';
 		
 		models.Sequelize.query(sql).success(function(result){
 			callback(result);

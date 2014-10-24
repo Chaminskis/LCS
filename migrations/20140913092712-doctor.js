@@ -4,12 +4,12 @@ module.exports = {
 
     migration.createTable('doctors',{
   		id:{ type: DataTypes.INTEGER, autoIncrement: true, unique:true },
-		name: DataTypes.STRING,
-		last: DataTypes.STRING,
-		details: DataTypes.STRING,
-    updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  		name: DataTypes.STRING,
+  		last: DataTypes.STRING,
+  		details: DataTypes.STRING,
+      updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+      created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+      deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   	},{
   		engine:'INNODB',
         timestamps: true,
@@ -17,13 +17,13 @@ module.exports = {
         underscored: true,
   	});
 
-    done()
+    done();
   },
   down: function(migration, DataTypes, done) {
     // add reverting commands here, calling 'done' when finished
     
-    migration.dropTable('doctor')
+    migration.dropTable('doctors');
 
-    done()
+    done();
   }
 }

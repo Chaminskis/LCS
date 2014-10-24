@@ -142,6 +142,8 @@ http://lcs.blageek.net/app/manage/hospital/search
         "lon":34,
         "distance":39
       }
+      "limit":1,
+      "page":2
     }
     
     //RESPONSE 

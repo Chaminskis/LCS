@@ -53,7 +53,6 @@ Gulp-Task
 
 al final es casi lo mismo solo que esta vez injectara los script minificados.
 
-
     gulp.task('prod-admin-index',function(){
         var target = gulp.src('views/admin/index.html');
 
@@ -136,8 +135,8 @@ http://lcs.blageek.net/app/manage/hospital/search
     //POST
     //Request
     {
-      "searchType":"LOCATION | CRITERIA",
-      "criteria":"laboris",
+      "searchType":"LOCATION | CRITERIA | INSURANCE | HOSPITALTYPE",
+      "criteria":"laboris" | [1,2,3,4] | 1, // criteria, hospital type, insurance id
       "location":{
         "lat":12,
         "lon":34,
@@ -165,7 +164,13 @@ http://lcs.blageek.net/app/manage/hospital/search
                         id: 2,
                         name: "CLINICA",
                         details: "Clinica"
-                    }
+                    },"secures": [
+                        {
+                            "id": 2,
+                            "name": "Palic",
+                            "details": "Palic seguros"
+                        },
+                    ]
                 }
             ]
         }

@@ -39,7 +39,7 @@ var Hospital = sequelize.define('hospital',{
 	name:{ type: Sequelize.STRING },
 	
 	details: Sequelize.STRING,
-	address: Sequelize.STRING,
+	local_phone: Sequelize.STRING,
 	
 	hospital_type:{ type: Sequelize.INTEGER },
 	
@@ -48,7 +48,7 @@ var Hospital = sequelize.define('hospital',{
 },extraOptions);
 
 
-var MedicalSecure = sequelize.define('medical_secure',{
+var MedicalSecure = sequelize.define('medical_insurance',{
 	id:{ type: Sequelize.INTEGER, autoIncrement: true },
 	name: Sequelize.STRING,
 	details: Sequelize.STRING,

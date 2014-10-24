@@ -7,6 +7,7 @@ module.exports = {
 		    name:{ type: DataTypes.STRING },
         details:{ type: DataTypes.STRING },
         address:{ type: DataTypes.STRING },
+        local_phone:{ type: DataTypes.STRING },
 
         latitude:{ type: DataTypes.DECIMAL(6,4) },
         longitude:{ type: DataTypes.DECIMAL(6,4) },

@@ -9,12 +9,15 @@ angular.module('app.services')
 
 .service('HomeHospitalService', ['$http','$q', 'HospitalService',function($http,$q, hospitalService){
 	 
-	
+	var searchType = {
+		LOCATION : "LOCATION",
+		CRITERIA : "CRITERIA"
+	};
 
-	var createSearchObject = function (){
+	var createSearchObject = function (searchType){
 
 		return {
-			"searchType":"LOCATION",
+			"searchType":searchType,
 	  		"criteria":"",
 	  		"location":{
 				"lat":0,
@@ -34,40 +37,52 @@ angular.module('app.services')
 	}
 	var findHospitalsByLocation = function(location){
 
-		var searchObject = createSearchObject();
+		var searchObject = createSearchObject(searchType.LOCATION);
 		var location = createLocationObject(location.lat, location.lon);
 		searchObject.location = location;
  		
-		return hospitalService.search(searchObject);
-		// return performSearch(searchObject);
-
+		// return hospitalService.search(searchObject);
+		return performSearch(searchObject);
 	}
 
-	var findHospitalsByName = function(searchParam){
+	var findHospitalsByCriteria = function(searchParam){
 		var loc = createLocationObject(searchParam.location.lat, searchParam.location.lon);
-		var searchObject = createSearchObject();
+		var searchObject = createSearchObject(searchType.CRITERIA);
 		
-		return searchObject.search(searchObject);
+		return hospitalService.search(searchObject);		
 	}
 
 	var performSearch = function(searchObject){
-		var searchUrl = '/app/manage/hospital/search';
-		var task = $q.defer();
-		$http({
-			url: searchUrl,
-			method:'POST',
-			data:searchObject
-		}).success(function(response){
-			task.resolve(response);
-		}).error(function(){
-
-			task.reject({ error: 'Error trying to retrieve hospital'});
-		});
-		return task.promise;
+		var def = $q.defer();
+		var x =  {
+			"error":false,
+			"message":"",
+			"result":
+				[{"id":1,
+				"name":"Centro medico simon bilivar",
+				"details":"Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, sodales, dolor quo eleifend, sodales. Nec aenean",
+				"address":"Calle ovanco casi esquina albert thomas",
+				"latitude":18.490031, 
+				"longitude":-69.922130,
+				"hospital_type":2,
+				"secures":
+					[{"id":1,"name":"Humano","details":"Seguro medico Humano"},
+					{"id":3,"name":"ARS Senasa","details":"ARS Senasa", "logo": "/images/trollface.jpg"},
+					{"id":2,"name":"Plic","details":"Palic seguros", "logo": "/images/trollface.jpg"}],
+					"doctors":
+						[{"id":1,
+						"name":"Doctor Fulano",
+						"last":"Apellido",
+						"details":"El mejor en operaciones corazon abierto. Aparte Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, "
+						}],
+						"hospitalType":
+						{"id":2,"name":"CLINICA","details":"Clinica"}}]};
+			def.resolve(x);
+			return def.promise;
 	};
 
 	return {
 		findHospitalsByLocation: findHospitalsByLocation,
-		findHospitalsByName: findHospitalsByName
+		findHospitalsByCriteria: findHospitalsByCriteria
 	}
 }]);	

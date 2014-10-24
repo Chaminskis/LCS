@@ -116,3 +116,25 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 	color: #fff;
 }
 
+.icheck{
+	margin-right: 10px;
+}
+
+.task-info label{
+	height: 100%;
+	width: 100%;
+}
+
+.js-switch{
+	position: relative;
+	bottom: 5px !important;
+}
+
+.switchery{
+	position: relative;
+	bottom: 4px;
+	right: 10px;
+	height: 50px;
+	width: 50%;
+}
+

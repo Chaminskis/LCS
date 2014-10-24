@@ -49,13 +49,8 @@ angular.module('app.controllers', ['app.services'])
                     "lat": position.coords.latitude,
                     "lon": position.coords.longitude
                 };
-                service.findHospitalsByLocation(location).then(function(response){
-                    console.log(response);
-                    if(!response.error){
-                        var hospitals = response.result;
-                        setHospitals(hospitals);
-                    }
-                });
+
+                findHospitalsByLocation(location)
 
             }, function() {
                 console.log("Error!");
@@ -96,8 +91,8 @@ angular.module('app.controllers', ['app.services'])
 
     var drawRoute = function(marker){
         
-        var def = $q.defer();
-        $scope.directionsDisplay.setDirections({routes: []});
+        var def = $q.defer(); 
+       $scope.directionsDisplay.setDirections({routes: []});
         var start = $scope.currentPosition;
         var end = marker.position;
         var request = {
@@ -150,6 +145,7 @@ angular.module('app.controllers', ['app.services'])
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
         addMarkerlistener(marker);
+        return marker;
     }; 
 
     var showPopupRouteAndDistanceOnClick = function(marker){
@@ -168,36 +164,41 @@ angular.module('app.controllers', ['app.services'])
     }
     
 
-    var findHospitals = function(){
+    var findHospitalsByCriteria = function(){
         $scope.markers = [];
-        console.log("searching hospitals");
         console.log($scope.searchString);
-        var hospitals = service.findHospitalsByLocation();
-            
-        for (var i = 0; i < hospitals.length; i++){
-            createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
-        }
+                    
+        service.findHospitalsByCriteria(criteria).then(function(response){
+            if(!response.error){
+                var hospitals = response.result;
+                setHospitals(hospitals);
+            }
+        });    
     };
 
     var findHospitalsByLocation = function(location){
         $scope.markers = [];
         console.log("searching hospitals by location");
         
-        service.findHospitalsByLocation(location).then(function(hospitals){
-            for (var i = 0; i < hospitals.length; i++){
-                createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
-            }            
+        service.findHospitalsByLocation(location).then(function(response){
+            if(!response.error){            
+                
+                var hospitals = response.result;
+                console.log(hospitals);
+                setHospitals(hospitals);          
+            }
+
         });
     }
 
     var setHospitals = function(hospitals){
-        $scope.markers = [];
-        $scope.markers = [];
-        service.findHospitalsByLocation(location).then(function(hospitals){
-            for (var i = 0; i < hospitals.length; i++){
-                createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
-            }            
-        });
+        
+        var marker;
+        for (var i = 0; i < hospitals.length; i++){
+            marker = createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+            marker.name = hospitals[i].name;
+            marker.address = hospitals[i].address;
+        }            
 
     }
 
@@ -211,9 +212,6 @@ angular.module('app.controllers', ['app.services'])
     $scope.setup = function(){
         initializeMap();
         calculateCurrentPosition();
-        setTravelModes();
-        setCenterTypes();
-        setInsurances();
     };
 
     $scope.viewPopUp = function(){
@@ -234,7 +232,7 @@ angular.module('app.controllers', ['app.services'])
     
     $scope.search = function(){
         removeAllMarkers();
-        var hospitals = service.findHospitalsByName($scope.searchString);
+        var hospitals = service.findHospitalsByCriteria($scope.searchCriteria);
         $scope.markers = [];
         for(var i = 0; i < hospitals.length; i++){
             createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
@@ -243,22 +241,6 @@ angular.module('app.controllers', ['app.services'])
         enableSearchMode();       
     }
 
-    $scope.advancedSearch = function(){
-        removeAllMarkers();
-        var hospitals = service.findHospitalsByName($scope.txtHospital);
-        $scope.markers = [];
-        for(var i = 0; i < hospitals.length; i++){
-            createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
-        }
-
-        enableSearchMode();       
-        $("#myModal").modal('hide');        
-    }
-
-    $scope.quickSearch = function(){
-        console.log("quick search!");
-    }
-    
     var setSearchResultsBar = function(){
         $scope.bar = new Object();
         $scope.bar.show = true;   
@@ -294,29 +276,6 @@ angular.module('app.controllers', ['app.services'])
         for(var i = 0; i < $scope.markers.length; i++){
             $scope.markers[i].setMap(null);
         }
-    }
-    var setTravelModes = function(){
-        $scope.travelModes = [
-            "A pie",
-            "En vehículo"
-        ];
-    }
-
-    var setCenterTypes = function(){
-        $scope.centerTypes = [
-            "Hospital",
-            "Clínica",
-            "Unidad de Atención Primaria"
-        ];
-    }
-
-    var setInsurances = function(){
-        $scope.insurances = [
-            "Humano",
-            "Universal",
-            "Palic",
-            "Senasa"
-        ];
     }
 
     var createCustomMarker = function(customMarkerInfo){

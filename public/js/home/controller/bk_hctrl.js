@@ -91,8 +91,8 @@ angular.module('app.controllers', ['app.services'])
 
     var drawRoute = function(marker){
         
-        var def = $q.defer(); 
-       $scope.directionsDisplay.setDirections({routes: []});
+        var def = $q.defer();
+        $scope.directionsDisplay.setDirections({routes: []});
         var start = $scope.currentPosition;
         var end = marker.position;
         var request = {
@@ -145,7 +145,6 @@ angular.module('app.controllers', ['app.services'])
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
         addMarkerlistener(marker);
-        return marker;
     }; 
 
     var showPopupRouteAndDistanceOnClick = function(marker){
@@ -171,7 +170,10 @@ angular.module('app.controllers', ['app.services'])
         service.findHospitalsByCriteria(criteria).then(function(response){
             if(!response.error){
                 var hospitals = response.result;
-                setHospitals(hospitals);
+                for (var i = 0; i < hospitals.length; i++){
+                    createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+                }            
+
             }
         });    
     };
@@ -185,7 +187,9 @@ angular.module('app.controllers', ['app.services'])
                 
                 var hospitals = response.result;
                 console.log(hospitals);
-                setHospitals(hospitals);          
+                for (var i = 0; i < hospitals.length; i++){
+                    createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+                }            
             }
 
         });
@@ -193,11 +197,8 @@ angular.module('app.controllers', ['app.services'])
 
     var setHospitals = function(hospitals){
         
-        var marker;
         for (var i = 0; i < hospitals.length; i++){
-            marker = createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
-            marker.name = hospitals[i].name;
-            marker.address = hospitals[i].address;
+            createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
         }            
 
     }

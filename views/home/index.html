@@ -186,13 +186,13 @@
               <div class="content-panel pn">
                 <div id="blog-bg">
                   <div class="badge-rounded icon-lcs-hospital"></div>
-                  <div class="blog-title">{{marker.title}}</div>
+                  <div class="blog-title">{{marker.name}}</div>
                 </div>
                 <div class="blog-text">
-                    
-                      <p><strong>Teléfono:</strong> <img src="/images/trollface.jpg" /></p>
+                           <p><strong>Dirección:</strong>{{marker.address}}</p>          
+<!--                       <p><strong>Teléfono:</strong> <img src="/images/trollface.jpg" /></p>
                       <p><strong>Mail</strong>: <img src="/images/trollface.jpg" /> </p>
-                    
+ -->                    
                 </div>
               </div>
             </div>
@@ -260,8 +260,8 @@
     
     <script type="text/javascript" src="/js/home/modules.js"></script>
     
-    <script type="text/javascript" src="/js/home/service/home_hospital_service.js"></script>
     <script type="text/javascript" src="/js/admin/service/hospital_service.js"></script>
+    <script type="text/javascript" src="/js/home/service/home_hospital_service.js"></script>
     <script type="text/javascript" src="/js/home/controller/home_controller.js"></script>
     <script type="text/javascript" src="/js/home/home.js"></script>    
   </body>

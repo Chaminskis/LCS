@@ -271,6 +271,46 @@ angular.module('app.controllers', ['app.services'])
         else
             enableSearchMode();
     }
+
+
+    var selectedInsurances = []; 
+    $scope.mainInsurances = [
+        { id: 1, name: "PALIC", isSelected: false },
+        { id: 2, name: "UNIVERSAL", isSelected: false },
+        { id: 3, name: "HUMANO", isSelected: false },
+        { id: 4, name: "SENASA", isSelected: false },
+    ];
+
+    $scope.test = 1;
+
+    var updateSelected = function(action, id) {
+      if (action === 'add' && selectedInsurances.indexOf(id) === -1) {
+        selectedInsurances.push(id);
+      }
+      if (action === 'remove' && selectedInsurances.indexOf(id) !== -1) {
+        selectedInsurances.splice(selectedInsurances.indexOf(id), 1);
+      }
+      console.log(selectedInsurances);
+    };
+
+    $scope.updateSelection = function($event, insurance) {
+      var checkbox = $event.target;
+      var action = (checkbox.checked ? 'add' : 'remove');
+      insurance.isSelected = (checkbox.checked ? true : false);
+      updateSelected(action, insurance.id);
+    };
+
+    $scope.selectAll = function($event) {
+      var checkbox = $event.target;
+      var action = (checkbox.checked ? 'add' : 'remove');
+      for ( var i = 0; i < $scope.entities.length; i++) {
+        var entity = $scope.entities[i];
+        updateSelected(action, entity.id);
+      }
+    };
+
+
+
     
     var removeAllMarkers = function(){
         for(var i = 0; i < $scope.markers.length; i++){
@@ -298,4 +338,4 @@ angular.module('app.controllers', ['app.services'])
         return marker;
     };
 
-}])
+}]);

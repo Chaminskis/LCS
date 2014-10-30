@@ -75,30 +75,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" ng-repeat="insurance in mainInsurances">
                                     <div class="task-info">
-                                      <label><input type="checkbox" class="icheck" />&nbsp;PALIC</label>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                      <label><input type="checkbox" class="icheck" />&nbsp;UNIVERSAL</label>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;HUMANO</label>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;SENASA</label>
+                                      <label><input type="checkbox" class="icheck" ng-model="insurance.isSelected" ng-click="updateSelection($event, insurance)" />&nbsp;{{insurance.name}}</label>
                                     </div>
                                 </a>
                             </li>

@@ -1,22 +1,25 @@
 <div class='content'>
-	<table ng-init='load()' class='table table-hover'>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>Detalles</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat='item in doctors'>
-				<td>{{ item.id }}</td>
-				<td> <a href="#/doctors/view/{{ item.id }}"> {{ item.name }} </a> </td>
-				<td>{{ item.last }}</td>
-				<td>{{ item.details.substr(0,120) }} ...</td>
-			</tr>
-		</tbody>
-	</table>
+
+	<div class="content-panel">
+		<table ng-init='load()' class='table table-hover'>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Detalles</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='item in doctors'>
+					<td>{{ item.id }}</td>
+					<td> <a href="#/doctors/view/{{ item.id }}"> {{ item.name }} </a> </td>
+					<td>{{ item.last }}</td>
+					<td>{{ item.details.substr(0,120) }} ...</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 	<a href="#/doctors/add/" class='btn btn-primary'>Crear Nuevo</a>
 </div>

@@ -1,25 +1,26 @@
 <div class='content' ng-init="setActive('medical_secure')">
-
-	<table ng-init='load()' class='table table-hover'>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nombre</th>
-				<th>Detalles</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat='item in model'>
-				<td>{{ item.id }}</td>
-				<td>
-					<a href="#/medical_insurance/view/{{item.id}}">{{ item.name }}</a>
-				</td>
-				<td>{{ item.details.substr(0,120) }} ...</td>
-			</tr>
-		</tbody>
-	</table>
 	
-	<br />
+	<div class="content-panel">
+		<table ng-init='load()' class='table table-hover'>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Detalles</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='item in model'>
+					<td>{{ item.id }}</td>
+					<td>
+						<a href="#/medical_insurance/view/{{item.id}}">{{ item.name }}</a>
+					</td>
+					<td>{{ item.details.substr(0,120) }} ...</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br/>
 	
 	<a href="#/medical_insurance/add/" class='btn btn-primary'>Crear Nuevo</a>
 </div>

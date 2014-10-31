@@ -1,29 +1,29 @@
 <div class='content' ng-init='load()'>
 
-	<table class='table table-hover'>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>USER</th>
-				<th>Email</th>
-				<th>Created</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat='item in data'>
-				<td>{{ item.id }}</td>
-				<td>
-					<a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a>
-				</td>
-				<td>
-					<a href="#/auth/users/view/{{ item.mail }}">{{ item.mail }}</a>
-				</td>
-				<td>{{ item.created_at }}</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<br />
+	<div class="content-panel">
+		<table class='table table-hover'>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>USER</th>
+					<th>Email</th>
+					<th>Created</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='item in data'>
+					<td>{{ item.id }}</td>
+					<td>
+						<a href="#/auth/users/view/{{ item.id }}">{{ item.user }}</a>
+					</td>
+					<td>
+						<a href="#/auth/users/view/{{ item.mail }}">{{ item.mail }}</a>
+					</td>
+					<td>{{ item.created_at }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 	<a href="#/auth/users/add/" class='btn btn-primary'>Crear Nuevo</a>
 </div>

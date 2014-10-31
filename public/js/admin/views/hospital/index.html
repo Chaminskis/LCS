@@ -1,27 +1,29 @@
 <div class='content'>
-	<table ng-init='load()' class='table table-hover'>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nombre</th>
-				<th>Detalles</th>
-				<th>Tipo</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat='item in data'>
-				<td>
-					<a href="#/hospital/view/{{item.id}}">{{ item.id }}</a>
-				</td>
-				<td>
-					<a href="#/hospital/view/{{item.id}}">{{ item.name }}</a>
-				</td>
-				
-				<td>{{ item.details.substr(0,120) }} ...</td>
-				<td>{{ item.hospitalType.details }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="content-panel">
+		<table ng-init='load()' class='table table-hover'>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Detalles</th>
+					<th>Tipo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='item in data'>
+					<td>
+						<a href="#/hospital/view/{{item.id}}">{{ item.id }}</a>
+					</td>
+					<td>
+						<a href="#/hospital/view/{{item.id}}">{{ item.name }}</a>
+					</td>
+					
+					<td>{{ item.details.substr(0,120) }} ...</td>
+					<td>{{ item.hospitalType.details }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	
 	<a href="#/hospital/add/" class='btn btn-primary'>Crear Nuevo</a>
 </div>

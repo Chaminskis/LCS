@@ -59,7 +59,6 @@
             <div class="top-menu pull-left mt">
               <ul class="nav top-menu">
                     
-
                     <!-- seguros start -->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -70,14 +69,14 @@
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                      <label><input type="checkbox" class="icheck" checked />&nbsp;TODOS</label>
+                                      <label><input type="checkbox" ng-click="test()"  />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" ng-repeat="insurance in mainInsurances">
                                     <div class="task-info">
-                                      <label><input type="checkbox" class="icheck" ng-model="insurance.isSelected" ng-click="updateSelection($event, insurance)" />&nbsp;{{insurance.name}}</label>
+                                      <label><input type="checkbox" class="icheck" ng-click="test()" />&nbsp;{{insurance.name}}</label>
                                     </div>
                                 </a>
                             </li>
@@ -95,7 +94,7 @@
                         <ul class="dropdown-menu extended tasks-bar">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
-                                <a href="#">
+                                <a href="#" ng-click="test()">
                                     <div class="task-info">
                                         <label><input type="checkbox" class="icheck" checked />&nbsp;TODAS</label>
                                     </div>

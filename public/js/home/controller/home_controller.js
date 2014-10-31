@@ -77,8 +77,9 @@ angular.module('app.controllers', ['app.services'])
             if(status == google.maps.DistanceMatrixStatus.OK){
                 var result = response.rows[0].elements;
 
-                $scope.popup.distance = result[0].distance.text;
-                $scope.popup.duration = result[0].duration.text;
+                // place that distance somewhere else, this popup is gone
+                // $scope.popup.distance = result[0].distance.text;
+                // $scope.popup.duration = result[0].duration.text;
                 def.resolve(response);
             }else{
                 console.log("Error calculating distance: " + status);
@@ -205,7 +206,7 @@ angular.module('app.controllers', ['app.services'])
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
-        enableSearchMode();
+        // enableSearchMode();
     }        
 
     
@@ -227,7 +228,7 @@ angular.module('app.controllers', ['app.services'])
         $scope.searhModeOn = true;
         $scope.bar.show = true;
         $scope.map.partialWidth = true;
-        $scope.popup.show = false;
+        // $scope.popup.show = false;
     }
     
     $scope.search = function(){
@@ -293,12 +294,21 @@ angular.module('app.controllers', ['app.services'])
       console.log(selectedInsurances);
     };
 
-    $scope.updateSelection = function($event, insurance) {
-      var checkbox = $event.target;
-      var action = (checkbox.checked ? 'add' : 'remove');
-      insurance.isSelected = (checkbox.checked ? true : false);
-      updateSelected(action, insurance.id);
+    $scope.test = function() {
+      // var checkbox = $event.target;
+      // var action = (checkbox.checked ? 'add' : 'remove');
+      // insurance.isSelected = (checkbox.checked ? true : false);
+      // updateSelected(action, insurance.id);
+      console.log("hi!");
     };
+
+    window.test = function(){
+        console.log("hey!");
+    }
+
+    $scope.checkInsurances = function(){
+        console.log($scope.mainInsurances);
+    }
 
     $scope.selectAll = function($event) {
       var checkbox = $event.target;

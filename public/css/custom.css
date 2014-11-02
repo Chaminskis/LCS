@@ -123,6 +123,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .task-info label{
 	height: 100%;
 	width: 100%;
+	padding: 15px 10px !important;
+}
+
+.dropdown-menu.extended li a{
+	padding: 0 !important;
 }
 
 .js-switch{

@@ -29,8 +29,7 @@
         
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/style-responsive.css">
-    <link rel="stylesheet" href="/css/icheck/square.css">
-    <link rel="stylesheet" href="/css/icheck/icheck.css">
+    <link rel="stylesheet" href="/css/icheck-square/square-theme.css">
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/map-icons.css">
     <link rel="stylesheet" href="/css/switchery.css">
@@ -52,6 +51,7 @@
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Mostrar/Ocultar resultados de búsqueda"></div>
               </div>
+              <div simple></div>
             <!--logo start-->
             <a href="#" class="logo"><b>LCS</b></a>
             <!--logo end-->
@@ -59,7 +59,6 @@
             <div class="top-menu pull-left mt">
               <ul class="nav top-menu">
                     
-
                     <!-- seguros start -->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -70,14 +69,14 @@
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                      <label><input type="checkbox" class="icheck" checked />&nbsp;TODOS</label>
+                                      <label><input type="checkbox" i-check  ng-click="test()"  />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" ng-repeat="insurance in mainInsurances">
                                     <div class="task-info">
-                                      <label><input type="checkbox" class="icheck" ng-model="insurance.isSelected" ng-click="updateSelection($event, insurance)" />&nbsp;{{insurance.name}}</label>
+                                      <label><input type="checkbox" class="icheck" ng-click="test()" />&nbsp;{{insurance.name}}</label>
                                     </div>
                                 </a>
                             </li>
@@ -95,23 +94,23 @@
                         <ul class="dropdown-menu extended tasks-bar">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
-                                <a href="#">
+                                <a href="#" ng-click="test()">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" checked />&nbsp;TODAS</label>
+                                        <label><input type="checkbox" class="icheck" checked icheck ng-model='nice'/>&nbsp;TODAS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;HOSPITAL</label>
+                                        <label><input type="checkbox" class="icheck"  icheck ng-model='nice'/>&nbsp;HOSPITAL</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;CLÍNICA</label>
+                                        <label><input type="checkbox" class="icheck" icheck ng-model='nice' />&nbsp;CLÍNICA</label>
                                     </div>
                                 </a>
                             </li>
@@ -168,6 +167,9 @@
                   <div class="blog-title">{{marker.name}}</div>
                 </div>
                 <div class="blog-text">
+
+                          <h4>Hola mundo</h4>
+                          <div test ng-model='nice'></div>
                            <p><strong>Dirección:</strong>{{marker.address}}</p>          
 <!--                       <p><strong>Teléfono:</strong> <img src="/images/trollface.jpg" /></p>
                       <p><strong>Mail</strong>: <img src="/images/trollface.jpg" /> </p>
@@ -239,6 +241,8 @@
     
     <script type="text/javascript" src="/js/home/modules.js"></script>
     
+    <script type="text/javascript" src="/js/directives/icheck.js"></script>
+    <script type="text/javascript" src="/js/directives/simple-directive.js"></script>
     <script type="text/javascript" src="/js/admin/service/hospital_service.js"></script>
     <script type="text/javascript" src="/js/home/service/home_hospital_service.js"></script>
     <script type="text/javascript" src="/js/home/controller/home_controller.js"></script>

@@ -5,6 +5,15 @@
 
 'use strict';
 
+angular.module('app.controllers').directive('simple', [function($timeout, $parse) {
+    return {
+        link: function($scope, element, $attrs) {
+            console.log("la gente!");
+        },
+        template: '<h1>Test!</h1>'
+    };
+}]);
+
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
@@ -77,8 +86,9 @@ angular.module('app.controllers', ['app.services'])
             if(status == google.maps.DistanceMatrixStatus.OK){
                 var result = response.rows[0].elements;
 
-                $scope.popup.distance = result[0].distance.text;
-                $scope.popup.duration = result[0].duration.text;
+                // place that distance somewhere else, this popup is gone
+                // $scope.popup.distance = result[0].distance.text;
+                // $scope.popup.duration = result[0].duration.text;
                 def.resolve(response);
             }else{
                 console.log("Error calculating distance: " + status);
@@ -205,7 +215,7 @@ angular.module('app.controllers', ['app.services'])
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
-        enableSearchMode();
+        // enableSearchMode();
     }        
 
     
@@ -227,7 +237,7 @@ angular.module('app.controllers', ['app.services'])
         $scope.searhModeOn = true;
         $scope.bar.show = true;
         $scope.map.partialWidth = true;
-        $scope.popup.show = false;
+        // $scope.popup.show = false;
     }
     
     $scope.search = function(){
@@ -293,12 +303,22 @@ angular.module('app.controllers', ['app.services'])
       console.log(selectedInsurances);
     };
 
-    $scope.updateSelection = function($event, insurance) {
-      var checkbox = $event.target;
-      var action = (checkbox.checked ? 'add' : 'remove');
-      insurance.isSelected = (checkbox.checked ? true : false);
-      updateSelected(action, insurance.id);
+    $scope.test = function() {
+      // var checkbox = $event.target;
+      // var action = (checkbox.checked ? 'add' : 'remove');
+      // insurance.isSelected = (checkbox.checked ? true : false);
+      // updateSelected(action, insurance.id);
+      console.log("hi!");
     };
+
+    $scope.clickMe = false;
+    window.test = function(){
+        console.log("hey!");
+    }
+
+    $scope.checkInsurances = function(){
+        console.log($scope.mainInsurances);
+    }
 
     $scope.selectAll = function($event) {
       var checkbox = $event.target;
@@ -338,4 +358,58 @@ angular.module('app.controllers', ['app.services'])
         return marker;
     };
 
+}]);
+
+angular.module('app.controllers').directive('test',['$timeout','$parse',function($timeout,$parse) {
+    return{
+        require: 'ngModel',
+        link:function(scope, element, attrs,ngModel){
+            element.text("la directiva");
+        }
+    }
+}]);
+
+
+angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  function($timeout, $parse) {
+ return {
+        require: 'ngModel',
+        link: function($scope, element, $attrs, ngModel) {
+ 
+            return $timeout(function() {
+                var value;
+                value = $attrs['value'];
+
+                $scope.$watch($attrs['ngModel'], function(newValue){
+                    $(element).iCheck('update');
+                });
+
+                clickMethod = $attrs['ngClick'];
+                clickMethod = clickMethod.replace(/(\(|\))/g, "");
+
+                return $(element).iCheck({
+                    // the classes, if you need them.
+                    checkboxClass: 'icheckbox_square',
+                    radioClass: 'iradio_square',
+                    increaseArea: '20%' // optional
+                }).on('ifChanged', function(event) {
+                    console.log('ifchanged');
+
+                    if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
+                        $scope.$apply(function() {
+                            return ngModel.$setViewValue(event.target.checked);
+                        });
+                    }
+                    if ($(element).attr('type') === 'radio' && $attrs['ngModel']) {
+                        return $scope.$apply(function() {
+                            return ngModel.$setViewValue(value);
+                        });
+                    }
+                }).on('ifClicked', function(){
+                    console.log('ifclicked')
+                    if(clickMethod)
+                    $scope[clickMethod]();
+                });
+            });
+        }
+    };
 }]);

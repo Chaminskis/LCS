@@ -5,6 +5,15 @@
 
 'use strict';
 
+angular.module('app.controllers').directive('simple', [function($timeout, $parse) {
+    return {
+        link: function($scope, element, $attrs) {
+            console.log("la gente!");
+        },
+        template: '<h1>Test!</h1>'
+    };
+}]);
+
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
@@ -349,4 +358,58 @@ angular.module('app.controllers', ['app.services'])
         return marker;
     };
 
+}]);
+
+angular.module('app.controllers').directive('test',['$timeout','$parse',function($timeout,$parse) {
+    return{
+        require: 'ngModel',
+        link:function(scope, element, attrs,ngModel){
+            element.text("la directiva");
+        }
+    }
+}]);
+
+
+angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  function($timeout, $parse) {
+ return {
+        require: 'ngModel',
+        link: function($scope, element, $attrs, ngModel) {
+ 
+            return $timeout(function() {
+                var value;
+                value = $attrs['value'];
+
+                $scope.$watch($attrs['ngModel'], function(newValue){
+                    $(element).iCheck('update');
+                });
+
+                clickMethod = $attrs['ngClick'];
+                clickMethod = clickMethod.replace(/(\(|\))/g, "");
+
+                return $(element).iCheck({
+                    // the classes, if you need them.
+                    checkboxClass: 'icheckbox_square',
+                    radioClass: 'iradio_square',
+                    increaseArea: '20%' // optional
+                }).on('ifChanged', function(event) {
+                    console.log('ifchanged');
+
+                    if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
+                        $scope.$apply(function() {
+                            return ngModel.$setViewValue(event.target.checked);
+                        });
+                    }
+                    if ($(element).attr('type') === 'radio' && $attrs['ngModel']) {
+                        return $scope.$apply(function() {
+                            return ngModel.$setViewValue(value);
+                        });
+                    }
+                }).on('ifClicked', function(){
+                    console.log('ifclicked')
+                    if(clickMethod)
+                    $scope[clickMethod]();
+                });
+            });
+        }
+    };
 }]);

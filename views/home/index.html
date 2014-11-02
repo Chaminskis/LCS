@@ -96,21 +96,21 @@
                             <li>
                                 <a href="#" ng-click="test()">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" checked />&nbsp;TODAS</label>
+                                        <label><input type="checkbox" class="icheck" checked icheck ng-model='nice'/>&nbsp;TODAS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;HOSPITAL</label>
+                                        <label><input type="checkbox" class="icheck"  icheck ng-model='nice'/>&nbsp;HOSPITAL</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;CLÍNICA</label>
+                                        <label><input type="checkbox" class="icheck" icheck ng-model='nice' />&nbsp;CLÍNICA</label>
                                     </div>
                                 </a>
                             </li>
@@ -167,6 +167,9 @@
                   <div class="blog-title">{{marker.name}}</div>
                 </div>
                 <div class="blog-text">
+
+                          <h4>Hola mundo</h4>
+                          <div test ng-model='nice'></div>
                            <p><strong>Dirección:</strong>{{marker.address}}</p>          
 <!--                       <p><strong>Teléfono:</strong> <img src="/images/trollface.jpg" /></p>
                       <p><strong>Mail</strong>: <img src="/images/trollface.jpg" /> </p>

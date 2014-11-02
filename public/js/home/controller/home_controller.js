@@ -302,6 +302,7 @@ angular.module('app.controllers', ['app.services'])
       console.log("hi!");
     };
 
+    $scope.clickMe = false;
     window.test = function(){
         console.log("hey!");
     }

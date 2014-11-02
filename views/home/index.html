@@ -29,8 +29,7 @@
         
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/style-responsive.css">
-    <link rel="stylesheet" href="/css/icheck/square.css">
-    <link rel="stylesheet" href="/css/icheck/icheck.css">
+    <link rel="stylesheet" href="/css/icheck-square/square-theme.css">
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/map-icons.css">
     <link rel="stylesheet" href="/css/switchery.css">
@@ -52,6 +51,7 @@
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Mostrar/Ocultar resultados de búsqueda"></div>
               </div>
+              <div simple></div>
             <!--logo start-->
             <a href="#" class="logo"><b>LCS</b></a>
             <!--logo end-->
@@ -69,7 +69,7 @@
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                      <label><input type="checkbox" ng-click="test()"  />&nbsp;TODOS</label>
+                                      <label><input type="checkbox" i-check  ng-click="test()"  />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
@@ -238,6 +238,8 @@
     
     <script type="text/javascript" src="/js/home/modules.js"></script>
     
+    <script type="text/javascript" src="/js/directives/icheck.js"></script>
+    <script type="text/javascript" src="/js/directives/simple-directive.js"></script>
     <script type="text/javascript" src="/js/admin/service/hospital_service.js"></script>
     <script type="text/javascript" src="/js/home/service/home_hospital_service.js"></script>
     <script type="text/javascript" src="/js/home/controller/home_controller.js"></script>

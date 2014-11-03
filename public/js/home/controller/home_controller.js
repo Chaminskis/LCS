@@ -4,16 +4,6 @@
  **/
 
 'use strict';
-
-angular.module('app.controllers').directive('simple', [function($timeout, $parse) {
-    return {
-        link: function($scope, element, $attrs) {
-            console.log("la gente!");
-        },
-        template: '<h1>Test!</h1>'
-    };
-}]);
-
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
@@ -30,8 +20,8 @@ angular.module('app.controllers', ['app.services'])
         $scope.directionsDisplay = new google.maps.DirectionsRenderer();
         $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
-        $scope.searchString; 
-        // setPopup();
+        $scope.searchString;
+        $scope.nice = true;
         setSearchResultsBar();
     };
 
@@ -282,7 +272,6 @@ angular.module('app.controllers', ['app.services'])
             enableSearchMode();
     }
 
-
     var selectedInsurances = []; 
     $scope.mainInsurances = [
         { id: 1, name: "PALIC", isSelected: false },
@@ -370,7 +359,8 @@ angular.module('app.controllers').directive('test',['$timeout','$parse',function
 }]);
 
 
-angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  function($timeout, $parse) {
+
+angular.module('app.controllers').directive('iCheck', ['$timeout', function($timeout) {
  return {
         require: 'ngModel',
         link: function($scope, element, $attrs, ngModel) {
@@ -383,7 +373,7 @@ angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  fun
                     $(element).iCheck('update');
                 });
 
-                clickMethod = $attrs['ngClick'];
+                var clickMethod = $attrs['ngClick'];
                 clickMethod = clickMethod.replace(/(\(|\))/g, "");
 
                 return $(element).iCheck({
@@ -392,7 +382,6 @@ angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  fun
                     radioClass: 'iradio_square',
                     increaseArea: '20%' // optional
                 }).on('ifChanged', function(event) {
-                    console.log('ifchanged');
 
                     if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
                         $scope.$apply(function() {
@@ -405,9 +394,8 @@ angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  fun
                         });
                     }
                 }).on('ifClicked', function(){
-                    console.log('ifclicked')
                     if(clickMethod)
-                    $scope[clickMethod]();
+                        $scope[clickMethod]();
                 });
             });
         }

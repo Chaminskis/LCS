@@ -275,10 +275,10 @@ angular.module('app.controllers', ['app.services'])
 
     var selectedInsurances = []; 
     $scope.mainInsurances = [
-        { id: 1, name: "PALIC", isSelected: false },
-        { id: 2, name: "UNIVERSAL", isSelected: false },
-        { id: 3, name: "HUMANO", isSelected: false },
-        { id: 4, name: "SENASA", isSelected: false },
+        { id: 1, name: "PALIC", isSelected: true },
+        { id: 2, name: "UNIVERSAL", isSelected: true },
+        { id: 3, name: "HUMANO", isSelected: true },
+        { id: 4, name: "SENASA", isSelected: true },
     ];
 
     $scope.test = 1;
@@ -293,26 +293,20 @@ angular.module('app.controllers', ['app.services'])
       console.log(selectedInsurances);
     };
 
-    $scope.test = function() {
-      // var checkbox = $event.target;
-      // var action = (checkbox.checked ? 'add' : 'remove');
-      // insurance.isSelected = (checkbox.checked ? true : false);
-      // updateSelected(action, insurance.id);
-      console.log("hi!");
-    };
 
     $scope.updateInsuranceSelection = function(insurance){
-        if(!insurance.isSelected){
+        if(insurance.isSelected){
             addInsuranceId(insurance.id);
         }else
         removeInsuranceId(insurance.id);
-
+        console.log($scope.selectedInsurancesId);
     }
 
     var removeInsuranceId = function(id){
         var id_location = $scope.selectedInsurancesId.indexOf(id); 
         if( id_location !== -1){
             $scope.selectedInsurancesId.splice(id_location, 1);
+            $scope.selectAllInsurances = false;
         }
         console.log("insurance "+id+" removed.");
     }
@@ -320,17 +314,19 @@ angular.module('app.controllers', ['app.services'])
     var addInsuranceId = function(id){
         var id_location = $scope.selectedInsurancesId.indexOf(id); 
         if( id_location === -1){
-            $scope.selectedInsurancesId.push(id_location);
+            $scope.selectedInsurancesId.push(id);
         }
         console.log("insurance "+id+" added.");
     }
 
     $scope.globalSelectInsurances = function(){
+        $scope.$apply();
         if($scope.selectAllInsurances){
             globallyChangeInsuranceSelection(true);        
+        
         }else{
             globallyChangeInsuranceSelection(false);        
-        }
+        }        
     }
 
     var globallyChangeInsuranceSelection = function(selectValue){
@@ -408,6 +404,7 @@ angular.module('app.controllers').directive('test',['$timeout','$parse',function
 angular.module('app.controllers').directive('iCheck', ['$timeout', function($timeout) {
  return {
         require: 'ngModel',
+        restrict: 'A',
         link: function($scope, element, $attrs, ngModel) {
  
             return $timeout(function() {
@@ -418,8 +415,6 @@ angular.module('app.controllers').directive('iCheck', ['$timeout', function($tim
                     $(element).iCheck('update');
                 });
 
-                var clickMethod = $attrs['ngClick'];
-                clickMethod = clickMethod.replace(/(\(|\))/g, "");
 
                 return $(element).iCheck({
                     // the classes, if you need them.
@@ -438,9 +433,13 @@ angular.module('app.controllers').directive('iCheck', ['$timeout', function($tim
                             return ngModel.$setViewValue(value);
                         });
                     }
-                }).on('ifClicked', function(){
-                    if(clickMethod)
-                        $scope[clickMethod]();
+
+                    var changeMethod = $attrs['ngChange'];
+                    if(changeMethod){
+                        changeMethod = changeMethod.replace(/(\(|\))/g, "");
+                        $scope[changeMethod]();
+                    }
+                    
                 });
             });
         }

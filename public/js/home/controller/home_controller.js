@@ -21,7 +21,8 @@ angular.module('app.controllers', ['app.services'])
         $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
         $scope.searchString;
-        $scope.nice = true;
+        $scope.selectedInsurancesId = [];
+        $scope.selectAllInsurances = true;
         setSearchResultsBar();
     };
 
@@ -299,6 +300,50 @@ angular.module('app.controllers', ['app.services'])
       // updateSelected(action, insurance.id);
       console.log("hi!");
     };
+
+    $scope.updateInsuranceSelection = function(insurance){
+        if(!insurance.isSelected){
+            addInsuranceId(insurance.id);
+        }else
+        removeInsuranceId(insurance.id);
+
+    }
+
+    var removeInsuranceId = function(id){
+        var id_location = $scope.selectedInsurancesId.indexOf(id); 
+        if( id_location !== -1){
+            $scope.selectedInsurancesId.splice(id_location, 1);
+        }
+        console.log("insurance "+id+" removed.");
+    }
+
+    var addInsuranceId = function(id){
+        var id_location = $scope.selectedInsurancesId.indexOf(id); 
+        if( id_location === -1){
+            $scope.selectedInsurancesId.push(id_location);
+        }
+        console.log("insurance "+id+" added.");
+    }
+
+    $scope.globalSelectInsurances = function(){
+        if($scope.selectAllInsurances){
+            globallyChangeInsuranceSelection(true);        
+        }else{
+            globallyChangeInsuranceSelection(false);        
+        }
+    }
+
+    var globallyChangeInsuranceSelection = function(selectValue){
+        
+            var insurance;
+            for (var i = 0; i < $scope.mainInsurances.length; i++) {
+                insurance = $scope.mainInsurances[i]; 
+                insurance.isSelected = selectValue; 
+                $scope.updateInsuranceSelection(insurance);
+            };
+        
+    }
+
 
     $scope.clickMe = false;
     window.test = function(){

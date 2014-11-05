@@ -415,6 +415,9 @@ angular.module('app.controllers').directive('iCheck', ['$timeout', function($tim
                     $(element).iCheck('update');
                 });
 
+                var changeMethod = $attrs['ngChange'];
+                changeMethod = changeMethod.replace(/(\(|\))/g, "");
+                var changedMethodParam = $attrs['dataNgChangeParam'];
 
                 return $(element).iCheck({
                     // the classes, if you need them.
@@ -434,10 +437,12 @@ angular.module('app.controllers').directive('iCheck', ['$timeout', function($tim
                         });
                     }
 
-                    var changeMethod = $attrs['ngChange'];
                     if(changeMethod){
-                        changeMethod = changeMethod.replace(/(\(|\))/g, "");
-                        $scope[changeMethod]();
+                        if(changedMethodParam){
+                            $scope[changeMethod](changedMethodParam);
+                        }
+                        else
+                            $scope[changeMethod]();
                     }
                     
                 });

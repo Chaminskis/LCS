@@ -76,7 +76,7 @@
                             <li>
                                 <a href="#" ng-repeat="insurance in mainInsurances">
                                     <div class="task-info">
-                                      <label><input type="checkbox" ng-model="insurance.isSelected" i-check ng-change="updateInsuranceSelection(insurance)" />&nbsp;{{insurance.name}}</label>
+                                      <label><input type="checkbox" ng-model="insurance.isSelected" i-check ng-change="updateInsuranceSelection()" data-ng-change-param="{{insurance.id}}" />&nbsp;{{insurance.name}}</label>
                                     </div>
                                 </a>
                             </li>

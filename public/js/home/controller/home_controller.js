@@ -7,6 +7,78 @@
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
+    String.prototype.addFilterName = function(filtername) {
+        var self = this;
+        self = self + "| " + filtername;
+    };
+
+    String.prototype.removeFilterName = function(filtername){
+        var self = this;
+        var removeExpr = new RegEx("("+filtername+"\s*\|\s*|\s*\|\s*"+filtername+"$)", "g");
+        self = self.replace(removeExpr, '');
+    }
+
+    var Filter = function(filtername, param, isSelected){
+        this.filtername = filtername;
+        this.param = param;
+        this.isSelected = isSelected;
+    }
+
+    var insuranceFilter = new Filter("INSURANCE", [], false);
+    var hospitalTypeFilter = new Filter("HOSPITALTYPE", [], false);
+    var locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, true);
+    var criteriaFilter = new Filter("CRITERIA", '', false);
+    var filters = [];
+    var masterSearchObjectParam = {
+        var self = this;
+        searchType: '',
+
+        addCriteriaParam: function(filter){
+            if(!self.criteria){
+                self.criteria = [];
+            }
+            searchType = searchType + "| " + filter.filtername;
+            self.criteria = self.criteria + "| " + JSON.stringify(filter.param)
+        },
+
+        addLocationParam: function(locationFilter){
+            searchType = searchType + "| " + locationFilter.filtername;
+            self.location = locationFilter.param;
+        }
+
+    };
+
+    var addFilter = function(filter){
+        filters.add(filter);
+    };
+
+    var removeFilter = function(filter){
+        var index = filters.indexOf(filter);
+        if(index !== -1)
+            filters.splice(index, 1);
+    };
+
+    var buildSearchMultiCriteriaParam = function(){
+        var searchParam = angular.copy(masterSearchObjectParam);
+
+        for (var i = 0; i < filters.length; i++) {
+            
+           searchParam.addCriteriaParam(filter);
+        };
+
+        return searchParam;
+    };
+
+    var buildSearchNameCriteriaParam = function(){
+
+        var searchParam = angular.copy(masterSearchObjectParam);
+        searchParam.addCriteriaParam(criteriaFilter);
+        return searchParam;
+    };
+
+
+
+
     var initializeMap = function(){
         var mapOptions = {
         zoom: 15,
@@ -45,12 +117,9 @@ angular.module('app.controllers', ['app.services'])
                  var marker = createCustomMarker(markerInfo);
 
                 $scope.map.setCenter(pos);
-                var location = {
-                    "lat": position.coords.latitude,
-                    "lon": position.coords.longitude
-                };
-
-                findHospitalsByLocation(location)
+                locationFilter.param.lat = position.coords.latitude;
+                locationFilter.param.lon = position.coords.longitude;
+                findHospitalsByLocation(locationFilter.param);
 
             }, function() {
                 console.log("Error!");

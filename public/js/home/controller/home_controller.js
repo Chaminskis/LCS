@@ -18,17 +18,19 @@ angular.module('app.controllers', ['app.services'])
         self = self.replace(removeExpr, '');
     }
 
-    var Filter = function(filtername, param, isSelected){
+    var Filter = function(filtername, param, isDisabled){
         this.filtername = filtername;
         this.param = param;
         this.isSelected = isSelected;
     }
 
-    var insuranceFilter = new Filter("INSURANCE", [], false);
-    var hospitalTypeFilter = new Filter("HOSPITALTYPE", [], false);
-    var locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, true);
-    var criteriaFilter = new Filter("CRITERIA", '', false);
-    var filters = [];
+    $scope.insuranceFilter = new Filter("INSURANCE", [], true);
+    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true);
+    $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
+    $scope.criteriaFilter = new Filter("CRITERIA", '', true);
+    $scope.filters = [];
+
+    
     var masterSearchObjectParam = {
         var self = this;
         searchType: '',

@@ -28,20 +28,41 @@ angular.module('app.controllers', ['app.services'])
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
     $scope.criteriaFilter = new Filter("CRITERIA", '', true);
 
-    $scope.insuranceFilter.addOrRemoveInsurance = function(id){
-        if(!this.param.contains(id)){
-            this.param.push(id);
-        }else
-            this.param.remove(id);
-    };
+    $scope.watch("insuranceFilter.isDisabled", function(filterIsDisabled){
+        if(!filterIsDisabled){
+            $scope.mainInsurances.forEeach(function(i){
+                i.isSelected = false;
+            });
+        }
+        console.log($scope.mainInsurances);
+    });
 
-    $scope.insuranceFilter.addOrRemoveInstitutionType = function(id){
-        if(!this.param.contains(id)){
-            this.param.push(id);
+    $scope.watch("hospitalTypeFilter.isDisabled", function(filterIsDisabled){
+        if(!filterIsDisabled){
+            $scope.institutionTypes.forEeach(function(i){
+                i.isSelected = false;
+            });
+        }
+        console.log($scope.mainInsurances);
+    });
+
+    var addOrRemoveFilterParam = function(id){
+        var filter = this;
+        if(!filter.param.contains(id)){
+            filter.isDisabled = false;
+            if(!filters.contains(filter)){
+                $scope.addOrRemoveGlobalFilter(filter);
+                filter.param.push(id);
+            }
         }else
-            this.param.remove(id);
+            filter.param.remove(id);
+        console.log(filter.param);
     };
+    $scope.insuranceFilter.addOrRemoveInsurance = addOrRemoveFilterParam;
+    $scope.insuranceFilter.addOrRemoveInstitutionType = addOrRemoveFilterParam;
     
+
+
     var filters = [];
 
     filters.addFilter = function(filter){
@@ -55,7 +76,7 @@ angular.module('app.controllers', ['app.services'])
     filters.filternameExists = function(filtername){
         
         return this.indexOf(filtername) !== -1;
-    }
+    };
 
     $scope.addOrRemoveGlobalFilter = function(filtername){
         var filter = $scope.getFilter(filtername);
@@ -70,7 +91,7 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.getFilter = function(filtername){
             return this[filtername] || undefined;
-    }
+    };
 
 
     var masterSearchObjectParam = {
@@ -147,7 +168,7 @@ angular.module('app.controllers', ['app.services'])
                     pin: SQUARE_PIN
                 };
 
-                 var marker = createCustomMarker(markerInfo);
+                var marker = createCustomMarker(markerInfo);
 
                 $scope.map.setCenter(pos);
                 $scope.locationFilter.param.lat = position.coords.latitude;

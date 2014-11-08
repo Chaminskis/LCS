@@ -76,7 +76,7 @@
                             <li>
                                 <a href="#" ng-repeat="insurance in mainInsurances">
                                     <div class="task-info">
-                                      <label><input type="checkbox" ng-model="insurance.isSelected" i-check ng-change="updateInsuranceSelection()" data-ng-change-param="{{insurance.id}}" />&nbsp;{{insurance.name}}</label>
+                                      <label><input type="checkbox" ng-model="insurance.isSelected" i-check ng-change="addOrRemoveInsurance" data-ng-change-param="{{insurance.id}}" />&nbsp;{{insurance.name}}</label>
                                     </div>
                                 </a>
                             </li>
@@ -103,7 +103,7 @@
                             <li>
                                 <a href="#" ng-repeat="type in institutionTypes">
                                     <div class="task-info">
-                                      <label><input type="checkbox" ng-model="type.isSelected" i-check ng-change="updateInsuranceSelection()" data-ng-change-param="{{type.id}}" />&nbsp;{{type.name}}</label>
+                                      <label><input type="checkbox" ng-model="type.isSelected" i-check ng-change="addOrRemoveInstitutionType" data-ng-change-param="{{type.id}}" />&nbsp;{{type.name}}</label>
                                     </div>
                                 </a>
                             </li>
@@ -143,7 +143,6 @@
 
 
               <ul class="sidebar-menu" id="nav-accordion">
-              
                     
              <!-- hospital sample -->
              <div class="col-lg-12 mb" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">

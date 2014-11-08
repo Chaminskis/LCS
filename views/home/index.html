@@ -69,7 +69,7 @@
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                      <label><input type="checkbox" i-check  ng-change="globalSelectInsurances()" ng-model="insuranceFilter"  />&nbsp;TODOS</label>
+                                      <label><input type="checkbox" i-check  ng-change="addOrRemoveGlobalFilter" ng-model="insuranceFilter.isDisabled" data-ng-change-param="insuranceFilter"  />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
@@ -94,30 +94,16 @@
                         <ul class="dropdown-menu extended tasks-bar">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
-                                <a href="#" ng-click="test()">
+                                <a href="#">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" icheck />&nbsp;TODAS</label>
+                                      <label><input type="checkbox" i-check  ng-change="addOrRemoveGlobalFilter" ng-model="hospitalTypeFilter.isDisabled" data-ng-change-param="hospitalTypeFilter"  />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" ng-repeat="type in institutionTypes">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck"  icheck ng-model='nice'/>&nbsp;HOSPITAL</label>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" icheck ng-model='nice' />&nbsp;CLÍNICA</label>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;UNIDAD DE ATENCIÓN PRIMARIA</label>
+                                      <label><input type="checkbox" ng-model="type.isSelected" i-check ng-change="updateInsuranceSelection()" data-ng-change-param="{{type.id}}" />&nbsp;{{type.name}}</label>
                                     </div>
                                 </a>
                             </li>

@@ -7,58 +7,89 @@
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
-    String.prototype.addFilterName = function(filtername) {
-        var self = this;
-        self = self + "| " + filtername;
-    };
-
-    String.prototype.removeFilterName = function(filtername){
-        var self = this;
-        var removeExpr = new RegEx("("+filtername+"\s*\|\s*|\s*\|\s*"+filtername+"$)", "g");
-        self = self.replace(removeExpr, '');
-    }
-
     var Filter = function(filtername, param, isDisabled){
         this.filtername = filtername;
         this.param = param;
-        this.isSelected = isSelected;
+        this.isDisabled = isDisabled;
+    }
+
+    Array.prototype.remove = function(object){
+        var index = this.indexOf(object);
+        if(index !== -1)
+            return this.splice(object, 1);
+    };
+
+    Array.prototype.contains = function(object){
+        return this.indexOf(object) !== -1;
     }
 
     $scope.insuranceFilter = new Filter("INSURANCE", [], true);
     $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true);
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
     $scope.criteriaFilter = new Filter("CRITERIA", '', true);
-    $scope.filters = [];
 
+    $scope.insuranceFilter.addOrRemoveInsurance = function(id){
+        if(!this.param.contains(id)){
+            this.param.push(id);
+        }else
+            this.param.remove(id);
+    };
+
+    $scope.insuranceFilter.addOrRemoveInstitutionType = function(id){
+        if(!this.param.contains(id)){
+            this.param.push(id);
+        }else
+            this.param.remove(id);
+    };
     
+    var filters = [];
+
+    filters.addFilter = function(filter){
+        this.push(filter);
+    };
+
+    filters.removeFilter = function(filter){
+        this.remove(filter);
+    };
+
+    filters.filternameExists = function(filtername){
+        
+        return this.indexOf(filtername) !== -1;
+    }
+
+    $scope.addOrRemoveGlobalFilter = function(filtername){
+        var filter = $scope.getFilter(filtername);
+        var selectedFilters = filters;
+
+        if(filter.isDisabled){
+            selectedFilters.removeFilter(filter);
+        }else
+            selectedFilters.addFilter(filter);
+        console.log(filters);
+    };
+
+    $scope.getFilter = function(filtername){
+            return this[filtername] || undefined;
+    }
+
+
     var masterSearchObjectParam = {
-        var self = this;
         searchType: '',
 
         addCriteriaParam: function(filter){
-            if(!self.criteria){
-                self.criteria = [];
+            if(!this.criteria){
+                this.criteria = [];
             }
             searchType = searchType + "| " + filter.filtername;
-            self.criteria = self.criteria + "| " + JSON.stringify(filter.param)
+            this.criteria = this.criteria + "| " + JSON.stringify(filter.param)
         },
 
         addLocationParam: function(locationFilter){
             searchType = searchType + "| " + locationFilter.filtername;
-            self.location = locationFilter.param;
+            this.location = locationFilter.param;
         }
-
     };
 
-    var addFilter = function(filter){
-        filters.add(filter);
-    };
-
-    var removeFilter = function(filter){
-        var index = filters.indexOf(filter);
-        if(index !== -1)
-            filters.splice(index, 1);
-    };
 
     var buildSearchMultiCriteriaParam = function(){
         var searchParam = angular.copy(masterSearchObjectParam);
@@ -119,9 +150,9 @@ angular.module('app.controllers', ['app.services'])
                  var marker = createCustomMarker(markerInfo);
 
                 $scope.map.setCenter(pos);
-                locationFilter.param.lat = position.coords.latitude;
-                locationFilter.param.lon = position.coords.longitude;
-                findHospitalsByLocation(locationFilter.param);
+                $scope.locationFilter.param.lat = position.coords.latitude;
+                $scope.locationFilter.param.lon = position.coords.longitude;
+                findHospitalsByLocation($scope.locationFilter.param);
 
             }, function() {
                 console.log("Error!");
@@ -352,6 +383,11 @@ angular.module('app.controllers', ['app.services'])
         { id: 4, name: "SENASA", isSelected: true },
     ];
 
+    $scope.institutionTypes = [
+        { id: 1, name: "HOSPTIAL", isSelected: true },
+        { id: 2, name: "CLINICA", isSelected: true },
+        { id: 3, name: "UNIDAD DE ATENCION PRIMARIA", isSelected: true },
+    ];
     $scope.test = 1;
 
     var updateSelected = function(action, id) {
@@ -488,7 +524,7 @@ angular.module('app.controllers').directive('iCheck', ['$timeout', function($tim
 
                 var changeMethod = $attrs['ngChange'];
                 changeMethod = changeMethod.replace(/(\(|\))/g, "");
-                var changedMethodParam = $attrs['dataNgChangeParam'];
+                var changedMethodParam = $attrs['ngChangeParam'];
 
                 return $(element).iCheck({
                     // the classes, if you need them.

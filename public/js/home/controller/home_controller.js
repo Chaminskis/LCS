@@ -27,7 +27,7 @@ angular.module('app.controllers', ['app.services'])
     $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true);
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
     $scope.criteriaFilter = new Filter("CRITERIA", '', true);
-
+    $scope.locationFilter.isSelected = true;
     $scope.watch("insuranceFilter.isDisabled", function(filterIsDisabled){
         if(!filterIsDisabled){
             $scope.mainInsurances.forEeach(function(i){
@@ -116,22 +116,29 @@ angular.module('app.controllers', ['app.services'])
         var searchParam = angular.copy(masterSearchObjectParam);
 
         for (var i = 0; i < filters.length; i++) {
-            
+
            searchParam.addCriteriaParam(filter);
         };
-
+        if(locationIsSelected()){
+            searchParam.addLocationParam($scope.locationFilter);
+        }
         return searchParam;
     };
+
+    var locationIsSelected = function(){
+        return $scope.locationFilter.isSelected; 
+    }
 
     var buildSearchNameCriteriaParam = function(){
 
         var searchParam = angular.copy(masterSearchObjectParam);
         searchParam.addCriteriaParam(criteriaFilter);
+        if(locationIsSelected()){
+            searchParam.addLocationParam($scope.locationFilter);
+        }
+
         return searchParam;
     };
-
-
-
 
     var initializeMap = function(){
         var mapOptions = {
@@ -147,8 +154,7 @@ angular.module('app.controllers', ['app.services'])
         $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
         $scope.searchString;
-        $scope.selectedInsurancesId = [];
-        $scope.selectAllInsurances = true;
+        $scope.includeDrivingBasedLocations = true;
         setSearchResultsBar();
     };
 
@@ -313,7 +319,7 @@ angular.module('app.controllers', ['app.services'])
             }
 
         });
-    }
+    };
 
     var setHospitals = function(hospitals){
         
@@ -324,13 +330,13 @@ angular.module('app.controllers', ['app.services'])
             marker.address = hospitals[i].address;
         }            
 
-    }
+    };
 
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
         // enableSearchMode();
-    }        
+    };        
 
     
     $scope.setup = function(){
@@ -341,18 +347,18 @@ angular.module('app.controllers', ['app.services'])
     $scope.viewPopUp = function(){
         if($scope.popup.show)
             return "popup-show";
-    }
+    };
 
     $scope.closePopUp = function(){
         $scope.popup.show = false;
-    }
+    };
 
     var enableSearchMode = function(){
         $scope.searhModeOn = true;
         $scope.bar.show = true;
         $scope.map.partialWidth = true;
         // $scope.popup.show = false;
-    }
+    };
     
     $scope.search = function(){
         removeAllMarkers();
@@ -363,38 +369,38 @@ angular.module('app.controllers', ['app.services'])
         }
 
         enableSearchMode();       
-    }
+    };
 
     var setSearchResultsBar = function(){
         $scope.bar = new Object();
         $scope.bar.show = true;   
         $scope.searchModeOn = true;
-    }
+    };
 
 
     $scope.setMapWidth = function(){
         if($scope.map.partialWidth)
             return "map-partial-width";
-    }
+    };
 
     $scope.showResultsBar = function(){
         if(!$scope.bar.show)
             return "side-bar-hidden";
-    }
+    };
 
     $scope.disableSearchMode = function(){
         console.log("disabling search mode");
         $scope.bar.show = false;
         $scope.map.partialWidth = false;
         $scope.searchModeOn = false;
-    }
+    };
 
     $scope.changeSearchMode = function(){
         if($scope.bar.show)
             $scope.disableSearchMode();
         else
             enableSearchMode();
-    }
+    };
 
     var selectedInsurances = []; 
     $scope.mainInsurances = [
@@ -409,87 +415,7 @@ angular.module('app.controllers', ['app.services'])
         { id: 2, name: "CLINICA", isSelected: true },
         { id: 3, name: "UNIDAD DE ATENCION PRIMARIA", isSelected: true },
     ];
-    $scope.test = 1;
 
-    var updateSelected = function(action, id) {
-      if (action === 'add' && selectedInsurances.indexOf(id) === -1) {
-        selectedInsurances.push(id);
-      }
-      if (action === 'remove' && selectedInsurances.indexOf(id) !== -1) {
-        selectedInsurances.splice(selectedInsurances.indexOf(id), 1);
-      }
-      console.log(selectedInsurances);
-    };
-
-
-    $scope.updateInsuranceSelection = function(insurance){
-        if(insurance.isSelected){
-            addInsuranceId(insurance.id);
-        }else
-        removeInsuranceId(insurance.id);
-        console.log($scope.selectedInsurancesId);
-    }
-
-    var removeInsuranceId = function(id){
-        var id_location = $scope.selectedInsurancesId.indexOf(id); 
-        if( id_location !== -1){
-            $scope.selectedInsurancesId.splice(id_location, 1);
-            $scope.selectAllInsurances = false;
-        }
-        console.log("insurance "+id+" removed.");
-    }
-
-    var addInsuranceId = function(id){
-        var id_location = $scope.selectedInsurancesId.indexOf(id); 
-        if( id_location === -1){
-            $scope.selectedInsurancesId.push(id);
-        }
-        console.log("insurance "+id+" added.");
-    }
-
-    $scope.globalSelectInsurances = function(){
-        $scope.$apply();
-        if($scope.selectAllInsurances){
-            globallyChangeInsuranceSelection(true);        
-        
-        }else{
-            globallyChangeInsuranceSelection(false);        
-        }        
-    }
-
-    var globallyChangeInsuranceSelection = function(selectValue){
-        
-            var insurance;
-            for (var i = 0; i < $scope.mainInsurances.length; i++) {
-                insurance = $scope.mainInsurances[i]; 
-                insurance.isSelected = selectValue; 
-                $scope.updateInsuranceSelection(insurance);
-            };
-        
-    }
-
-
-    $scope.clickMe = false;
-    window.test = function(){
-        console.log("hey!");
-    }
-
-    $scope.checkInsurances = function(){
-        console.log($scope.mainInsurances);
-    }
-
-    $scope.selectAll = function($event) {
-      var checkbox = $event.target;
-      var action = (checkbox.checked ? 'add' : 'remove');
-      for ( var i = 0; i < $scope.entities.length; i++) {
-        var entity = $scope.entities[i];
-        updateSelected(action, entity.id);
-      }
-    };
-
-
-
-    
     var removeAllMarkers = function(){
         for(var i = 0; i < $scope.markers.length; i++){
             $scope.markers[i].setMap(null);

@@ -7,10 +7,33 @@
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
-    var Filter = function(filtername, param, isDisabled){
+    
+    var filters = [];
+
+    filters.addFilter = function(filter){
+        this.push(filter);
+    };
+
+    filters.removeFilter = function(filter){
+        this.remove(filter);
+    };
+
+    filters.filternameExists = function(filtername){       
+        return this.indexOf(filtername) !== -1;
+    };
+
+
+    var Filter = function(filtername, param, isDisabled, filtersCollection){
+        var self = this;
         this.filtername = filtername;
         this.param = param;
         this.isDisabled = isDisabled;
+        this.addToSelectedFilters = function(){
+            filtersCollection.addFilter(self);
+        }
+        this.removeFromSelectedFilters = function(){
+            filtersCollection.removeFilter(self);
+        }
     }
 
     Array.prototype.remove = function(object){
@@ -23,60 +46,66 @@ angular.module('app.controllers', ['app.services'])
         return this.indexOf(object) !== -1;
     }
 
-    $scope.insuranceFilter = new Filter("INSURANCE", [], true);
-    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true);
+    $scope.insuranceFilter = new Filter("INSURANCE", [], true, filters);
+    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true, filters);
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
-    $scope.criteriaFilter = new Filter("CRITERIA", '', true);
+    $scope.criteriaFilter = new Filter("CRITERIA", '', true, filters);
     $scope.locationFilter.isSelected = true;
-    $scope.watch("insuranceFilter.isDisabled", function(filterIsDisabled){
-        if(!filterIsDisabled){
-            $scope.mainInsurances.forEeach(function(i){
-                i.isSelected = false;
-            });
-        }
-        console.log($scope.mainInsurances);
-    });
+    // $scope.$watch("insuranceFilter.isDisabled", function(filterIsDisabled){
+    //     if(!filterIsDisabled){
+    //         $scope.mainInsurances.forEeach(function(i){
+    //             i.isSelected = false;
+    //         });
+    //     }
+    //     console.log($scope.mainInsurances);
+    // });
 
-    $scope.watch("hospitalTypeFilter.isDisabled", function(filterIsDisabled){
-        if(!filterIsDisabled){
-            $scope.institutionTypes.forEeach(function(i){
-                i.isSelected = false;
-            });
-        }
-        console.log($scope.mainInsurances);
-    });
+    // $scope.$watch("hospitalTypeFilter.isDisabled", function(filterIsDisabled){
+    //     if(!filterIsDisabled){
+    //         $scope.institutionTypes.forEeach(function(i){
+    //             i.isSelected = false;
+    //         });
+    //     }
+    //     console.log($scope.mainInsurances);
+    // });
 
     var addOrRemoveFilterParam = function(id){
         var filter = this;
         if(!filter.param.contains(id)){
             filter.isDisabled = false;
             if(!filters.contains(filter)){
-                $scope.addOrRemoveGlobalFilter(filter);
+                filter.addToSelectedFilters();
                 filter.param.push(id);
             }
-        }else
+        }else{
             filter.param.remove(id);
+            filter.selectAll();
+        }
         console.log(filter.param);
     };
     $scope.insuranceFilter.addOrRemoveInsurance = addOrRemoveFilterParam;
-    $scope.insuranceFilter.addOrRemoveInstitutionType = addOrRemoveFilterParam;
+    $scope.hospitalTypeFilter.addOrRemoveHospitalType = addOrRemoveFilterParam;
     
+    $scope.addOrRemoveInsurance = function(id){
+        this.insuranceFilter.addOrRemoveInsurance(id);
+    }
 
+    $scope.addOrRemoveHospitalType = function(id){
+        this.hospitalTypeFilter.addOrRemoveHospitalType(id);
+    }
 
-    var filters = [];
+    $scope.insuranceFilter.selectAll = function(){
+        for (var i = 0; i < mainInsurances.length; i++) {
+            mainInsurances[i].isSelected = true;
+        };
+    }; 
 
-    filters.addFilter = function(filter){
-        this.push(filter);
-    };
+    $scope.hospitalTypeFilter.selectAll = function(){
+        for (var i = 0; i < mainInsurances.length; i++) {
+            mainInsurances[i].isSelected = true;
+        };
+    }
 
-    filters.removeFilter = function(filter){
-        this.remove(filter);
-    };
-
-    filters.filternameExists = function(filtername){
-        
-        return this.indexOf(filtername) !== -1;
-    };
 
     $scope.addOrRemoveGlobalFilter = function(filtername){
         var filter = $scope.getFilter(filtername);
@@ -102,7 +131,7 @@ angular.module('app.controllers', ['app.services'])
                 this.criteria = [];
             }
             searchType = searchType + "| " + filter.filtername;
-            this.criteria = this.criteria + "| " + JSON.stringify(filter.param)
+            this.criteria = this.criteria + "| " + JSON.stringify(filter.param);
         },
 
         addLocationParam: function(locationFilter){
@@ -410,7 +439,7 @@ angular.module('app.controllers', ['app.services'])
         { id: 4, name: "SENASA", isSelected: true },
     ];
 
-    $scope.institutionTypes = [
+    $scope.hospitalTypes = [
         { id: 1, name: "HOSPTIAL", isSelected: true },
         { id: 2, name: "CLINICA", isSelected: true },
         { id: 3, name: "UNIDAD DE ATENCION PRIMARIA", isSelected: true },

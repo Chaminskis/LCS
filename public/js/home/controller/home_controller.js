@@ -7,7 +7,16 @@
 angular.module('app.controllers', ['app.services'])
 .controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
 
-    
+    Array.prototype.remove = function(object){
+        var index = this.indexOf(object);
+        if(index !== -1)
+            return this.splice(object, 1);
+    };
+
+    Array.prototype.contains = function(object){
+        return this.indexOf(object) !== -1;
+    }
+
     var filters = [];
 
     filters.addFilter = function(filter){
@@ -28,23 +37,15 @@ angular.module('app.controllers', ['app.services'])
         this.filtername = filtername;
         this.param = param;
         this.isDisabled = isDisabled;
+        this.filtersCollection = filtersCollection;
         this.addToSelectedFilters = function(){
-            filtersCollection.addFilter(self);
+            self.filtersCollection.addFilter(self);
         }
         this.removeFromSelectedFilters = function(){
-            filtersCollection.removeFilter(self);
+            self.filtersCollection.removeFilter(self);
         }
     }
 
-    Array.prototype.remove = function(object){
-        var index = this.indexOf(object);
-        if(index !== -1)
-            return this.splice(object, 1);
-    };
-
-    Array.prototype.contains = function(object){
-        return this.indexOf(object) !== -1;
-    }
 
     $scope.insuranceFilter = new Filter("INSURANCE", [], true, filters);
     $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true, filters);
@@ -79,9 +80,9 @@ angular.module('app.controllers', ['app.services'])
             }
         }else{
             filter.param.remove(id);
-            filter.selectAll();
         }
-        console.log(filter.param);
+        console.log(filter);
+        $scope.$apply();
     };
     $scope.insuranceFilter.addOrRemoveInsurance = addOrRemoveFilterParam;
     $scope.hospitalTypeFilter.addOrRemoveHospitalType = addOrRemoveFilterParam;
@@ -95,14 +96,16 @@ angular.module('app.controllers', ['app.services'])
     }
 
     $scope.insuranceFilter.selectAll = function(){
-        for (var i = 0; i < mainInsurances.length; i++) {
-            mainInsurances[i].isSelected = true;
+        for (var i = 0; i < $scope.mainInsurances.length; i++) {
+            $scope.mainInsurances[i].isSelected = true;
+            $scope.insuranceFilter.addOrRemoveInsurance($scope.mainInsurances[i].id);
         };
     }; 
 
     $scope.hospitalTypeFilter.selectAll = function(){
-        for (var i = 0; i < mainInsurances.length; i++) {
-            mainInsurances[i].isSelected = true;
+        for (var i = 0; i < $scope.hospitalTypes.length; i++) {
+            $scope.hospitalTypes[i].isSelected = true;
+            $scope.hospitalTypes[i].addOrRemoveHospitalType($scope.hospitalTypes[i].id);
         };
     }
 
@@ -113,8 +116,10 @@ angular.module('app.controllers', ['app.services'])
 
         if(filter.isDisabled){
             selectedFilters.removeFilter(filter);
-        }else
+            filter.selectAll();
+        }else{
             selectedFilters.addFilter(filter);
+        }
         console.log(filters);
     };
 

@@ -17,19 +17,34 @@ angular.module('app.controllers', ['app.services'])
         return this.indexOf(object) !== -1;
     }
 
+    $scope.safeApply = function(fn) {
+        // copied and pasted with love from https://coderwall.com/p/ngisma
+        // the beautiful price of using beautiful jquery plugins :D :D
+        var phase = this.$root.$$phase;
+        if(phase == '$apply' || phase == '$digest') {
+                if(fn && (typeof(fn) === 'function')) {
+                    fn();
+                }
+        } else {
+        this.$apply(fn);
+        }
+    };
     var filters = [];
 
-    filters.addFilter = function(filter){
-        this.push(filter);
-    };
 
-    filters.removeFilter = function(filter){
-        this.remove(filter);
-    };
+    $scope.mainInsurances = [
+        { id: 1, name: "PALIC", isSelected: true },
+        { id: 2, name: "UNIVERSAL", isSelected: true },
+        { id: 3, name: "HUMANO", isSelected: true },
+        { id: 4, name: "SENASA", isSelected: true },
+    ];
 
-    filters.filternameExists = function(filtername){       
-        return this.indexOf(filtername) !== -1;
-    };
+    $scope.hospitalTypes = [
+        { id: 1, name: "HOSPTIAL", isSelected: true },
+        { id: 2, name: "CLINICA", isSelected: true },
+        { id: 3, name: "UNIDAD DE ATENCION PRIMARIA", isSelected: true },
+    ];
+
 
 
     var Filter = function(filtername, param, isDisabled, filtersCollection){
@@ -38,95 +53,100 @@ angular.module('app.controllers', ['app.services'])
         this.param = param;
         this.isDisabled = isDisabled;
         this.filtersCollection = filtersCollection;
-        this.addToSelectedFilters = function(){
-            self.filtersCollection.addFilter(self);
-        }
-        this.removeFromSelectedFilters = function(){
-            self.filtersCollection.removeFilter(self);
-        }
     }
 
 
-    $scope.insuranceFilter = new Filter("INSURANCE", [], true, filters);
-    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true, filters);
+    $scope.insuranceFilter = new Filter("INSURANCE", [], true, filters, $scope.mainInsurances);
+    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true, filters, $scope.hospitalTypes);
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
     $scope.criteriaFilter = new Filter("CRITERIA", '', true, filters);
-    $scope.locationFilter.isSelected = true;
-    // $scope.$watch("insuranceFilter.isDisabled", function(filterIsDisabled){
-    //     if(!filterIsDisabled){
-    //         $scope.mainInsurances.forEeach(function(i){
-    //             i.isSelected = false;
-    //         });
-    //     }
-    //     console.log($scope.mainInsurances);
-    // });
-
-    // $scope.$watch("hospitalTypeFilter.isDisabled", function(filterIsDisabled){
-    //     if(!filterIsDisabled){
-    //         $scope.institutionTypes.forEeach(function(i){
-    //             i.isSelected = false;
-    //         });
-    //     }
-    //     console.log($scope.mainInsurances);
-    // });
-
-    var addOrRemoveFilterParam = function(id){
-        var filter = this;
-        if(!filter.param.contains(id)){
-            filter.isDisabled = false;
-            if(!filters.contains(filter)){
-                filter.addToSelectedFilters();
-                filter.param.push(id);
-            }
-        }else{
-            filter.param.remove(id);
-        }
-        console.log(filter);
-        $scope.$apply();
-    };
-    $scope.insuranceFilter.addOrRemoveInsurance = addOrRemoveFilterParam;
-    $scope.hospitalTypeFilter.addOrRemoveHospitalType = addOrRemoveFilterParam;
     
-    $scope.addOrRemoveInsurance = function(id){
-        this.insuranceFilter.addOrRemoveInsurance(id);
-    }
+    filters.push($scope.insuranceFilter);
+    filters.push($scope.hospitalTypeFilter);
+    filters.push($scope.locationFilter);
+    filters.push($scope.criteriaFilter);
+    
+    $scope.locationFilter.isSelected = true;
 
-    $scope.addOrRemoveHospitalType = function(id){
-        this.hospitalTypeFilter.addOrRemoveHospitalType(id);
-    }
-
-    $scope.insuranceFilter.selectAll = function(){
-        for (var i = 0; i < $scope.mainInsurances.length; i++) {
-            $scope.mainInsurances[i].isSelected = true;
-            $scope.insuranceFilter.addOrRemoveInsurance($scope.mainInsurances[i].id);
-        };
-    }; 
-
-    $scope.hospitalTypeFilter.selectAll = function(){
-        for (var i = 0; i < $scope.hospitalTypes.length; i++) {
-            $scope.hospitalTypes[i].isSelected = true;
-            $scope.hospitalTypes[i].addOrRemoveHospitalType($scope.hospitalTypes[i].id);
-        };
-    }
-
-
-    $scope.addOrRemoveGlobalFilter = function(filtername){
-        var filter = $scope.getFilter(filtername);
-        var selectedFilters = filters;
-
-        if(filter.isDisabled){
-            selectedFilters.removeFilter(filter);
-            filter.selectAll();
+    
+    $scope.insuranceFilter.updateInsuranceSelection = function(){
+        
+        var allIsSelected = everythingIsSelected($scope.mainInsurances);
+        if(allIsSelected){
+            $scope.insuranceFilter.isDisabled = true;    
         }else{
-            selectedFilters.addFilter(filter);
+            $scope.insuranceFilter.isDisabled = false;    
         }
-        console.log(filters);
+        $scope.safeApply();
     };
 
-    $scope.getFilter = function(filtername){
-            return this[filtername] || undefined;
+    $scope.updateInsuranceSelection = function(){
+        $scope.insuranceFilter.updateInsuranceSelection();
     };
 
+
+    $scope.hospitalTypeFilter.updateHospitalTypeSelection = function(){
+        var allIsSelected = everythingIsSelected($scope.hospitalTypes);
+        if(allIsSelected){
+            $scope.hospitalTypeFilter.isDisabled = true;    
+        }else{
+            $scope.hospitalTypeFilter.isDisabled = false;    
+        }
+        $scope.safeApply();
+    };
+
+    $scope.updateHospitalTypeSelection = function(){
+        $scope.hospitalTypeFilter.updateHospitalTypeSelection();
+    }
+
+    var everythingIsSelected = function(entityCollection){
+        var allIsSelected = true;
+        for (var i = 0; i < entityCollection.length; i++) {
+            if(!entityCollection[i].isSelected)
+                allIsSelected = false;
+        };
+        return allIsSelected;
+    };
+
+    $scope.insuranceFilter.updateSelectAllInsurances = function(){
+        
+        if($scope.insuranceFilter.isDisabled){
+            for (var i = 0; i < $scope.mainInsurances.length; i++) {
+                $scope.mainInsurances[i].isSelected = true;
+            };
+        }else{
+            for (var i = 0; i < $scope.mainInsurances.length; i++) {
+                $scope.mainInsurances[i].isSelected = false;
+            };
+        }
+        $scope.safeApply();
+
+    };
+
+     $scope.updateSelectAllInsurances = function(){
+        $scope.insuranceFilter.updateSelectAllInsurances();
+     }
+
+
+
+    $scope.hospitalTypeFilter.updateSelectAllHospitalTypes = function(){
+        
+        if($scope.hospitalTypeFilter.isDisabled){        
+            for (var i = 0; i < $scope.hospitalTypes.length; i++) {
+                $scope.hospitalTypes[i].isSelected = true;
+            };
+        }else{
+            for (var i = 0; i < $scope.hospitalTypes.length; i++) {
+                $scope.hospitalTypes[i].isSelected = false;
+            };
+        }
+        $scope.safeApply();
+    };
+
+
+    $scope.updateSelectAllHospitalTypes = function(){
+        $scope.hospitalTypeFilter.updateSelectAllHospitalTypes();
+    }
 
     var masterSearchObjectParam = {
         searchType: '',
@@ -369,12 +389,13 @@ angular.module('app.controllers', ['app.services'])
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
-        // enableSearchMode();
     };        
 
     
     $scope.setup = function(){
         initializeMap();
+        $scope.insuranceFilter.updateSelectAllInsurances();
+        $scope.hospitalTypeFilter.updateSelectAllHospitalTypes();
         calculateCurrentPosition();
     };
 
@@ -436,19 +457,6 @@ angular.module('app.controllers', ['app.services'])
             enableSearchMode();
     };
 
-    var selectedInsurances = []; 
-    $scope.mainInsurances = [
-        { id: 1, name: "PALIC", isSelected: true },
-        { id: 2, name: "UNIVERSAL", isSelected: true },
-        { id: 3, name: "HUMANO", isSelected: true },
-        { id: 4, name: "SENASA", isSelected: true },
-    ];
-
-    $scope.hospitalTypes = [
-        { id: 1, name: "HOSPTIAL", isSelected: true },
-        { id: 2, name: "CLINICA", isSelected: true },
-        { id: 3, name: "UNIDAD DE ATENCION PRIMARIA", isSelected: true },
-    ];
 
     var removeAllMarkers = function(){
         for(var i = 0; i < $scope.markers.length; i++){

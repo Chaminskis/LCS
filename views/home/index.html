@@ -69,14 +69,14 @@
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                      <label><input type="checkbox" i-check  ng-change="addOrRemoveGlobalFilter" ng-model="insuranceFilter.isDisabled" data-ng-change-param="insuranceFilter"  />&nbsp;TODOS</label>
+                                      <label><input type="checkbox" i-check  ng-change="updateSelectAllInsurances" ng-model="insuranceFilter.isDisabled" />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" ng-repeat="insurance in mainInsurances">
                                     <div class="task-info">
-                                      <label><input type="checkbox" ng-model="insurance.isSelected" i-check ng-change="addOrRemoveInsurance" data-ng-change-param="{{insurance.id}}" />&nbsp;{{insurance.name}}</label>
+                                      <label><input type="checkbox" ng-model="insurance.isSelected" i-check ng-change="updateInsuranceSelection" />&nbsp;{{insurance.name}}</label>
                                     </div>
                                 </a>
                             </li>
@@ -96,14 +96,14 @@
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                      <label><input type="checkbox" i-check  ng-change="addOrRemoveGlobalFilter" ng-model="hospitalTypeFilter.isDisabled" data-ng-change-param="hospitalTypeFilter"  />&nbsp;TODOS</label>
+                                      <label><input type="checkbox" i-check  ng-change="updateSelectAllHospitalTypes" ng-model="hospitalTypeFilter.isDisabled"  />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" ng-repeat="type in hospitalTypes">
                                     <div class="task-info">
-                                      <label><input type="checkbox" ng-model="type.isSelected" i-check ng-change="addOrRemoveInstitutionType" data-ng-change-param="{{type.id}}" />&nbsp;{{type.name}}</label>
+                                      <label><input type="checkbox" ng-model="type.isSelected" i-check ng-change="updateHospitalTypeSelection" />&nbsp;{{type.name}}</label>
                                     </div>
                                 </a>
                             </li>

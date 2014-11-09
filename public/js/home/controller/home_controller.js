@@ -5,7 +5,7 @@
 
 'use strict';
 angular.module('app.controllers', ['app.services'])
-.controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
+.controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q', '$timeout',  function($scope, service, $q, $timeout){
 
     Array.prototype.remove = function(object){
         var index = this.indexOf(object);
@@ -18,16 +18,11 @@ angular.module('app.controllers', ['app.services'])
     }
 
     $scope.safeApply = function(fn) {
-        // copied and pasted with love from https://coderwall.com/p/ngisma
-        // the beautiful price of using beautiful jquery plugins :D :D
-        var phase = this.$root.$$phase;
-        if(phase == '$apply' || phase == '$digest') {
-                if(fn && (typeof(fn) === 'function')) {
-                    fn();
-                }
-        } else {
-        this.$apply(fn);
-        }
+        
+        $timeout(function(){
+            $scope.$apply();
+        });
+
     };
     var filters = [];
 
@@ -47,19 +42,18 @@ angular.module('app.controllers', ['app.services'])
 
 
 
-    var Filter = function(filtername, param, isDisabled, filtersCollection){
+    var Filter = function(filtername, param, isDisabled){
         var self = this;
         this.filtername = filtername;
         this.param = param;
         this.isDisabled = isDisabled;
-        this.filtersCollection = filtersCollection;
     }
 
 
-    $scope.insuranceFilter = new Filter("INSURANCE", [], true, filters, $scope.mainInsurances);
-    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", [], true, filters, $scope.hospitalTypes);
+    $scope.insuranceFilter = new Filter("INSURANCE", $scope.mainInsurances, true);
+    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", $scope.hospitalTypes, true);
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
-    $scope.criteriaFilter = new Filter("CRITERIA", '', true, filters);
+    $scope.criteriaFilter = new Filter("CRITERIA", '', true);
     
     filters.push($scope.insuranceFilter);
     filters.push($scope.hospitalTypeFilter);
@@ -82,6 +76,7 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.updateInsuranceSelection = function(){
         $scope.insuranceFilter.updateInsuranceSelection();
+        console.log(buildSearchMultiCriteriaParam());
     };
 
 
@@ -97,6 +92,7 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.updateHospitalTypeSelection = function(){
         $scope.hospitalTypeFilter.updateHospitalTypeSelection();
+        console.log(buildSearchMultiCriteriaParam());
     }
 
     var everythingIsSelected = function(entityCollection){
@@ -125,6 +121,7 @@ angular.module('app.controllers', ['app.services'])
 
      $scope.updateSelectAllInsurances = function(){
         $scope.insuranceFilter.updateSelectAllInsurances();
+        console.log(buildSearchMultiCriteriaParam());
      }
 
 
@@ -146,6 +143,7 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.updateSelectAllHospitalTypes = function(){
         $scope.hospitalTypeFilter.updateSelectAllHospitalTypes();
+        console.log(buildSearchMultiCriteriaParam());
     }
 
     var masterSearchObjectParam = {
@@ -155,13 +153,25 @@ angular.module('app.controllers', ['app.services'])
             if(!this.criteria){
                 this.criteria = [];
             }
-            searchType = searchType + "| " + filter.filtername;
-            this.criteria = this.criteria + "| " + JSON.stringify(filter.param);
+            this.searchType = this.searchType + "| " + filter.filtername;
+            var criteriaParam = this.filterSelectedParams(filter.param);
+            this.criteria = this.criteria + "| " + JSON.stringify(criteriaParam);
         },
 
         addLocationParam: function(locationFilter){
-            searchType = searchType + "| " + locationFilter.filtername;
+            this.searchType = this.searchType + "| " + locationFilter.filtername;
             this.location = locationFilter.param;
+        },
+        filterSelectedParams: function(params){
+            if(params instanceof Array){
+                var selectedParams = [];
+                    for (var i = 0; i < params.length; i++) {
+                        if(params[i].isSelected){
+                            selectedParams.push(params[i]);
+                        } 
+                    };
+            }
+            return params;
         }
     };
 
@@ -170,8 +180,10 @@ angular.module('app.controllers', ['app.services'])
         var searchParam = angular.copy(masterSearchObjectParam);
 
         for (var i = 0; i < filters.length; i++) {
-
-           searchParam.addCriteriaParam(filter);
+           if(!filters.isDisabled){
+                var filter = filters[i];
+                searchParam.addCriteriaParam(filter);
+           }
         };
         if(locationIsSelected()){
             searchParam.addLocationParam($scope.locationFilter);

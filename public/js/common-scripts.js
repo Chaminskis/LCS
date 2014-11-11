@@ -125,6 +125,8 @@ $(".icheck").iCheck({
 
 var elem = document.querySelector('.js-switch');
 var init = new Switchery(elem, { color: "#428bca"});
+var elem = document.querySelector('.js-switch2');
+var init = new Switchery(elem, { color: "#428bca"});
 
 
 }();

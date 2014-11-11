@@ -57,8 +57,6 @@ angular.module('app.controllers', ['app.services'])
     
     filters.push($scope.insuranceFilter);
     filters.push($scope.hospitalTypeFilter);
-    filters.push($scope.locationFilter);
-    filters.push($scope.criteriaFilter);
     
     $scope.locationFilter.isSelected = true;
 

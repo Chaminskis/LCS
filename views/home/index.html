@@ -69,14 +69,18 @@
                             <li>
                                 <a href="#">
                                     <div class="task-info">
-                                      <label><input type="checkbox" i-check  ng-click="test()"  />&nbsp;TODOS</label>
+                                      <label><input type="checkbox" i-check  ng-change="updateSelectAllInsurances" ng-model="insuranceFilter.isDisabled" />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" ng-repeat="insurance in mainInsurances">
                                     <div class="task-info">
+<<<<<<< HEAD
                                       <label><input type="checkbox" class="icheck" ng-click="test()" ng-mode='nice.model'/>&nbsp;{{insurance.name}}</label>
+=======
+                                      <label><input type="checkbox" ng-model="insurance.isSelected" i-check ng-change="updateInsuranceSelection" />&nbsp;{{insurance.name}}</label>
+>>>>>>> a581243025e321456ef72c0e55c67f6ede3bf06d
                                     </div>
                                 </a>
                             </li>
@@ -94,30 +98,16 @@
                         <ul class="dropdown-menu extended tasks-bar">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
-                                <a href="#" ng-click="test()">
+                                <a href="#">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" checked icheck ng-model='nice'/>&nbsp;TODAS</label>
+                                      <label><input type="checkbox" i-check  ng-change="updateSelectAllHospitalTypes" ng-model="hospitalTypeFilter.isDisabled"  />&nbsp;TODOS</label>
                                     </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" ng-repeat="type in hospitalTypes">
                                     <div class="task-info">
-                                        <label><input type="checkbox" class="icheck"  icheck ng-model='nice'/>&nbsp;HOSPITAL</label>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" icheck ng-model='nice' />&nbsp;CLÍNICA</label>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="task-info">
-                                        <label><input type="checkbox" class="icheck" />&nbsp;UNIDAD DE ATENCIÓN PRIMARIA</label>
+                                      <label><input type="checkbox" ng-model="type.isSelected" i-check ng-change="updateHospitalTypeSelection" />&nbsp;{{type.name}}</label>
                                     </div>
                                 </a>
                             </li>
@@ -125,15 +115,15 @@
                     </li>
 
                     <!-- institution type end -->
-                    <li><a class="" style="" href="#">
-                      TRANSPORTE :
-            
-                    </a></li>
-
                     <li><a class="" href="#">
-                      <input type="checkbox" class="pull-left js-switch" checked />
+                      <input type="checkbox" class="pull-left js-switch"  checked />
                     
                     </a></li>
+                    <li><a class="" href="#">
+                      <input type="checkbox" class="pull-left js-switch2" checked  />
+                    
+                    </a></li>
+
               </ul>
             </div>
             
@@ -157,7 +147,6 @@
 
 
               <ul class="sidebar-menu" id="nav-accordion">
-              
                     
              <!-- hospital sample -->
              <div class="col-lg-12 mb" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">

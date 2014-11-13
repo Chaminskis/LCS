@@ -125,12 +125,8 @@ $(".icheck").iCheck({
 
 var elem = document.querySelector('.js-switch');
 var init = new Switchery(elem, { color: "#428bca"});
+var elem = document.querySelector('.js-switch2');
+var init = new Switchery(elem, { color: "#428bca"});
 
-// search bar
-$('.search-bar').on('blur', function(){
-    $(this).parent().removeClass('col-lg-4').addClass('col-lg-2');
-    }).on('focus', function(){
-    $(this).parent().removeClass('col-lg-2').addClass('col-lg-4');
-});
 
 }();

@@ -4,18 +4,205 @@
  **/
 
 'use strict';
-
-angular.module('app.controllers').directive('simple', [function($timeout, $parse) {
-    return {
-        link: function($scope, element, $attrs) {
-            console.log("la gente!");
-        },
-        template: '<h1>Test!</h1>'
-    };
-}]);
-
 angular.module('app.controllers', ['app.services'])
-.controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q',  function($scope, service, $q){
+.controller('HomeCtrl', ['$scope', 'HomeHospitalService', '$q', '$timeout',  function($scope, service, $q, $timeout){
+
+    Array.prototype.remove = function(object){
+        var index = this.indexOf(object);
+        if(index !== -1)
+            return this.splice(object, 1);
+    };
+
+    Array.prototype.contains = function(object){
+        return this.indexOf(object) !== -1;
+    }
+
+    $scope.safeApply = function(fn) {
+        
+        $timeout(function(){
+            $scope.$apply();
+        });
+
+    };
+    var filters = [];
+
+
+    $scope.mainInsurances = [
+        { id: 1, name: "PALIC", isSelected: true },
+        { id: 2, name: "UNIVERSAL", isSelected: true },
+        { id: 3, name: "HUMANO", isSelected: true },
+        { id: 4, name: "SENASA", isSelected: true },
+    ];
+
+    $scope.hospitalTypes = [
+        { id: 1, name: "HOSPTIAL", isSelected: true },
+        { id: 2, name: "CLINICA", isSelected: true },
+        { id: 3, name: "UNIDAD DE ATENCION PRIMARIA", isSelected: true },
+    ];
+
+
+
+    var Filter = function(filtername, param, isDisabled){
+        var self = this;
+        this.filtername = filtername;
+        this.param = param;
+        this.isDisabled = isDisabled;
+    }
+
+
+    $scope.insuranceFilter = new Filter("INSURANCE", $scope.mainInsurances, true);
+    $scope.hospitalTypeFilter = new Filter("HOSPITALTYPE", $scope.hospitalTypes, true);
+    $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
+    $scope.criteriaFilter = new Filter("CRITERIA", '', true);
+    
+    filters.push($scope.insuranceFilter);
+    filters.push($scope.hospitalTypeFilter);
+    
+    $scope.locationFilter.isSelected = true;
+
+    
+    $scope.insuranceFilter.updateInsuranceSelection = function(){
+        
+        var allIsSelected = everythingIsSelected($scope.mainInsurances);
+        if(allIsSelected){
+            $scope.insuranceFilter.isDisabled = true;    
+        }else{
+            $scope.insuranceFilter.isDisabled = false;    
+        }
+        $scope.safeApply();
+    };
+
+    $scope.updateInsuranceSelection = function(){
+        $scope.insuranceFilter.updateInsuranceSelection();
+        console.log(buildSearchMultiCriteriaParam());
+    };
+
+
+    $scope.hospitalTypeFilter.updateHospitalTypeSelection = function(){
+        var allIsSelected = everythingIsSelected($scope.hospitalTypes);
+        if(allIsSelected){
+            $scope.hospitalTypeFilter.isDisabled = true;    
+        }else{
+            $scope.hospitalTypeFilter.isDisabled = false;    
+        }
+        $scope.safeApply();
+    };
+
+    $scope.updateHospitalTypeSelection = function(){
+        $scope.hospitalTypeFilter.updateHospitalTypeSelection();
+        console.log(buildSearchMultiCriteriaParam());
+    }
+
+    var everythingIsSelected = function(entityCollection){
+        var allIsSelected = true;
+        for (var i = 0; i < entityCollection.length; i++) {
+            if(!entityCollection[i].isSelected)
+                allIsSelected = false;
+        };
+        return allIsSelected;
+    };
+
+    $scope.insuranceFilter.updateSelectAllInsurances = function(){
+        
+        if($scope.insuranceFilter.isDisabled){
+            for (var i = 0; i < $scope.mainInsurances.length; i++) {
+                $scope.mainInsurances[i].isSelected = true;
+            };
+        }else{
+            for (var i = 0; i < $scope.mainInsurances.length; i++) {
+                $scope.mainInsurances[i].isSelected = false;
+            };
+        }
+        $scope.safeApply();
+
+    };
+
+     $scope.updateSelectAllInsurances = function(){
+        $scope.insuranceFilter.updateSelectAllInsurances();
+        console.log(buildSearchMultiCriteriaParam());
+     }
+
+
+
+    $scope.hospitalTypeFilter.updateSelectAllHospitalTypes = function(){
+        
+        if($scope.hospitalTypeFilter.isDisabled){        
+            for (var i = 0; i < $scope.hospitalTypes.length; i++) {
+                $scope.hospitalTypes[i].isSelected = true;
+            };
+        }else{
+            for (var i = 0; i < $scope.hospitalTypes.length; i++) {
+                $scope.hospitalTypes[i].isSelected = false;
+            };
+        }
+        $scope.safeApply();
+    };
+
+
+    $scope.updateSelectAllHospitalTypes = function(){
+        $scope.hospitalTypeFilter.updateSelectAllHospitalTypes();
+        console.log(buildSearchMultiCriteriaParam());
+    }
+
+    var masterSearchObjectParam = {
+        searchType: '',
+
+        addCriteriaParam: function(filter){
+            if(!this.criteria){
+                this.criteria = [];
+            }
+            this.searchType = this.searchType + "| " + filter.filtername;
+            var criteriaParam = this.filterSelectedParams(filter.param);
+            this.criteria = this.criteria + "| " + JSON.stringify(criteriaParam);
+        },
+
+        addLocationParam: function(locationFilter){
+            this.searchType = this.searchType + "| " + locationFilter.filtername;
+            this.location = locationFilter.param;
+        },
+        filterSelectedParams: function(params){
+            if(params instanceof Array){
+                var selectedParams = [];
+                    for (var i = 0; i < params.length; i++) {
+                        if(params[i].isSelected){
+                            selectedParams.push(params[i]);
+                        } 
+                    };
+            }
+            return params;
+        }
+    };
+
+
+    var buildSearchMultiCriteriaParam = function(){
+        var searchParam = angular.copy(masterSearchObjectParam);
+
+        for (var i = 0; i < filters.length; i++) {
+           if(!filters.isDisabled){
+                var filter = filters[i];
+                searchParam.addCriteriaParam(filter);
+           }
+        };
+        if(locationIsSelected()){
+            searchParam.addLocationParam($scope.locationFilter);
+        }
+        return searchParam;
+    };
+
+    var locationIsSelected = function(){
+        return $scope.locationFilter.isSelected; 
+    }
+
+    var buildSearchNameCriteriaParam = function(){
+
+        var searchParam = angular.copy(masterSearchObjectParam);
+        searchParam.addCriteriaParam(criteriaFilter);
+        if(locationIsSelected()){
+            searchParam.addLocationParam($scope.locationFilter);
+        }
+
+        return searchParam;
+    };
 
     var initializeMap = function(){
         var mapOptions = {
@@ -30,8 +217,8 @@ angular.module('app.controllers', ['app.services'])
         $scope.directionsDisplay = new google.maps.DirectionsRenderer();
         $scope.distanceService = new google.maps.DistanceMatrixService();
         $scope.directionsDisplay.setMap($scope.map);
-        $scope.searchString; 
-        // setPopup();
+        $scope.searchString;
+        $scope.includeDrivingBasedLocations = true;
         setSearchResultsBar();
     };
 
@@ -51,15 +238,12 @@ angular.module('app.controllers', ['app.services'])
                     pin: SQUARE_PIN
                 };
 
-                 var marker = createCustomMarker(markerInfo);
+                var marker = createCustomMarker(markerInfo);
 
                 $scope.map.setCenter(pos);
-                var location = {
-                    "lat": position.coords.latitude,
-                    "lon": position.coords.longitude
-                };
-
-                findHospitalsByLocation(location)
+                $scope.locationFilter.param.lat = position.coords.latitude;
+                $scope.locationFilter.param.lon = position.coords.longitude;
+                findHospitalsByLocation($scope.locationFilter.param);
 
             }, function() {
                 console.log("Error!");
@@ -199,7 +383,7 @@ angular.module('app.controllers', ['app.services'])
             }
 
         });
-    }
+    };
 
     var setHospitals = function(hospitals){
         
@@ -210,35 +394,36 @@ angular.module('app.controllers', ['app.services'])
             marker.address = hospitals[i].address;
         }            
 
-    }
+    };
 
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
-        // enableSearchMode();
-    }        
+    };        
 
     
     $scope.setup = function(){
         initializeMap();
+        $scope.insuranceFilter.updateSelectAllInsurances();
+        $scope.hospitalTypeFilter.updateSelectAllHospitalTypes();
         calculateCurrentPosition();
     };
 
     $scope.viewPopUp = function(){
         if($scope.popup.show)
             return "popup-show";
-    }
+    };
 
     $scope.closePopUp = function(){
         $scope.popup.show = false;
-    }
+    };
 
     var enableSearchMode = function(){
         $scope.searhModeOn = true;
         $scope.bar.show = true;
         $scope.map.partialWidth = true;
         // $scope.popup.show = false;
-    }
+    };
     
     $scope.search = function(){
         removeAllMarkers();
@@ -249,89 +434,40 @@ angular.module('app.controllers', ['app.services'])
         }
 
         enableSearchMode();       
-    }
+    };
 
     var setSearchResultsBar = function(){
         $scope.bar = new Object();
         $scope.bar.show = true;   
         $scope.searchModeOn = true;
-    }
+    };
 
 
     $scope.setMapWidth = function(){
         if($scope.map.partialWidth)
             return "map-partial-width";
-    }
+    };
 
     $scope.showResultsBar = function(){
         if(!$scope.bar.show)
             return "side-bar-hidden";
-    }
+    };
 
     $scope.disableSearchMode = function(){
         console.log("disabling search mode");
         $scope.bar.show = false;
         $scope.map.partialWidth = false;
         $scope.searchModeOn = false;
-    }
+    };
 
     $scope.changeSearchMode = function(){
         if($scope.bar.show)
             $scope.disableSearchMode();
         else
             enableSearchMode();
-    }
-
-
-    var selectedInsurances = []; 
-    $scope.mainInsurances = [
-        { id: 1, name: "PALIC", isSelected: false },
-        { id: 2, name: "UNIVERSAL", isSelected: false },
-        { id: 3, name: "HUMANO", isSelected: false },
-        { id: 4, name: "SENASA", isSelected: false },
-    ];
-
-    $scope.test = 1;
-
-    var updateSelected = function(action, id) {
-      if (action === 'add' && selectedInsurances.indexOf(id) === -1) {
-        selectedInsurances.push(id);
-      }
-      if (action === 'remove' && selectedInsurances.indexOf(id) !== -1) {
-        selectedInsurances.splice(selectedInsurances.indexOf(id), 1);
-      }
-      console.log(selectedInsurances);
-    };
-
-    $scope.test = function() {
-      // var checkbox = $event.target;
-      // var action = (checkbox.checked ? 'add' : 'remove');
-      // insurance.isSelected = (checkbox.checked ? true : false);
-      // updateSelected(action, insurance.id);
-      console.log("hi!");
-    };
-
-    $scope.clickMe = false;
-    window.test = function(){
-        console.log("hey!");
-    }
-
-    $scope.checkInsurances = function(){
-        console.log($scope.mainInsurances);
-    }
-
-    $scope.selectAll = function($event) {
-      var checkbox = $event.target;
-      var action = (checkbox.checked ? 'add' : 'remove');
-      for ( var i = 0; i < $scope.entities.length; i++) {
-        var entity = $scope.entities[i];
-        updateSelected(action, entity.id);
-      }
     };
 
 
-
-    
     var removeAllMarkers = function(){
         for(var i = 0; i < $scope.markers.length; i++){
             $scope.markers[i].setMap(null);
@@ -370,9 +506,11 @@ angular.module('app.controllers').directive('test',['$timeout','$parse',function
 }]);
 
 
-angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  function($timeout, $parse) {
+
+angular.module('app.controllers').directive('iCheck', ['$timeout', function($timeout) {
  return {
         require: 'ngModel',
+        restrict: 'A',
         link: function($scope, element, $attrs, ngModel) {
  
             return $timeout(function() {
@@ -383,8 +521,9 @@ angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  fun
                     $(element).iCheck('update');
                 });
 
-                clickMethod = $attrs['ngClick'];
-                clickMethod = clickMethod.replace(/(\(|\))/g, "");
+                var changeMethod = $attrs['ngChange'];
+                changeMethod = changeMethod.replace(/(\(|\))/g, "");
+                var changedMethodParam = $attrs['ngChangeParam'];
 
                 return $(element).iCheck({
                     // the classes, if you need them.
@@ -392,7 +531,6 @@ angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  fun
                     radioClass: 'iradio_square',
                     increaseArea: '20%' // optional
                 }).on('ifChanged', function(event) {
-                    console.log('ifchanged');
 
                     if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
                         $scope.$apply(function() {
@@ -404,10 +542,15 @@ angular.module('app.controllers').directive('iCheck', ['$timeout','$parse',  fun
                             return ngModel.$setViewValue(value);
                         });
                     }
-                }).on('ifClicked', function(){
-                    console.log('ifclicked')
-                    if(clickMethod)
-                    $scope[clickMethod]();
+
+                    if(changeMethod){
+                        if(changedMethodParam){
+                            $scope[changeMethod](changedMethodParam);
+                        }
+                        else
+                            $scope[changeMethod]();
+                    }
+                    
                 });
             });
         }

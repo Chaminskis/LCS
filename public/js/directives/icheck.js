@@ -1,11 +1,11 @@
 angular.module('app.directives').directive('iCheck', ['$timeout',  function($timeout) {
-    alert(5)
+
  return {
         require: 'ngModel',
         link: function($scope, element, $attrs, ngModel) {
-            alert(6)
+
             return $timeout(function() {
-                alert(7)
+                
                 var value;
                 value = $attrs['value'];
 

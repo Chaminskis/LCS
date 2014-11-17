@@ -385,11 +385,7 @@ module.exports = (function(){
 				});
 			}else{
 				
-				console.log(result);
-				
 				cleanResult = result.map(function(item){
-					count = item.dataValues.count;	
-
 					delete item.dataValues.count;
 					
 					item = removeFields(item.dataValues);
@@ -410,7 +406,7 @@ module.exports = (function(){
 					return item;
 				});
 				
-				console.log(cleanResult);
+				count = cleanResult.length;
 			}
 			
 			callback({

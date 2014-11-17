@@ -10,6 +10,8 @@
 	}
 	
 </style>
+
+
 <div class='content'>
 	<div class="alert alert-success" role="alert" ng-if='error.show'>
 		
@@ -21,93 +23,97 @@
 		<strong>Warning!</strong> <span>{{ error.message }}</span>
 	</div>
 	
-	<div ng-init='load()'>
-		<div>
-			<p>
-				<b>Nombre:</b> <span>{{ data.name }} </span>
-			</p>
-			
-			<p>
-				<b>Detalles:</b> <span>{{ data.details }}</span>
-			</p>
-	
-			<p>
-				<b>Direccion:</b> <span>{{ data.address }}</span>
-			</p>
-
-			<p>
-				<b>Telefono:</b> <a href="#">{{ data.local_phone }}</a>
-			</p>
-			
-			<p>
-				<b>Tipo:</b> <a href="#">{{ data.hospitalType.details }}</a>
-			</p>
-		</div>
-
-		<div style='padding:2%'>
-			<h4>Seguros medicos</h4>
-			<table class='table'>
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Detalles</th>
-						<th></th>
-					</tr>	
-				</thead>
-				<tbody>
-					<tr ng-repeat='item in data.secures'>
-						<td> <a href="#/medical_secure/view/{{ item.id }}">{{ item.name }}</a> </td>
-						<td> {{ item.details }} </td>
-						<td> 
-							<button class='btn btn-danger' ng-click='removeRelation(item.id)'>Desvincular</button> 
-						</td>
-					</tr>	
-				</tbody>
-				
-			</table>
-			
+	<div class="content-panel">
+		<div ng-init='load()' style='padding:10px;'>
 			<div>
-				<button ng-click='loadMedicalInsurance()' class='btn  btn-primary' data-toggle="modal" data-target="#medical_ensurance" class='btn btn-primary'>Agregar</button>
-			</div>
-		</div>
+				<p>
+					<b>Nombre:</b> <span>{{ data.name }} </span>
+				</p>
+				
+				<p>
+					<b>Detalles:</b> <span>{{ data.details }}</span>
+				</p>
 		
+				<p>
+					<b>Direccion:</b> <span>{{ data.address }}</span>
+				</p>
+	
+				<p>
+					<b>Telefono:</b> <a href="#">{{ data.local_phone }}</a>
+				</p>
 				
-		<div style='padding:2%'>
-			<h4>Doctores</h4>
-			<table class='table'>
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Detalle</th>
-						<th></th>
-					</tr>	
-				</thead>
-				<tbody>
-					<tr ng-repeat='item in data.doctors'>
-						<td> <a href="#/doctors/view/{{ item.id }}">{{ item.name }}</a> </td>
-						<td> <a href="#/doctors/view/{{ item.id }}">{{ item.last }}</a> </td>
-						
-						<td> {{ item.details }} </td>
-						
-						<td> 
-							<button class='btn btn-danger' ng-click='removeRelationDoctor(item.id)'>Desvincular</button> 
-						</td>
-					</tr>	
-				</tbody>
-				
-			</table>
-			
-			<div>
-				<button ng-click='loadDoctors()' class='btn  btn-primary' data-toggle="modal" data-target="#doctors" class='btn btn-primary'>Agregar</button>
+				<p>
+					<b>Tipo:</b> <a href="#">{{ data.hospitalType.details }}</a>
+				</p>
+				<p>
+					<b>Location:</b> Lat <a href="#">{{ data.latitude }}</a> Long <a href="#">{{ data.longitude }}</a>
+				</p>
 			</div>
-		</div>
-
-		<div>
-			<button ng-click='delete(data.id)' class='btn  btn-danger'>Eliminar</button>
+	
+			<div style='padding:2%'>
+				<h4>Seguros medicos</h4>
+				<table class='table'>
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Detalles</th>
+							<th></th>
+						</tr>	
+					</thead>
+					<tbody>
+						<tr ng-repeat='item in data.secures'>
+							<td> <a href="#/medical_secure/view/{{ item.id }}">{{ item.name }}</a> </td>
+							<td> {{ item.details }} </td>
+							<td> 
+								<button class='btn btn-danger' ng-click='removeRelation(item.id)'>Desvincular</button> 
+							</td>
+						</tr>	
+					</tbody>
+					
+				</table>
+				
+				<div>
+					<button ng-click='loadMedicalInsurance()' class='btn  btn-primary' data-toggle="modal" data-target="#medical_ensurance" class='btn btn-primary'>Agregar</button>
+				</div>
+			</div>
+			
+					
+			<div style='padding:2%'>
+				<h4>Doctores</h4>
+				<table class='table'>
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Detalle</th>
+							<th></th>
+						</tr>	
+					</thead>
+					<tbody>
+						<tr ng-repeat='item in data.doctors'>
+							<td> <a href="#/doctors/view/{{ item.id }}">{{ item.name }}</a> </td>
+							<td> <a href="#/doctors/view/{{ item.id }}">{{ item.last }}</a> </td>
+							
+							<td> {{ item.details }} </td>
+							
+							<td> 
+								<button class='btn btn-danger' ng-click='removeRelationDoctor(item.id)'>Desvincular</button> 
+							</td>
+						</tr>	
+					</tbody>
+					
+				</table>
+				
+				<div>
+					<button ng-click='loadDoctors()' class='btn  btn-primary' data-toggle="modal" data-target="#doctors" class='btn btn-primary'>Agregar</button>
+				</div>
+			</div>
+	
+			<div>
+				<button ng-click='delete(data.id)' class='btn  btn-danger'>Eliminar</button>
+			</div>
 		</div>
 	</div>
-	
 	<!-- Add medical ensurance -->
 	<div class="modal fade" id="medical_ensurance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">

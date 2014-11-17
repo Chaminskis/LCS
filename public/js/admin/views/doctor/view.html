@@ -1,18 +1,20 @@
 <div ng-init='load()'>
-	<div id='view_container'>
-		
-		<b>Nombre:</b> 
-		<span>{{ doctor.name }}</span>
-		<br>
-
-		<b>Apellido:</b> 
-		<span>{{ doctor.last }}</span>	
-		<br>
-
-		<b>Detalles:</b> 
-		<p>{{ doctor.details }}</p>
-		<br>
-
-		<button class='btn btn-danger'  ng-click='delete(doctor.id)'>Eliminar</button>
+	<div class="content-panel">
+		<div id='view_container' style='padding:10px;'>
+			
+			<b>Nombre:</b> 
+			<span>{{ doctor.name }}</span>
+			<br>
+	
+			<b>Apellido:</b> 
+			<span>{{ doctor.last }}</span>	
+			<br>
+	
+			<b>Detalles:</b> 
+			<p>{{ doctor.details }}</p>
+			<br>
+	
+			<button class='btn btn-danger'  ng-click='delete(doctor.id)'>Eliminar</button>
+		</div>
 	</div>
 </div>

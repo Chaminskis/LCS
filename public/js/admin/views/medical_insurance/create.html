@@ -1,34 +1,36 @@
 <div>
-	<h3><i class="fa fa-angle-right"></i> Agregar Securo medico</h3>
-	<div class='form-panel'>
-		<form onsubmit='return false'>
-		    <div class="form-group clearfix">
-		    	<div class='col-md-3 col-lg-4'>
-					<label for="name">Nombre</label><br />
-					<input type="text" name="name" placeholder='Nombre' class="form-control" ng-model='model.name'/><br />
+	<div>
+		<h3><i class="fa fa-angle-right"></i> Agregar Securo medico</h3>
+		<div class='form-panel'>
+			<form onsubmit='return false'>
+			    <div class="form-group clearfix">
+			    	<div class='col-md-3 col-lg-4'>
+						<label for="name">Nombre</label><br />
+						<input type="text" name="name" placeholder='Nombre' class="form-control" ng-model='model.name'/><br />
+					</div>
 				</div>
-			</div>
-			
-			<div class="form-group clearfix">
-		    	<div class='col-md-3 col-lg-4'>
-					<label for="details">Detalles</label><br />
-					<textarea type="text" name="details" placeholder='Detalles' class="form-control" id='details' ng-model='model.details' >
-					</textarea>
+				
+				<div class="form-group clearfix">
+			    	<div class='col-md-3 col-lg-4'>
+						<label for="details">Detalles</label><br />
+						<textarea type="text" name="details" placeholder='Detalles' class="form-control" id='details' ng-model='model.details' >
+						</textarea>
+					</div>
 				</div>
-			</div>
-			
-			<div class="form-group clearfix">
-		    	<div class='col-md-3 col-lg-4'>
-					<label for='insurance_phone'>Telefono</label>
-					<input name="insurance_phone" class="form-control" placeholder="(809) 555 5555" ng-model='model.local_phone' id="insurance_phone"/>
+				
+				<div class="form-group clearfix">
+			    	<div class='col-md-3 col-lg-4'>
+						<label for='insurance_phone'>Telefono</label>
+						<input name="insurance_phone" class="form-control" placeholder="(809) 555 5555" ng-model='model.local_phone' id="insurance_phone"/>
+					</div>
 				</div>
-			</div>
-			
-			<div class="form-group clearfix">
-		    	<div class='col-md-3 col-lg-4'>	
-					<button ng-click='save()' class='btn btn-primary'>Guardar</button>
+				
+				<div class="form-group clearfix">
+			    	<div class='col-md-3 col-lg-4'>	
+						<button ng-click='save()' class='btn btn-primary'>Guardar</button>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </div>

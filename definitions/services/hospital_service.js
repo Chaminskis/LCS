@@ -322,7 +322,7 @@ module.exports = (function(){
 				
 				query.distance = searchObject.location.distance === undefined?10:searchObject.location.distance;
 
-				query.sql = "SELECT *,count(*) as count, SQRT( "+
+				query.sql = "SELECT *, SQRT( "+
 							    "POW(69.1 * (latitude - " + searchObject.location.lat + "), 2) + "+
     							"POW(69.1 * ("+ searchObject.location.lon +"  - longitude) * COS(latitude / 57.3), 2)) AS distance "+
     							" ,HospitalType.name as HospitalType_name " + 
@@ -331,6 +331,8 @@ module.exports = (function(){
 								"FROM hospitals " +
 								"LEFT JOIN `hospital_types` AS `HospitalType` ON `HospitalType`.`id` = `hospitals`.`hospital_type` "+
 								"HAVING distance < "+ query.distance +" ORDER BY distance;";
+								
+				console.log(query.sql);
 								
 				queryCall = models.Sequelize.query(query.sql,models.MedicalSecure);
 			}else if(type === 'HOSPITALTYPE'){
@@ -383,6 +385,8 @@ module.exports = (function(){
 				});
 			}else{
 				
+				console.log(result);
+				
 				cleanResult = result.map(function(item){
 					count = item.dataValues.count;	
 
@@ -405,6 +409,8 @@ module.exports = (function(){
 					
 					return item;
 				});
+				
+				console.log(cleanResult);
 			}
 			
 			callback({

@@ -140,6 +140,60 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 	bottom: 4px;
 	right: 10px;
 	height: 50px;
-	width: 50%;
+	width: 60px !important;
 }
 
+.location-control{
+	position: relative;
+}
+.disable-location{
+	font-size: 11px;
+	position: absolute;
+	color: #000;
+	top: 4px;
+	left: 1px;
+	pointer-events:none;
+}
+
+.enable-location{
+	position: absolute;
+	font-size: 18px;
+	color: #000;
+	top: 6px;
+	right: 27px;
+	pointer-events: none;
+}
+
+.transportation-control{
+	position: relative;
+}
+.tr-foot{
+	position: absolute;
+	background: url(../images/tr-foot.png) no-repeat center center;
+	height: 18px;
+	width: 18px;
+	display: inline-block;
+	top: 4px;
+	left: 1px;
+	pointer-events: none;
+}
+
+.tr-driving{
+	position: absolute;
+	background: url(../images/tr-driving.png) no-repeat center center;
+	height: 18px;
+	width: 18px;
+	display: inline-block;
+	top: 4px;
+	right: 23px;	
+	pointer-events: none;
+}
+
+
+.hospital-selected .content-panel{
+	height: 350px;
+}
+
+.visible{
+	display: block !important;
+}

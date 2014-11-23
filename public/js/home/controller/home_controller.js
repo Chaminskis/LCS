@@ -17,6 +17,10 @@ angular.module('app.controllers', ['app.services'])
         return this.indexOf(object) !== -1;
     }
 
+    Array.prototype.isEmpty = function(){
+        return this.length == 0;
+    }
+ 
     $scope.safeApply = function(fn) {
         
         $timeout(function(){
@@ -24,6 +28,7 @@ angular.module('app.controllers', ['app.services'])
         });
 
     };
+
     var filters = [];
 
 
@@ -55,8 +60,7 @@ angular.module('app.controllers', ['app.services'])
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
     $scope.criteriaFilter = new Filter("CRITERIA", '', true);
     
-    filters.push($scope.insuranceFilter);
-    filters.push($scope.hospitalTypeFilter);
+    filters.push($scope.insuranceFilter, $scope.hospitalTypeFilter);
     
     $scope.locationFilter.isSelected = true;
 
@@ -148,28 +152,41 @@ angular.module('app.controllers', ['app.services'])
         searchType: '',
 
         addCriteriaParam: function(filter){
-            if(!this.criteria){
-                this.criteria = [];
-            }
-            this.searchType = this.searchType + "| " + filter.filtername;
             var criteriaParam = this.filterSelectedParams(filter.param);
-            this.criteria = this.criteria + "| " + JSON.stringify(criteriaParam);
+            if(!criteriaParam.isEmpty()){
+                this.concatToSearchType(filter.filtername);
+                this.concatToCriteria(JSON.stringify(criteriaParam));            
+            }
         },
 
         addLocationParam: function(locationFilter){
-            this.searchType = this.searchType + "| " + locationFilter.filtername;
+            this.concatToSearchType(locationFilter.filtername);
             this.location = locationFilter.param;
         },
         filterSelectedParams: function(params){
+            var selectedParams = [];
             if(params instanceof Array){
-                var selectedParams = [];
                     for (var i = 0; i < params.length; i++) {
                         if(params[i].isSelected){
-                            selectedParams.push(params[i]);
+                            selectedParams.push(params[i].id);
                         } 
                     };
             }
-            return params;
+            return selectedParams;
+        },
+        concatToSearchType: function(param){
+            if(!this.searchType){
+                this.searchType = param;
+            }else{
+                this.searchType = this.searchType + "| " + param;
+            }
+        },
+        concatToCriteria: function(param){
+            if(!this.criteria){
+                this.criteria = param; 
+            }else{
+                this.criteria = this.criteria + "| " + param;
+            }
         }
     };
 
@@ -178,7 +195,7 @@ angular.module('app.controllers', ['app.services'])
         var searchParam = angular.copy(masterSearchObjectParam);
 
         for (var i = 0; i < filters.length; i++) {
-           if(!filters.isDisabled){
+           if(!filters[i].isDisabled){
                 var filter = filters[i];
                 searchParam.addCriteriaParam(filter);
            }
@@ -398,6 +415,12 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
+        $scope.markers.forEach(function(m){
+            m.selected = false;
+        });
+        $timeout(function() {
+            selectedMarker.selected = true;
+        });
         showRouteAndDistance(selectedMarker);
     };        
 

@@ -42,8 +42,8 @@ angular.module('app.services')
 		var tmpLocation = createLocationObject(location.lat, location.lon);
 		searchObject.location = location;
  		
-		return hospitalService.search(searchObject);
-		//return performSearch(searchObject);
+		// return hospitalService.search(searchObject);
+		return performSearch(searchObject);
 	};
 
 	var findHospitalsByCriteria = function(searchParam){
@@ -60,7 +60,7 @@ angular.module('app.services')
 			"message":"",
 			"result":
 				[{"id":1,
-				"name":"Centro medico simon bplivar",
+				"name":"Clínica Independencia",
 				"details":"Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, sodales, dolor quo eleifend, sodales. Nec aenean",
 				"address":"Calle ovanco casi esquina albert thomas",
 				"latitude":18.490031, 
@@ -77,7 +77,47 @@ angular.module('app.services')
 						"details":"El mejor en operaciones corazon abierto. Aparte Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, "
 						}],
 						"hospitalType":
-						{"id":2,"name":"CLINICA","details":"Clinica"}}]};
+						{"id":2,"name":"CLINICA","details":"Clinica"}},
+					{"id":2,
+					"name":"Plaza de la Salud",
+					"details":"Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, sodales, dolor quo eleifend, sodales. Nec aenean",
+					"address":"Calle ovanco casi esquina albert thomas",
+					"latitude":18.488751, 
+					"longitude":-69.922003,
+					"hospital_type":1,
+					"secures":
+						[{"id":1,"name":"Humano","details":"Seguro medico Humano"},
+						{"id":3,"name":"ARS Senasa","details":"ARS Senasa", "logo": "/images/trollface.jpg"},
+						{"id":2,"name":"Plic","details":"Palic seguros", "logo": "/images/trollface.jpg"}],
+						"doctors":
+							[{"id":1,
+							"name":"Doctor Fulano",
+							"last":"Apellido",
+							"details":"El mejor en operaciones corazon abierto. Aparte Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, "
+							}],
+							"hospitalType":
+							{"id":2,"name":"CLINICA","details":"Clinica"}}
+							,
+					{"id":3,
+					"name":"UAP Robert Read Cabral",
+					"details":"Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, sodales, dolor quo eleifend, sodales. Nec aenean",
+					"address":"Calle ovanco casi esquina albert thomas",
+					"latitude":18.453572, 
+					"longitude":-69.923581,
+					"hospital_type":2,
+					"secures":
+						[{"id":1,"name":"Humano","details":"Seguro medico Humano"},
+						{"id":3,"name":"ARS Senasa","details":"ARS Senasa", "logo": "/images/trollface.jpg"},
+						{"id":2,"name":"Plic","details":"Palic seguros", "logo": "/images/trollface.jpg"}],
+						"doctors":
+							[{"id":1,
+							"name":"Doctor Fulano",
+							"last":"Apellido",
+							"details":"El mejor en operaciones corazon abierto. Aparte Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, "
+							}],
+							"hospitalType":
+							{"id":2,"name":"CLINICA","details":"Clinica"}}
+								]};
 			def.resolve(x);
 			return def.promise;
 	};

@@ -111,13 +111,19 @@
                     </li>
 
                     <!-- institution type end -->
-                    <li><a class="" href="#">
-                      <input type="checkbox" class="pull-left js-switch"  checked />
-                    
+                    <li><a class="location-control" href="#">
+                      <input type="checkbox" class="pull-left location-switch"  checked />
+                      <span class="fa fa-map-marker enable-location"></span>
+                      <span class="fa-stack disable-location">
+                        <i class="fa fa-map-marker fa-stack-1x"></i>
+                        <i class="fa fa-ban fa-stack-2x"></i>
+                      </span>
+
                     </a></li>
-                    <li><a class="" href="#">
-                      <input type="checkbox" class="pull-left js-switch2" checked  />
-                    
+                    <li><a class="transportation-control" href="#">
+                      <input type="checkbox" class="pull-left transportation-switch" checked  />
+                      <span class="tr-foot"></span>
+                      <span class="tr-driving"></span>
                     </a></li>
 
               </ul>
@@ -145,7 +151,7 @@
               <ul class="sidebar-menu" id="nav-accordion">
                     
              <!-- hospital sample -->
-             <div class="col-lg-12 mb" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">
+             <div class="col-lg-12 mb transition hospital" ng-class="{ 'hospital-selected' : marker.selected }" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">
               <div class="content-panel pn">
                 <div id="blog-bg">
                   <div class="badge-rounded icon-lcs-hospital"></div>
@@ -153,12 +159,11 @@
                 </div>
                 <div class="blog-text">
 
-                          <h4>Hola mundo</h4>
-                          <div test ng-model='nice'></div>
-                           <p><strong>Dirección:</strong>{{marker.address}}</p>          
-<!--                       <p><strong>Teléfono:</strong> <img src="/images/trollface.jpg" /></p>
-                      <p><strong>Mail</strong>: <img src="/images/trollface.jpg" /> </p>
- -->                    
+                           <p><strong>Dirección:</strong>{{marker.address}}</p>
+                           <div class="hospital-details hidden" ng-class="{ 'visible' : marker.selected }">
+                              <p><strong>Teléfono:</strong>: 555 555 5555</p>
+                              <p><strong>Mail</strong>: 888 888 8888 </p>
+                           </div>          
                 </div>
               </div>
             </div>

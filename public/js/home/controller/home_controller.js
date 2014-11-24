@@ -460,15 +460,15 @@ angular.module('app.controllers', ['app.services'])
         $timeout(function() {
             marker.selected = true;
         });    
-        var markerPosition = $("#nav-accordion #"+marker.id).position().top;
-        console.log(markerPosition);
-        $("#nav-accordion").scrollTop(markerPosition);    
+        // var markerPosition = $("#nav-accordion #"+marker.id).position().top;
+        // console.log(markerPosition);
+        // $("#nav-accordion").scrollTop(markerPosition);    
     }
 
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
-        selectMarker(selectMarker);
+        selectMarker(selectedMarker);
     };        
 
     

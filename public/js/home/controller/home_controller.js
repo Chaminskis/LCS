@@ -354,6 +354,14 @@ angular.module('app.controllers', ['app.services'])
         return def.promise;
     };
 
+    $scope.getHospitalTypeIcon = function(marker){
+       console.log("h type id:"+marker.hospital_type); 
+        switch(marker.hospital_type){
+            case 2: return 'icon-lcs-clinic'; break;
+            case 3: return 'icon-lcs-uap'; break;
+            default: return 'icon-lcs-hospital'; 
+        }
+    }
     var setPopup = function(){
         $scope.popup = new Object();
         $scope.popup.show = false;
@@ -385,6 +393,7 @@ angular.module('app.controllers', ['app.services'])
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
         marker.id = info.id;
+        marker.hospital_type = info.hospital_type;
         addMarkerlistener(marker);
         return marker;
     }; 

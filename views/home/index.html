@@ -162,7 +162,7 @@
                   <div class="hospital-distance">
                     <p><strong>Distancia: </strong> {{marker.distance}} en {{marker.duration}} ({{getTravelModeDescription()}})</p>
                   </div>
-                  <div class="badge-rounded icon-lcs-hospital"></div>
+                  <div class="badge-rounded" ng-class="getHospitalTypeIcon(marker)"></div>
                   <div class="blog-title">{{marker.name}}</div>
                 </div>
                 <div class="blog-text">

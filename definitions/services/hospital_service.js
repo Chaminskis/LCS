@@ -297,7 +297,7 @@ module.exports = (function(){
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
 					offset:( query.limit * (query.page - 1)),
-					where:[query.where],
+					//where:[query.where],
 					include:[{
 						'as':'HospitalType',
 						model:models.HospitalType,
@@ -379,11 +379,18 @@ module.exports = (function(){
 			var count = 0;
 			
 			if(result !== undefined && result.rows !== undefined){
+				console.log("nbice");
 				count = result.count;
 				cleanResult = result.rows.map(function(item){
 					return removeFields(item.dataValues);
 				});
+				
+				console.log('clean reuslts');
+				console.log(result);
+				console.log(cleanResult);
 			}else{
+				
+				console.log("Search");
 				
 				cleanResult = result.map(function(item){
 					delete item.dataValues.count;

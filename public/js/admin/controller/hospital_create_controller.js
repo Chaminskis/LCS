@@ -19,7 +19,20 @@ angular.module('app.controllers')
 		},function(error){
 			alert('Error' + error);
 		});
+		
+		setupMap();
 	};
+	
+	var setupMap = function(){
+		alert('set up');
+		var mapOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(18.0000, -68.0000),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+        
+        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	}
 
 	$scope.save = function(){
 		var data = $scope.model;

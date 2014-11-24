@@ -206,12 +206,14 @@ angular.module('app.controllers', ['app.services'])
 
     var initializeMap = function(){
         var mapOptions = {
-        zoom: 15,
-        center: new google.maps.LatLng(40.0000, -98.0000),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        styles: window.shift_worker_style
+            zoom: 15,
+            center: new google.maps.LatLng(40.0000, -98.0000),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: window.shift_worker_style
         };
+        
         $scope.map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        
         $scope.markers = [];        
         $scope.directionsService = new google.maps.DirectionsService();
         $scope.directionsDisplay = new google.maps.DirectionsRenderer();

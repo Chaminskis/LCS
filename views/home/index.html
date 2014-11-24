@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/map-icons.css">
     <link rel="stylesheet" href="/css/switchery.css">
+    <link rel="stylesheet" href="/css/switch.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -112,7 +113,7 @@
 
                     <!-- institution type end -->
                     <li><a class="location-control" href="#">
-                      <input type="checkbox" class="pull-left location-switch"  checked />
+                        <label class="switch"><input class="location-switch" type="checkbox" checked><i></i></label>
                       <span class="fa fa-map-marker enable-location"></span>
                       <span class="fa-stack disable-location">
                         <i class="fa fa-map-marker fa-stack-1x"></i>
@@ -121,9 +122,13 @@
 
                     </a></li>
                     <li><a class="transportation-control" href="#">
-                      <input type="checkbox" class="pull-left transportation-switch" checked  />
+                        <label class="switch"><input class="transportation-switch" type="checkbox" checked><i></i></label>
                       <span class="tr-foot"></span>
                       <span class="tr-driving"></span>
+                    </a></li>
+
+
+                    <li><a class="transportation-control" href="#">
                     </a></li>
 
               </ul>
@@ -154,6 +159,9 @@
              <div class="col-lg-12 mb transition hospital" ng-class="{ 'hospital-selected' : marker.selected }" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">
               <div class="content-panel pn">
                 <div id="blog-bg">
+                  <div class="hospital-distance">
+                    <p><strong>Distancia: </strong> {{marker.distance}} en {{marker.duration}}</p>
+                  </div>
                   <div class="badge-rounded icon-lcs-hospital"></div>
                   <div class="blog-title">{{marker.name}}</div>
                 </div>
@@ -163,6 +171,8 @@
                            <div class="hospital-details hidden" ng-class="{ 'visible' : marker.selected }">
                               <p><strong>Teléfono:</strong>: 555 555 5555</p>
                               <p><strong>Mail</strong>: 888 888 8888 </p>
+                              <p><strong>Tipo de Centro: </strong> {{getHospitalType(marker)}} </p>
+                              <p><strong>Seguros: </p>
                            </div>          
                 </div>
               </div>

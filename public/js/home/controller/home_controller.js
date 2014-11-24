@@ -63,8 +63,11 @@ angular.module('app.controllers', ['app.services'])
     filters.push($scope.insuranceFilter, $scope.hospitalTypeFilter);
     
     $scope.locationFilter.isSelected = true;
+    $scope.drivingEnabled = true;
+    $scope.drivingEnabledChanged = function(){
+        console.log("Driving enabled: "+ $scope.drivingEnabled);
+    }
 
-    
     $scope.insuranceFilter.updateInsuranceSelection = function(){
         
         var allIsSelected = everythingIsSelected($scope.mainInsurances);
@@ -290,6 +293,8 @@ angular.module('app.controllers', ['app.services'])
                 // place that distance somewhere else, this popup is gone
                 // $scope.popup.distance = result[0].distance.text;
                 // $scope.popup.duration = result[0].duration.text;
+                marker.distance = result[0].distance.text;
+                marker.duration = result[0].duration.text;
                 def.resolve(response);
             }else{
                 console.log("Error calculating distance: " + status);
@@ -409,6 +414,7 @@ angular.module('app.controllers', ['app.services'])
             marker = createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
             marker.name = hospitals[i].name;
             marker.address = hospitals[i].address;
+            getDistance(marker);
         }            
 
     };

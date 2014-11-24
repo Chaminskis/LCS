@@ -83,9 +83,10 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.travelModeChanged = function(){
         $scope.markers.forEach(function(m){
-            getDistance(m).then(function(){
-                console.log("new distance: "+m.distance+""+m.duration)
-            });
+            getDistance(m);
+            if(m.selected){
+                drawRoute(m);
+            }
         });
     };
 

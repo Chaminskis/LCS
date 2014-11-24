@@ -41,9 +41,9 @@ angular.module('app.services')
 		var searchObject = createSearchObject(searchType.LOCATION);
 		var tmpLocation = createLocationObject(location.lat, location.lon);
 		searchObject.location = location;
- 		
-		// return hospitalService.search(searchObject);
-		return performSearch(searchObject);
+ 		console.log(searchObject);
+		 return hospitalService.search(searchObject);
+		// return performSearch(searchObject);
 	};
 
 	var findHospitalsByCriteria = function(searchParam){

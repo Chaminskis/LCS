@@ -64,9 +64,30 @@ angular.module('app.controllers', ['app.services'])
     
     $scope.locationFilter.isSelected = true;
     $scope.drivingEnabled = true;
+    
     $scope.drivingEnabledChanged = function(){
         console.log("Driving enabled: "+ $scope.drivingEnabled);
-    }
+    };
+
+    var getTravelMode = function(){
+        if($scope.drivingEnabled)
+            return google.maps.TravelMode.DRIVING;
+        return google.maps.TravelMode.WALKING; 
+    };
+
+    $scope.getTravelModeDescription = function(){
+        if($scope.drivingEnabled)
+            return "En vehículo";
+        return "A pie";
+    };
+
+    $scope.travelModeChanged = function(){
+        $scope.markers.forEach(function(m){
+            getDistance(m).then(function(){
+                console.log("new distance: "+m.distance+""+m.duration)
+            });
+        });
+    };
 
     $scope.insuranceFilter.updateInsuranceSelection = function(){
         
@@ -278,10 +299,11 @@ angular.module('app.controllers', ['app.services'])
     var getDistance = function(marker){
         
         var def = $q.defer();
+        var travelMode = getTravelMode();
         var request = {
             origins: [ $scope.currentPosition ],
             destinations: [ marker.position],
-            travelMode: google.maps.TravelMode.DRIVING,
+            travelMode: travelMode,
             avoidHighways: false,
             avoidTolls: false
         };
@@ -309,12 +331,13 @@ angular.module('app.controllers', ['app.services'])
         
         var def = $q.defer(); 
        $scope.directionsDisplay.setDirections({routes: []});
+        var travelMode = getTravelMode();
         var start = $scope.currentPosition;
         var end = marker.position;
         var request = {
               origin:start,
               destination:end,
-              travelMode: google.maps.TravelMode.DRIVING
+              travelMode: travelMode
         };
         
         $scope.directionsService.route(request, function(response, status) {
@@ -360,6 +383,7 @@ angular.module('app.controllers', ['app.services'])
         $scope.markers.push(marker);
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
+        marker.id = info.id;
         addMarkerlistener(marker);
         return marker;
     }; 
@@ -367,7 +391,7 @@ angular.module('app.controllers', ['app.services'])
     var showPopupRouteAndDistanceOnClick = function(marker){
         google.maps.event.addListener(marker, 'click', function(){        
             $q.all([drawRoute(marker), getDistance(marker)]).then(function(a, b){
-                showPopup(marker);
+                selectMarker(marker);
             }, function(error){
                 console.log("You failed, bitch");
             }); 
@@ -399,7 +423,7 @@ angular.module('app.controllers', ['app.services'])
         service.findHospitalsByLocation(location).then(function(response){
             if(!response.error){            
                 
-                var hospitals = response.result;
+                var hospitals = response.result.rows;
                 console.log(hospitals);
                 setHospitals(hospitals);          
             }
@@ -419,15 +443,22 @@ angular.module('app.controllers', ['app.services'])
 
     };
 
-    $scope.showMarkerRoute = function(e, selectedMarker){
-        e.preventDefault();
+    var selectMarker = function(marker){
         $scope.markers.forEach(function(m){
             m.selected = false;
         });
         $timeout(function() {
-            selectedMarker.selected = true;
-        });
+            marker.selected = true;
+        });    
+        var markerPosition = $("#nav-accordion #"+marker.id).position().top;
+        console.log(markerPosition);
+        $("#nav-accordion").scrollTop(markerPosition);    
+    }
+
+    $scope.showMarkerRoute = function(e, selectedMarker){
+        e.preventDefault();
         showRouteAndDistance(selectedMarker);
+        selectMarker(selectMarker);
     };        
 
     

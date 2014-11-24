@@ -113,7 +113,7 @@
 
                     <!-- institution type end -->
                     <li><a class="location-control" href="#">
-                        <label class="switch"><input class="location-switch" type="checkbox" checked><i></i></label>
+                        <label class="switch"><input class="location-switch" ng-model="locationFilter.isSelected" type="checkbox" checked><i></i></label>
                       <span class="fa fa-map-marker enable-location"></span>
                       <span class="fa-stack disable-location">
                         <i class="fa fa-map-marker fa-stack-1x"></i>
@@ -122,7 +122,7 @@
 
                     </a></li>
                     <li><a class="transportation-control" href="#">
-                        <label class="switch"><input class="transportation-switch" type="checkbox" checked><i></i></label>
+                        <label class="switch"><input class="transportation-switch" ng-change="travelModeChanged()" ng-model="drivingEnabled" type="checkbox" checked><i></i></label>
                       <span class="tr-foot"></span>
                       <span class="tr-driving"></span>
                     </a></li>
@@ -157,10 +157,10 @@
                     
              <!-- hospital sample -->
              <div class="col-lg-12 mb transition hospital" ng-class="{ 'hospital-selected' : marker.selected }" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">
-              <div class="content-panel pn">
+              <div class="content-panel pn" id="{{marker.id}}">
                 <div id="blog-bg">
                   <div class="hospital-distance">
-                    <p><strong>Distancia: </strong> {{marker.distance}} en {{marker.duration}}</p>
+                    <p><strong>Distancia: </strong> {{marker.distance}} en {{marker.duration}} ({{getTravelModeDescription()}})</p>
                   </div>
                   <div class="badge-rounded icon-lcs-hospital"></div>
                   <div class="blog-title">{{marker.name}}</div>

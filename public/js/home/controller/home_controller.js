@@ -17,6 +17,10 @@ angular.module('app.controllers', ['app.services'])
         return this.indexOf(object) !== -1;
     }
 
+    Array.prototype.isEmpty = function(){
+        return this.length == 0;
+    }
+ 
     $scope.safeApply = function(fn) {
         
         $timeout(function(){
@@ -24,6 +28,7 @@ angular.module('app.controllers', ['app.services'])
         });
 
     };
+
     var filters = [];
 
 
@@ -55,12 +60,36 @@ angular.module('app.controllers', ['app.services'])
     $scope.locationFilter = new Filter("LOCATION", { lat: '', lon: '', distance: 50 }, false);
     $scope.criteriaFilter = new Filter("CRITERIA", '', true);
     
-    filters.push($scope.insuranceFilter);
-    filters.push($scope.hospitalTypeFilter);
+    filters.push($scope.insuranceFilter, $scope.hospitalTypeFilter);
     
     $scope.locationFilter.isSelected = true;
-
+    $scope.drivingEnabled = true;
     
+    $scope.drivingEnabledChanged = function(){
+        console.log("Driving enabled: "+ $scope.drivingEnabled);
+    };
+
+    var getTravelMode = function(){
+        if($scope.drivingEnabled)
+            return google.maps.TravelMode.DRIVING;
+        return google.maps.TravelMode.WALKING; 
+    };
+
+    $scope.getTravelModeDescription = function(){
+        if($scope.drivingEnabled)
+            return "En vehículo";
+        return "A pie";
+    };
+
+    $scope.travelModeChanged = function(){
+        $scope.markers.forEach(function(m){
+            getDistance(m);
+            if(m.selected){
+                drawRoute(m);
+            }
+        });
+    };
+
     $scope.insuranceFilter.updateInsuranceSelection = function(){
         
         var allIsSelected = everythingIsSelected($scope.mainInsurances);
@@ -148,28 +177,41 @@ angular.module('app.controllers', ['app.services'])
         searchType: '',
 
         addCriteriaParam: function(filter){
-            if(!this.criteria){
-                this.criteria = [];
-            }
-            this.searchType = this.searchType + "| " + filter.filtername;
             var criteriaParam = this.filterSelectedParams(filter.param);
-            this.criteria = this.criteria + "| " + JSON.stringify(criteriaParam);
+            if(!criteriaParam.isEmpty()){
+                this.concatToSearchType(filter.filtername);
+                this.concatToCriteria(JSON.stringify(criteriaParam));            
+            }
         },
 
         addLocationParam: function(locationFilter){
-            this.searchType = this.searchType + "| " + locationFilter.filtername;
+            this.concatToSearchType(locationFilter.filtername);
             this.location = locationFilter.param;
         },
         filterSelectedParams: function(params){
+            var selectedParams = [];
             if(params instanceof Array){
-                var selectedParams = [];
                     for (var i = 0; i < params.length; i++) {
                         if(params[i].isSelected){
-                            selectedParams.push(params[i]);
+                            selectedParams.push(params[i].id);
                         } 
                     };
             }
-            return params;
+            return selectedParams;
+        },
+        concatToSearchType: function(param){
+            if(!this.searchType){
+                this.searchType = param;
+            }else{
+                this.searchType = this.searchType + "| " + param;
+            }
+        },
+        concatToCriteria: function(param){
+            if(!this.criteria){
+                this.criteria = param; 
+            }else{
+                this.criteria = this.criteria + "| " + param;
+            }
         }
     };
 
@@ -178,7 +220,7 @@ angular.module('app.controllers', ['app.services'])
         var searchParam = angular.copy(masterSearchObjectParam);
 
         for (var i = 0; i < filters.length; i++) {
-           if(!filters.isDisabled){
+           if(!filters[i].isDisabled){
                 var filter = filters[i];
                 searchParam.addCriteriaParam(filter);
            }
@@ -260,10 +302,11 @@ angular.module('app.controllers', ['app.services'])
     var getDistance = function(marker){
         
         var def = $q.defer();
+        var travelMode = getTravelMode();
         var request = {
             origins: [ $scope.currentPosition ],
             destinations: [ marker.position],
-            travelMode: google.maps.TravelMode.DRIVING,
+            travelMode: travelMode,
             avoidHighways: false,
             avoidTolls: false
         };
@@ -275,6 +318,8 @@ angular.module('app.controllers', ['app.services'])
                 // place that distance somewhere else, this popup is gone
                 // $scope.popup.distance = result[0].distance.text;
                 // $scope.popup.duration = result[0].duration.text;
+                marker.distance = result[0].distance.text;
+                marker.duration = result[0].duration.text;
                 def.resolve(response);
             }else{
                 console.log("Error calculating distance: " + status);
@@ -289,12 +334,13 @@ angular.module('app.controllers', ['app.services'])
         
         var def = $q.defer(); 
        $scope.directionsDisplay.setDirections({routes: []});
+        var travelMode = getTravelMode();
         var start = $scope.currentPosition;
         var end = marker.position;
         var request = {
               origin:start,
               destination:end,
-              travelMode: google.maps.TravelMode.DRIVING
+              travelMode: travelMode
         };
         
         $scope.directionsService.route(request, function(response, status) {
@@ -310,6 +356,14 @@ angular.module('app.controllers', ['app.services'])
         return def.promise;
     };
 
+    $scope.getHospitalTypeIcon = function(marker){
+       console.log("h type id:"+marker.hospital_type); 
+        switch(marker.hospital_type){
+            case 2: return 'icon-lcs-clinic'; break;
+            case 3: return 'icon-lcs-uap'; break;
+            default: return 'icon-lcs-hospital'; 
+        }
+    }
     var setPopup = function(){
         $scope.popup = new Object();
         $scope.popup.show = false;
@@ -340,6 +394,8 @@ angular.module('app.controllers', ['app.services'])
         $scope.markers.push(marker);
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
+        marker.id = info.id;
+        marker.hospital_type = info.hospital_type;
         addMarkerlistener(marker);
         return marker;
     }; 
@@ -347,7 +403,7 @@ angular.module('app.controllers', ['app.services'])
     var showPopupRouteAndDistanceOnClick = function(marker){
         google.maps.event.addListener(marker, 'click', function(){        
             $q.all([drawRoute(marker), getDistance(marker)]).then(function(a, b){
-                showPopup(marker);
+                selectMarker(marker);
             }, function(error){
                 console.log("You failed, bitch");
             }); 
@@ -379,7 +435,7 @@ angular.module('app.controllers', ['app.services'])
         service.findHospitalsByLocation(location).then(function(response){
             if(!response.error){            
                 
-                var hospitals = response.result;
+                var hospitals = response.result.rows;
                 console.log(hospitals);
                 setHospitals(hospitals);          
             }
@@ -394,13 +450,27 @@ angular.module('app.controllers', ['app.services'])
             marker = createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
             marker.name = hospitals[i].name;
             marker.address = hospitals[i].address;
+            getDistance(marker);
         }            
 
     };
 
+    var selectMarker = function(marker){
+        $scope.markers.forEach(function(m){
+            m.selected = false;
+        });
+        $timeout(function() {
+            marker.selected = true;
+        });    
+        // var markerPosition = $("#nav-accordion #"+marker.id).position().top;
+        // console.log(markerPosition);
+        // $("#nav-accordion").scrollTop(markerPosition);    
+    }
+
     $scope.showMarkerRoute = function(e, selectedMarker){
         e.preventDefault();
         showRouteAndDistance(selectedMarker);
+        selectMarker(selectedMarker);
     };        
 
     

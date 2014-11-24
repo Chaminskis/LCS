@@ -123,10 +123,10 @@ $(".icheck").iCheck({
     increaseArea: '20%' // optional
 });
 
-var elem = document.querySelector('.js-switch');
-var init = new Switchery(elem, { color: "#428bca"});
-var elem = document.querySelector('.js-switch2');
-var init = new Switchery(elem, { color: "#428bca"});
+// var elem = document.querySelector('.location-switch');
+// var init = new Switchery(elem, { color: "#428bca", className: 'switchery location-switch'});
+// var elem = document.querySelector('.transportation-switch');
+// var init = new Switchery(elem, { color: "#428bca", className: 'switchery transportation-switch'});
 
 
 }();

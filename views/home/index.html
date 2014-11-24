@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" href="/css/map-icons.css">
     <link rel="stylesheet" href="/css/switchery.css">
+    <link rel="stylesheet" href="/css/switch.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -111,13 +112,23 @@
                     </li>
 
                     <!-- institution type end -->
-                    <li><a class="" href="#">
-                      <input type="checkbox" class="pull-left js-switch"  checked />
-                    
+                    <li><a class="location-control" href="#">
+                        <label class="switch"><input class="location-switch" ng-model="locationFilter.isSelected" type="checkbox" checked><i></i></label>
+                      <span class="fa fa-map-marker enable-location"></span>
+                      <span class="fa-stack disable-location">
+                        <i class="fa fa-map-marker fa-stack-1x"></i>
+                        <i class="fa fa-ban fa-stack-2x"></i>
+                      </span>
+
                     </a></li>
-                    <li><a class="" href="#">
-                      <input type="checkbox" class="pull-left js-switch2" checked  />
-                    
+                    <li><a class="transportation-control" href="#">
+                        <label class="switch"><input class="transportation-switch" ng-change="travelModeChanged()" ng-model="drivingEnabled" type="checkbox" checked><i></i></label>
+                      <span class="tr-foot"></span>
+                      <span class="tr-driving"></span>
+                    </a></li>
+
+
+                    <li><a class="transportation-control" href="#">
                     </a></li>
 
               </ul>
@@ -145,20 +156,24 @@
               <ul class="sidebar-menu" id="nav-accordion">
                     
              <!-- hospital sample -->
-             <div class="col-lg-12 mb" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">
-              <div class="content-panel pn">
+             <div class="col-lg-12 mb transition hospital" ng-class="{ 'hospital-selected' : marker.selected }" ng-repeat="marker in markers | orderBy : 'title'" ng-click="showMarkerRoute($event, marker)">
+              <div class="content-panel pn" id="{{marker.id}}">
                 <div id="blog-bg">
-                  <div class="badge-rounded icon-lcs-hospital"></div>
+                  <div class="hospital-distance">
+                    <p><strong>Distancia: </strong> {{marker.distance}} en {{marker.duration}} ({{getTravelModeDescription()}})</p>
+                  </div>
+                  <div class="badge-rounded" ng-class="getHospitalTypeIcon(marker)"></div>
                   <div class="blog-title">{{marker.name}}</div>
                 </div>
                 <div class="blog-text">
 
-                          <h4>Hola mundo</h4>
-                          <div test ng-model='nice'></div>
-                           <p><strong>Dirección:</strong>{{marker.address}}</p>          
-<!--                       <p><strong>Teléfono:</strong> <img src="/images/trollface.jpg" /></p>
-                      <p><strong>Mail</strong>: <img src="/images/trollface.jpg" /> </p>
- -->                    
+                           <p><strong>Dirección:</strong>{{marker.address}}</p>
+                           <div class="hospital-details hidden" ng-class="{ 'visible' : marker.selected }">
+                              <p><strong>Teléfono:</strong>: 555 555 5555</p>
+                              <p><strong>Mail</strong>: 888 888 8888 </p>
+                              <p><strong>Tipo de Centro: </strong> {{getHospitalType(marker)}} </p>
+                              <p><strong>Seguros: </p>
+                           </div>          
                 </div>
               </div>
             </div>

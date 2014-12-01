@@ -10,6 +10,13 @@ module.exports = (function(){
 
 	var models = require('../models.js');
 	
+	var SearchType = {
+		CRITERIA : "CRITERIA",
+		LOCATION : "LOCATION",
+		HOSPITALTYPE : "HOSPITALTYPE",
+		INSURANCE : "INSURANCE",
+	};
+	
 	var dateTimeFields = ['updated_at','created_at','deleted_at'];
 	
 	var removeFields = function(entity){
@@ -276,7 +283,7 @@ module.exports = (function(){
 		if(searchObject.searchType !== undefined){
 			var type = searchObject.searchType;
 			
-			if(type === "CRITERIA"){
+			if(type === SearchType.CRITERIA){
 				
 				if(searchObject.criteria === undefined){
 					callback("On Criteria search type Criteria value is needed :)");
@@ -312,7 +319,7 @@ module.exports = (function(){
 						attributes:[ 'id','name','details'],
 					}],
 				});
-			}else if(type === "LOCATION"){
+			}else if(type === SearchType.LOCATION){
 				
 				if(searchObject.location === undefined){
 					callback("On location search Type Location object is needed :)");
@@ -344,7 +351,7 @@ module.exports = (function(){
 				console.log("Query ",query.sql);
 								
 				queryCall = models.Sequelize.query(query.sql,models.MedicalSecure);
-			}else if(type === 'HOSPITALTYPE'){
+			}else if(type === SearchType.HOSPITALTYPE){
 				console.log('Hospital Type');
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
@@ -359,7 +366,7 @@ module.exports = (function(){
 						attributes:[ 'id','name','details'],
 					}],
 				});
-			}else if(type === 'INSURANCE'){
+			}else if(type === SearchType.INSURANCE){
 				console.log('Insurance');
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,

@@ -40,6 +40,7 @@ var Hospital = sequelize.define('hospital',{
 	
 	details: Sequelize.STRING,
 	local_phone: Sequelize.STRING,
+	address: Sequelize.STRING,
 	
 	hospital_type:{ type: Sequelize.INTEGER },
 	

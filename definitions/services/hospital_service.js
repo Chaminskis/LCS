@@ -259,6 +259,7 @@ module.exports = (function(){
 		//  }
 		
 		var queryCall = null;
+		
 		var query = {
 			limit:10,
 			page:1
@@ -294,6 +295,10 @@ module.exports = (function(){
 				query.where = where.join("");
 				query.where = query.where.substr(0,query.where.length - 3);
 				
+				console.log("=========================================");
+				console.log("Quantity and offset ",query.limit,( query.limit * (query.page - 1)));
+				console.log("=========================================");
+				
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
 					offset:( query.limit * (query.page - 1)),
@@ -322,17 +327,21 @@ module.exports = (function(){
 				
 				query.distance = searchObject.location.distance === undefined?10:searchObject.location.distance;
 
-				query.sql = "SELECT *, SQRT( "+
-							    "POW(69.1 * (latitude - " + searchObject.location.lat + "), 2) + "+
-    							"POW(69.1 * ("+ searchObject.location.lon +"  - longitude) * COS(latitude / 57.3), 2)) AS distance "+
+				
+
+				query.sql = "SELECT "+ 
+								"hospitals.id, hospitals.name, hospitals.details, hospitals.address, hospitals.local_phone, hospitals.latitude, hospitals.longitude, hospitals.updated_at, hospitals.created_at, hospitals.deleted_at " +
+								",SQRT( POW(69.1 * (latitude - " + searchObject.location.lat + "), 2) + "+
+    								   "POW(69.1 * ("+ searchObject.location.lon +"  - longitude) * COS(latitude / 57.3), 2)) AS distance "+
     							" ,HospitalType.name as HospitalType_name " + 
     							" ,HospitalType.details as HospitalType_details " + 
     							" ,HospitalType.id as HospitalType_id " + 
-								"FROM hospitals " +
-								"LEFT JOIN `hospital_types` AS `HospitalType` ON `HospitalType`.`id` = `hospitals`.`hospital_type` "+
-								"HAVING distance < "+ query.distance +" ORDER BY distance;";
+								" FROM hospitals " +
+								" LEFT JOIN `hospital_types` AS `HospitalType` ON `HospitalType`.`id` = `hospitals`.`hospital_type` "+
+								"HAVING distance < "+ query.distance +" ORDER BY distance" +
+								";";
 								
-				console.log(query.sql);
+				console.log("Query ",query.sql);
 								
 				queryCall = models.Sequelize.query(query.sql,models.MedicalSecure);
 			}else if(type === 'HOSPITALTYPE'){
@@ -386,8 +395,6 @@ module.exports = (function(){
 				});
 				
 				console.log('clean reuslts');
-				console.log(result);
-				console.log(cleanResult);
 			}else{
 				
 				console.log("Search");

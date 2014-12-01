@@ -157,7 +157,7 @@ module.exports = (function(){
 			attributes:['id','name','details','address','latitude','longitude'],
 			include:[{
 				model:models.MedicalSecure,
-				as:'Secures',
+				as:'MedicalInsurances',
 				attributes:[ 'id','name','details']
 			}]	
 		})
@@ -315,7 +315,7 @@ module.exports = (function(){
 						model:models.HospitalType,
 					},{
 						model:models.MedicalSecure,
-						as:'Secures',
+						as:'MedicalInsurances',
 						attributes:[ 'id','name','details'],
 					}],
 				});
@@ -362,7 +362,7 @@ module.exports = (function(){
 						model:models.HospitalType,
 					},{
 						model:models.MedicalSecure,
-						as:'Secures',
+						as:'MedicalInsurances',
 						attributes:[ 'id','name','details'],
 					}],
 				});
@@ -376,7 +376,7 @@ module.exports = (function(){
 						model:models.HospitalType,
 					},{
 						model:models.MedicalSecure,
-						as:'Secures',
+						as:'MedicalInsurances',
 						attributes:[ 'id','name','details'],
 						where:{ id:searchObject.criteria }
 					}],

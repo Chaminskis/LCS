@@ -65,7 +65,7 @@ var Doctor = sequelize.define('doctor',{
 
 
 /**  hospital * ->  * Secure  **/
-Hospital.hasMany(MedicalSecure,{as:'Secures',through:'hospital_secures'});
+Hospital.hasMany(MedicalSecure,{as:'MedicalInsurances',through:'hospital_secures'});
 
 MedicalSecure.hasMany(Hospital,{as:'Hospitals',through:'hospital_secures'});
 

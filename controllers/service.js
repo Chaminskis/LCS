@@ -9,7 +9,8 @@
 var controllerBaseUrl = '/app/service/';
 var utils = require('../definitions/utils_service.js');
 var HospitalService = require('../definitions/services/hospital_service.js');
-var medicalInsuranceService = require('../definitions/services/medical_insurance_service.js');
+var MedicalInsuranceService = require('../definitions/services/medical_insurance_service.js');
+var HospitalTypeService = require('../definitions/services/hospital_type_service.js');
 
 /** Routes **/
 exports.install = function(framework){
@@ -19,7 +20,18 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + 'hospitals/',getHospitals,['POST','JSON']);
 	framework.route(controllerBaseUrl + 'hospital/{identifier}/',getHospital,['GET']);
 	
+	/** MEdical insurance **/
 	framework.route(controllerBaseUrl + 'medical_insurance/',getMedicalInsurance,['POST','JSON']);
+	//this is just a get all
+	framework.route(controllerBaseUrl + 'medical_insurance/',medicalInsurance,['GET']);
+	
+	
+	/** Hospital type **/
+	framework.route(controllerBaseUrl + 'hospital_type/',hospitalType,['GET']);
+	
+	/** Search **/
+	framework.route(controllerBaseUrl + 'hospitals/search/',hosptalSearch,['POST','JSON']);
+	
 };
 
 /*
@@ -38,6 +50,17 @@ function dummy(){
 /*
  *
  **/
+function medicalInsurance(){
+	var self = this;
+
+	MedicalInsuranceService.find(function(result){
+		self.json(utils.genericResponse(false,"",result));
+	});
+}
+
+/*
+ *
+ **/
 function getMedicalInsurance(){
 	var self = this;
 	
@@ -45,7 +68,7 @@ function getMedicalInsurance(){
 	
 	var quantity = data.quantity || 20;
 	
-	medicalInsuranceService.find(quantity,function(result){
+	MedicalInsuranceService.find(quantity,function(result){
 		self.json(utils.genericResponse(false,"",result));	
 	});
 }
@@ -108,4 +131,37 @@ function getHospital(identifier){
 	}
 
 	self.json( utils.genericResponse(false,"",item[0]));
+}
+
+
+/*
+ *
+ *
+ **/
+function hospitalType(){
+	var self = this;
+
+	HospitalTypeService.find(function(result){
+		self.json(utils.genericResponse(false,'',result));
+	});
+}
+
+/*
+ *
+ *
+ **/
+function hosptalSearch(){
+	var self = this;
+	
+	var searchObject = self.post;
+	
+	HospitalService.search(searchObject,function(result){
+		
+		if(result === typeof('')){
+			self.json(utils.genericResponse(true,result,null));	
+			return;
+		}
+		
+		self.json(utils.genericResponse(false,'',result));	
+	});
 }

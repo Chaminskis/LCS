@@ -154,22 +154,26 @@ module.exports = (function(){
 		models.Hospital
 		.findAll({
 			limit:quantity,
-			attributes:['id','name','details','address','latitude','longitude'],
 			include:[{
 				model:models.MedicalSecure,
 				as:'MedicalInsurances',
-				attributes:[ 'id','name','details']
+				attributes:['id','name','details']
 			}]	
 		})
 		.success(function(result){
 			
-			var cleanResult = result.forEach(function(item){
-				item.secures = item.secures.forEach(function(insurance){
-					delete insurance.dataValues.hospitalSecure;
-					removeFields(insurance);
-					return insurance;
-				});
-				item = removeFields(item); 
+			console.log(result);
+			
+			var cleanResult = result.map(function(item){
+				
+				if(item.MedicalInsurances !== undefined){
+					item.medicalInsurances = item.MedicalInsurances.forEach(function(insurance){
+						delete insurance.dataValues.hospitalSecure;
+						removeFields(insurance);
+						return insurance;
+					});
+					item = removeFields(item); 
+				}
 				return item;
 			});
 			

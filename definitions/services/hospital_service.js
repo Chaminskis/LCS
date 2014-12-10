@@ -10,6 +10,13 @@ module.exports = (function(){
 
 	var models = require('../models.js');
 	
+	var SearchType = {
+		CRITERIA : "CRITERIA",
+		LOCATION : "LOCATION",
+		HOSPITALTYPE : "HOSPITALTYPE",
+		INSURANCE : "INSURANCE",
+	};
+	
 	var dateTimeFields = ['updated_at','created_at','deleted_at'];
 	
 	var removeFields = function(entity){
@@ -147,22 +154,26 @@ module.exports = (function(){
 		models.Hospital
 		.findAll({
 			limit:quantity,
-			attributes:['id','name','details','address','latitude','longitude'],
 			include:[{
 				model:models.MedicalSecure,
-				as:'Secures',
-				attributes:[ 'id','name','details']
+				as:'MedicalInsurances',
+				attributes:['id','name','details']
 			}]	
 		})
 		.success(function(result){
 			
-			var cleanResult = result.forEach(function(item){
-				item.secures = item.secures.forEach(function(insurance){
-					delete insurance.dataValues.hospitalSecure;
-					removeFields(insurance);
-					return insurance;
-				});
-				item = removeFields(item); 
+			console.log(result);
+			
+			var cleanResult = result.map(function(item){
+				
+				if(item.MedicalInsurances !== undefined){
+					item.medicalInsurances = item.MedicalInsurances.forEach(function(insurance){
+						delete insurance.dataValues.hospitalSecure;
+						removeFields(insurance);
+						return insurance;
+					});
+					item = removeFields(item); 
+				}
 				return item;
 			});
 			
@@ -259,6 +270,7 @@ module.exports = (function(){
 		//  }
 		
 		var queryCall = null;
+		
 		var query = {
 			limit:10,
 			page:1
@@ -275,7 +287,7 @@ module.exports = (function(){
 		if(searchObject.searchType !== undefined){
 			var type = searchObject.searchType;
 			
-			if(type === "CRITERIA"){
+			if(type === SearchType.CRITERIA){
 				
 				if(searchObject.criteria === undefined){
 					callback("On Criteria search type Criteria value is needed :)");
@@ -294,20 +306,24 @@ module.exports = (function(){
 				query.where = where.join("");
 				query.where = query.where.substr(0,query.where.length - 3);
 				
+				console.log("=========================================");
+				console.log("Quantity and offset ",query.limit,( query.limit * (query.page - 1)));
+				console.log("=========================================");
+				
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
 					offset:( query.limit * (query.page - 1)),
-					where:[query.where],
+					//where:[query.where],
 					include:[{
 						'as':'HospitalType',
 						model:models.HospitalType,
 					},{
 						model:models.MedicalSecure,
-						as:'Secures',
+						as:'MedicalInsurances',
 						attributes:[ 'id','name','details'],
 					}],
 				});
-			}else if(type === "LOCATION"){
+			}else if(type === SearchType.LOCATION){
 				
 				if(searchObject.location === undefined){
 					callback("On location search Type Location object is needed :)");
@@ -322,20 +338,24 @@ module.exports = (function(){
 				
 				query.distance = searchObject.location.distance === undefined?10:searchObject.location.distance;
 
-				query.sql = "SELECT *, SQRT( "+
-							    "POW(69.1 * (latitude - " + searchObject.location.lat + "), 2) + "+
-    							"POW(69.1 * ("+ searchObject.location.lon +"  - longitude) * COS(latitude / 57.3), 2)) AS distance "+
+				
+
+				query.sql = "SELECT "+ 
+								"hospitals.id, hospitals.name, hospitals.details, hospitals.address, hospitals.local_phone, hospitals.latitude, hospitals.longitude, hospitals.updated_at, hospitals.created_at, hospitals.deleted_at " +
+								",SQRT( POW(69.1 * (latitude - " + searchObject.location.lat + "), 2) + "+
+    								   "POW(69.1 * ("+ searchObject.location.lon +"  - longitude) * COS(latitude / 57.3), 2)) AS distance "+
     							" ,HospitalType.name as HospitalType_name " + 
     							" ,HospitalType.details as HospitalType_details " + 
     							" ,HospitalType.id as HospitalType_id " + 
-								"FROM hospitals " +
-								"LEFT JOIN `hospital_types` AS `HospitalType` ON `HospitalType`.`id` = `hospitals`.`hospital_type` "+
-								"HAVING distance < "+ query.distance +" ORDER BY distance;";
+								" FROM hospitals " +
+								" LEFT JOIN `hospital_types` AS `HospitalType` ON `HospitalType`.`id` = `hospitals`.`hospital_type` "+
+								"HAVING distance < "+ query.distance +" ORDER BY distance" +
+								";";
 								
-				console.log(query.sql);
+				console.log("Query ",query.sql);
 								
 				queryCall = models.Sequelize.query(query.sql,models.MedicalSecure);
-			}else if(type === 'HOSPITALTYPE'){
+			}else if(type === SearchType.HOSPITALTYPE){
 				console.log('Hospital Type');
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
@@ -346,11 +366,11 @@ module.exports = (function(){
 						model:models.HospitalType,
 					},{
 						model:models.MedicalSecure,
-						as:'Secures',
+						as:'MedicalInsurances',
 						attributes:[ 'id','name','details'],
 					}],
 				});
-			}else if(type === 'INSURANCE'){
+			}else if(type === SearchType.INSURANCE){
 				console.log('Insurance');
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
@@ -360,7 +380,7 @@ module.exports = (function(){
 						model:models.HospitalType,
 					},{
 						model:models.MedicalSecure,
-						as:'Secures',
+						as:'MedicalInsurances',
 						attributes:[ 'id','name','details'],
 						where:{ id:searchObject.criteria }
 					}],
@@ -379,11 +399,16 @@ module.exports = (function(){
 			var count = 0;
 			
 			if(result !== undefined && result.rows !== undefined){
+				console.log("nbice");
 				count = result.count;
 				cleanResult = result.rows.map(function(item){
 					return removeFields(item.dataValues);
 				});
+				
+				console.log('clean reuslts');
 			}else{
+				
+				console.log("Search");
 				
 				cleanResult = result.map(function(item){
 					delete item.dataValues.count;

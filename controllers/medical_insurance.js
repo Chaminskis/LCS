@@ -4,7 +4,7 @@
  **/
 
 var utils = require('../definitions/utils_service.js');
-var MedicalSecure = require('../definitions/services/medical_insurance_service.js');
+var MedicalInsuranceService = require('../definitions/services/medical_insurance_service.js');
 
 var controllerBaseUrl = '/app/manage/medical_insurance/';
 
@@ -22,7 +22,7 @@ exports.install = function(framework){
 function index(){
 	var self = this;
 
-	MedicalSecure.find(function(result){
+	MedicalInsuranceService.find(function(result){
 		self.json(utils.genericResponse(false,"",result));
 	});
 }
@@ -30,7 +30,7 @@ function index(){
 function excludeHospital(hospitalID){
 	var self = this;
 	
-	MedicalSecure.secureHasNotHospital(hospitalID,function(result){
+	MedicalInsuranceService.secureHasNotHospital(hospitalID,function(result){
 	
 		self.json(utils.genericResponse(false,"",result));
 	});
@@ -40,7 +40,7 @@ function excludeHospital(hospitalID){
 function view(id){
 	var self = this;
 
-	MedicalSecure.get(id,function(item){
+	MedicalInsuranceService.get(id,function(item){
 		self.json(utils.genericResponse(false,"",item));
 	});
 }
@@ -52,7 +52,7 @@ function save(){
 	
 	console.log(model);
 
-	MedicalSecure.save(model,function(result){
+	MedicalInsuranceService.save(model,function(result){
 		self.json(utils.genericResponse(false,"",result));
 	});
 }
@@ -60,7 +60,7 @@ function save(){
 function remove(id){
 	var self = this;
 
-	MedicalSecure.remove(id,function(result){
+	MedicalInsuranceService.remove(id,function(result){
 		self.json(utils.genericResponse(false,"",result));
 	});
 }

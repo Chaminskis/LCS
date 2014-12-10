@@ -42,8 +42,8 @@ angular.module('app.services')
 		var tmpLocation = createLocationObject(location.lat, location.lon);
 		searchObject.location = location;
  		console.log(searchObject);
-		 return hospitalService.search(searchObject);
-		// return performSearch(searchObject);
+		 //return hospitalService.search(searchObject);
+		return performSearch(searchObject);
 	};
 
 	var findHospitalsByCriteria = function(searchParam){
@@ -59,7 +59,9 @@ angular.module('app.services')
 			"error":false,
 			"message":"",
 			"result":
-				[{"id":1,
+			{
+				"count": 3,
+				"rows": [{"id":1,
 				"name":"Clínica Independencia",
 				"details":"Debitis quasi ullamco quos nullam! Ullamco fames lacus, justo, laborum in id eleifend posuere porta lobortis curabitur in minim. Fugiat. Lectus pariatur in nostrud, pariatur laboris aliquam vivamus, tortor, sodales, dolor quo eleifend, sodales. Nec aenean",
 				"address":"Calle ovanco casi esquina albert thomas",
@@ -117,7 +119,8 @@ angular.module('app.services')
 							}],
 							"hospitalType":
 							{"id":2,"name":"CLINICA","details":"Clinica"}}
-								]};
+								]
+			}};
 			def.resolve(x);
 			return def.promise;
 	};

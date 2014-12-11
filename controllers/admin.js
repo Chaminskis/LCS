@@ -1,7 +1,13 @@
 /** Back office controller **/
 var controllerBaseUrl = '/app/manage/';
 
+var userService = require('../definitions/services/user_service.js');
+var localFramework = null;
+
 exports.install = function(framework){
+	
+	localFramework = framework;
+	
 	framework.route(controllerBaseUrl + "",index,['authorize']);
 	framework.route(controllerBaseUrl + "login",login,['unauthorize']);
 	framework.route(controllerBaseUrl + "auth/login",auth_login,['POST','JSON','unauthorize']);
@@ -44,18 +50,39 @@ function auth_logout(){
 
 function auth_login(){
 	
+	var auth = MODULE('auth');
 	var self = this;
 	
-	var auth = MODULE('auth');
-
-    var user = { id: '1', alias: 'Peter' };
-
-    auth.login(self, user.id, user);
+	var user = self.post.user;
+	var password = self.post.password;
 	
-	self.json({
-		error:false,
-		message:"Login nice :)",
-		result:null
+	console.log("this is password hola mundo");
+	console.log(self.post);
+	
+	password = localFramework.hash("sha512",password);
+	
+	console.log("this is password hola mundo 2");
+	
+	console.log("this is password ",password);
+
+	userService.login(user,password,function(user){
+		if(user !== null){
+			
+		    auth.login(self, user.id, user);
+
+			self.json({
+				error:false,
+				message:"success",
+				result:null
+			});			
+			return;
+		}
+		
+		self.json({
+			error:true,
+			message:"fail",
+			result:null
+		});	
 	});
 }
 

@@ -57,8 +57,15 @@ module.exports = (function(){
 	/*
 	 * List all hospital just for show on table.
 	 **/
-	var list = function(callback){
+	var list = function(page,callback){
+		
+		//TODO make this a parameter
+		var limit  = 10;
+		
 		models.Hospital.findAndCountAll({
+			limit:limit,
+			offset:( limit * (page - 1)),
+			
 			include:[{
 				'as':'HospitalType',
 				model:models.HospitalType,
@@ -456,8 +463,8 @@ module.exports = (function(){
 		hi:function(callback){
 			create(callback);
 		},
-		find:function(callbackResponse){
-			list(callbackResponse);
+		find:function(page,callbackResponse){
+			list(page,callbackResponse);
 		},
 		findAllNames:function(callbackResponse){
 			listNames(callbackResponse);

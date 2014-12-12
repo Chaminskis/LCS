@@ -57,9 +57,14 @@ angular.module('app.controllers')
 		if(page === 'last'){
 			page = Math.ceil( $scope.pager.total / $scope.pager.perPage  );
 		}
+		
+		if(page == $scope.pager.current){
+			return;
+		}
 
 		$scope.pager.current = page;
-		//$scope.load(page);
+		
+		$scope.load(page);
 	};
 	
 	$scope.loadData = function(page){

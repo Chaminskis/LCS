@@ -45,6 +45,9 @@ function auth_logout(){
 	//and this one too
 	//http://docs.totaljs.com/how-does-it-work/authorization/
 	
+	//Complete model
+	//http://docs.totaljs.com/how-does-it-work/authorization/
+	
 	var self = this;
     var auth = MODULE('auth');
     var user = self.user;

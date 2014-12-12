@@ -10,6 +10,12 @@ var HospitalTypeService = require('../definitions/services/hospital_type_service
 
 exports.install = function(framework){
 	framework.route(controllerBaseUrl + '',index,['GET','authorize']);
+	
+	framework.route('#401', error401);
+}
+
+function error401(){
+	this.redirect('/app/manage/login');
 }
 
 function index(){

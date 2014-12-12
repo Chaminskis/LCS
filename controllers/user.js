@@ -23,6 +23,12 @@ exports.install = function(framework){
 
     framework.route(controllerBaseUrl + 'user/delete/{id}/',remove,['DELETE','authorize']);
     framework.route(controllerBaseUrl + 'user/view/{id}/',view,['GET','authorize']);
+    
+    framework.route('#401', error401);
+}
+
+function error401(){
+	this.redirect('/app/manage/login');
 }
 
 function login(){

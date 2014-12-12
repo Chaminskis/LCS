@@ -13,8 +13,14 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + "auth/login",auth_login,['JSON','POST','unauthorize']);
 	framework.route(controllerBaseUrl + "auth/logout",auth_logout,['GET','authorize']);
 	
+	framework.route('#401', error401);
+	
 	framework.route(controllerBaseUrl + "test",test);
 };
+
+function error401(){
+	this.redirect('/app/manage/login');
+}
 
 function wrapHandler(){
 	

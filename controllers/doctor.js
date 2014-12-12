@@ -15,6 +15,12 @@ exports.install = function(framework){
 	
 	framework.route(controllerBaseUrl + "view/{id}/",view,['GET','authorize']);
 	framework.route(controllerBaseUrl + "delete/{id}/",deleteDoctor,['DELETE','authorize']);
+	
+	framework.route('#401', error401);
+}
+
+function error401(){
+	this.redirect('/app/manage/login');
 }
 
 function index(){

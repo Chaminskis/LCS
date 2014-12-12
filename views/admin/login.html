@@ -37,9 +37,9 @@
 		      <form class="form-login" onsubmit="return false">
 		        <h2 class="form-login-heading">LCS</h2>
 		        <div class="login-wrap">
-		            <input type="text" class="form-control" placeholder="User ID" autofocus>
+		            <input type="text" class="form-control" ng-model="model.user" placeholder="User ID" autofocus>
 		            <br>
-		            <input type="password" class="form-control" placeholder="Password">
+		            <input type="password" class="form-control" placeholder="Password" ng-model="model.password">
 		            <label class="checkbox">
 		                <span class="pull-right">
 		                    <a data-toggle="modal" href="login.html#myModal"> Olvidaste tu contrasena?</a>

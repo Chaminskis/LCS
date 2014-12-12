@@ -10,7 +10,7 @@ exports.install = function(framework){
 	
 	framework.route(controllerBaseUrl + "",index,['authorize']);
 	framework.route(controllerBaseUrl + "login",login,['unauthorize']);
-	framework.route(controllerBaseUrl + "auth/login",auth_login,['POST','JSON','unauthorize']);
+	framework.route(controllerBaseUrl + "auth/login",auth_login,['JSON','POST','unauthorize']);
 	framework.route(controllerBaseUrl + "auth/logout",auth_logout,['GET','authorize']);
 	
 	framework.route(controllerBaseUrl + "test",test);
@@ -56,15 +56,8 @@ function auth_login(){
 	var user = self.post.user;
 	var password = self.post.password;
 	
-	console.log("this is password hola mundo");
-	console.log(self.post);
-	
 	password = localFramework.hash("sha512",password);
 	
-	console.log("this is password hola mundo 2");
-	
-	console.log("this is password ",password);
-
 	userService.login(user,password,function(user){
 		if(user !== null){
 			

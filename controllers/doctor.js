@@ -9,12 +9,12 @@ var controllerBaseUrl = '/app/manage/doctor/';
 var DoctorService = require('../definitions/services/doctor_service.js');
 
 exports.install = function(framework){
-	framework.route(controllerBaseUrl + "",index,['GET']);
-	framework.route(controllerBaseUrl + "",save,['JSON','POST']);
-	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET']);
+	framework.route(controllerBaseUrl + "",index,['GET','authorize']);
+	framework.route(controllerBaseUrl + "",save,['JSON','POST','authorize']);
+	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET','authorize']);
 	
-	framework.route(controllerBaseUrl + "view/{id}/",view,['GET']);
-	framework.route(controllerBaseUrl + "delete/{id}/",deleteDoctor,['DELETE']);
+	framework.route(controllerBaseUrl + "view/{id}/",view,['GET','authorize']);
+	framework.route(controllerBaseUrl + "delete/{id}/",deleteDoctor,['DELETE','authorize']);
 }
 
 function index(){

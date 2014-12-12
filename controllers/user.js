@@ -17,12 +17,12 @@ exports.install = function(framework){
     
     localFramework = framework;
     
-    framework.route(controllerBaseUrl + 'user',index,['GET']);
-	framework.route(controllerBaseUrl + 'user',save,['POST','JSON']);
-	framework.route(controllerBaseUrl + 'login',login,['GET']);
+    framework.route(controllerBaseUrl + 'user',index,['GET','authorize']);
+	framework.route(controllerBaseUrl + 'user',save,['POST','JSON','authorize']);
+	framework.route(controllerBaseUrl + 'login',login,['GET','authorize']);
 
-    framework.route(controllerBaseUrl + 'user/delete/{id}/',remove,['DELETE']);
-    framework.route(controllerBaseUrl + 'user/view/{id}/',view,['GET']);
+    framework.route(controllerBaseUrl + 'user/delete/{id}/',remove,['DELETE','authorize']);
+    framework.route(controllerBaseUrl + 'user/view/{id}/',view,['GET','authorize']);
 }
 
 function login(){

@@ -10,13 +10,13 @@ var controllerBaseUrl = '/app/manage/medical_insurance/';
 
 exports.install = function(framework){
 	
-	framework.route(controllerBaseUrl + '{{quantity}}/',index,['GET']);
-	framework.route(controllerBaseUrl + '',index,['GET']);
-	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET']);
-	framework.route(controllerBaseUrl + '',save,['JSON','POST']);	
+	framework.route(controllerBaseUrl + '{{quantity}}/',index,['GET','authorize']);
+	framework.route(controllerBaseUrl + '',index,['GET','authorize']);
+	framework.route(controllerBaseUrl + 'exclude/hospital/{{ id }}',excludeHospital,['GET','authorize']);
+	framework.route(controllerBaseUrl + '',save,['JSON','POST','authorize']);	
 
-	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET']);
-	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE']);
+	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET','authorize']);
+	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE','authorize']);
 }
 
 function index(){

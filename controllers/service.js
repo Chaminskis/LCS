@@ -25,7 +25,6 @@ exports.install = function(framework){
 	//this is just a get all
 	framework.route(controllerBaseUrl + 'medical_insurance/',medicalInsurance,['GET']);
 	
-	
 	/** Hospital type **/
 	framework.route(controllerBaseUrl + 'hospital_type/',hospitalType,['GET']);
 	

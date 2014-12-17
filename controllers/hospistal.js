@@ -9,29 +9,42 @@ var controllerBaseUrl = '/app/manage/hospital/';
 var HospitalService = require('../definitions/services/hospital_service.js');
 
 exports.install = function(framework){
-	framework.route(controllerBaseUrl + '',index,['GET']);
-	framework.route(controllerBaseUrl + '',save,['JSON','POST']);
+	
+	framework.route(controllerBaseUrl + '',index,['GET','authorize']);
+	framework.route(controllerBaseUrl + '{{ page }}',index,['GET','authorize']);
+	framework.route(controllerBaseUrl + '',save,['JSON','POST','authorize']);
 
-	framework.route(controllerBaseUrl + 'names/',getNames,['GET']);
-	framework.route(controllerBaseUrl + 'all/',full,['GET']);
+	framework.route(controllerBaseUrl + 'names/',getNames,['GET','authorize']);
+	framework.route(controllerBaseUrl + 'all/',full,['GET','authorize']);
 	framework.route(controllerBaseUrl + 'search/',search,['POST','JSON']);
 	
 	/** Insurance **/
-	framework.route(controllerBaseUrl + 'insurance/',addMedicalInsurance,['JSON','POST']);
-	framework.route(controllerBaseUrl + 'insurance/',removeMedicalInsurance,['JSON','PUT']);
+	framework.route(controllerBaseUrl + 'insurance/',addMedicalInsurance,['JSON','POST','authorize']);
+	framework.route(controllerBaseUrl + 'insurance/',removeMedicalInsurance,['JSON','PUT','authorize']);
 	
 	/** Doctor **/
-	framework.route(controllerBaseUrl + 'doctor/',addDoctor,['JSON','POST']);
-	framework.route(controllerBaseUrl + 'doctor/',removeDoctor,['JSON','PUT']);
+	framework.route(controllerBaseUrl + 'doctor/',addDoctor,['JSON','POST','authorize']);
+	framework.route(controllerBaseUrl + 'doctor/',removeDoctor,['JSON','PUT','authorize']);
 	
-	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET']);
-	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE']);
+	framework.route(controllerBaseUrl + 'view/{{ id }}',view,['GET','authorize']);
+	framework.route(controllerBaseUrl + 'delete/{{ id }}',remove,['DELETE','authorize']);
+	
+	framework.route('#401', error401);
+};
+
+function error401(){
+	this.redirect('/app/manage/login');
 }
 
-function index(){
+function index(page){
+	
+	if(page === undefined){
+		page = 1;
+	}
+	
 	var self = this;
 
-	HospitalService.find(function(result){
+	HospitalService.find(page,function(result){
 		self.json(utils.genericResponse(false,'',result));
 	});
 }

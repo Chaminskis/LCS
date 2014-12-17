@@ -23,7 +23,7 @@ angular.module('app.services')
           method:"POST",
           data:model,
       }).then(function(result){
-          return result.data.result;
+          return result.data;
       },function(error){
          def.reject(error);
       });

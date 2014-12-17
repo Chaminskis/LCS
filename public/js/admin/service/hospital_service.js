@@ -24,9 +24,12 @@ angular.module('app.services')
 		});
 	};
 
-	var list = function(){
+	var list = function(page){
+		
+		console.log("Page on hospital service " + page);
+		
 		return $http({
-			url:baseUrlApi,
+			url:baseUrlApi + page,
 		}).then(function(result){
 			return result.data;
 		},function(error){

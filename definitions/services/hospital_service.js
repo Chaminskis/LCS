@@ -57,19 +57,30 @@ module.exports = (function(){
 	/*
 	 * List all hospital just for show on table.
 	 **/
-	var list = function(callback){
-		models.Hospital.findAll({
+	var list = function(page,callback){
+		
+		//TODO make this a parameter
+		var limit  = 10;
+		
+		models.Hospital.findAndCountAll({
+			limit:limit,
+			offset:( limit * (page - 1)),
+			
 			include:[{
 				'as':'HospitalType',
 				model:models.HospitalType,
 			}],
 		}).success(function(result){
+			var response = {};
 			
-			var cleanResult = result.map(function(item){
+			var cleanResult = result.rows.map(function(item){
 				return removeFields(item.dataValues);
 			});
 			
-			callback(cleanResult);
+			response.count = result.count;
+			response.rows = cleanResult;
+			
+			callback(response);
 		}).error(function(error){
             callback(error);
         });
@@ -108,7 +119,7 @@ module.exports = (function(){
 			},
 			include:[{
 				model:models.MedicalSecure,
-				as:'Secures',
+				as:'MedicalInsurances',
 				attributes:[ 'id','name','details']
 			},{
 				model:models.Doctor,
@@ -452,8 +463,8 @@ module.exports = (function(){
 		hi:function(callback){
 			create(callback);
 		},
-		find:function(callbackResponse){
-			list(callbackResponse);
+		find:function(page,callbackResponse){
+			list(page,callbackResponse);
 		},
 		findAllNames:function(callbackResponse){
 			listNames(callbackResponse);

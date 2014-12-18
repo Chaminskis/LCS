@@ -11,8 +11,8 @@ var HospitalService = require('../definitions/services/hospital_service.js');
 exports.install = function(framework){
 	
 	framework.route(controllerBaseUrl + '',index,['GET','authorize']);
-	framework.route(controllerBaseUrl + '{{ page }}',index,['GET','authorize']);
-	framework.route(controllerBaseUrl + '',save,['JSON','POST','authorize']);
+	framework.route(controllerBaseUrl + '{{ page }}',index,['GET']);
+	framework.route(controllerBaseUrl + '',save,['JSON','POST']);
 
 	framework.route(controllerBaseUrl + 'names/',getNames,['GET','authorize']);
 	framework.route(controllerBaseUrl + 'all/',full,['GET','authorize']);

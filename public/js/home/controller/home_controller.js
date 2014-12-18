@@ -15,11 +15,11 @@ angular.module('app.controllers', ['app.services'])
 
     Array.prototype.contains = function(object){
         return this.indexOf(object) !== -1;
-    }
+    };
 
     Array.prototype.isEmpty = function(){
-        return this.length == 0;
-    }
+        return this.length === 0;
+    };
  
     $scope.safeApply = function(fn) {
         
@@ -48,11 +48,10 @@ angular.module('app.controllers', ['app.services'])
 
 
     var Filter = function(filtername, param, isDisabled){
-        var self = this;
         this.filtername = filtername;
         this.param = param;
         this.isDisabled = isDisabled;
-    }
+    };
 
 
     $scope.insuranceFilter = new Filter("INSURANCE", $scope.mainInsurances, true);
@@ -120,14 +119,14 @@ angular.module('app.controllers', ['app.services'])
     $scope.updateHospitalTypeSelection = function(){
         $scope.hospitalTypeFilter.updateHospitalTypeSelection();
         console.log(buildSearchMultiCriteriaParam());
-    }
+    };
 
     var everythingIsSelected = function(entityCollection){
         var allIsSelected = true;
         for (var i = 0; i < entityCollection.length; i++) {
             if(!entityCollection[i].isSelected)
                 allIsSelected = false;
-        };
+        }
         return allIsSelected;
     };
 
@@ -136,11 +135,11 @@ angular.module('app.controllers', ['app.services'])
         if($scope.insuranceFilter.isDisabled){
             for (var i = 0; i < $scope.mainInsurances.length; i++) {
                 $scope.mainInsurances[i].isSelected = true;
-            };
+            }
         }else{
             for (var i = 0; i < $scope.mainInsurances.length; i++) {
                 $scope.mainInsurances[i].isSelected = false;
-            };
+            }
         }
         $scope.safeApply();
 
@@ -149,20 +148,18 @@ angular.module('app.controllers', ['app.services'])
      $scope.updateSelectAllInsurances = function(){
         $scope.insuranceFilter.updateSelectAllInsurances();
         console.log(buildSearchMultiCriteriaParam());
-     }
-
-
+     };
 
     $scope.hospitalTypeFilter.updateSelectAllHospitalTypes = function(){
         
         if($scope.hospitalTypeFilter.isDisabled){        
             for (var i = 0; i < $scope.hospitalTypes.length; i++) {
                 $scope.hospitalTypes[i].isSelected = true;
-            };
+            }
         }else{
             for (var i = 0; i < $scope.hospitalTypes.length; i++) {
                 $scope.hospitalTypes[i].isSelected = false;
-            };
+            }
         }
         $scope.safeApply();
     };
@@ -171,7 +168,7 @@ angular.module('app.controllers', ['app.services'])
     $scope.updateSelectAllHospitalTypes = function(){
         $scope.hospitalTypeFilter.updateSelectAllHospitalTypes();
         console.log(buildSearchMultiCriteriaParam());
-    }
+    };
 
     var masterSearchObjectParam = {
         searchType: '',
@@ -195,7 +192,7 @@ angular.module('app.controllers', ['app.services'])
                         if(params[i].isSelected){
                             selectedParams.push(params[i].id);
                         } 
-                    };
+                    }
             }
             return selectedParams;
         },
@@ -224,7 +221,8 @@ angular.module('app.controllers', ['app.services'])
                 var filter = filters[i];
                 searchParam.addCriteriaParam(filter);
            }
-        };
+        }
+        
         if(locationIsSelected()){
             searchParam.addLocationParam($scope.locationFilter);
         }
@@ -233,7 +231,7 @@ angular.module('app.controllers', ['app.services'])
 
     var locationIsSelected = function(){
         return $scope.locationFilter.isSelected; 
-    }
+    };
 
     var buildSearchNameCriteriaParam = function(){
 
@@ -281,8 +279,6 @@ angular.module('app.controllers', ['app.services'])
                     className: 'map-icon-male',
                     pin: SQUARE_PIN
                 };
-
-                var marker = createCustomMarker(markerInfo);
 
                 $scope.map.setCenter(pos);
                 $scope.locationFilter.param.lat = position.coords.latitude;
@@ -358,14 +354,16 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.getHospitalTypeIcon = function(marker){
        console.log("h type id:"+marker.hospital_type); 
+       
         switch(marker.hospital_type){
             case 2: return 'icon-lcs-clinic'; break;
             case 3: return 'icon-lcs-uap'; break;
             default: return 'icon-lcs-hospital'; 
         }
-    }
+    };
+    
     var setPopup = function(){
-        $scope.popup = new Object();
+        $scope.popup = {};
         $scope.popup.show = false;
     };
 
@@ -395,7 +393,8 @@ angular.module('app.controllers', ['app.services'])
         marker.content = '<div class="infoWindowContent">' + info.details + '</div>';
         marker.description = info.details;
         marker.id = info.id;
-        marker.hospital_type = info.hospital_type;
+        marker.hospital_type = info.hospitalType.id;
+        marker.hospital_type_name =  info.hospitalType.name;
         addMarkerlistener(marker);
         return marker;
     }; 
@@ -499,17 +498,25 @@ angular.module('app.controllers', ['app.services'])
     
     $scope.search = function(){
         removeAllMarkers();
-        var hospitals = service.findHospitalsByCriteria($scope.searchCriteria);
-        $scope.markers = [];
-        for(var i = 0; i < hospitals.length; i++){
-            createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
-        }
-
-        enableSearchMode();       
+        
+        service.findHospitalsByCriteria($scope.searchCriteria).then(function(data){
+            var hospitals = data.result.rows;
+            console.log(hospitals);
+            
+            $scope.markers = [];
+            
+            for(var i = 0; i < hospitals.length; i++){
+                createMarker(hospitals[i], showPopupRouteAndDistanceOnClick);
+            }
+    
+            enableSearchMode();           
+        },function(){
+            console.log("Mmmmmm creo que tus criterios de busquedas son raros, y ademas que haces aqui. (O.O)");
+        });
     };
 
     var setSearchResultsBar = function(){
-        $scope.bar = new Object();
+        $scope.bar = {};
         $scope.bar.show = true;   
         $scope.searchModeOn = true;
     };
@@ -567,6 +574,25 @@ angular.module('app.controllers', ['app.services'])
     };
 
 }]);
+
+/*
+ * Directiva para buscar una vez el usuario presione enter en el input
+ *
+ *
+ **/
+angular.module('app.controllers').directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
 
 angular.module('app.controllers').directive('test',['$timeout','$parse',function($timeout,$parse) {
     return{

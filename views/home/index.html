@@ -137,7 +137,7 @@
             <!-- search bar start -->
             <button class="pull-right btn btn-search btn-primary mt" ng-click="search()">Buscar</button>            
             <div class="col-lg-2 transition-ease-io pull-right">
-                <input type="text" class="form-control search-bar" />
+                <input type="text" class="form-control search-bar" placeholder="Buscar" ng-enter="search()"/>
             </div>
             <!-- search bar end -->
 
@@ -171,7 +171,7 @@
                            <div class="hospital-details hidden" ng-class="{ 'visible' : marker.selected }">
                               <p><strong>Teléfono:</strong>: 555 555 5555</p>
                               <p><strong>Mail</strong>: 888 888 8888 </p>
-                              <p><strong>Tipo de Centro: </strong> {{getHospitalType(marker)}} </p>
+                              <p><strong>Tipo de Centro: </strong> {{ marker.hospital_type_name }} </p>
                               <p><strong>Seguros: </p>
                            </div>          
                 </div>

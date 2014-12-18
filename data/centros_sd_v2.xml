@@ -1,0 +1,796 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Familia Carbonell</Author>
+  <LastAuthor>Familia Carbonell</LastAuthor>
+  <Created>2014-12-18T02:44:09Z</Created>
+  <LastSaved>2014-12-18T02:34:41Z</LastSaved>
+  <Version>15.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>7155</WindowHeight>
+  <WindowWidth>20490</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s63">
+   <NumberFormat ss:Format="0"/>
+  </Style>
+  <Style ss:ID="s64">
+   <NumberFormat ss:Format="@"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Table">
+  <Table ss:ExpandedColumnCount="6" ss:ExpandedRowCount="98" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60">
+   <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="192.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="181.5"/>
+   <Column ss:Index="5" ss:Width="63.75"/>
+   <Row>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">ID_CENTRO</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">NombreCentro</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">DireccionCentro</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">Tipo_Centro_Primer_Nivel</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">TelCentro</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="String">FaxCentro</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1619</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CENTRO DE DIAGNOSTICO DNE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV. ALBERT TOMAS, CASI ESQ CENTRAL # 305</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CENTRO DIAGNOSTICO</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-238-7043</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1826</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">PLAZA DE LA SALUD</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AVENIDA ORTEGA Y GASSET</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-565-7477</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1603</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">POLICIA NACIONAL (HOSGEPOL)</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV,INDEPENDENCIA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-533-1411</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1587</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">SEMMA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE JOSE JOAQUIN PEREZ ESQ. SANTIAGO</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-686-1503</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">25</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">DOCENTE PADRE BILLINI</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE SANTOME NO. 39, CIUDAD COLONIAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-333-5656</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">000-000-0000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">DR. LUIS EDUARDO AYBAR</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE FEDERICO VELASQUEZ NO. 1, MARIA AUXILIADORA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-681-2181</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-538-8541</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1592</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">SAN LUIS</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ PRIMERA DE MAYO #17 SAN LUIS</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-222-0370</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1585</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">RAMON DE LARA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CARRETERA MELLA KM 16</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-3333</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1522</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">VILLA DUARTE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV. ULISES HEUREAUX EDIF. 7 APTO1-1 CALERO VILLA DUARTE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-597-7384</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-597-7384</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">DR MARCELINO VELEZ SANTANA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ ISSABEL AGUILAR NO. 141</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-560-6666</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-372-1607</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1650</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">FUERZA ARMADA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV.ORTEGA Y GASETE CASI ESQUINA KENNEDY</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-541-9339</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1649</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">SALVADOR B GAUTIER</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ALEXANDER FLEMING ESQ. P SALCEDO NO. 10 ENSANCHE LA FE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-565-3171</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-565-2600</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">JACINTO IGNACIO MAÑON</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV. REPUBLICA DE COLOMBIA ESQ MONUMENTAL, LOS PERALEJOS</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-519-7844</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">000-000-0000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">SANTO SOCORRO</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE 28, ENS. LA FE,</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-566-3322</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-537-0990</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">MATA HAMBRE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE INTERIOR A # 13, MATA HAMBRE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-533-3990</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-533-1277</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">MATERNIDAD NUESTRA SEÑORA DE LA ALTAGRACIA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV. PEDRO ENRRIQUE UREÑA NO. 49</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-686-6376</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-685-1336</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">DR FRANCISCO E MOSCOSO PUELLO</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV. NICOLAS DE OVANDO ESQ. JOSEFA BREA, ENS. LUPERON</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-681-7828</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">000-000-0000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">INSTITUTO CONTRA LA CEGUERA POR GLAUCOMA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV. NICOLAS DE OVANDO ESQ. ORTEGA Y GASSET NO. 7</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-333-4512</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">000-000-0000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ASOCIACION DOMINICANA DE REHABILITACION</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE SAN FRANCISCO DE MACORIS ESQ. LEOPOLDO NAVARRO</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-6444</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">000-000-0000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">INSTITUTO AYUDA AL SORDO</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE 2 NO 25, EL MILLON.</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-537-0707</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-918-8668</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1734</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">MARCELINO VELEZ SANTANA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AVENIDA ISABELL AGUIAR NU.141 HERRERA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-560-6666</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String"></Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ENGOMBE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE FRANCISCO CAAMAÑO DEÑO, ENTRANDO POR EL BARRIO IVAN GUZMAN</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-537-3666</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-537-3668</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">LOS ALCARRIZOS II</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ GAVIOTA #5 LOS AMERICANOS I</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-548-1952</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">000-000-0000</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CENTRO CRISTIANO DE SERVICIOS MEDICOS</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">PROLONGACION DUARTE, BARRIO LOS ALCARRIZOS (FRENTE A LA ZONA FRANCA)</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-545-3329</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-545-2888</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">29</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">TENEDORA XAVILONE, S A (CENTRO DE ATENCION AMBULATORIA ALMA ATA)</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE ARISTIDES GARCIA GOMEZ NO. 10</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-338-0801</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-548-3178</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">26</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HACIENDA ESTRELLA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE NO. 13  ESQ. CARRETERA PRINCIPAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-240-3236</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-240-3475</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ELVIRA ECHAVARRIA VDA CASTILLO (GUERRA)</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CALLE CARLOS MANUEL PUMAROL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-526-5442</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-526-5443</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">17</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">RODOLFO DE LA CRUZ LORA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">KM 28 AUTOPISTA DUARTE, PEDRO BRAND</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-559-8600</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-559-8382</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">LA VICTORIA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ALTAGRACIA # 1, LA VICTORIA, DISTRITO MUNICIPAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-222-8188</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-222-8098</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">BOCA CHICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/SAN ANDRES #100 DESPUES DE LA MARINA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HOSPITAL</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-523-4334</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">000-000-0000</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ALTOS DE ARROYO HONDO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CENTRO DE LOS HÉROES</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CRISTO REY</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">RESIDENCIAL ORTEGA Y GASSET</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">LA FERIA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CRISTO REY</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CRISTO REY</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">VILLA CONSUELO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">GASCUE</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">SIMÓN BOLIVAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CRISTO REY</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">GASCUE</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ENGOMBE</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">LAS CAOBAS</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HERRERA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HERRERA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ENRIQUILLO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ENRIQUILLO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HERRERA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HERRERA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">LIBERTADOR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HERRERA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">HERRERA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CANCINO AFUERA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">SAVICA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">LOS PALMARES I</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">N/A</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">REGION 0</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">ALMA ROSA</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Dr. Abel González</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Independencia  No. 101</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-682-6001</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-685-8018</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro De Obst. Y Ginecología</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Independencia No.451</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-221-7100 </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-5705</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Inst. Mat. San Rafael</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Bolívar /García G</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-5511 </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-689-3902</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Gastro- Diagnóstico</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/José J- Pérez - Bolivar</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-682-4825/809221-4190</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-6691</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Méd. Avanzada Dr. Gónzalez</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Abraham Lincoln No. 953</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-227-2235</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-541-2303</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Diagnóstica, S.A.</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Lea De Castro No. 51</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-5260</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-682-4390</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Oriental Ginec y Obst</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Sabana Larga No. 123</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-593-4386</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-594-3545</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Méd. Dominicano</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Luís F . Thomén</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-531-2800</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-531-7513</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Altagracia </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Sabana larga No. 96</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-699-3494</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-699-3694</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Méd. Alcántara</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Ortega Y Gassett </Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-566-2121 </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-565-8528</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Médico Luperón</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/Pedro L. Cedeño</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-684-3989</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-536-2528</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Hidden="1">
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Hospitén Santo Domingo</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Boliva/ Tiradentes</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-541-3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-920-0355</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Médico Del Caribe</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. 27 Febrero</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-685-9403</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-685-4626</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Grupo Medico San Martin</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">San Martín No. 232</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-565-1777</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-472-2231</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Dr. Rodriguez Santos</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Bartolomé Colón </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-333-6671</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-948-9019</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro M.Universidad Central,UCE</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Máximo Gómez No.66</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-221-0171</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-9233</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">17</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C. De Otorrinolaringología y Esp</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. 27 Febrero</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-682-0151</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">NO USAR</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Dr. Medrano</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Las Plamas, Herrera</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-922-5944</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-922-4683</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Inst. Cirugía Especializada</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Bolivar No. 208</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-3155</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-689-4638</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro M. Corominas Pepín </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Alirio Paulino</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-541-1400</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-563-1075</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">21</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro M. Antillano</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Correa Y Cidrón No. 20</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-533-8445</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-533-7650</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Médico Real</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Rómulo Betancourt</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-537-3940</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-530-8821</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">23</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro M. Escaño</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Dr. Delgado No.2</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-687-2090</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-689-0148</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Reno</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Santo Tomás De Aquino</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-686-7777</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-686-8231</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">25</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro M. Avanzada De Herrera</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Ant. Carretera Duarte</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-561-8005</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-564-0534</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">26</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Médico Haina</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Sánchez No. 49, Haina</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-237-3000</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-237-1996</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">27</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Policlinico Nacional</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Guayubín Olivo No. 1</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-788-2323</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-596-9286</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">28</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Médico Moderno</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Charles Summer Esq. J. López</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-548-3131</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-567-2129</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">29</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro M. Vista del Jardin</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Rep. de Colombia/ Los Rios</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-563-9923 </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-620-3415</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Quirurgíco Esculapio</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Mnl. Castillo No. 20 / Ga.</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-686-7290</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-682-9428</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Independencia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av Independencia No. 301</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-533-2775 </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-534-7340</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Dra. Evangelina Rodguez (Pro-Familía)</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Nicolás de Ovando No. 16</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-684-3389</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-684-3856</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">33</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C. M. Integral Santana Guzmán</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. Sabana Larga No. 30, </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-788-1003</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-598-2111</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">34</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Und. Rehabilitación Funcional</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">C/ Núñez Doguez No. 2 La Julia</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-535-2744</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-472-0999</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">35</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">clinica Abreu</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av Independencia No. 301</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-4411</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-688-8359*809-6874922</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">clinica integral 2</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Carretera Mella </Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-788-6336</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-695-2688</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">37</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Medico Maria Dolores</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV sabana Larga</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-547-8601</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-728-3096</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">38</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Medco Universal</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Club rotarios no. 58 Ensanche Ozama</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-594-6161</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-598-2223</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">39</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Centro Medico Juan Carlos</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Av. 25 de febrero no.144 las Americas</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-699-1111</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-699-0252</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="Number">40</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Clinica Pappy Fernnadez</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">AV.Pdrelivio Cedeño no.39 casi esq. Duarte</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">CLINICA</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">809-681-4877</Data></Cell>
+    <Cell ss:StyleID="s64"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <Selected/>
+   <TopRowVisible>30</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>26</ActiveRow>
+     <RangeSelection>R27</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

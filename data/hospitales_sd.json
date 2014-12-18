@@ -1,0 +1,677 @@
+[
+    {
+        "Nombre": "Plaza De La Salud",
+        "Direccion": "Avenida Ortega Y Gasset",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-565-7477",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Policia Nacional (Hosgepol)",
+        "Direccion": "Av,Independencia",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-533-1411",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Semma",
+        "Direccion": "Calle Jose Joaquin Perez Esq. Santiago",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-686-1503",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Docente Padre Billini",
+        "Direccion": "Calle Santome No. 39, Ciudad Colonial",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-333-5656",
+        "Fax": "000-000-0000"
+    },
+    {
+        "Nombre": "Dr. Luis Eduardo Aybar",
+        "Direccion": "Calle Federico Velasquez No. 1, Maria Auxiliadora",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-681-2181",
+        "Fax": "809-538-8541"
+    },
+    {
+        "Nombre": "San Luis",
+        "Direccion": "C/ Primera De Mayo #17 San Luis",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-222-0370",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Ramon de Lara",
+        "Direccion": "Carretera Mella Km 16",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-688-3333",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Villa Duarte",
+        "Direccion": "Av. Ulises Heureaux Edif. 7 Apto1-1 Calero Villa Duarte",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-597-7384",
+        "Fax": "809-597-7384"
+    },
+    {
+        "Nombre": "Dr Marcelino Velez Santana",
+        "Direccion": "C/ Issabel Aguilar No. 141",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-560-6666",
+        "Fax": "809-372-1607"
+    },
+    {
+        "Nombre": "Fuerza Armada",
+        "Direccion": "Av.Ortega Y Gasete Casi Esquina Kennedy",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-541-9339",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Salvador B Gautier",
+        "Direccion": "Alexander Fleming Esq. P Salcedo No. 10 Ensanche La Fe",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-565-3171",
+        "Fax": "809-565-2600"
+    },
+    {
+        "Nombre": "Jacinto Ignacio Mañon",
+        "Direccion": "Av. Republica De Colombia Esq Monumental, Los Peralejos",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-519-7844",
+        "Fax": "000-000-0000"
+    },
+    {
+        "Nombre": "Santo Socorro",
+        "Direccion": "Calle 28, Ens. La Fe,",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-566-3322",
+        "Fax": "809-537-0990"
+    },
+    {
+        "Nombre": "Mata Hambre",
+        "Direccion": "Calle Interior A # 13, Mata Hambre",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-533-3990",
+        "Fax": "809-533-1277"
+    },
+    {
+        "Nombre": "Maternidad Nuestra Señora De La Altagracia",
+        "Direccion": "Av. Pedro Enrrique Ureña No. 49",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-686-6376",
+        "Fax": "809-685-1336"
+    },
+    {
+        "Nombre": "Dr Francisco E Moscoso Puello",
+        "Direccion": "Av. Nicolas De Ovando Esq. Josefa Brea, Ens. Luperon",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-681-7828",
+        "Fax": "000-000-0000"
+    },
+    {
+        "Nombre": "Instituto Contra La Ceguera Por Glaucoma",
+        "Direccion": "Av. Nicolas De Ovando Esq. Ortega Y Gasset No. 7",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-333-4512",
+        "Fax": "000-000-0000"
+    },
+    {
+        "Nombre": "Asociacion Dominicana De Rehabilitacion",
+        "Direccion": "Calle San Francisco De Macoris Esq. Leopoldo Navarro",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-688-6444",
+        "Fax": "000-000-0000"
+    },
+    {
+        "Nombre": "Instituto Ayuda Al Sordo",
+        "Direccion": "Calle 2 No 25, El Millon.",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-537-0707",
+        "Fax": "809-918-8668"
+    },
+    {
+        "Nombre": "Marcelino Velez Santana",
+        "Direccion": "Avenida Isabell Aguiar Nu.141 Herrera",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-560-6666",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Engombe",
+        "Direccion": "Calle Francisco Caamaño Deño, Entrando Por El Barrio Ivan Guzman",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-537-3666",
+        "Fax": "809-537-3668"
+    },
+    {
+        "Nombre": "Los Alcarrizos Ii",
+        "Direccion": "C/ Gaviota #5 Los Americanos I",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-548-1952",
+        "Fax": "000-000-0000"
+    },
+    {
+        "Nombre": "Centro Cristiano De Servicios Medicos",
+        "Direccion": "Prolongacion Duarte, Barrio Los Alcarrizos (Frente A La Zona Franca)",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-545-3329",
+        "Fax": "809-545-2888"
+    },
+    {
+        "Nombre": "Tenedora Xavilone, S A (Centro De Atencion Ambulatoria Alma Ata)",
+        "Direccion": "Calle Aristides Garcia Gomez No. 10",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-338-0801",
+        "Fax": "809-548-3178"
+    },
+    {
+        "Nombre": "Hacienda Estrella",
+        "Direccion": "Calle No. 13  Esq. Carretera Principal",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-240-3236",
+        "Fax": "809-240-3475"
+    },
+    {
+        "Nombre": "Elvira Echavarria Vda Castillo (Guerra)",
+        "Direccion": "Calle Carlos Manuel Pumarol",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-526-5442",
+        "Fax": "809-526-5443"
+    },
+    {
+        "Nombre": "Rodolfo De La Cruz Lora",
+        "Direccion": "Km 28 Autopista Duarte, Pedro Brand",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-559-8600",
+        "Fax": "809-559-8382"
+    },
+    {
+        "Nombre": "La Victoria",
+        "Direccion": "C/Altagracia # 1, La Victoria, Distrito Municipal",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-222-8188",
+        "Fax": "809-222-8098"
+    },
+    {
+        "Nombre": "Boca Chica",
+        "Direccion": "C/San Andres #100 Despues De La Marina",
+        "Tipo": "HOSPITAL",
+        "Tel": "809-523-4334",
+        "Fax": "000-000-0000"
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "ALTOS DE ARROYO HONDO",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "CENTRO DE LOS HÉROES",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "CRISTO REY",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "RESIDENCIAL ORTEGA Y GASSET",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "LA FERIA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "CRISTO REY",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "CRISTO REY",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "VILLA CONSUELO",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "GASCUE",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "SIMÓN BOLIVAR",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "CRISTO REY",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "GASCUE",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "ENGOMBE",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "LAS CAOBAS",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "HERRERA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "HERRERA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "ENRIQUILLO",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "ENRIQUILLO",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "HERRERA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "HERRERA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "LIBERTADOR",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "HERRERA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "HERRERA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "CANCINO AFUERA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "SAVICA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "LOS PALMARES I",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "N/A",
+        "Direccion": "REGION 0",
+        "Tipo": "ALMA ROSA",
+        "Tel": "",
+        "Fax": ""
+    },
+    {
+        "Nombre": "Clinica Dr. Abel González",
+        "Direccion": "Av. Independencia  No. 101",
+        "Tipo": "",
+        "Tel": "809-682-6001",
+        "Fax": "809-685-8018"
+    },
+    {
+        "Nombre": "Centro De Obst. Y Ginecología",
+        "Direccion": "Av. Independencia No.451",
+        "Tipo": "",
+        "Tel": "809-221-7100 ",
+        "Fax": "809-688-5705"
+    },
+    {
+        "Nombre": "Inst. Mat. San Rafael",
+        "Direccion": "Av. Bolívar /García G",
+        "Tipo": "",
+        "Tel": "809-688-5511 ",
+        "Fax": "809-689-3902"
+    },
+    {
+        "Nombre": "Gastro- Diagnóstico",
+        "Direccion": "C/José J- Pérez - Bolivar",
+        "Tipo": "",
+        "Tel": "809-682-4825/809221-4190",
+        "Fax": "809-688-6691"
+    },
+    {
+        "Nombre": "Centro Méd. Avanzada Dr. Gónzalez",
+        "Direccion": "Abraham Lincoln No. 953",
+        "Tipo": "",
+        "Tel": "809-227-2235",
+        "Fax": "809-541-2303"
+    },
+    {
+        "Nombre": "Diagnóstica, S.A.",
+        "Direccion": "C/ Lea De Castro No. 51",
+        "Tipo": "",
+        "Tel": "809-688-5260",
+        "Fax": "809-682-4390"
+    },
+    {
+        "Nombre": "Centro Oriental Ginec y Obst",
+        "Direccion": "Sabana Larga No. 123",
+        "Tipo": "",
+        "Tel": "809-593-4386",
+        "Fax": "809-594-3545"
+    },
+    {
+        "Nombre": "Centro Méd. Dominicano",
+        "Direccion": "C/ Luís F . Thomén",
+        "Tipo": "",
+        "Tel": "809-531-2800",
+        "Fax": "809-531-7513"
+    },
+    {
+        "Nombre": "Clinica Altagracia ",
+        "Direccion": "Sabana larga No. 96",
+        "Tipo": "",
+        "Tel": "809-699-3494",
+        "Fax": "809-699-3694"
+    },
+    {
+        "Nombre": "Centro Méd. Alcántara",
+        "Direccion": "Av. Ortega Y Gassett ",
+        "Tipo": "",
+        "Tel": "809-566-2121 ",
+        "Fax": "809-565-8528"
+    },
+    {
+        "Nombre": "Centro Médico Luperón",
+        "Direccion": "C/Pedro L. Cedeño",
+        "Tipo": "",
+        "Tel": "809-684-3989",
+        "Fax": "809-536-2528"
+    },
+    {
+        "Nombre": "Hospitén Santo Domingo",
+        "Direccion": "Av. Boliva/ Tiradentes",
+        "Tipo": "",
+        "Tel": "809-541-3000",
+        "Fax": "809-920-0355"
+    },
+    {
+        "Nombre": "Centro Médico Del Caribe",
+        "Direccion": "Av. 27 Febrero",
+        "Tipo": "CLINICA",
+        "Tel": "809-685-9403",
+        "Fax": "809-685-4626"
+    },
+    {
+        "Nombre": "Grupo Medico San Martin",
+        "Direccion": "San Martín No. 232",
+        "Tipo": "CLINICA",
+        "Tel": "809-565-1777",
+        "Fax": "809-472-2231"
+    },
+    {
+        "Nombre": "Clinica Dr. Rodriguez Santos",
+        "Direccion": "C/ Bartolomé Colón ",
+        "Tipo": "CLINICA",
+        "Tel": "809-333-6671",
+        "Fax": "809-948-9019"
+    },
+    {
+        "Nombre": "Centro M.Universidad Central,UCE",
+        "Direccion": "Av. Máximo Gómez No.66",
+        "Tipo": "CLINICA",
+        "Tel": "809-221-0171",
+        "Fax": "809-688-9233"
+    },
+    {
+        "Nombre": "C. De Otorrinolaringología y Esp",
+        "Direccion": "Av. 27 Febrero",
+        "Tipo": "CLINICA",
+        "Tel": "809-682-0151",
+        "Fax": "NO USAR"
+    },
+    {
+        "Nombre": "Clinica Dr. Medrano",
+        "Direccion": "Av. Las Plamas, Herrera",
+        "Tipo": "CLINICA",
+        "Tel": "809-922-5944",
+        "Fax": "809-922-4683"
+    },
+    {
+        "Nombre": "Inst. Cirugía Especializada",
+        "Direccion": "Av. Bolivar No. 208",
+        "Tipo": "CLINICA",
+        "Tel": "809-688-3155",
+        "Fax": "809-689-4638"
+    },
+    {
+        "Nombre": "Centro M. Corominas Pepín ",
+        "Direccion": "C/ Alirio Paulino",
+        "Tipo": "CLINICA",
+        "Tel": "809-541-1400",
+        "Fax": "809-563-1075"
+    },
+    {
+        "Nombre": "Centro M. Antillano",
+        "Direccion": "C/ Correa Y Cidrón No. 20",
+        "Tipo": "CLINICA",
+        "Tel": "809-533-8445",
+        "Fax": "809-533-7650"
+    },
+    {
+        "Nombre": "Centro Médico Real",
+        "Direccion": "Av. Rómulo Betancourt",
+        "Tipo": "CLINICA",
+        "Tel": "809-537-3940",
+        "Fax": "809-530-8821"
+    },
+    {
+        "Nombre": "Centro M. Escaño",
+        "Direccion": "Dr. Delgado No.2",
+        "Tipo": "CLINICA",
+        "Tel": "809-687-2090",
+        "Fax": "809-689-0148"
+    },
+    {
+        "Nombre": "Clinica Reno",
+        "Direccion": "Santo Tomás De Aquino",
+        "Tipo": "CLINICA",
+        "Tel": "809-686-7777",
+        "Fax": "809-686-8231"
+    },
+    {
+        "Nombre": "Centro M. Avanzada De Herrera",
+        "Direccion": "Ant. Carretera Duarte",
+        "Tipo": "CLINICA",
+        "Tel": "809-561-8005",
+        "Fax": "809-564-0534"
+    },
+    {
+        "Nombre": "Centro Médico Haina",
+        "Direccion": "C/ Sánchez No. 49, Haina",
+        "Tipo": "CLINICA",
+        "Tel": "809-237-3000",
+        "Fax": "809-237-1996"
+    },
+    {
+        "Nombre": "Centro Policlinico Nacional",
+        "Direccion": "Guayubín Olivo No. 1",
+        "Tipo": "CLINICA",
+        "Tel": "809-788-2323",
+        "Fax": "809-596-9286"
+    },
+    {
+        "Nombre": "Centro Médico Moderno",
+        "Direccion": "Charles Summer Esq. J. López",
+        "Tipo": "CLINICA",
+        "Tel": "809-548-3131",
+        "Fax": "809-567-2129"
+    },
+    {
+        "Nombre": "Centro M. Vista del Jardin",
+        "Direccion": "C/ Rep. de Colombia/ Los Rios",
+        "Tipo": "CLINICA",
+        "Tel": "809-563-9923 ",
+        "Fax": "809-620-3415"
+    },
+    {
+        "Nombre": "Centro Quirurgíco Esculapio",
+        "Direccion": "C/ Mnl. Castillo No. 20 / Ga.",
+        "Tipo": "CLINICA",
+        "Tel": "809-686-7290",
+        "Fax": "809-682-9428"
+    },
+    {
+        "Nombre": "Clinica Independencia",
+        "Direccion": "Av Independencia No. 301",
+        "Tipo": "CLINICA",
+        "Tel": "809-533-2775 ",
+        "Fax": "809-534-7340"
+    },
+    {
+        "Nombre": "Clinica Dra. Evangelina Rodguez (Pro-Familía)",
+        "Direccion": "Av. Nicolás de Ovando No. 16",
+        "Tipo": "CLINICA",
+        "Tel": "809-684-3389",
+        "Fax": "809-684-3856"
+    },
+    {
+        "Nombre": "C. M. Integral Santana Guzmán",
+        "Direccion": "Av. Sabana Larga No. 30, ",
+        "Tipo": "CLINICA",
+        "Tel": "809-788-1003",
+        "Fax": "809-598-2111"
+    },
+    {
+        "Nombre": "Und. Rehabilitación Funcional",
+        "Direccion": "C/ Núñez Doguez No. 2 La Julia",
+        "Tipo": "CLINICA",
+        "Tel": "809-535-2744",
+        "Fax": "809-472-0999"
+    },
+    {
+        "Nombre": "clinica Abreu",
+        "Direccion": "Av Independencia No. 301",
+        "Tipo": "CLINICA",
+        "Tel": "809-688-4411",
+        "Fax": "809-688-8359*809-6874922"
+    },
+    {
+        "Nombre": "clinica integral 2",
+        "Direccion": "Carretera Mella ",
+        "Tipo": "CLINICA",
+        "Tel": "809-788-6336",
+        "Fax": "809-695-2688"
+    },
+    {
+        "Nombre": "Centro Medico Maria Dolores",
+        "Direccion": "AV sabana Larga",
+        "Tipo": "CLINICA",
+        "Tel": "809-547-8601",
+        "Fax": "809-728-3096"
+    },
+    {
+        "Nombre": "Centro Medco Universal",
+        "Direccion": "Club rotarios no. 58 Ensanche Ozama",
+        "Tipo": "CLINICA",
+        "Tel": "809-594-6161",
+        "Fax": "809-598-2223"
+    },
+    {
+        "Nombre": "Centro Medico Juan Carlos",
+        "Direccion": "Av. 25 de febrero no.144 las Americas",
+        "Tipo": "CLINICA",
+        "Tel": "809-699-1111",
+        "Fax": "809-699-0252"
+    },
+    {
+        "Nombre": "Clinica Pappy Fernnadez",
+        "Direccion": "AV.Pdrelivio Cedeño no.39 casi esq. Duarte",
+        "Tipo": "CLINICA",
+        "Tel": "809-681-4877",
+        "Fax": ""
+    },
+    {
+        "Nombre": ""
+    }
+]

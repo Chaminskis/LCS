@@ -12,6 +12,11 @@ module.exports = (function(){
 	
 	var dateTimeFields = ['updated_at','created_at','deleted_at'];
 	
+	/*
+	 * 
+	 * Local method to clean each item of a list of objects 
+	 *
+	 **/
 	var removeFields = function(entity){
 		
 		dateTimeFields.forEach(function(field){
@@ -21,6 +26,11 @@ module.exports = (function(){
 		return entity;
 	};
 	
+	/*
+	 *
+	 * retrieve all hospital type (Drop down list :) )
+	 *
+	 **/
 	var list = function(callback){
 		
 		models.HospitalType

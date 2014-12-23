@@ -20,7 +20,7 @@ angular.module('lcs-admin',['ngRoute','app.controllers'])
 			controller:'HospitalCtrl',
 			templateUrl:'/js/admin/views/hospital/index.html'	
 		})
-
+		
 		.when('/hospital/add/',{
 			controller:'HospitalCreateCtrl',
 			templateUrl:'/js/admin/views/hospital/create.html',

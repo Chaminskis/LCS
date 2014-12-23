@@ -56,10 +56,10 @@
 				</p>
 				<p>
 					<b>Location:</b> 
-						Lat <a ng-click="showMap()">{{ data.latitude }}</a> 
-						Long <a ng-click="showMap()">{{ data.longitude }}</a>
+						Lat <a ng-click="showMap()">( {{ data.latitude }} )</a> 
+						Long <a ng-click="showMap()">( {{ data.longitude }} )</a>
 						
-						<button ng-if="updateLocationOption" class="btn btn-primary btn-sm " ng-click="updateLocation()">Actualizar locacion</button>
+					<button ng-if="updateLocationOption" class="btn btn-primary btn-sm " ng-click="updateLocation()">Actualizar locacion</button>
 				</p>
 				<div id="update_map_container" ng-show='show_map'>
 		        	<div id="update_map"></div>	

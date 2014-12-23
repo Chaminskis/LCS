@@ -7,7 +7,9 @@
 
 angular.module('app.controllers')
 
-.controller('HospitalCtrl', ['$scope','HospitalService', function($scope,Hospital){
+.controller('HospitalCtrl', ['$routeParams','$scope','$location','HospitalService', function($routeParams,$scope,$location,Hospital){
+	
+	var page = $routeParams.page;
 	
 	$scope.message = 'hopsital index controller';
 	$scope.totalItems = 0;
@@ -17,6 +19,10 @@ angular.module('app.controllers')
 		total:1,
 		perPage: 10
 	};
+	
+	if(page !== undefined){
+		$scope.pager.current = parseInt(page,10);
+	}
 	
 	var getPages = function(pagerObj){
 		var current = pagerObj.current;
@@ -43,7 +49,7 @@ angular.module('app.controllers')
 	};
 
 	$scope.load = function(){
-		var page = arguments[0] || 1; 
+		var page = arguments[0] || $scope.pager.current; 
 		
 		Hospital.list(page).then(function(data){
 			$scope.data = data.result.rows;
@@ -63,6 +69,8 @@ angular.module('app.controllers')
 		}
 
 		$scope.pager.current = page;
+		
+		$location.search({page: parseInt(page,10)});
 		
 		$scope.load(page);
 	};

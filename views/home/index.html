@@ -166,14 +166,18 @@
                   <div class="blog-title">{{marker.name}}</div>
                 </div>
                 <div class="blog-text">
-
-                           <p><strong>Dirección:</strong>{{marker.address}}</p>
-                           <div class="hospital-details hidden" ng-class="{ 'visible' : marker.selected }">
-                              <p><strong>Teléfono:</strong>: 555 555 5555</p>
-                              <p><strong>Mail</strong>: 888 888 8888 </p>
-                              <p><strong>Tipo de Centro: </strong> {{ marker.hospital_type_name }} </p>
-                              <p><strong>Seguros: </p>
-                           </div>          
+                   <p>
+                     <strong>Dirección:</strong>{{marker.address}}
+                   </p>
+                   <div class="hospital-details hidden" ng-class="{ 'visible' : marker.selected }">
+                     <p><strong>Teléfono:</strong>: 555 555 5555</p>
+                      <p><strong>Mail</strong>: 888 888 8888 </p>
+                      <p><strong>Tipo de Centro: </strong> {{ marker.hospital_type_name }} </p>
+                      <p><strong>Seguros: </p>
+                      <p style="color:white">
+                        <a href="/app/manage/#/hospital/view/{{marker.id}}">Editar TMP</a>
+                      </p>
+                   </div>          
                 </div>
               </div>
             </div>

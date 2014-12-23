@@ -194,6 +194,11 @@ module.exports = (function(){
         });	
 	};
 	
+	/*
+	 *  
+	 * Relate hospital with doctor. 
+	 *
+	 **/
 	var addDoctor = function(hospital,doctor,callback){
 		models.Hospital.find(hospital).success(function(itemHospital){
 			models.Doctor.find(doctor).success(function(itemDoctor){
@@ -214,7 +219,10 @@ module.exports = (function(){
 		});
 	};
 	
-		
+	/*
+	 * Remove relation with doctor and hospital
+	 *
+	 **/
 	var removeDoctor = function(hospital,doctor,callback){
 		
 		var sql = 'delete from hospital_doctors where hospital_id='+ hospital +' and doctor_id= ' + doctor + ';';
@@ -227,7 +235,10 @@ module.exports = (function(){
 		
 	};
 
-	
+	/*
+	 * Relate medical insurance with a hospital
+	 *
+	 **/
 	var addmedicalInsurance = function(hospital,secure,callback){
 		
 		models.Hospital.find(hospital).success(function(itemHospital){
@@ -248,6 +259,10 @@ module.exports = (function(){
 		});
 	};
 	
+	/*
+	 * Remove medical insurance
+	 *
+	 **/
 	var removeMedicalInsurance = function(hospitalID,medicalAsuranceID,callback){
 		var sql = 'delete from hospital_insurance where hospital_id='+ hospitalID +' and medical_secure_id= ' + medicalAsuranceID + ';';
 		
@@ -258,6 +273,10 @@ module.exports = (function(){
 		});
 	};
 	
+	/*
+	 * return all hospital name, TODO: Know where I used this and update thos doc :)
+	 *
+	 **/
 	var listNames = function(callback){
 		models.Hospital.findAll({
 			attributes: ['id','name']
@@ -268,14 +287,14 @@ module.exports = (function(){
         });
 	};
 	
+	/*
+	 * Update hospital location
+	 *
+	 **/
 	var updateLocation = function(hospitalID,location,callback){
 		
 		/** Find hospital to update **/
 		models.Hospital.find(hospitalID).success(function(hospital){
-			
-			console.log("*********************");
-			console.log(hospital);
-			console.log("*********************");
 			
 			/** Update location hosptial **/
 			hospital.updateAttributes({

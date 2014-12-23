@@ -19,7 +19,7 @@ angular.module('app.controllers')
 	};
 	
 	$scope.load = function(){
-		var controller = window.location.hash.split('/')[1]
+		var controller = window.location.hash.split('/')[1];
 		
 		$scope.setActive(controller);
 	};

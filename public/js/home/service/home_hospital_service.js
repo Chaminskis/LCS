@@ -37,13 +37,13 @@ angular.module('app.services')
 	};
 	
 	var findHospitalsByLocation = function(location){
-
+		
 		var searchObject = createSearchObject(searchType.LOCATION);
 		
 		var tmpLocation = createLocationObject(location.lat, location.lon);
 		
 		searchObject.location = location;
- 		console.log(searchObject);
+ 		
 		 return hospitalService.search(searchObject);
 		//return performSearch(searchObject);
 	};
@@ -56,6 +56,7 @@ angular.module('app.services')
 		//var loc = createLocationObject(searchParam.location.lat, searchParam.location.lon);
 		
 		var searchObject = createSearchObject(searchType.CRITERIA);
+		searchObject.criteria = searchParam;
 		
 		return hospitalService.search(searchObject);		
 	};

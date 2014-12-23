@@ -9,8 +9,17 @@
 		text-transform:capitalize;
 	}
 	
+	#update_map_container{
+		height:400px;
+		width:100%;
+	}
+	
+	#update_map{
+		height:100%;
+		width:100%;
+	}
+	
 </style>
-
 
 <div class='content'>
 	<div class="alert alert-success" role="alert" ng-if='error.show'>
@@ -46,8 +55,15 @@
 					<b>Tipo:</b> <a href="#">{{ data.hospitalType.details }}</a>
 				</p>
 				<p>
-					<b>Location:</b> Lat <a href="#">{{ data.latitude }}</a> Long <a href="#">{{ data.longitude }}</a>
+					<b>Location:</b> 
+						Lat <a ng-click="showMap()">{{ data.latitude }}</a> 
+						Long <a ng-click="showMap()">{{ data.longitude }}</a>
+						
+						<button ng-if="updateLocationOption" class="btn btn-primary btn-sm " ng-click="updateLocation()">Actualizar locacion</button>
 				</p>
+				<div id="update_map_container" ng-show='show_map'>
+		        	<div id="update_map"></div>	
+		        </div>
 			</div>
 	
 			<div style='padding:2%'>
@@ -112,6 +128,8 @@
 			<div>
 				<button ng-click='delete(data.id)' class='btn  btn-danger'>Eliminar</button>
 			</div>
+			
+
 		</div>
 	</div>
 	<!-- Add medical ensurance -->
@@ -149,6 +167,27 @@
 	        </div>
 	      </div>
 	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click='reloadDoctors()'>Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Update Hospital Location -->
+	<div class="modal fade" id="hospital_location" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Locacion</h4>
+	      </div>
+	      <div class="modal-body" style="height:400px" ng-init="showModal()">
+	        
+	        <h3>Map</h3>
+
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='reloadDoctors()'>Actualizar Locacion</button>
 	        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click='reloadDoctors()'>Cerrar</button>
 	      </div>
 	    </div>

@@ -268,6 +268,30 @@ module.exports = (function(){
         });
 	};
 	
+	var updateLocation = function(hospitalID,location,callback){
+		
+		/** Find hospital to update **/
+		models.Hospital.find(hospitalID).success(function(hospital){
+			
+			console.log("*********************");
+			console.log(hospital);
+			console.log("*********************");
+			
+			/** Update location hosptial **/
+			hospital.updateAttributes({
+				latitude:location.latitude,
+				longitude:location.longitude,
+			}).success(function(result){
+				callback(result);
+			}).error(function(error){
+				callback(error);	
+			});
+			
+		}).error(function(error){
+			callback(error);
+		});
+	};
+	
 	var searchHospital = function(searchObject,callback){
 		
 		// {
@@ -324,7 +348,7 @@ module.exports = (function(){
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
 					offset:( query.limit * (query.page - 1)),
-					//where:[query.where],
+					where:[query.where],
 					include:[{
 						'as':'HospitalType',
 						model:models.HospitalType,
@@ -496,5 +520,8 @@ module.exports = (function(){
 		removeDoctor:function(hospitalId,doctorId,callbackResponse){
 			removeDoctor(hospitalId,doctorId,callbackResponse);	
 		},
-	}
+		updateLocation:function(hospitalId,location,callbackResponse){
+			updateLocation(hospitalId,location,callbackResponse);
+		}
+	};
 })();

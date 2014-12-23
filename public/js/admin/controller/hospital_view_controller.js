@@ -10,6 +10,8 @@ angular.module('app.controllers')
 .controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService','MedicalInsuranceService','DoctorService', function($scope,$routeParams,Hospital,MedicalInsurance,Doctor){
     
     var id = $routeParams.id;
+    
+    $scope.show_map = false;
 
     /** Error object **/
     $scope.error = {
@@ -34,10 +36,91 @@ angular.module('app.controllers')
         .then(function(result){
             console.log("Result view hospital",result);
             $scope.data = result;
+            
+            if($scope.map === undefined){
+                $scope.initMap(result.name,{latitude:result.latitude,longitude:result.longitude});
+            }
+            
         },function(error){
             window.alert('Error ' + error);
         });
     };
+    
+    $scope.initMap = function(hospitalName,location){
+ 
+        var latLng = new google.maps.LatLng(location.latitude,location.longitude);
+        
+        var toggleBounce = function(){
+          if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        };
+        
+        var mapOptions = {
+            zoom: 14,
+            center: latLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: window.shift_worker_style
+        };
+        
+        $scope.map = new google.maps.Map(document.getElementById('update_map'), mapOptions);
+        
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: $scope.map,
+            title: hospitalName,
+            draggable:true,
+            animation: google.maps.Animation.DROP,
+        });
+        
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+        
+        google.maps.event.addListener(marker,'dragend',function(event) {
+            var lat = event.latLng.lat();
+            var lng = event.latLng.lng();
+            
+            console.log("Resultado luego del evento ",lat,lng);
+            
+            $scope.$apply(function(){
+                $scope.data.latitude = lat.toFixed(6);
+                $scope.data.longitude = lng.toFixed(6);    
+                
+                $scope.updateLocationOption = true;
+            });
+        });
+
+    };
+    
+    $scope.updateLocation = function(){
+        var location = {
+            latitude:$scope.data.latitude,
+            longitude:$scope.data.longitude
+        };
+        
+        Hospital.updateLocation(id,location).then(function(){
+            
+            $scope.updateLocationOption = false;
+        },function(error){
+            alert("Error actualizando la locacion");
+            console.log("Error ctualizando locacion",error);
+        });
+    };
+    
+    /*
+     *
+     *
+     *
+     **/
+    $scope.showMap = function(){
+        $scope.show_map = $scope.show_map? false : true;
+        
+        if($scope.show_map === true){
+            google.maps.event.trigger($scope.map, 'resize');
+        }
+    };
+    
 
     /*
      * remove current hopsital

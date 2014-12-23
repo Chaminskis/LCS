@@ -17,6 +17,7 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + 'names/',getNames,['GET','authorize']);
 	framework.route(controllerBaseUrl + 'all/',full,['GET','authorize']);
 	framework.route(controllerBaseUrl + 'search/',search,['POST','JSON']);
+	framework.route(controllerBaseUrl + 'location/',updateLocation,['PUT','JSON']);
 	
 	/** Insurance **/
 	framework.route(controllerBaseUrl + 'insurance/',addMedicalInsurance,['JSON','POST','authorize']);
@@ -155,6 +156,18 @@ function removeDoctor(){
 	var doctor = self.post.doctor;
 	
 	HospitalService.removeDoctor(hospital,doctor,function(result){
+		self.json(utils.genericResponse(false,'',result));
+	});
+}
+
+
+function updateLocation(){
+	var self = this;
+	
+	var id = self.post.id;
+	var location = self.post.location;
+	
+	HospitalService.updateLocation(id,location,function(result){
 		self.json(utils.genericResponse(false,'',result));
 	});
 }

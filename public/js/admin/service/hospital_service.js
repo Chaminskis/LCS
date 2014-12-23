@@ -124,10 +124,37 @@ angular.module('app.services')
 			method:'POST',
 			data:searchObject
 		}).then(function(response) {
+			
+			console.log("Search service");
+			console.log(response);
+			
 		    return response.data;
 		},function(error) {
 		    def.reject(error);
 		});	
+	};
+	
+	/*
+	 * lat,lng
+	 *
+	 **/
+	var updateLocation = function(id,location){
+		return $http({
+			url: baseUrlApi + "location/", 
+			method:'PUT',
+			data:{
+				id:id,
+				location:location
+			}
+		}).then(function(response) {
+			
+			console.log("Search service");
+			console.log(response);
+			
+		    return response.data;
+		},function(error) {
+		    def.reject(error);
+		});		
 	};
 
 	return {
@@ -140,5 +167,6 @@ angular.module('app.services')
 		addDoctor:addDoctor,
 		removeDoctor:removeDoctor,
 		search:search,
+		updateLocation:updateLocation,
 	};
 }]);

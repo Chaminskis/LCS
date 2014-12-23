@@ -501,8 +501,7 @@ angular.module('app.controllers', ['app.services'])
         
         service.findHospitalsByCriteria($scope.searchCriteria).then(function(data){
             var hospitals = data.result.rows;
-            console.log(hospitals);
-            
+
             $scope.markers = [];
             
             for(var i = 0; i < hospitals.length; i++){

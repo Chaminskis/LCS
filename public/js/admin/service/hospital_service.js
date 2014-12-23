@@ -156,6 +156,18 @@ angular.module('app.services')
 		    def.reject(error);
 		});		
 	};
+	
+	/*
+	 *
+	 * Wrap method to simplyfy the search method and just search by criteria
+	 *
+	 **/
+	var searchByCriteria = function(criteria){
+		return search({
+			searchType:"CRITERIA",
+			criteria:criteria,
+		});	
+	};
 
 	return {
 		save:save,
@@ -167,6 +179,7 @@ angular.module('app.services')
 		addDoctor:addDoctor,
 		removeDoctor:removeDoctor,
 		search:search,
+		searchByCriteria:searchByCriteria,
 		updateLocation:updateLocation,
 	};
 }]);

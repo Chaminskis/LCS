@@ -1,5 +1,22 @@
+<style type="text/css">
+	#control_search{
+		margin:0 10px;
+	}
+</style>
 <div class='content'>
 	<div class="content-panel">
+		<div id='control_search'>
+			
+			<div class="form-group clearfix">
+		    	<div class='col-md-3 col-lg-4'>
+					<input name="hospital_phone" ng-enter='search()' class="form-control" placeholder="Hospital" ng-model='criteriaSearch' id="criteria"/>
+				</div>
+				<div class='col-md-3 col-lg-4'>
+					<button ng-click="search()" class="btn btn-md btn-primary">Buscar</button>
+				</div>
+			</div>
+			
+		</div>
 		<table ng-init='load()' class='table table-hover'>
 			<thead>
 				<tr>

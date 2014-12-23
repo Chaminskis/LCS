@@ -82,4 +82,25 @@ angular.module('app.controllers')
 	$scope.showModal = function(){
 		alert('Modal');	
 	};
+	
+	/*
+	 *
+	 * Search hospital
+	 *
+	 **/
+	$scope.search = function(){
+		var criteria = $scope.criteriaSearch;
+		
+		console.log("Criteria to search",criteria);
+		
+		Hospital.searchByCriteria(criteria).then(function(data){
+            
+          	$scope.data = data.result.rows;
+			$scope.pager.total = data.result.count;
+          
+        },function(){
+            console.log("Mmmmmm creo que tus criterios de busquedas son raros");
+        });
+		
+	};
 }]);

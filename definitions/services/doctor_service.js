@@ -22,6 +22,11 @@ module.exports = (function(context){
 		return entity;
 	};
 	
+	/*
+	 *
+	 * Save method
+	 *
+	 **/
 	var createDoctor = function(dataModel,callback){
 		models.Doctor.create({
 			name:dataModel.name,
@@ -34,6 +39,11 @@ module.exports = (function(context){
         });
 	};
 
+	/*
+	 *
+	 * Save method
+	 *
+	 **/
 	var listDoctors = function(callback){
 		models.Doctor.findAll().success(function(result){
 			
@@ -79,7 +89,7 @@ module.exports = (function(context){
 			
 			var cleanResult = result.map(function(item){
 				return removeFields(item);	
-			})
+			});
 			
 			callback(cleanResult);
 		}).error(function(error){

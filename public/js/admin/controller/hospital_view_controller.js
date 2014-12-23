@@ -30,6 +30,7 @@ angular.module('app.controllers')
     
     /*
      * init method
+     *
      **/
     $scope.load = function(){
         Hospital.get(id)
@@ -46,6 +47,11 @@ angular.module('app.controllers')
         });
     };
     
+    /*
+     *
+     * init map and market
+     *
+     **/
     $scope.initMap = function(hospitalName,location){
  
         var latLng = new google.maps.LatLng(location.latitude,location.longitude);
@@ -93,6 +99,11 @@ angular.module('app.controllers')
 
     };
     
+    /*
+     * Upda location hospital
+     * Http request
+     *
+     **/
     $scope.updateLocation = function(){
         var location = {
             latitude:$scope.data.latitude,
@@ -100,7 +111,6 @@ angular.module('app.controllers')
         };
         
         Hospital.updateLocation(id,location).then(function(){
-            
             $scope.updateLocationOption = false;
         },function(error){
             alert("Error actualizando la locacion");
@@ -110,7 +120,7 @@ angular.module('app.controllers')
     
     /*
      *
-     *
+     * Show map, and trigger resize event
      *
      **/
     $scope.showMap = function(){
@@ -123,7 +133,9 @@ angular.module('app.controllers')
     
 
     /*
+     *
      * remove current hopsital
+     *
      **/
     $scope.delete = function(id){
 
@@ -144,7 +156,9 @@ angular.module('app.controllers')
     };
     
     /*
+     *
      * Remove Insurance from current list insurance list to add 
+     *
      **/
     $scope.removeAsurance = function(secureID){
         $scope.medicalEnsurance = $scope.medicalEnsurance.filter(function(item){
@@ -153,7 +167,9 @@ angular.module('app.controllers')
     };
     
     /*
+     *
      * Remove doctor from current list doctor list to add 
+     *
      **/
     $scope.removeDoctor = function(doctorID){
         $scope.doctors = $scope.doctors.filter(function(item){
@@ -161,6 +177,11 @@ angular.module('app.controllers')
         });
     };
     
+    /*
+     *
+     * after relate medical insuderance with hospital
+     *
+     **/
     $scope.postAddInsurance = function(medicalInsuranceID){
         
         $scope.data.secures.push.apply($scope.data.secures,$scope.medicalEnsurance.filter(function(item){
@@ -171,6 +192,9 @@ angular.module('app.controllers')
     };
     
     /*
+     *
+     * Relate medical insurance with hospital
+     * Http request
      *
      **/
     $scope.addMedicalInsurance = function(secureID){
@@ -185,6 +209,9 @@ angular.module('app.controllers')
     };
 
     /*
+     *
+     * Load medical insurance from service
+     * Http request to service
      *
      **/
     $scope.loadMedicalInsurance = function(){
@@ -222,6 +249,8 @@ angular.module('app.controllers')
     };
     
     /*
+     * after relate doctor with hospital, remove it from list of doctors 
+     * and add it to hospital doctos list
      *
      **/
     $scope.postAddDoctor = function(doctorID){
@@ -236,6 +265,8 @@ angular.module('app.controllers')
     };
     
     /*
+     * Relate a doctor to hospital
+     * Http request to service
      *
      **/
      $scope.addDoctor = function(doctorID){
@@ -250,6 +281,10 @@ angular.module('app.controllers')
          });
      };
      
+     /*
+      * After remove a doctor relation
+      *
+      **/
      $scope.postRemoveDoctorRelation = function(doctorID){
          
         $scope.error.show = true;
@@ -263,6 +298,8 @@ angular.module('app.controllers')
      
      /*
       *
+      * Remove doctor from hospital
+      * Http request to service
       **/
      $scope.removeRelationDoctor = function(doctorID){
         
@@ -274,6 +311,8 @@ angular.module('app.controllers')
      };
      
      /*
+      *
+      * Load all doctors to show on view
       *
       **/
      $scope.loadDoctors = function(){

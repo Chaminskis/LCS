@@ -9,7 +9,8 @@ angular.module('app.controllers')
 
 .controller('HospitalViewCtrl', ['$scope','$routeParams','HospitalService','MedicalInsuranceService','DoctorService', function($scope,$routeParams,Hospital,MedicalInsurance,Doctor){
     
-    var id = $routeParams.id;
+    $scope.id = $routeParams.id;
+    var id = $scope.id;
     
     $scope.show_map = false;
 
@@ -183,6 +184,10 @@ angular.module('app.controllers')
      *
      **/
     $scope.postAddInsurance = function(medicalInsuranceID){
+        
+        if($scope.data.secures === undefined){
+            $scope.data.secures = [];
+        }
         
         $scope.data.secures.push.apply($scope.data.secures,$scope.medicalEnsurance.filter(function(item){
             return medicalInsuranceID == item.id;

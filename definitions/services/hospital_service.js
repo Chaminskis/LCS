@@ -239,13 +239,17 @@ module.exports = (function(){
 	 * Relate medical insurance with a hospital
 	 *
 	 **/
-	var addmedicalInsurance = function(hospital,secure,callback){
+	var addMedicalInsurance = function(hospital,secure,callback){
 		
 		models.Hospital.find(hospital).success(function(itemHospital){
 			models.MedicalSecure.find(secure).success(function(itemSecure){
 			
-				itemHospital.addSecure(itemSecure)
+				itemHospital.addMedicalInsurance(itemSecure)
 				.success(function(result){
+					
+					
+					console.log("Hospital related with medical insurance");
+					
 					callback(result);
 				}).error(function(error){
 					callback(error);
@@ -358,16 +362,14 @@ module.exports = (function(){
 				}
 				
 				query.where = where.join("");
-				query.where = query.where.substr(0,query.where.length - 3);
 				
-				console.log("=========================================");
-				console.log("Quantity and offset ",query.limit,( query.limit * (query.page - 1)));
-				console.log("=========================================");
+				//remove the last 3 cahractrs 
+				query.where = query.where.substr(0,query.where.length - 3);
 				
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
 					offset:( query.limit * (query.page - 1)),
-					where:[query.where],
+					where:["hospitals.deleted_at = null and " + query.where],
 					include:[{
 						'as':'HospitalType',
 						model:models.HospitalType,
@@ -496,6 +498,28 @@ module.exports = (function(){
 			callback(error);
 		});
 	};
+	
+	
+	var update = function(dataModel,callback){
+		
+		models.Hospital.update({
+			name:dataModel.name,
+			details:dataModel.details,
+			address:dataModel.address,
+			local_phone:dataModel.local_phone,
+			hospital_type: parseInt(dataModel.hospital_type,10),
+			latitude:dataModel.location.latitude,
+			longitude:dataModel.location.longitude,
+		},{
+			id:dataModel.id
+		}).success(function(hospital){
+			callback({
+				'result':hospital
+			});
+		}).error(function(error){
+            callback(error);
+        });
+	};
 
 	return {
 
@@ -515,6 +539,9 @@ module.exports = (function(){
 		save:function(data,callbackResponse){
 			save(data,callbackResponse);
 		},
+		update:function(data,callbackResponse){
+			update(data,callbackResponse);
+		},
 		delete:function(id,callbackResponse){
 			deleteMethod(id,callbackResponse);
 		},
@@ -528,7 +555,7 @@ module.exports = (function(){
 			searchHospital(searchObject,callbackResponse);
 		},
 		addMedicalInsurance:function(hospital,medicalAsurance,callbackResponse){
-			addmedicalInsurance(hospital,medicalAsurance,callbackResponse);
+			addMedicalInsurance(hospital,medicalAsurance,callbackResponse);
 		},
 		removeMedicalInsurance:function(hospitalId,medicalAsuranceID,callbackResponse){
 			removeMedicalInsurance(hospitalId,medicalAsuranceID,callbackResponse);

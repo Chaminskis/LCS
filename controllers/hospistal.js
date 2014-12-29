@@ -13,6 +13,7 @@ exports.install = function(framework){
 	framework.route(controllerBaseUrl + '',index,['GET','authorize']);
 	framework.route(controllerBaseUrl + '{{ page }}',index,['GET']);
 	framework.route(controllerBaseUrl + '',save,['JSON','POST']);
+	framework.route(controllerBaseUrl + '',update,['JSON','PUT']);
 
 	framework.route(controllerBaseUrl + 'names/',getNames,['GET','authorize']);
 	framework.route(controllerBaseUrl + 'all/',full,['GET','authorize']);
@@ -168,6 +169,16 @@ function updateLocation(){
 	var location = self.post.location;
 	
 	HospitalService.updateLocation(id,location,function(result){
+		self.json(utils.genericResponse(false,'',result));
+	});
+}
+
+function update(){
+	var self = this;
+
+	var data = self.post;
+
+	HospitalService.update(data,function(result){
 		self.json(utils.genericResponse(false,'',result));
 	});
 }

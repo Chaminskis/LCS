@@ -1,7 +1,7 @@
 module.exports = {
   up: function(migration, DataTypes, done) {
     
-  	migration.createTable('hospital_insurance',{
+  	migration.createTable('hospital_insurances',{
   		hospital_id:{ 
   			type: DataTypes.INTEGER, 
   			references: "hospitals",
@@ -12,9 +12,18 @@ module.exports = {
   			references: "medical_insurances",
   			referenceKey: "id",
   		},
-  		updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-      created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-      deleted_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  		updated_at: { 
+  		  type: DataTypes.DATE, 
+  		  defaultValue: DataTypes.NOW 
+  		},
+      created_at: { 
+        type: DataTypes.DATE, 
+        defaultValue: DataTypes.NOW 
+      },
+      deleted_at: { 
+        type: DataTypes.DATE, 
+        defaultValue: DataTypes.NOW 
+      },
   	});
 
     done();

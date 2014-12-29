@@ -25,9 +25,6 @@ angular.module('app.services')
 	};
 
 	var list = function(page){
-		
-		console.log("Page on hospital service " + page);
-		
 		return $http({
 			url:baseUrlApi + page,
 		}).then(function(result){
@@ -168,9 +165,22 @@ angular.module('app.services')
 			criteria:criteria,
 		});	
 	};
+	
+	var update = function(model){
+		return $http({
+			url:baseUrlApi,
+			method:'PUT',
+			data:model,
+		}).then(function(response){
+			return response.data;
+		},function(error){
+			return def.reject(error);
+		});
+	};
 
 	return {
 		save:save,
+		update:update,
 		list:list,
 		get:get,
 		delete:remove,

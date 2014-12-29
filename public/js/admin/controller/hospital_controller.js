@@ -91,8 +91,6 @@ angular.module('app.controllers')
 	$scope.search = function(){
 		var criteria = $scope.criteriaSearch;
 		
-		console.log("Criteria to search",criteria);
-		
 		Hospital.searchByCriteria(criteria).then(function(data){
             
           	$scope.data = data.result.rows;

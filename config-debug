@@ -23,3 +23,6 @@ allow-compile-js                   : false
 allow-compile-css                  : false
  
 allow-compress-html                : false
+
+// In milliseconds
+//default-request-timeout            : 300000

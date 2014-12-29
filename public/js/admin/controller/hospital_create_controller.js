@@ -24,7 +24,6 @@ angular.module('app.controllers')
 	};
 	
 	var setupMap = function(){
-		alert('set up');
 		var mapOptions = {
             zoom: 15,
             center: new google.maps.LatLng(18.0000, -68.0000),
@@ -32,7 +31,7 @@ angular.module('app.controllers')
         };
         
         $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-	}
+	};
 
 	$scope.save = function(){
 		var data = $scope.model;

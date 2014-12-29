@@ -3,7 +3,7 @@
  *
  **/
 
-var Sequelize = require("sequelize")
+var Sequelize = require("sequelize");
 var sequelize = require('./database.js');
 
 var extraOptions = {
@@ -12,7 +12,7 @@ var extraOptions = {
 	paranoid: true,
 
 	engine:'INNODB',
-}
+};
 
 var User = sequelize.define('auth_users',{
 	id:{ type: Sequelize.INTEGER, autoIncrement: true, unique:true, },
@@ -64,10 +64,10 @@ var Doctor = sequelize.define('doctor',{
 },extraOptions);
 
 
-/**  hospital * ->  * Secure  **/
-Hospital.hasMany(MedicalSecure,{as:'MedicalInsurances',through:'hospital_secures'});
+/**  hospital * ->  * Medical Insurance  **/
+Hospital.hasMany(MedicalSecure,{as:'MedicalInsurances',through:'hospital_insurances'});
 
-MedicalSecure.hasMany(Hospital,{as:'Hospitals',through:'hospital_secures'});
+MedicalSecure.hasMany(Hospital,{as:'Hospitals',through:'hospital_insurances'});
 
 
 /**  hospital * ->  * Doctors  **/

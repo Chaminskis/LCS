@@ -118,7 +118,8 @@ angular.module('app.controllers', ['app.services'])
 
     $scope.updateHospitalTypeSelection = function(){
         $scope.hospitalTypeFilter.updateHospitalTypeSelection();
-        console.log(buildSearchMultiCriteriaParam());
+        findHospitalsByCriteria();
+
     };
 
     var everythingIsSelected = function(entityCollection){
@@ -417,7 +418,7 @@ angular.module('app.controllers', ['app.services'])
 
     var findHospitalsByCriteria = function(){
         $scope.markers = [];
-        console.log($scope.searchString);
+        var criteria = buildSearchMultiCriteriaParam();
                     
         service.findHospitalsByCriteria(criteria).then(function(response){
             if(!response.error){

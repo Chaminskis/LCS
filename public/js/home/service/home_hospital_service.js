@@ -50,15 +50,15 @@ angular.module('app.services')
 
 	var findHospitalsByCriteria = function(searchParam){
 		
-		console.log(searchParam);
+		// console.log(searchParam);
 		
-		//unused variable
+		//unused variable - cool, you look like resharper, now xD
 		//var loc = createLocationObject(searchParam.location.lat, searchParam.location.lon);
 		
-		var searchObject = createSearchObject(searchType.CRITERIA);
-		searchObject.criteria = searchParam;
+		// var searchObject = createSearchObject(searchType.CRITERIA);
+		// searchObject.criteria = searchParam;
 		
-		return hospitalService.search(searchObject);		
+		return hospitalService.search(searchParam);		
 	};
 
 	var performSearch = function(searchObject){

@@ -315,6 +315,36 @@ module.exports = (function(){
 		});
 	};
 	
+	/*
+	 *
+	 * Private method, clean every item on result after search
+	 *
+	 **/
+	var cleanSearchResult = function(item){
+		delete item.dataValues.count;
+		
+		item = removeFields(item.dataValues);
+		
+		//don't know how but removeFields return a single object not a entity (I'm strong)
+		item.hospitalType = {
+			id: item.HospitalType_id,
+			name: item.HospitalType_name,
+			details: item.HospitalType_details,
+		};
+		
+		delete item.HospitalType_id;
+		delete item.HospitalType_details;
+		delete item.HospitaType_id;
+		delete item.HospitalType_name;
+		
+		return item;
+	};
+	
+	/*
+	 *
+	 *
+	 *
+	 **/
 	var searchHospital = function(searchObject,callback){
 		
 		// {
@@ -465,32 +495,8 @@ module.exports = (function(){
 				cleanResult = result.rows.map(function(item){
 					return removeFields(item.dataValues);
 				});
-				
-				console.log('clean reuslts');
 			}else{
-				
-				console.log("Search");
-				
-				cleanResult = result.map(function(item){
-					delete item.dataValues.count;
-					
-					item = removeFields(item.dataValues);
-					
-					//don't know how but removeFields return a single object not a entity (I'm strong)
-					
-					item.hospitalType = {
-						id: item.HospitalType_id,
-						name: item.HospitalType_name,
-						details: item.HospitalType_details,
-					};
-					
-					delete item.HospitalType_id;
-					delete item.HospitalType_details;
-					delete item.HospitaType_id;
-					delete item.HospitalType_name;
-					
-					return item;
-				});
+				cleanResult = result.map(cleanSearchResult);
 				
 				count = cleanResult.length;
 			}

@@ -136,12 +136,51 @@ http://lcs.blageek.net/app/manage/hospital/search
     //Request
     {
       "searchType":"LOCATION | CRITERIA | INSURANCE | HOSPITALTYPE",
-      "criteria":"laboris" | [1,2,3,4] | 1, // criteria, hospital type, insurance id
+      "criteria":"laboris" | [1,2,3,4] | [1], // criteria, hospital type, insurance id
+      
+      // Object only need it when searchType is equal to Location
       "location":{
         "lat":12,
         "lon":34,
         "distance":39
       }
+      "limit":1,
+      "page":2
+    }
+    
+    //Example Request 
+    //Search by Location
+    {
+      "searchType":"LOCATION",
+      "location":{
+        "lat":12,
+        "lon":34,
+        "distance":39
+      }
+      "limit":1,
+      "page":2
+    }
+    
+    //Search by Insurance
+    {
+      "searchType":"INSURANCE",
+      "criteria":[1,2,3,4] // Insurance id
+      "limit":1,
+      "page":2
+    }
+    
+    //Search by HospitalType
+    {
+      "searchType":"HOSPITALTYPE",
+      "criteria":[1,2,3,4]
+      "limit":1,
+      "page":2
+    }
+    
+    //Search by criteria "single search"
+    {
+      "searchType":"CRITERIA",
+      "criteria":"laboris"
       "limit":1,
       "page":2
     }

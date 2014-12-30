@@ -87,6 +87,11 @@ module.exports = (function(){
         });
 	};
 	
+	/*
+	 *
+	 * Retrieve all insruance that are not related with a specific hospital 
+	 *
+	 **/
 	var excludeHospitalRelation = function(hospitalID,callback){
 		
 		var sql = 'select * from medical_insurances where id not in ( select medical_insurance_id from hospital_insurances where hospital_id = '+ hospitalID +');';

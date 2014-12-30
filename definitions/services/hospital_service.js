@@ -416,7 +416,10 @@ module.exports = (function(){
 				queryCall= models.Hospital.findAndCountAll({
 					limit:query.limit,
 					offset:( query.limit * (query.page - 1)),
-					where:["hospitals.hospital_type = " + searchObject.criteria],
+					where:{ 
+						//this is an array
+						hospital_type: searchObject.criteria
+					},
 					include:[{
 						'as':'HospitalType',
 						model:models.HospitalType,
@@ -438,6 +441,8 @@ module.exports = (function(){
 						model:models.MedicalSecure,
 						as:'MedicalInsurances',
 						attributes:[ 'id','name','details'],
+						
+						//this is an array
 						where:{ id:searchObject.criteria }
 					}],
 				});

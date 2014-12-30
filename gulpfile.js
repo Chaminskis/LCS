@@ -139,9 +139,12 @@ gulp.task('prod-admin-index',function(){
 
 gulp.task('admin_script', function() {
     return gulp.src([
+        
+        'public/js/admin/modules.js',
+        'public/js/admin/service/*.js',
         'public/js/admin/service/*.js',
         'public/js/admin/controller/*.js',
-        'public/js/admin/*.js',
+        'public/js/admin/admin.js',
     ])
     .pipe(concat('admin_script.js'))
     .pipe(gulp.dest('public/dist/js'))
